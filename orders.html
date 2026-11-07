@@ -22,7 +22,7 @@
 <body class="d-flex flex-column min-vh-100">
 
   <!-- =========================================================================
-       1. SHARED NAVIGATION (v2 Update: 6 Links in strict order)
+       1. SHARED NAVIGATION (Streamlined 5-Item Menu: 100% Native on Mobile)
        ========================================================================= -->
 
   <!-- Desktop Sidebar (lg and up) -->
@@ -48,13 +48,7 @@
       <li class="nav-item">
         <a href="products.html" class="nav-link">
           <i class="bi bi-box-seam me-2 fs-5"></i>
-          <span>Products</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="inventory.html" class="nav-link">
-          <i class="bi bi-clipboard-data me-2 fs-5"></i>
-          <span>Inventory</span>
+          <span>Products & Stock</span>
         </a>
       </li>
       <li class="nav-item">
@@ -102,13 +96,8 @@
         </a>
       </li>
       <li class="nav-item mb-2">
-        <a href="products.html" class="nav-link" title="Products" aria-label="Products">
+        <a href="products.html" class="nav-link" title="Products & Stock" aria-label="Products & Stock">
           <i class="bi bi-box-seam"></i>
-        </a>
-      </li>
-      <li class="nav-item mb-2">
-        <a href="inventory.html" class="nav-link" title="Inventory" aria-label="Inventory">
-          <i class="bi bi-clipboard-data"></i>
         </a>
       </li>
       <li class="nav-item mb-2">
@@ -143,7 +132,7 @@
     </div>
   </nav>
 
-  <!-- Mobile Fixed Bottom Nav (< md, 5 items max) -->
+  <!-- Mobile Fixed Bottom Nav (< md, 5 Slots: Perfect 1-Tap Access!) -->
   <nav class="gm-bottom-nav fixed-bottom d-md-none" aria-label="Mobile Bottom Navigation">
     <div class="container-fluid h-100 px-0">
       <div class="row g-0 h-100 text-center align-items-center" id="mobileBottomNav">
@@ -160,9 +149,9 @@
           </a>
         </div>
         <div class="col-nav-5">
-          <a href="orders.html" class="nav-link active" aria-current="page">
-            <i class="bi bi-receipt"></i>
-            <span>Orders</span>
+          <a href="products.html" class="nav-link">
+            <i class="bi bi-box-seam"></i>
+            <span>Products</span>
           </a>
         </div>
         <div class="col-nav-5">
@@ -172,57 +161,14 @@
           </a>
         </div>
         <div class="col-nav-5">
-          <button type="button" class="nav-link w-100 border-0 bg-transparent active text-warning" data-bs-toggle="offcanvas" data-bs-target="#moreNavOffcanvas" aria-controls="moreNavOffcanvas" aria-label="Open More Menu">
-            <i class="bi bi-grid-fill"></i>
-            <span>More</span>
-          </button>
+          <a href="orders.html" class="nav-link active" aria-current="page">
+            <i class="bi bi-receipt"></i>
+            <span>Orders</span>
+          </a>
         </div>
       </div>
     </div>
   </nav>
-
-  <!-- Mobile "More" Offcanvas Drawer -->
-  <div class="offcanvas offcanvas-bottom d-md-none rounded-top-4" tabindex="-1" id="moreNavOffcanvas" aria-labelledby="moreNavOffcanvasLabel" style="height: 60vh;">
-    <div class="offcanvas-header pb-1 pt-2 flex-column align-items-stretch border-bottom">
-      <div class="gm-drag-handle" aria-hidden="true"></div>
-      <div class="d-flex align-items-center justify-content-between w-100 mt-2">
-        <h2 class="h5 fw-bold mb-0" id="moreNavOffcanvasLabel">Quick Navigation</h2>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close menu"></button>
-      </div>
-    </div>
-    <div class="offcanvas-body p-3">
-      <div class="row g-2">
-        <div class="col-6">
-          <a href="products.html" class="card text-center p-3 text-decoration-none card-hover border h-100">
-            <i class="bi bi-box-seam fs-2 text-primary mb-1"></i>
-            <span class="fw-semibold text-dark">Products</span>
-            <span class="small text-muted">Catalog & Prices</span>
-          </a>
-        </div>
-        <div class="col-6">
-          <a href="inventory.html" class="card text-center p-3 text-decoration-none card-hover border h-100">
-            <i class="bi bi-clipboard-data fs-2 text-warning mb-1"></i>
-            <span class="fw-semibold text-dark">Inventory</span>
-            <span class="small text-muted">Stock & Adjust</span>
-          </a>
-        </div>
-        <div class="col-6">
-          <a href="customers.html" class="card text-center p-3 text-decoration-none card-hover border h-100">
-            <i class="bi bi-people fs-2 text-success mb-1"></i>
-            <span class="fw-semibold text-dark">Customers</span>
-            <span class="small text-muted">Loyalty & Profiles</span>
-          </a>
-        </div>
-        <div class="col-6">
-          <a href="orders.html" class="card text-center p-3 text-decoration-none card-hover border border-danger h-100 bg-danger-subtle bg-opacity-10">
-            <i class="bi bi-receipt fs-2 text-danger mb-1"></i>
-            <span class="fw-bold text-dark">Orders</span>
-            <span class="small text-muted">History & Tickets</span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- =========================================================================
        2. MAIN CONTENT AREA
@@ -278,20 +224,16 @@
         <!-- ADVANCED FILTERS ROW: Date Range + Customer Select + Status Pills -->
         <section class="card p-3 mb-4 border-0 shadow-sm" aria-label="Order Filter Controls">
           <div class="row g-2 align-items-center">
-            
-            <!-- Date From -->
             <div class="col-6 col-md-2">
               <label for="orderDateFrom" class="form-label small text-muted mb-1">From Date</label>
               <input type="date" class="form-control form-control-sm" id="orderDateFrom" value="2026-11-06">
             </div>
 
-            <!-- Date To -->
             <div class="col-6 col-md-2">
               <label for="orderDateTo" class="form-label small text-muted mb-1">To Date</label>
               <input type="date" class="form-control form-control-sm" id="orderDateTo" value="2026-11-07">
             </div>
 
-            <!-- Customer Select -->
             <div class="col-12 col-md-3">
               <label for="orderCustomerFilter" class="form-label small text-muted mb-1">Customer</label>
               <select class="form-select form-select-sm" id="orderCustomerFilter">
@@ -303,13 +245,11 @@
               </select>
             </div>
 
-            <!-- Search by Order No. -->
             <div class="col-12 col-md-2">
               <label for="orderSearchInput" class="form-label small text-muted mb-1">Search</label>
               <input type="text" class="form-control form-control-sm" id="orderSearchInput" placeholder="#1042">
             </div>
 
-            <!-- Status Pills -->
             <div class="col-12 col-md-3 text-md-end mt-md-4">
               <div class="overflow-auto pb-1 flex-nowrap text-nowrap">
                 <ul class="nav nav-pills d-inline-flex flex-nowrap" id="orderFilterPills" role="tablist">
@@ -328,14 +268,10 @@
                 </ul>
               </div>
             </div>
-
           </div>
         </section>
 
-        <!-- ===================================================================
-             TABLE VIEW (Visible on md and up: d-none d-md-block)
-             Columns: Order no., Date, Customer, Items count, Subtotal, Discount, Total, Status, Actions
-             =================================================================== -->
+        <!-- TABLE VIEW (Visible on md and up: d-none d-md-block) -->
         <div class="card d-none d-md-block overflow-hidden shadow-sm">
           <div class="table-responsive">
             <table class="table table-hover align-middle mb-0">
@@ -352,10 +288,8 @@
                   <th scope="col" class="text-end">Actions</th>
                 </tr>
               </thead>
-              <!-- JS: render orders table here -->
               <tbody id="ordersTableBody">
-
-                <!-- Order 1: #1042 (Completed) -->
+                <!-- Order 1: #1042 -->
                 <tr data-id="1042">
                   <td><span class="badge bg-dark fw-bold px-2 py-1">#1042</span></td>
                   <td>
@@ -381,7 +315,7 @@
                   </td>
                 </tr>
 
-                <!-- Order 2: #1041 (Pending) -->
+                <!-- Order 2: #1041 -->
                 <tr data-id="1041">
                   <td><span class="badge bg-dark fw-bold px-2 py-1">#1041</span></td>
                   <td>
@@ -410,132 +344,14 @@
                   </td>
                 </tr>
 
-                <!-- Order 3: #1040 (Completed) -->
-                <tr data-id="1040">
-                  <td><span class="badge bg-dark fw-bold px-2 py-1">#1040</span></td>
-                  <td>
-                    <div class="fw-semibold text-dark">07 Nov 2026</div>
-                    <div class="small text-muted">12:10 PM</div>
-                  </td>
-                  <td>
-                    <span class="fw-semibold text-dark">Dilani Fernando</span>
-                    <div class="small text-muted">076 555 1234</div>
-                  </td>
-                  <td><span class="badge bg-light text-dark border">4 items</span></td>
-                  <td>Rs. 2,300</td>
-                  <td>Rs. 0</td>
-                  <td class="fw-bold text-dark">Rs. 2,300</td>
-                  <td><span class="badge bg-success"><i class="bi bi-check-circle-fill me-1"></i>Completed</span></td>
-                  <td class="text-end">
-                    <button type="button" class="btn btn-outline-dark btn-sm me-1" data-bs-toggle="modal" data-bs-target="#viewOrderModal" title="View order items" aria-label="View Order #1040">
-                      <i class="bi bi-eye"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#editOrderModal" title="Edit order" aria-label="Edit Order #1040">
-                      <i class="bi bi-pencil-square"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteOrderModal" title="Delete order" aria-label="Delete Order #1040">
-                      <i class="bi bi-trash3"></i>
-                    </button>
-                  </td>
-                </tr>
-
-                <!-- Order 4: #1039 (Completed) -->
-                <tr data-id="1039">
-                  <td><span class="badge bg-dark fw-bold px-2 py-1">#1039</span></td>
-                  <td>
-                    <div class="fw-semibold text-dark">07 Nov 2026</div>
-                    <div class="small text-muted">11:45 AM</div>
-                  </td>
-                  <td>
-                    <span class="fw-semibold text-dark">Kasun Silva</span>
-                    <div class="small text-muted">071 987 6543</div>
-                  </td>
-                  <td><span class="badge bg-light text-dark border">2 items</span></td>
-                  <td>Rs. 1,230</td>
-                  <td>Rs. 0</td>
-                  <td class="fw-bold text-dark">Rs. 1,230</td>
-                  <td><span class="badge bg-success"><i class="bi bi-check-circle-fill me-1"></i>Completed</span></td>
-                  <td class="text-end">
-                    <button type="button" class="btn btn-outline-dark btn-sm me-1" data-bs-toggle="modal" data-bs-target="#viewOrderModal" title="View order items" aria-label="View Order #1039">
-                      <i class="bi bi-eye"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#editOrderModal" title="Edit order" aria-label="Edit Order #1039">
-                      <i class="bi bi-pencil-square"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteOrderModal" title="Delete order" aria-label="Delete Order #1039">
-                      <i class="bi bi-trash3"></i>
-                    </button>
-                  </td>
-                </tr>
-
-                <!-- Order 5: #1038 (Pending) -->
-                <tr data-id="1038">
-                  <td><span class="badge bg-dark fw-bold px-2 py-1">#1038</span></td>
-                  <td>
-                    <div class="fw-semibold text-dark">07 Nov 2026</div>
-                    <div class="small text-muted">11:20 AM</div>
-                  </td>
-                  <td>
-                    <span class="fw-semibold text-dark">Chaminda Bandara</span>
-                    <div class="small text-muted">072 334 8899</div>
-                  </td>
-                  <td><span class="badge bg-light text-dark border">5 items</span></td>
-                  <td>Rs. 3,650</td>
-                  <td>Rs. 0</td>
-                  <td class="fw-bold text-dark">Rs. 3,650</td>
-                  <td><span class="badge bg-warning text-dark"><i class="bi bi-hourglass-split me-1"></i>Pending</span></td>
-                  <td class="text-end">
-                    <button type="button" class="btn btn-outline-dark btn-sm me-1" data-bs-toggle="modal" data-bs-target="#viewOrderModal" title="View order items" aria-label="View Order #1038">
-                      <i class="bi bi-eye"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#editOrderModal" title="Edit order" aria-label="Edit Order #1038">
-                      <i class="bi bi-pencil-square"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteOrderModal" title="Delete order" aria-label="Delete Order #1038">
-                      <i class="bi bi-trash3"></i>
-                    </button>
-                  </td>
-                </tr>
-
-                <!-- Order 6: #1037 (Completed) -->
-                <tr data-id="1037">
-                  <td><span class="badge bg-dark fw-bold px-2 py-1">#1037</span></td>
-                  <td>
-                    <div class="fw-semibold text-dark">07 Nov 2026</div>
-                    <div class="small text-muted">10:55 AM</div>
-                  </td>
-                  <td>
-                    <span class="fw-semibold text-dark">Anura Jayawardena</span>
-                    <div class="small text-muted">077 445 6677</div>
-                  </td>
-                  <td><span class="badge bg-light text-dark border">2 items</span></td>
-                  <td>Rs. 1,380</td>
-                  <td>Rs. 0</td>
-                  <td class="fw-bold text-dark">Rs. 1,380</td>
-                  <td><span class="badge bg-success"><i class="bi bi-check-circle-fill me-1"></i>Completed</span></td>
-                  <td class="text-end">
-                    <button type="button" class="btn btn-outline-dark btn-sm me-1" data-bs-toggle="modal" data-bs-target="#viewOrderModal" title="View order items" aria-label="View Order #1037">
-                      <i class="bi bi-eye"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#editOrderModal" title="Edit order" aria-label="Edit Order #1037">
-                      <i class="bi bi-pencil-square"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteOrderModal" title="Delete order" aria-label="Delete Order #1037">
-                      <i class="bi bi-trash3"></i>
-                    </button>
-                  </td>
-                </tr>
-
-                <!-- Order 7: #1036 (Cancelled Example - Grey Badge) -->
+                <!-- Order 7: #1036 (Cancelled) -->
                 <tr data-id="1036" class="table-light opacity-75">
                   <td><span class="badge bg-secondary fw-bold px-2 py-1">#1036</span></td>
                   <td>
                     <div class="fw-semibold text-muted">06 Nov 2026</div>
                     <div class="small text-muted">08:40 PM</div>
                   </td>
-                  <td>
-                    <span class="fw-semibold text-muted">Sanduni Wickramasinghe</span>
-                  </td>
+                  <td><span class="fw-semibold text-muted">Sanduni Wickramasinghe</span></td>
                   <td><span class="badge bg-light text-muted border">4 items</span></td>
                   <td><del class="text-muted">Rs. 2,800</del></td>
                   <td>Rs. 0</td>
@@ -545,57 +361,22 @@
                     <button type="button" class="btn btn-outline-dark btn-sm me-1" data-bs-toggle="modal" data-bs-target="#viewOrderModal" title="View order items" aria-label="View Order #1036">
                       <i class="bi bi-eye"></i>
                     </button>
-                    <button type="button" class="btn btn-outline-secondary btn-sm me-1 disabled" aria-disabled="true" title="Cannot edit cancelled order">
+                    <button type="button" class="btn btn-outline-secondary btn-sm me-1 disabled" aria-disabled="true">
                       <i class="bi bi-pencil-square"></i>
                     </button>
-                    <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteOrderModal" title="Purge order log" aria-label="Delete Order #1036">
+                    <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteOrderModal" title="Delete order" aria-label="Delete Order #1036">
                       <i class="bi bi-trash3"></i>
                     </button>
                   </td>
                 </tr>
-
-                <!-- Order 8: #1035 (Completed) -->
-                <tr data-id="1035">
-                  <td><span class="badge bg-dark fw-bold px-2 py-1">#1035</span></td>
-                  <td>
-                    <div class="fw-semibold text-dark">06 Nov 2026</div>
-                    <div class="small text-muted">08:15 PM</div>
-                  </td>
-                  <td>
-                    <span class="fw-semibold text-dark">Roshan Perera</span>
-                    <div class="small text-muted">075 221 3344</div>
-                  </td>
-                  <td><span class="badge bg-light text-dark border">2 items</span></td>
-                  <td>Rs. 1,030</td>
-                  <td>Rs. 0</td>
-                  <td class="fw-bold text-dark">Rs. 1,030</td>
-                  <td><span class="badge bg-success"><i class="bi bi-check-circle-fill me-1"></i>Completed</span></td>
-                  <td class="text-end">
-                    <button type="button" class="btn btn-outline-dark btn-sm me-1" data-bs-toggle="modal" data-bs-target="#viewOrderModal" title="View order items" aria-label="View Order #1035">
-                      <i class="bi bi-eye"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#editOrderModal" title="Edit order" aria-label="Edit Order #1035">
-                      <i class="bi bi-pencil-square"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteOrderModal" title="Delete order" aria-label="Delete Order #1035">
-                      <i class="bi bi-trash3"></i>
-                    </button>
-                  </td>
-                </tr>
-
               </tbody>
             </table>
           </div>
         </div>
 
-        <!-- ===================================================================
-             MOBILE CARD VIEW (Visible below md: d-md-none)
-             =================================================================== -->
-        <!-- JS: render mobile order cards here -->
+        <!-- MOBILE CARD VIEW (Visible below md: d-md-none) -->
         <div class="d-md-none" id="ordersMobileCardsList">
           <div class="row g-3">
-
-            <!-- Card 1: #1042 -->
             <div class="col-12" data-id="1042">
               <div class="card p-3 shadow-sm">
                 <div class="d-flex justify-content-between align-items-center mb-2">
@@ -622,32 +403,6 @@
                 </div>
               </div>
             </div>
-
-            <!-- Card 7: #1036 (Cancelled) -->
-            <div class="col-12" data-id="1036">
-              <div class="card p-3 shadow-sm border-secondary border-opacity-50 bg-light opacity-75">
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                  <span class="badge bg-secondary fw-bold">#1036</span>
-                  <span class="badge bg-secondary px-2 py-1">Cancelled</span>
-                </div>
-                <div class="d-flex justify-content-between align-items-baseline mb-1">
-                  <h2 class="h6 fw-bold mb-0 text-muted">Sanduni Wickramasinghe</h2>
-                  <span class="fs-6 fw-bold text-muted">Rs. 0 (Void)</span>
-                </div>
-                <div class="small text-muted mb-2">
-                  <i class="bi bi-clock me-1"></i>06 Nov 2026, 08:40 PM • Cancelled by customer
-                </div>
-                <div class="d-flex gap-2 pt-2 border-top">
-                  <button type="button" class="btn btn-outline-dark btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#viewOrderModal">
-                    <i class="bi bi-eye me-1"></i> View Items
-                  </button>
-                  <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteOrderModal" aria-label="Delete order">
-                    <i class="bi bi-trash3"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-
           </div>
         </div>
 
@@ -655,10 +410,7 @@
     </main>
   </div>
 
-  <!-- =========================================================================
-       3. VIEW ORDER MODAL (#viewOrderModal, modal-lg)
-       Customer info block + orderItems table + totals + print
-       ========================================================================= -->
+  <!-- VIEW ORDER MODAL (#viewOrderModal, modal-lg) -->
   <div class="modal fade" id="viewOrderModal" tabindex="-1" aria-labelledby="viewOrderModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content">
@@ -671,7 +423,6 @@
         </div>
 
         <div class="modal-body p-4">
-          <!-- Customer Info Block -->
           <div class="card bg-light border-0 p-3 mb-3">
             <div class="row g-2">
               <div class="col-6 col-md-3">
@@ -693,7 +444,6 @@
             </div>
           </div>
 
-          <!-- orderItems Table -->
           <h3 class="h6 fw-bold mb-2 text-dark">Ordered Items (orderItems relation)</h3>
           <div class="table-responsive mb-3 border rounded">
             <table class="table table-hover align-middle mb-0">
@@ -705,7 +455,6 @@
                   <th scope="col" class="text-end">Line Total</th>
                 </tr>
               </thead>
-              <!-- JS: render order items table here -->
               <tbody id="viewOrderItemsTableBody">
                 <tr data-product-id="1">
                   <td>
@@ -738,7 +487,6 @@
             </table>
           </div>
 
-          <!-- Totals Breakdown Block -->
           <div class="row justify-content-end">
             <div class="col-12 col-md-5">
               <div class="d-flex justify-content-between small text-muted mb-1">
@@ -767,10 +515,7 @@
     </div>
   </div>
 
-  <!-- =========================================================================
-       4. EDIT ORDER MODAL (#editOrderModal)
-       Status select, customer select, editable items table & "+ Add item" row
-       ========================================================================= -->
+  <!-- EDIT ORDER MODAL (#editOrderModal) -->
   <div class="modal fade" id="editOrderModal" tabindex="-1" aria-labelledby="editOrderModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content">
@@ -783,8 +528,6 @@
 
         <div class="modal-body p-4">
           <form class="row g-3" id="editOrderForm">
-
-            <!-- Status Select -->
             <div class="col-12 col-sm-6">
               <label for="editOrderStatus" class="form-label fw-semibold">Order Status</label>
               <select class="form-select" id="editOrderStatus">
@@ -794,7 +537,6 @@
               </select>
             </div>
 
-            <!-- Customer Select -->
             <div class="col-12 col-sm-6">
               <label for="editOrderCustomer" class="form-label fw-semibold">Customer</label>
               <select class="form-select" id="editOrderCustomer">
@@ -805,7 +547,6 @@
               </select>
             </div>
 
-            <!-- Editable Items Table -->
             <div class="col-12">
               <label class="form-label fw-semibold mb-2">Order Items (Quantities & Add Items)</label>
               <div class="table-responsive border rounded mb-2">
@@ -819,7 +560,6 @@
                       <th scope="col" style="width: 50px;" class="text-end">Remove</th>
                     </tr>
                   </thead>
-                  <!-- JS: render editable order items here -->
                   <tbody id="editOrderItemsTableBody">
                     <tr data-product-id="2">
                       <td class="fw-semibold">Cheese Burger</td>
@@ -843,22 +583,10 @@
                         <button type="button" class="btn btn-outline-danger btn-sm p-1" aria-label="Remove item"><i class="bi bi-trash3"></i></button>
                       </td>
                     </tr>
-                    <tr data-product-id="8">
-                      <td class="fw-semibold">Milkshake</td>
-                      <td>Rs. 480</td>
-                      <td>
-                        <input type="number" class="form-control form-control-sm text-center" value="1" min="1" aria-label="Quantity for Milkshake">
-                      </td>
-                      <td class="text-end fw-bold">Rs. 480</td>
-                      <td class="text-end">
-                        <button type="button" class="btn btn-outline-danger btn-sm p-1" aria-label="Remove item"><i class="bi bi-trash3"></i></button>
-                      </td>
-                    </tr>
                   </tbody>
                 </table>
               </div>
 
-              <!-- "+ Add Item" Row with Product Select -->
               <div class="row g-2 align-items-center p-2 bg-light rounded">
                 <div class="col-8 col-sm-9">
                   <select class="form-select form-select-sm" id="addItemSelect" aria-label="Select product to append">
@@ -877,20 +605,18 @@
               </div>
             </div>
 
-            <!-- Live-looking Totals Strip -->
             <div class="col-12">
               <div class="d-flex justify-content-between align-items-center p-3 bg-light rounded border">
                 <div>
-                  <span class="small text-muted d-block">Subtotal: Rs. 1,880 • Discount: Rs. 0</span>
+                  <span class="small text-muted d-block">Subtotal: Rs. 1,400 • Discount: Rs. 0</span>
                   <span class="small text-muted">Stock reduction will be recalculated upon save.</span>
                 </div>
                 <div class="text-end">
                   <span class="small text-muted d-block">Updated Total:</span>
-                  <strong class="fs-4 text-danger">Rs. 1,880</strong>
+                  <strong class="fs-4 text-danger">Rs. 1,400</strong>
                 </div>
               </div>
             </div>
-
           </form>
         </div>
 
@@ -904,10 +630,7 @@
     </div>
   </div>
 
-  <!-- =========================================================================
-       5. DELETE CONFIRMATION MODAL (#deleteOrderModal)
-       With warning box: "Stock for the items in this order will be added back..."
-       ========================================================================= -->
+  <!-- DELETE CONFIRMATION MODAL (#deleteOrderModal) -->
   <div class="modal fade" id="deleteOrderModal" tabindex="-1" aria-labelledby="deleteOrderModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-md">
       <div class="modal-content">
@@ -918,7 +641,6 @@
           <h2 class="h5 fw-bold mb-2" id="deleteOrderModalLabel">Delete this order transaction?</h2>
           <p class="text-muted small mb-3">Are you sure you want to delete order <strong class="text-dark">#1041</strong>? This will permanently cancel and void this sales record.</p>
           
-          <!-- Warning Alert Box regarding Stock Reversion -->
           <div class="alert alert-warning text-start small mb-0 d-flex align-items-start">
             <i class="bi bi-exclamation-triangle-fill fs-5 text-warning-emphasis me-2"></i>
             <div>
@@ -935,9 +657,7 @@
     </div>
   </div>
 
-  <!-- =========================================================================
-       6. TOAST CONTAINER (Shared Static Demo Toasts)
-       ========================================================================= -->
+  <!-- TOAST CONTAINER -->
   <div class="toast-container position-fixed bottom-0 end-0 p-3 mb-5 mb-md-3 me-md-3" style="z-index: 1060;">
     <div id="ordersDemoToast" class="toast show align-items-center text-bg-dark border-0 shadow-lg" role="alert" aria-live="assertive" aria-atomic="true">
       <div class="d-flex">

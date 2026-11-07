@@ -22,7 +22,7 @@
 <body class="d-flex flex-column min-vh-100">
 
   <!-- =========================================================================
-       1. SHARED NAVIGATION (v2 Update: 6 Links in strict order)
+       1. SHARED NAVIGATION (Streamlined 5-Item Menu: 100% Native on Mobile)
        ========================================================================= -->
 
   <!-- Desktop Sidebar (lg and up) -->
@@ -48,13 +48,7 @@
       <li class="nav-item">
         <a href="products.html" class="nav-link">
           <i class="bi bi-box-seam me-2 fs-5"></i>
-          <span>Products</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="inventory.html" class="nav-link">
-          <i class="bi bi-clipboard-data me-2 fs-5"></i>
-          <span>Inventory</span>
+          <span>Products & Stock</span>
         </a>
       </li>
       <li class="nav-item">
@@ -102,13 +96,8 @@
         </a>
       </li>
       <li class="nav-item mb-2">
-        <a href="products.html" class="nav-link" title="Products" aria-label="Products">
+        <a href="products.html" class="nav-link" title="Products & Stock" aria-label="Products & Stock">
           <i class="bi bi-box-seam"></i>
-        </a>
-      </li>
-      <li class="nav-item mb-2">
-        <a href="inventory.html" class="nav-link" title="Inventory" aria-label="Inventory">
-          <i class="bi bi-clipboard-data"></i>
         </a>
       </li>
       <li class="nav-item mb-2">
@@ -149,7 +138,7 @@
     </div>
   </nav>
 
-  <!-- Mobile Fixed Bottom Nav (< md, 5 items max) -->
+  <!-- Mobile Fixed Bottom Nav (< md, 5 Slots: Perfect 1-Tap Access!) -->
   <nav class="gm-bottom-nav fixed-bottom d-md-none" aria-label="Mobile Bottom Navigation">
     <div class="container-fluid h-100 px-0">
       <div class="row g-0 h-100 text-center align-items-center" id="mobileBottomNav">
@@ -166,9 +155,9 @@
           </a>
         </div>
         <div class="col-nav-5">
-          <a href="orders.html" class="nav-link">
-            <i class="bi bi-receipt"></i>
-            <span>Orders</span>
+          <a href="products.html" class="nav-link">
+            <i class="bi bi-box-seam"></i>
+            <span>Products</span>
           </a>
         </div>
         <div class="col-nav-5">
@@ -178,57 +167,14 @@
           </a>
         </div>
         <div class="col-nav-5">
-          <button type="button" class="nav-link w-100 border-0 bg-transparent" data-bs-toggle="offcanvas" data-bs-target="#moreNavOffcanvas" aria-controls="moreNavOffcanvas" aria-label="Open More Menu">
-            <i class="bi bi-grid-fill"></i>
-            <span>More</span>
-          </button>
+          <a href="orders.html" class="nav-link">
+            <i class="bi bi-receipt"></i>
+            <span>Orders</span>
+          </a>
         </div>
       </div>
     </div>
   </nav>
-
-  <!-- Mobile "More" Offcanvas Drawer -->
-  <div class="offcanvas offcanvas-bottom d-md-none rounded-top-4" tabindex="-1" id="moreNavOffcanvas" aria-labelledby="moreNavOffcanvasLabel" style="height: 60vh;">
-    <div class="offcanvas-header pb-1 pt-2 flex-column align-items-stretch border-bottom">
-      <div class="gm-drag-handle" aria-hidden="true"></div>
-      <div class="d-flex align-items-center justify-content-between w-100 mt-2">
-        <h2 class="h5 fw-bold mb-0" id="moreNavOffcanvasLabel">Quick Navigation</h2>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close menu"></button>
-      </div>
-    </div>
-    <div class="offcanvas-body p-3">
-      <div class="row g-2">
-        <div class="col-6">
-          <a href="products.html" class="card text-center p-3 text-decoration-none card-hover border h-100">
-            <i class="bi bi-box-seam fs-2 text-primary mb-1"></i>
-            <span class="fw-semibold text-dark">Products</span>
-            <span class="small text-muted">Catalog & Prices</span>
-          </a>
-        </div>
-        <div class="col-6">
-          <a href="inventory.html" class="card text-center p-3 text-decoration-none card-hover border h-100">
-            <i class="bi bi-clipboard-data fs-2 text-warning mb-1"></i>
-            <span class="fw-semibold text-dark">Inventory</span>
-            <span class="small text-muted">Stock & Adjust</span>
-          </a>
-        </div>
-        <div class="col-6">
-          <a href="customers.html" class="card text-center p-3 text-decoration-none card-hover border h-100">
-            <i class="bi bi-people fs-2 text-success mb-1"></i>
-            <span class="fw-semibold text-dark">Customers</span>
-            <span class="small text-muted">Loyalty & Profiles</span>
-          </a>
-        </div>
-        <div class="col-6">
-          <a href="orders.html" class="card text-center p-3 text-decoration-none card-hover border h-100">
-            <i class="bi bi-receipt fs-2 text-danger mb-1"></i>
-            <span class="fw-semibold text-dark">Orders</span>
-            <span class="small text-muted">History & Tickets</span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- =========================================================================
        2. MAIN CONTENT AREA
@@ -287,7 +233,6 @@
         </section>
 
         <!-- Product Grid: 8 Cards featuring Normal, Low Stock, and Out of Stock States -->
-        <!-- JS: render products here -->
         <section aria-label="Product Catalog">
           <div class="row g-3" id="productGrid">
 
@@ -455,7 +400,6 @@
             <!-- 8. Mint Lemonade (Out of Stock State: Disabled + Ribbon + Greyscale) -->
             <div class="col-6 col-md-4 col-xl-3" data-id="8" data-category="drinks">
               <div class="card product-card out-of-stock h-100 position-relative border-danger border-opacity-50">
-                <!-- Out of Stock Ribbon / Overlay -->
                 <div class="gm-out-overlay">
                   <span class="badge bg-danger shadow-sm text-uppercase fw-bold px-2 py-1">
                     <i class="bi bi-slash-circle me-1"></i>Out of Stock
@@ -516,14 +460,13 @@
               <option value="3">Dilani Fernando (076 555 1234)</option>
             </select>
           </div>
-          <!-- Customer Info Strip (Displays chosen customer details) -->
           <div class="mt-1 p-2 bg-light rounded d-flex align-items-center justify-content-between small text-muted" id="customerInfoStrip">
             <span><i class="bi bi-person-check me-1 text-success"></i>Walk-in (Standard Rate)</span>
             <span class="badge bg-secondary-subtle text-dark">Default</span>
           </div>
         </div>
 
-        <!-- Checkout Warning Alert (Failed checkout demo) -->
+        <!-- Checkout Warning Alert -->
         <div class="alert alert-danger alert-dismissible fade show p-2 small mb-2" role="alert" id="posStockWarningAlert">
           <div class="d-flex align-items-start">
             <i class="bi bi-exclamation-triangle-fill fs-6 me-2 mt-1"></i>
@@ -537,11 +480,7 @@
 
         <!-- Order Items List -->
         <div class="flex-grow-1 overflow-y-auto pe-1 mb-2">
-          
-          <!-- Sample 3 Item Rows in List Group with stock warning under Row 2 -->
-          <!-- JS: render cart items here -->
           <ul class="list-group list-group-flush" id="posCartItemsList" aria-label="Cart items list">
-
             <!-- Item 1: Classic Burger -->
             <li class="list-group-item px-0 py-2 border-bottom" data-id="1">
               <div class="d-flex justify-content-between align-items-start mb-1">
@@ -566,7 +505,7 @@
               </div>
             </li>
 
-            <!-- Item 2: Cheesy Fries (With Stock Warning state under row) -->
+            <!-- Item 2: Cheesy Fries -->
             <li class="list-group-item px-0 py-2 border-bottom bg-warning-subtle bg-opacity-10" data-id="6">
               <div class="d-flex justify-content-between align-items-start mb-1">
                 <div>
@@ -588,7 +527,6 @@
                   <button type="button" class="btn btn-outline-secondary gm-stepper-btn disabled" aria-label="Increase quantity" disabled>+</button>
                 </div>
               </div>
-              <!-- Visible Low Stock Warning Under Row -->
               <div class="small text-danger fw-semibold mt-1">
                 <i class="bi bi-exclamation-circle-fill me-1"></i>Only 3 in stock! Max limit reached.
               </div>
@@ -617,17 +555,7 @@
                 </div>
               </div>
             </li>
-
           </ul>
-
-          <!-- COMMENTED-OUT EMPTY STATE BLOCK (READY TO SWITCH ON)
-          <div class="text-center py-5 text-muted" id="cartEmptyState">
-            <i class="bi bi-cart-x fs-1 text-secondary opacity-50 mb-2 d-block"></i>
-            <h3 class="h6 fw-semibold">Your cart is empty</h3>
-            <p class="small text-muted mb-0">Select items from the catalog on the left to start this order.</p>
-          </div>
-          -->
-
         </div>
 
         <!-- Totals & Payment Method Section -->
@@ -637,7 +565,6 @@
             <span id="posSubtotal">Rs. 2,750</span>
           </div>
 
-          <!-- Discount with % / Rs. Toggle -->
           <div class="d-flex justify-content-between align-items-center mb-2">
             <span class="small text-muted">Discount</span>
             <div class="d-flex align-items-center gap-1">
@@ -651,13 +578,11 @@
             </div>
           </div>
 
-          <!-- Grand Total -->
           <div class="d-flex justify-content-between align-items-baseline mb-2 pt-1 border-top">
             <span class="fs-5 fw-bold text-dark">Total</span>
             <span class="fs-4 fw-bold text-danger" id="posTotal">Rs. 2,500</span>
           </div>
 
-          <!-- Payment Method Select -->
           <div class="row g-2 mb-2">
             <div class="col-6">
               <label for="posPaymentMethod" class="form-label small text-muted mb-0">Payment Method</label>
@@ -672,18 +597,15 @@
             </div>
           </div>
 
-          <!-- Change Due Line -->
           <div class="d-flex justify-content-between small text-muted mb-3 bg-light p-2 rounded" id="changeDueDisplay">
             <span>Change Due:</span>
             <strong class="text-success fs-6">Rs. 500</strong>
           </div>
 
-          <!-- Checkout Trigger Button (Opens Receipt Modal) -->
           <button type="button" class="btn btn-primary w-100 py-2 fw-semibold fs-6 mb-2 shadow-sm" id="btnPosCheckout" data-bs-toggle="modal" data-bs-target="#receiptModal">
             <i class="bi bi-check2-circle me-1"></i> Checkout (Rs. 2,500)
           </button>
 
-          <!-- Clear Order Button -->
           <button type="button" class="btn btn-link text-muted w-100 p-0 text-decoration-none small" id="btnPosClearOrder">
             <i class="bi bi-x-circle me-1"></i> Clear Order
           </button>
@@ -713,7 +635,6 @@
     </div>
 
     <div class="offcanvas-body d-flex flex-column p-3">
-      <!-- Customer Select Area with Quick Add -->
       <div class="mb-3">
         <div class="d-flex justify-content-between align-items-center mb-1">
           <label for="mobileCustomerSelect" class="form-label small text-muted mb-0 fw-medium">Customer</label>
@@ -728,7 +649,6 @@
         </select>
       </div>
 
-      <!-- Item Rows -->
       <div class="flex-grow-1 overflow-y-auto mb-2">
         <ul class="list-group list-group-flush" id="posMobileCartItemsList">
           <li class="list-group-item px-0 py-2 border-bottom" data-id="1">
@@ -772,7 +692,6 @@
         </ul>
       </div>
 
-      <!-- Totals & Payment -->
       <div class="pt-2 border-top bg-white">
         <div class="d-flex justify-content-between text-muted small mb-1">
           <span>Subtotal</span>
@@ -834,13 +753,10 @@
 
   <!-- =========================================================================
        6. RECEIPT MODAL (#receiptModal)
-       Enhanced with Cashier, Customer, Payment, Cash received & Change due
        ========================================================================= -->
   <div class="modal fade" id="receiptModal" tabindex="-1" aria-labelledby="receiptModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-sm">
       <div class="modal-content border-0 bg-transparent">
-        
-        <!-- Receipt Ticket Body -->
         <div class="receipt-ticket">
           <div class="text-center mb-2">
             <div class="brand-font receipt-title text-danger mb-0">GRILLMASTER</div>
@@ -865,7 +781,6 @@
 
           <div class="receipt-divider"></div>
 
-          <!-- Items on Ticket -->
           <div class="small mb-1">
             <div class="d-flex justify-content-between fw-semibold">
               <span>Classic Burger x 2</span>
@@ -892,7 +807,6 @@
 
           <div class="receipt-divider"></div>
 
-          <!-- Calculations -->
           <div class="d-flex justify-content-between small text-muted mb-1">
             <span>Subtotal:</span>
             <span>Rs. 2,750.00</span>
@@ -906,7 +820,6 @@
             <span class="receipt-total text-danger">Rs. 2,500.00</span>
           </div>
 
-          <!-- Payment Breakdown -->
           <div class="d-flex justify-content-between small text-muted mt-2 pt-1 border-top border-secondary border-opacity-25">
             <span>Payment Method:</span>
             <span class="fw-bold text-dark">CASH</span>
@@ -925,14 +838,12 @@
           <div class="text-center small text-muted mt-3">
             <div class="fw-bold">*** THANK YOU, COME AGAIN! ***</div>
             <div class="mt-1" style="font-size: 0.72rem;">Follow us @grillmaster_lk</div>
-            <!-- Barcode representation -->
             <div class="mt-2 text-dark font-monospace fw-bold" style="letter-spacing: 0.25em;">
               ||| | ||||| || |||| ||| ||
             </div>
           </div>
         </div>
 
-        <!-- Action Buttons Below Ticket -->
         <div class="mt-3 d-flex gap-2">
           <button type="button" class="btn btn-dark flex-fill" onclick="window.print()" aria-label="Print receipt">
             <i class="bi bi-printer-fill me-1"></i> Print
@@ -941,14 +852,11 @@
             <i class="bi bi-plus-circle me-1"></i> New Order
           </button>
         </div>
-
       </div>
     </div>
   </div>
 
-  <!-- =========================================================================
-       7. DEMO TOAST NOTIFICATION
-       ========================================================================= -->
+  <!-- DEMO TOAST NOTIFICATION -->
   <div class="toast-container position-fixed bottom-0 end-0 p-3 mb-5 mb-md-3 me-md-3" style="z-index: 1060;">
     <div id="cartDemoToast" class="toast show align-items-center text-bg-dark border-0 shadow-lg" role="alert" aria-live="assertive" aria-atomic="true">
       <div class="d-flex">

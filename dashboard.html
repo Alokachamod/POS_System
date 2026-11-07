@@ -22,10 +22,7 @@
 <body class="d-flex flex-column min-vh-100">
 
   <!-- =========================================================================
-       1. SHARED NAVIGATION (v2 Update: 6 Links in strict order)
-       - Desktop (lg+): Fixed 220px Charcoal Sidebar
-       - Tablet (md): Fixed 72px Icon-Only Rail
-       - Mobile (<md): Sticky Top Navbar + 5-Item Bottom Nav + "More" Offcanvas
+       1. SHARED NAVIGATION (Streamlined 5-Item Menu: 100% Native on Mobile)
        ========================================================================= -->
 
   <!-- Desktop Sidebar (lg and up) -->
@@ -51,13 +48,7 @@
       <li class="nav-item">
         <a href="products.html" class="nav-link">
           <i class="bi bi-box-seam me-2 fs-5"></i>
-          <span>Products</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="inventory.html" class="nav-link">
-          <i class="bi bi-clipboard-data me-2 fs-5"></i>
-          <span>Inventory</span>
+          <span>Products & Stock</span>
         </a>
       </li>
       <li class="nav-item">
@@ -105,13 +96,8 @@
         </a>
       </li>
       <li class="nav-item mb-2">
-        <a href="products.html" class="nav-link" title="Products" aria-label="Products">
+        <a href="products.html" class="nav-link" title="Products & Stock" aria-label="Products & Stock">
           <i class="bi bi-box-seam"></i>
-        </a>
-      </li>
-      <li class="nav-item mb-2">
-        <a href="inventory.html" class="nav-link" title="Inventory" aria-label="Inventory">
-          <i class="bi bi-clipboard-data"></i>
         </a>
       </li>
       <li class="nav-item mb-2">
@@ -146,7 +132,7 @@
     </div>
   </nav>
 
-  <!-- Mobile Fixed Bottom Nav (< md, 5 items max) -->
+  <!-- Mobile Fixed Bottom Nav (< md, 5 Slots: Perfect 1-Tap Access!) -->
   <nav class="gm-bottom-nav fixed-bottom d-md-none" aria-label="Mobile Bottom Navigation">
     <div class="container-fluid h-100 px-0">
       <div class="row g-0 h-100 text-center align-items-center" id="mobileBottomNav">
@@ -163,9 +149,9 @@
           </a>
         </div>
         <div class="col-nav-5">
-          <a href="orders.html" class="nav-link">
-            <i class="bi bi-receipt"></i>
-            <span>Orders</span>
+          <a href="products.html" class="nav-link">
+            <i class="bi bi-box-seam"></i>
+            <span>Products</span>
           </a>
         </div>
         <div class="col-nav-5">
@@ -175,57 +161,14 @@
           </a>
         </div>
         <div class="col-nav-5">
-          <button type="button" class="nav-link w-100 border-0 bg-transparent" data-bs-toggle="offcanvas" data-bs-target="#moreNavOffcanvas" aria-controls="moreNavOffcanvas" aria-label="Open More Menu">
-            <i class="bi bi-grid-fill"></i>
-            <span>More</span>
-          </button>
+          <a href="orders.html" class="nav-link">
+            <i class="bi bi-receipt"></i>
+            <span>Orders</span>
+          </a>
         </div>
       </div>
     </div>
   </nav>
-
-  <!-- Mobile "More" Offcanvas Drawer -->
-  <div class="offcanvas offcanvas-bottom d-md-none rounded-top-4" tabindex="-1" id="moreNavOffcanvas" aria-labelledby="moreNavOffcanvasLabel" style="height: 60vh;">
-    <div class="offcanvas-header pb-1 pt-2 flex-column align-items-stretch border-bottom">
-      <div class="gm-drag-handle" aria-hidden="true"></div>
-      <div class="d-flex align-items-center justify-content-between w-100 mt-2">
-        <h2 class="h5 fw-bold mb-0" id="moreNavOffcanvasLabel">Quick Navigation</h2>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close menu"></button>
-      </div>
-    </div>
-    <div class="offcanvas-body p-3">
-      <div class="row g-2">
-        <div class="col-6">
-          <a href="products.html" class="card text-center p-3 text-decoration-none card-hover border h-100">
-            <i class="bi bi-box-seam fs-2 text-primary mb-1"></i>
-            <span class="fw-semibold text-dark">Products</span>
-            <span class="small text-muted">Catalog & Prices</span>
-          </a>
-        </div>
-        <div class="col-6">
-          <a href="inventory.html" class="card text-center p-3 text-decoration-none card-hover border h-100">
-            <i class="bi bi-clipboard-data fs-2 text-warning mb-1"></i>
-            <span class="fw-semibold text-dark">Inventory</span>
-            <span class="small text-muted">Stock & Adjust</span>
-          </a>
-        </div>
-        <div class="col-6">
-          <a href="customers.html" class="card text-center p-3 text-decoration-none card-hover border h-100">
-            <i class="bi bi-people fs-2 text-success mb-1"></i>
-            <span class="fw-semibold text-dark">Customers</span>
-            <span class="small text-muted">Loyalty & Profiles</span>
-          </a>
-        </div>
-        <div class="col-6">
-          <a href="orders.html" class="card text-center p-3 text-decoration-none card-hover border h-100">
-            <i class="bi bi-receipt fs-2 text-danger mb-1"></i>
-            <span class="fw-semibold text-dark">Orders</span>
-            <span class="small text-muted">History & Tickets</span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- =========================================================================
        2. MAIN CONTENT AREA
@@ -251,8 +194,6 @@
 
         <!-- a) STAT CARDS ROW (row g-3, col-6 col-xl-3) -->
         <section class="row g-3 mb-4" aria-label="Key Performance Statistics">
-          
-          <!-- Stat 1: Today's Sales -->
           <div class="col-6 col-xl-3">
             <div class="card card-hover p-3 h-100 border-0 shadow-sm">
               <div class="d-flex align-items-center justify-content-between mb-2">
@@ -268,7 +209,6 @@
             </div>
           </div>
 
-          <!-- Stat 2: Orders Today -->
           <div class="col-6 col-xl-3">
             <div class="card card-hover p-3 h-100 border-0 shadow-sm">
               <div class="d-flex align-items-center justify-content-between mb-2">
@@ -284,7 +224,6 @@
             </div>
           </div>
 
-          <!-- Stat 3: Total Customers -->
           <div class="col-6 col-xl-3">
             <div class="card card-hover p-3 h-100 border-0 shadow-sm">
               <div class="d-flex align-items-center justify-content-between mb-2">
@@ -300,7 +239,6 @@
             </div>
           </div>
 
-          <!-- Stat 4: Low Stock Alert -->
           <div class="col-6 col-xl-3">
             <div class="card card-hover p-3 h-100 border-warning border-opacity-50 shadow-sm bg-warning-subtle bg-opacity-25">
               <div class="d-flex align-items-center justify-content-between mb-2">
@@ -315,13 +253,10 @@
               </div>
             </div>
           </div>
-
         </section>
 
         <!-- CHARTS ROW: Sales Last 7 Days (col-lg-8) + Sales by Category (col-lg-4) -->
         <div class="row g-3 mb-4">
-          
-          <!-- b) CSS-Only Bar Chart Card (col-lg-8) -->
           <div class="col-12 col-lg-8">
             <div class="card p-3 p-md-4 h-100 border-0 shadow-sm">
               <div class="d-flex justify-content-between align-items-center mb-3">
@@ -334,49 +269,42 @@
 
               <!-- Bar Chart Container -->
               <div class="gm-bar-chart" id="salesBarChart" aria-label="Sales last 7 days chart">
-                <!-- Mon -->
                 <div class="gm-bar-col">
                   <div class="gm-bar-track" title="Monday: Rs. 38,000">
                     <div class="gm-bar-fill" style="height: 65%;"></div>
                   </div>
                   <span class="gm-bar-label">Mon</span>
                 </div>
-                <!-- Tue -->
                 <div class="gm-bar-col">
                   <div class="gm-bar-track" title="Tuesday: Rs. 32,500">
                     <div class="gm-bar-fill" style="height: 55%;"></div>
                   </div>
                   <span class="gm-bar-label">Tue</span>
                 </div>
-                <!-- Wed -->
                 <div class="gm-bar-col">
                   <div class="gm-bar-track" title="Wednesday: Rs. 41,200">
                     <div class="gm-bar-fill" style="height: 70%;"></div>
                   </div>
                   <span class="gm-bar-label">Wed</span>
                 </div>
-                <!-- Thu -->
                 <div class="gm-bar-col">
                   <div class="gm-bar-track" title="Thursday: Rs. 45,000">
                     <div class="gm-bar-fill" style="height: 76%;"></div>
                   </div>
                   <span class="gm-bar-label">Thu</span>
                 </div>
-                <!-- Fri -->
                 <div class="gm-bar-col">
                   <div class="gm-bar-track" title="Friday: Rs. 58,000">
                     <div class="gm-bar-fill bar-accent" style="height: 98%;"></div>
                   </div>
                   <span class="gm-bar-label">Fri</span>
                 </div>
-                <!-- Sat (Today) -->
                 <div class="gm-bar-col">
                   <div class="gm-bar-track" title="Saturday (Today): Rs. 48,250">
                     <div class="gm-bar-fill" style="height: 82%;"></div>
                   </div>
                   <span class="gm-bar-label fw-bold text-danger">Sat</span>
                 </div>
-                <!-- Sun -->
                 <div class="gm-bar-col">
                   <div class="gm-bar-track" title="Sunday (Forecast): Rs. 52,000">
                     <div class="gm-bar-fill" style="height: 88%; opacity: 0.5;"></div>
@@ -387,7 +315,6 @@
             </div>
           </div>
 
-          <!-- c) CSS-Only Conic Donut Chart Card (col-lg-4) -->
           <div class="col-12 col-lg-4">
             <div class="card p-3 p-md-4 h-100 border-0 shadow-sm">
               <div class="mb-3 text-center text-sm-start">
@@ -395,7 +322,6 @@
                 <span class="small text-muted">Product volume distribution</span>
               </div>
 
-              <!-- Conic Donut -->
               <div class="py-2">
                 <div class="gm-donut-chart" role="img" aria-label="Category sales: Burgers 58%, Fries 27%, Drinks 15%">
                   <div class="gm-donut-hole">
@@ -405,7 +331,6 @@
                 </div>
               </div>
 
-              <!-- Legend -->
               <div class="mt-3 pt-2 border-top">
                 <div class="d-flex justify-content-between align-items-center mb-1">
                   <span class="small fw-semibold text-dark">
@@ -428,13 +353,10 @@
               </div>
             </div>
           </div>
-
         </div>
 
         <!-- RECENT ORDERS & LOW STOCK ROW -->
         <div class="row g-3 mb-4">
-          
-          <!-- d) Recent Orders Card (col-lg-7) -->
           <div class="col-12 col-lg-7">
             <div class="card p-3 p-md-4 h-100 border-0 shadow-sm">
               <div class="d-flex justify-content-between align-items-center mb-3">
@@ -447,7 +369,6 @@
                 </a>
               </div>
 
-              <!-- Desktop/Tablet Table (md and up) -->
               <div class="table-responsive d-none d-md-block">
                 <table class="table table-hover align-middle mb-0">
                   <thead class="table-light">
@@ -459,7 +380,6 @@
                       <th scope="col" class="text-end">View</th>
                     </tr>
                   </thead>
-                  <!-- JS: render recent orders here -->
                   <tbody id="recentOrdersTableBody">
                     <tr data-id="1042">
                       <td><span class="badge bg-dark fw-bold">#1042</span></td>
@@ -510,8 +430,6 @@
                 </table>
               </div>
 
-              <!-- Mobile Compact List (< md) -->
-              <!-- JS: render mobile recent orders here -->
               <div class="d-md-none" id="recentOrdersMobileList">
                 <div class="list-group list-group-flush">
                   <div class="list-group-item px-0 py-2 d-flex justify-content-between align-items-center" data-id="1042">
@@ -534,23 +452,11 @@
                       <a href="orders.html" class="small text-muted text-decoration-none">View <i class="bi bi-chevron-right"></i></a>
                     </div>
                   </div>
-                  <div class="list-group-item px-0 py-2 d-flex justify-content-between align-items-center" data-id="1040">
-                    <div>
-                      <div class="fw-semibold text-dark">#1040 • Dilani Fernando</div>
-                      <span class="badge bg-success">Completed</span>
-                    </div>
-                    <div class="text-end">
-                      <div class="fw-bold text-danger">Rs. 2,300</div>
-                      <a href="orders.html" class="small text-muted text-decoration-none">View <i class="bi bi-chevron-right"></i></a>
-                    </div>
-                  </div>
                 </div>
               </div>
-
             </div>
           </div>
 
-          <!-- e) Low Stock Alerts Card (col-lg-5) -->
           <div class="col-12 col-lg-5">
             <div class="card p-3 p-md-4 h-100 border-0 shadow-sm">
               <div class="d-flex justify-content-between align-items-center mb-3">
@@ -558,22 +464,20 @@
                   <h2 class="h5 fw-bold text-dark mb-0">Low Stock Alerts</h2>
                   <span class="small text-muted">Immediate replenishment required</span>
                 </div>
-                <a href="inventory.html" class="btn btn-outline-warning text-dark btn-sm">
-                  Inventory <i class="bi bi-arrow-right ms-1"></i>
+                <!-- Links directly to Products & Inventory stock tab -->
+                <a href="products.html" class="btn btn-outline-warning text-dark btn-sm">
+                  Manage <i class="bi bi-arrow-right ms-1"></i>
                 </a>
               </div>
 
-              <!-- JS: render low stock alert list here -->
               <ul class="list-group list-group-flush" id="lowStockAlertsList">
-                
-                <!-- 1. Cheesy Fries (4 left - yellow) -->
                 <li class="list-group-item px-0 py-2" data-id="6">
                   <div class="d-flex justify-content-between align-items-center mb-1">
                     <span class="fw-semibold text-dark">Cheesy Fries</span>
                     <span class="badge bg-warning text-dark">4 left</span>
                   </div>
                   <div class="progress gm-stock-progress mb-2">
-                    <div class="progress-bar bg-warning" role="progressbar" style="width: 20%;" aria-valuenow="4" aria-valuemin="0" aria-valuemax="20" aria-label="Cheesy Fries stock"></div>
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: 20%;" aria-label="Cheesy Fries stock"></div>
                   </div>
                   <div class="d-flex justify-content-between align-items-center">
                     <span class="small text-muted">Threshold: 10 units</span>
@@ -583,14 +487,13 @@
                   </div>
                 </li>
 
-                <!-- 2. Veggie Burger (8 left - yellow) -->
                 <li class="list-group-item px-0 py-2" data-id="4">
                   <div class="d-flex justify-content-between align-items-center mb-1">
                     <span class="fw-semibold text-dark">Veggie Burger</span>
                     <span class="badge bg-warning text-dark">8 left</span>
                   </div>
                   <div class="progress gm-stock-progress mb-2">
-                    <div class="progress-bar bg-warning" role="progressbar" style="width: 40%;" aria-valuenow="8" aria-valuemin="0" aria-valuemax="20" aria-label="Veggie Burger stock"></div>
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: 40%;" aria-label="Veggie Burger stock"></div>
                   </div>
                   <div class="d-flex justify-content-between align-items-center">
                     <span class="small text-muted">Threshold: 10 units</span>
@@ -600,48 +503,13 @@
                   </div>
                 </li>
 
-                <!-- 3. BBQ Bacon Burger (0 left - red) -->
-                <li class="list-group-item px-0 py-2" data-id="9">
-                  <div class="d-flex justify-content-between align-items-center mb-1">
-                    <span class="fw-semibold text-dark">BBQ Bacon Burger</span>
-                    <span class="badge bg-danger">0 left</span>
-                  </div>
-                  <div class="progress gm-stock-progress mb-2">
-                    <div class="progress-bar bg-danger" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="20" aria-label="BBQ Bacon Burger stock"></div>
-                  </div>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <span class="small text-danger fw-semibold">Out of Stock!</span>
-                    <button type="button" class="btn btn-sm btn-danger py-0 px-2 text-white" data-bs-toggle="modal" data-bs-target="#adjustStockModal" data-product="BBQ Bacon Burger" data-stock="0">
-                      Restock
-                    </button>
-                  </div>
-                </li>
-
-                <!-- 4. Onion Rings (2 left - yellow) -->
-                <li class="list-group-item px-0 py-2" data-id="10">
-                  <div class="d-flex justify-content-between align-items-center mb-1">
-                    <span class="fw-semibold text-dark">Crispy Onion Rings</span>
-                    <span class="badge bg-warning text-dark">2 left</span>
-                  </div>
-                  <div class="progress gm-stock-progress mb-2">
-                    <div class="progress-bar bg-warning" role="progressbar" style="width: 15%;" aria-valuenow="2" aria-valuemin="0" aria-valuemax="20" aria-label="Onion Rings stock"></div>
-                  </div>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <span class="small text-muted">Threshold: 15 units</span>
-                    <button type="button" class="btn btn-sm btn-outline-danger py-0 px-2" data-bs-toggle="modal" data-bs-target="#adjustStockModal" data-product="Crispy Onion Rings" data-stock="2">
-                      Restock
-                    </button>
-                  </div>
-                </li>
-
-                <!-- 5. Lemonade (0 left - red) -->
-                <li class="list-group-item px-0 py-2" data-id="11">
+                <li class="list-group-item px-0 py-2" data-id="8">
                   <div class="d-flex justify-content-between align-items-center mb-1">
                     <span class="fw-semibold text-dark">Mint Lemonade</span>
                     <span class="badge bg-danger">0 left</span>
                   </div>
                   <div class="progress gm-stock-progress mb-2">
-                    <div class="progress-bar bg-danger" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="20" aria-label="Mint Lemonade stock"></div>
+                    <div class="progress-bar bg-danger" role="progressbar" style="width: 0%;" aria-label="Mint Lemonade stock"></div>
                   </div>
                   <div class="d-flex justify-content-between align-items-center">
                     <span class="small text-danger fw-semibold">Out of Stock!</span>
@@ -650,17 +518,13 @@
                     </button>
                   </div>
                 </li>
-
               </ul>
             </div>
           </div>
-
         </div>
 
         <!-- TOP SELLING PRODUCTS & QUICK ACTIONS -->
         <div class="row g-3">
-          
-          <!-- f) Top Selling Products Card (col-lg-8) -->
           <div class="col-12 col-lg-8">
             <div class="card p-3 p-md-4 h-100 border-0 shadow-sm">
               <div class="d-flex justify-content-between align-items-center mb-3">
@@ -671,10 +535,7 @@
                 <span class="badge bg-secondary-subtle text-dark">Today</span>
               </div>
 
-              <!-- JS: render top selling products list here -->
               <div class="vstack gap-3" id="topSellingProductsList">
-                
-                <!-- Rank 1: Classic Burger -->
                 <div class="d-flex align-items-center gap-3">
                   <span class="fw-bold fs-5 text-muted" style="width: 24px;">#1</span>
                   <div class="flex-grow-1">
@@ -683,12 +544,11 @@
                       <span class="fw-bold text-danger">52 sold <small class="text-muted fw-normal">(Rs. 44,200)</small></span>
                     </div>
                     <div class="progress gm-stock-progress">
-                      <div class="progress-bar bg-primary" role="progressbar" style="width: 100%;" aria-valuenow="52" aria-valuemin="0" aria-valuemax="52" aria-label="Classic Burger sales volume"></div>
+                      <div class="progress-bar bg-primary" role="progressbar" style="width: 100%;" aria-label="Classic Burger sales volume"></div>
                     </div>
                   </div>
                 </div>
 
-                <!-- Rank 2: Cheese Burger -->
                 <div class="d-flex align-items-center gap-3">
                   <span class="fw-bold fs-5 text-muted" style="width: 24px;">#2</span>
                   <div class="flex-grow-1">
@@ -697,12 +557,11 @@
                       <span class="fw-bold text-danger">41 sold <small class="text-muted fw-normal">(Rs. 38,950)</small></span>
                     </div>
                     <div class="progress gm-stock-progress">
-                      <div class="progress-bar bg-primary" role="progressbar" style="width: 78%;" aria-valuenow="41" aria-valuemin="0" aria-valuemax="52" aria-label="Cheese Burger sales volume"></div>
+                      <div class="progress-bar bg-primary" role="progressbar" style="width: 78%;" aria-label="Cheese Burger sales volume"></div>
                     </div>
                   </div>
                 </div>
 
-                <!-- Rank 3: French Fries -->
                 <div class="d-flex align-items-center gap-3">
                   <span class="fw-bold fs-5 text-muted" style="width: 24px;">#3</span>
                   <div class="flex-grow-1">
@@ -711,44 +570,14 @@
                       <span class="fw-bold text-danger">38 sold <small class="text-muted fw-normal">(Rs. 17,100)</small></span>
                     </div>
                     <div class="progress gm-stock-progress">
-                      <div class="progress-bar bg-warning" role="progressbar" style="width: 73%;" aria-valuenow="38" aria-valuemin="0" aria-valuemax="52" aria-label="French Fries sales volume"></div>
+                      <div class="progress-bar bg-warning" role="progressbar" style="width: 73%;" aria-label="French Fries sales volume"></div>
                     </div>
                   </div>
                 </div>
-
-                <!-- Rank 4: Chicken Burger -->
-                <div class="d-flex align-items-center gap-3">
-                  <span class="fw-bold fs-5 text-muted" style="width: 24px;">#4</span>
-                  <div class="flex-grow-1">
-                    <div class="d-flex justify-content-between align-items-center mb-1">
-                      <span class="fw-semibold text-dark">Chicken Burger</span>
-                      <span class="fw-bold text-danger">30 sold <small class="text-muted fw-normal">(Rs. 27,000)</small></span>
-                    </div>
-                    <div class="progress gm-stock-progress">
-                      <div class="progress-bar bg-primary" role="progressbar" style="width: 57%;" aria-valuenow="30" aria-valuemin="0" aria-valuemax="52" aria-label="Chicken Burger sales volume"></div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Rank 5: Cola (Regular) -->
-                <div class="d-flex align-items-center gap-3">
-                  <span class="fw-bold fs-5 text-muted" style="width: 24px;">#5</span>
-                  <div class="flex-grow-1">
-                    <div class="d-flex justify-content-between align-items-center mb-1">
-                      <span class="fw-semibold text-dark">Cola (Regular)</span>
-                      <span class="fw-bold text-danger">26 sold <small class="text-muted fw-normal">(Rs. 6,500)</small></span>
-                    </div>
-                    <div class="progress gm-stock-progress">
-                      <div class="progress-bar bg-success" role="progressbar" style="width: 50%;" aria-valuenow="26" aria-valuemin="0" aria-valuemax="52" aria-label="Cola sales volume"></div>
-                    </div>
-                  </div>
-                </div>
-
               </div>
             </div>
           </div>
 
-          <!-- g) Quick Actions Card (col-lg-4) -->
           <div class="col-12 col-lg-4">
             <div class="card p-3 p-md-4 h-100 border-0 shadow-sm" id="dashboardQuickActions">
               <h2 class="h5 fw-bold text-dark mb-1">Quick Actions</h2>
@@ -760,7 +589,7 @@
                   <i class="bi bi-arrow-right"></i>
                 </a>
                 <a href="products.html" class="btn btn-outline-dark py-2 text-start d-flex align-items-center justify-content-between">
-                  <span><i class="bi bi-box-seam me-2"></i>Add New Product</span>
+                  <span><i class="bi bi-box-seam me-2"></i>Products & Stock</span>
                   <i class="bi bi-arrow-right"></i>
                 </a>
                 <a href="customers.html" class="btn btn-outline-dark py-2 text-start d-flex align-items-center justify-content-between">
@@ -773,24 +602,19 @@
                 </button>
               </div>
 
-              <!-- Terminal Status Badge -->
               <div class="mt-4 pt-3 border-top d-flex align-items-center justify-content-between small text-muted">
                 <span>Terminal State:</span>
                 <span class="badge bg-success-subtle text-success"><i class="bi bi-wifi me-1"></i>Online & Synced</span>
               </div>
             </div>
           </div>
-
         </div>
 
       </div>
     </main>
   </div>
 
-  <!-- =========================================================================
-       3. ADJUST STOCK MODAL (#adjustStockModal)
-       Shared across Dashboard and Inventory
-       ========================================================================= -->
+  <!-- ADJUST STOCK MODAL (#adjustStockModal) -->
   <div class="modal fade" id="adjustStockModal" tabindex="-1" aria-labelledby="adjustStockModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
@@ -802,7 +626,6 @@
         </div>
 
         <div class="modal-body p-4">
-          <!-- Product Name & Current Stock Preview -->
           <div class="p-3 bg-light rounded-3 mb-3 d-flex justify-content-between align-items-center">
             <div>
               <span class="small text-muted d-block">Selected Product</span>
@@ -815,7 +638,6 @@
           </div>
 
           <form id="adjustStockForm" novalidate>
-            <!-- Segmented Control: Add Stock / Remove Stock -->
             <div class="mb-3">
               <label class="form-label small fw-semibold">Adjustment Type</label>
               <div class="btn-group w-100 gm-segmented-group" role="group" aria-label="Stock adjustment type">
@@ -827,7 +649,6 @@
               </div>
             </div>
 
-            <!-- Quantity Input with Stepper & Static Validation Example -->
             <div class="mb-3">
               <label for="adjustQuantityInput" class="form-label small fw-semibold">Quantity to Adjust <span class="text-danger">*</span></label>
               <div class="input-group has-validation">
@@ -840,7 +661,6 @@
               </div>
             </div>
 
-            <!-- Reason Select -->
             <div class="mb-3">
               <label for="adjustReasonSelect" class="form-label small fw-semibold">Reason for Adjustment <span class="text-danger">*</span></label>
               <select class="form-select" id="adjustReasonSelect" required>
@@ -851,13 +671,11 @@
               </select>
             </div>
 
-            <!-- Note Textarea -->
             <div class="mb-3">
               <label for="adjustNotes" class="form-label small fw-semibold">Reference / Notes</label>
               <textarea class="form-control" id="adjustNotes" rows="2" placeholder="e.g. Supplier Invoice #INV-8841"></textarea>
             </div>
 
-            <!-- Calculated Preview Line -->
             <div class="alert alert-info py-2 px-3 small mb-0 d-flex align-items-center justify-content-between" id="stockPreviewCalc">
               <span><i class="bi bi-info-circle me-1"></i>Forecasted Result:</span>
               <strong class="text-dark">New stock: 4 + 10 = 14 units</strong>
@@ -875,9 +693,7 @@
     </div>
   </div>
 
-  <!-- =========================================================================
-       4. TOAST CONTAINER (Shared Static Demo Toasts)
-       ========================================================================= -->
+  <!-- TOAST CONTAINER -->
   <div class="toast-container position-fixed bottom-0 end-0 p-3 mb-5 mb-md-3 me-md-3" style="z-index: 1060;">
     <div id="dashboardDemoToast" class="toast show align-items-center text-bg-dark border-0 shadow-lg" role="alert" aria-live="assertive" aria-atomic="true">
       <div class="d-flex">
@@ -885,7 +701,7 @@
           <i class="bi bi-info-circle-fill text-warning fs-5 me-2"></i>
           <div>
             <strong class="d-block text-white">Stock Alert</strong>
-            <span class="small text-white-50">5 products below minimum threshold</span>
+            <span class="small text-white-50">Products below minimum threshold</span>
           </div>
         </div>
         <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>

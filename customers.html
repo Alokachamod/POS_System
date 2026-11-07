@@ -22,7 +22,7 @@
 <body class="d-flex flex-column min-vh-100">
 
   <!-- =========================================================================
-       1. SHARED NAVIGATION (v2 Update: 6 Links in strict order)
+       1. SHARED NAVIGATION (Streamlined 5-Item Menu: 100% Native on Mobile)
        ========================================================================= -->
 
   <!-- Desktop Sidebar (lg and up) -->
@@ -48,13 +48,7 @@
       <li class="nav-item">
         <a href="products.html" class="nav-link">
           <i class="bi bi-box-seam me-2 fs-5"></i>
-          <span>Products</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="inventory.html" class="nav-link">
-          <i class="bi bi-clipboard-data me-2 fs-5"></i>
-          <span>Inventory</span>
+          <span>Products & Stock</span>
         </a>
       </li>
       <li class="nav-item">
@@ -102,13 +96,8 @@
         </a>
       </li>
       <li class="nav-item mb-2">
-        <a href="products.html" class="nav-link" title="Products" aria-label="Products">
+        <a href="products.html" class="nav-link" title="Products & Stock" aria-label="Products & Stock">
           <i class="bi bi-box-seam"></i>
-        </a>
-      </li>
-      <li class="nav-item mb-2">
-        <a href="inventory.html" class="nav-link" title="Inventory" aria-label="Inventory">
-          <i class="bi bi-clipboard-data"></i>
         </a>
       </li>
       <li class="nav-item mb-2">
@@ -143,7 +132,7 @@
     </div>
   </nav>
 
-  <!-- Mobile Fixed Bottom Nav (< md, 5 items max) -->
+  <!-- Mobile Fixed Bottom Nav (< md, 5 Slots: Perfect 1-Tap Access!) -->
   <nav class="gm-bottom-nav fixed-bottom d-md-none" aria-label="Mobile Bottom Navigation">
     <div class="container-fluid h-100 px-0">
       <div class="row g-0 h-100 text-center align-items-center" id="mobileBottomNav">
@@ -160,9 +149,9 @@
           </a>
         </div>
         <div class="col-nav-5">
-          <a href="orders.html" class="nav-link">
-            <i class="bi bi-receipt"></i>
-            <span>Orders</span>
+          <a href="products.html" class="nav-link">
+            <i class="bi bi-box-seam"></i>
+            <span>Products</span>
           </a>
         </div>
         <div class="col-nav-5">
@@ -172,57 +161,14 @@
           </a>
         </div>
         <div class="col-nav-5">
-          <button type="button" class="nav-link w-100 border-0 bg-transparent active text-warning" data-bs-toggle="offcanvas" data-bs-target="#moreNavOffcanvas" aria-controls="moreNavOffcanvas" aria-label="Open More Menu">
-            <i class="bi bi-grid-fill"></i>
-            <span>More</span>
-          </button>
+          <a href="orders.html" class="nav-link">
+            <i class="bi bi-receipt"></i>
+            <span>Orders</span>
+          </a>
         </div>
       </div>
     </div>
   </nav>
-
-  <!-- Mobile "More" Offcanvas Drawer -->
-  <div class="offcanvas offcanvas-bottom d-md-none rounded-top-4" tabindex="-1" id="moreNavOffcanvas" aria-labelledby="moreNavOffcanvasLabel" style="height: 60vh;">
-    <div class="offcanvas-header pb-1 pt-2 flex-column align-items-stretch border-bottom">
-      <div class="gm-drag-handle" aria-hidden="true"></div>
-      <div class="d-flex align-items-center justify-content-between w-100 mt-2">
-        <h2 class="h5 fw-bold mb-0" id="moreNavOffcanvasLabel">Quick Navigation</h2>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close menu"></button>
-      </div>
-    </div>
-    <div class="offcanvas-body p-3">
-      <div class="row g-2">
-        <div class="col-6">
-          <a href="products.html" class="card text-center p-3 text-decoration-none card-hover border h-100">
-            <i class="bi bi-box-seam fs-2 text-primary mb-1"></i>
-            <span class="fw-semibold text-dark">Products</span>
-            <span class="small text-muted">Catalog & Prices</span>
-          </a>
-        </div>
-        <div class="col-6">
-          <a href="inventory.html" class="card text-center p-3 text-decoration-none card-hover border h-100">
-            <i class="bi bi-clipboard-data fs-2 text-warning mb-1"></i>
-            <span class="fw-semibold text-dark">Inventory</span>
-            <span class="small text-muted">Stock & Adjust</span>
-          </a>
-        </div>
-        <div class="col-6">
-          <a href="customers.html" class="card text-center p-3 text-decoration-none card-hover border border-success h-100 bg-success-subtle bg-opacity-10">
-            <i class="bi bi-people fs-2 text-success mb-1"></i>
-            <span class="fw-bold text-dark">Customers</span>
-            <span class="small text-muted">Loyalty & Profiles</span>
-          </a>
-        </div>
-        <div class="col-6">
-          <a href="orders.html" class="card text-center p-3 text-decoration-none card-hover border h-100">
-            <i class="bi bi-receipt fs-2 text-danger mb-1"></i>
-            <span class="fw-semibold text-dark">Orders</span>
-            <span class="small text-muted">History & Tickets</span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- =========================================================================
        2. MAIN CONTENT AREA
@@ -243,7 +189,6 @@
 
           <div class="col-12 col-md-7">
             <div class="row g-2 justify-content-md-end">
-              <!-- Search Input -->
               <div class="col-8 col-sm-7 col-lg-6">
                 <div class="input-group">
                   <span class="input-group-text bg-white border-end-0 text-muted" id="customer-search-addon">
@@ -253,7 +198,6 @@
                 </div>
               </div>
 
-              <!-- Add Customer Button (Opens Modal) -->
               <div class="col-4 col-sm-5 col-lg-5 text-end">
                 <button type="button" class="btn btn-primary w-100" id="btnOpenAddCustomer" data-bs-toggle="modal" data-bs-target="#addCustomerModal">
                   <i class="bi bi-person-plus-fill me-1"></i>
@@ -265,10 +209,7 @@
           </div>
         </header>
 
-        <!-- ===================================================================
-             TABLE VIEW (Visible on md and up: d-none d-md-block)
-             Columns: Name, Phone, Email, Orders, Total spent, Last order, Actions
-             =================================================================== -->
+        <!-- TABLE VIEW (Visible on md and up: d-none d-md-block) -->
         <div class="card d-none d-md-block overflow-hidden shadow-sm">
           <div class="table-responsive">
             <table class="table table-hover align-middle mb-0">
@@ -283,9 +224,7 @@
                   <th scope="col" class="text-end">Actions</th>
                 </tr>
               </thead>
-              <!-- JS: render customers table here -->
               <tbody id="customerTableBody">
-
                 <!-- Customer 1 -->
                 <tr data-id="1">
                   <td>
@@ -307,14 +246,12 @@
                   <td class="fw-bold text-dark">Rs. 24,650</td>
                   <td class="small text-muted">07 Nov 2026, 12:30 PM</td>
                   <td class="text-end">
-                    <!-- View Details: Opens Customer Details Offcanvas -->
                     <button type="button" class="btn btn-outline-dark btn-sm me-1" data-bs-toggle="offcanvas" data-bs-target="#customerDetailsOffcanvas" title="View customer profile & history" aria-label="View Nimal Perera">
                       <i class="bi bi-eye"></i>
                     </button>
                     <button type="button" class="btn btn-outline-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#addCustomerModal" title="Edit customer" aria-label="Edit Nimal Perera">
                       <i class="bi bi-pencil-square"></i>
                     </button>
-                    <!-- Cannot Delete variant: Has 14 orders on record -->
                     <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#cannotDeleteCustomerModal" title="Delete customer" aria-label="Delete Nimal Perera">
                       <i class="bi bi-trash3"></i>
                     </button>
@@ -387,139 +324,7 @@
                   </td>
                 </tr>
 
-                <!-- Customer 4 -->
-                <tr data-id="4">
-                  <td>
-                    <div class="d-flex align-items-center">
-                      <div class="gm-avatar me-3">CB</div>
-                      <div>
-                        <div class="fw-semibold text-dark">Chaminda Bandara</div>
-                        <div class="small text-muted">ID: #CUST-104</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td><span class="font-monospace">072 334 8899</span></td>
-                  <td>chaminda.bandara@gmail.com</td>
-                  <td>
-                    <span class="badge bg-danger-subtle text-danger fw-semibold px-2 py-1">
-                      <i class="bi bi-bag-heart-fill me-1"></i> 5 orders
-                    </span>
-                  </td>
-                  <td class="fw-bold text-dark">Rs. 8,920</td>
-                  <td class="small text-muted">07 Nov 2026, 11:20 AM</td>
-                  <td class="text-end">
-                    <button type="button" class="btn btn-outline-dark btn-sm me-1" data-bs-toggle="offcanvas" data-bs-target="#customerDetailsOffcanvas" title="View customer profile & history" aria-label="View Chaminda Bandara">
-                      <i class="bi bi-eye"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#addCustomerModal" title="Edit customer" aria-label="Edit Chaminda Bandara">
-                      <i class="bi bi-pencil-square"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#cannotDeleteCustomerModal" title="Delete customer" aria-label="Delete Chaminda Bandara">
-                      <i class="bi bi-trash3"></i>
-                    </button>
-                  </td>
-                </tr>
-
-                <!-- Customer 5 -->
-                <tr data-id="5">
-                  <td>
-                    <div class="d-flex align-items-center">
-                      <div class="gm-avatar me-3">AJ</div>
-                      <div>
-                        <div class="fw-semibold text-dark">Anura Jayawardena</div>
-                        <div class="small text-muted">ID: #CUST-105</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td><span class="font-monospace">077 445 6677</span></td>
-                  <td>anura.jaya@gmail.com</td>
-                  <td>
-                    <span class="badge bg-danger-subtle text-danger fw-semibold px-2 py-1">
-                      <i class="bi bi-bag-heart-fill me-1"></i> 23 orders
-                    </span>
-                  </td>
-                  <td class="fw-bold text-dark">Rs. 41,200</td>
-                  <td class="small text-muted">07 Nov 2026, 10:55 AM</td>
-                  <td class="text-end">
-                    <button type="button" class="btn btn-outline-dark btn-sm me-1" data-bs-toggle="offcanvas" data-bs-target="#customerDetailsOffcanvas" title="View customer profile & history" aria-label="View Anura Jayawardena">
-                      <i class="bi bi-eye"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#addCustomerModal" title="Edit customer" aria-label="Edit Anura Jayawardena">
-                      <i class="bi bi-pencil-square"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#cannotDeleteCustomerModal" title="Delete customer" aria-label="Delete Anura Jayawardena">
-                      <i class="bi bi-trash3"></i>
-                    </button>
-                  </td>
-                </tr>
-
-                <!-- Customer 6 -->
-                <tr data-id="6">
-                  <td>
-                    <div class="d-flex align-items-center">
-                      <div class="gm-avatar me-3">SW</div>
-                      <div>
-                        <div class="fw-semibold text-dark">Sanduni Wickramasinghe</div>
-                        <div class="small text-muted">ID: #CUST-106</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td><span class="font-monospace">078 889 2211</span></td>
-                  <td>sanduni.w@hotmail.com</td>
-                  <td>
-                    <span class="badge bg-danger-subtle text-danger fw-semibold px-2 py-1">
-                      <i class="bi bi-bag-heart-fill me-1"></i> 3 orders
-                    </span>
-                  </td>
-                  <td class="fw-bold text-dark">Rs. 4,850</td>
-                  <td class="small text-muted">06 Nov 2026</td>
-                  <td class="text-end">
-                    <button type="button" class="btn btn-outline-dark btn-sm me-1" data-bs-toggle="offcanvas" data-bs-target="#customerDetailsOffcanvas" title="View customer profile & history" aria-label="View Sanduni Wickramasinghe">
-                      <i class="bi bi-eye"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#addCustomerModal" title="Edit customer" aria-label="Edit Sanduni Wickramasinghe">
-                      <i class="bi bi-pencil-square"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#cannotDeleteCustomerModal" title="Delete customer" aria-label="Delete Sanduni Wickramasinghe">
-                      <i class="bi bi-trash3"></i>
-                    </button>
-                  </td>
-                </tr>
-
-                <!-- Customer 7 -->
-                <tr data-id="7">
-                  <td>
-                    <div class="d-flex align-items-center">
-                      <div class="gm-avatar me-3">RP</div>
-                      <div>
-                        <div class="fw-semibold text-dark">Roshan Perera</div>
-                        <div class="small text-muted">ID: #CUST-107</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td><span class="font-monospace">075 221 3344</span></td>
-                  <td>roshan.perera@live.com</td>
-                  <td>
-                    <span class="badge bg-danger-subtle text-danger fw-semibold px-2 py-1">
-                      <i class="bi bi-bag-heart-fill me-1"></i> 11 orders
-                    </span>
-                  </td>
-                  <td class="fw-bold text-dark">Rs. 18,300</td>
-                  <td class="small text-muted">06 Nov 2026</td>
-                  <td class="text-end">
-                    <button type="button" class="btn btn-outline-dark btn-sm me-1" data-bs-toggle="offcanvas" data-bs-target="#customerDetailsOffcanvas" title="View customer profile & history" aria-label="View Roshan Perera">
-                      <i class="bi bi-eye"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#addCustomerModal" title="Edit customer" aria-label="Edit Roshan Perera">
-                      <i class="bi bi-pencil-square"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#cannotDeleteCustomerModal" title="Delete customer" aria-label="Delete Roshan Perera">
-                      <i class="bi bi-trash3"></i>
-                    </button>
-                  </td>
-                </tr>
-
-                <!-- Customer 8 (New customer with 0 orders: Can be deleted!) -->
+                <!-- Customer 8 (0 orders) -->
                 <tr data-id="8">
                   <td>
                     <div class="d-flex align-items-center">
@@ -546,26 +351,19 @@
                     <button type="button" class="btn btn-outline-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#addCustomerModal" title="Edit customer" aria-label="Edit Kaveesha Alwis">
                       <i class="bi bi-pencil-square"></i>
                     </button>
-                    <!-- Standard delete allowed since 0 orders -->
                     <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteCustomerModal" title="Delete customer" aria-label="Delete Kaveesha Alwis">
                       <i class="bi bi-trash3"></i>
                     </button>
                   </td>
                 </tr>
-
               </tbody>
             </table>
           </div>
         </div>
 
-        <!-- ===================================================================
-             MOBILE CARD VIEW (Visible below md: d-md-none)
-             =================================================================== -->
-        <!-- JS: render mobile customer cards here -->
+        <!-- MOBILE CARD VIEW (Visible below md: d-md-none) -->
         <div class="d-md-none" id="customerMobileCardsList">
           <div class="row g-3">
-
-            <!-- Card 1: Nimal Perera -->
             <div class="col-12" data-id="1">
               <div class="card p-3 shadow-sm">
                 <div class="d-flex align-items-center mb-2">
@@ -589,44 +387,12 @@
                   <button type="button" class="btn btn-outline-secondary btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#addCustomerModal">
                     <i class="bi bi-pencil-square me-1"></i> Edit
                   </button>
-                  <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#cannotDeleteCustomerModal" aria-label="Delete customer">
+                  <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#cannotDeleteCustomerModal">
                     <i class="bi bi-trash3"></i>
                   </button>
                 </div>
               </div>
             </div>
-
-            <!-- Card 8: Kaveesha Alwis (0 orders) -->
-            <div class="col-12" data-id="8">
-              <div class="card p-3 shadow-sm">
-                <div class="d-flex align-items-center mb-2">
-                  <div class="gm-avatar me-3">KA</div>
-                  <div class="flex-grow-1">
-                    <div class="d-flex justify-content-between align-items-start">
-                      <h2 class="h6 fw-bold mb-0 text-dark">Kaveesha Alwis</h2>
-                      <span class="fw-bold text-muted">Rs. 0</span>
-                    </div>
-                    <div class="small text-muted font-monospace"><i class="bi bi-telephone me-1"></i>071 443 9900</div>
-                  </div>
-                </div>
-                <div class="d-flex justify-content-between align-items-center small text-muted mb-2 bg-light p-2 rounded">
-                  <span>0 orders on file</span>
-                  <span>New registration</span>
-                </div>
-                <div class="d-flex gap-2 pt-2 border-top">
-                  <button type="button" class="btn btn-outline-dark btn-sm flex-fill" data-bs-toggle="offcanvas" data-bs-target="#customerDetailsOffcanvas">
-                    <i class="bi bi-eye me-1"></i> Details
-                  </button>
-                  <button type="button" class="btn btn-outline-secondary btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#addCustomerModal">
-                    <i class="bi bi-pencil-square me-1"></i> Edit
-                  </button>
-                  <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteCustomerModal" aria-label="Delete customer">
-                    <i class="bi bi-trash3"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-
           </div>
         </div>
 
@@ -634,10 +400,7 @@
     </main>
   </div>
 
-  <!-- =========================================================================
-       3. CUSTOMER DETAILS OFFCANVAS (#customerDetailsOffcanvas)
-       Side panel on desktop (width 440px), full width on mobile
-       ========================================================================= -->
+  <!-- CUSTOMER DETAILS OFFCANVAS (#customerDetailsOffcanvas) -->
   <div class="offcanvas offcanvas-end gm-customer-offcanvas" tabindex="-1" id="customerDetailsOffcanvas" aria-labelledby="customerDetailsOffcanvasLabel">
     <div class="offcanvas-header bg-charcoal text-white">
       <div class="d-flex align-items-center">
@@ -648,8 +411,6 @@
     </div>
 
     <div class="offcanvas-body p-3 p-md-4">
-      
-      <!-- Customer Identity & Contact Card -->
       <div class="text-center pb-3 border-bottom mb-3">
         <div class="gm-avatar fs-3 mb-2" style="width: 64px; height: 64px;">NP</div>
         <h3 class="h5 fw-bold mb-0 text-dark">Nimal Perera</h3>
@@ -663,7 +424,6 @@
         </div>
       </div>
 
-      <!-- Three Small Stat Cards (Total orders, Total spent, Average order) -->
       <div class="row g-2 mb-4">
         <div class="col-4">
           <div class="card p-2 text-center bg-light border-0">
@@ -685,7 +445,6 @@
         </div>
       </div>
 
-      <!-- Order History Section (5 sample rows) -->
       <div class="d-flex justify-content-between align-items-center mb-2">
         <h4 class="h6 fw-bold mb-0 text-dark">Order History</h4>
         <span class="small text-muted">Past 5 orders</span>
@@ -702,7 +461,6 @@
               <th scope="col" class="text-end">View</th>
             </tr>
           </thead>
-          <!-- JS: render customer order history here -->
           <tbody id="custHistoryTableBody">
             <tr>
               <td><span class="badge bg-dark fw-bold">#1041</span></td>
@@ -718,31 +476,9 @@
               <td><span class="badge bg-success" style="font-size: 0.65rem;">Paid</span></td>
               <td class="text-end"><a href="orders.html" class="small text-decoration-none">View</a></td>
             </tr>
-            <tr>
-              <td><span class="badge bg-dark fw-bold">#1024</span></td>
-              <td class="small">04 Nov</td>
-              <td class="fw-bold small">Rs. 1,450</td>
-              <td><span class="badge bg-success" style="font-size: 0.65rem;">Paid</span></td>
-              <td class="text-end"><a href="orders.html" class="small text-decoration-none">View</a></td>
-            </tr>
-            <tr>
-              <td><span class="badge bg-dark fw-bold">#1015</span></td>
-              <td class="small">02 Nov</td>
-              <td class="fw-bold small">Rs. 3,100</td>
-              <td><span class="badge bg-success" style="font-size: 0.65rem;">Paid</span></td>
-              <td class="text-end"><a href="orders.html" class="small text-decoration-none">View</a></td>
-            </tr>
-            <tr>
-              <td><span class="badge bg-dark fw-bold">#1002</span></td>
-              <td class="small">28 Oct</td>
-              <td class="fw-bold small">Rs. 950</td>
-              <td><span class="badge bg-success" style="font-size: 0.65rem;">Paid</span></td>
-              <td class="text-end"><a href="orders.html" class="small text-decoration-none">View</a></td>
-            </tr>
           </tbody>
         </table>
       </div>
-
     </div>
 
     <div class="offcanvas-footer p-3 bg-light border-top d-flex gap-2">
@@ -753,9 +489,7 @@
     </div>
   </div>
 
-  <!-- =========================================================================
-       4. ADD / EDIT CUSTOMER MODAL (#addCustomerModal)
-       ========================================================================= -->
+  <!-- ADD / EDIT CUSTOMER MODAL (#addCustomerModal) -->
   <div class="modal fade" id="addCustomerModal" tabindex="-1" aria-labelledby="addCustomerModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content">
@@ -768,13 +502,11 @@
 
         <div class="modal-body p-4">
           <form class="row g-3" id="customerForm" novalidate>
-            <!-- Full Name -->
             <div class="col-12 col-md-6">
               <label for="custFullName" class="form-label fw-semibold">Full Name <span class="text-danger">*</span></label>
               <input type="text" class="form-control" id="custFullName" value="Nimal Perera" required>
             </div>
 
-            <!-- Phone Number with static is-invalid Validation example -->
             <div class="col-12 col-md-6">
               <label for="custPhone" class="form-label fw-semibold">Phone Number <span class="text-danger">*</span></label>
               <div class="input-group has-validation">
@@ -786,7 +518,6 @@
               </div>
             </div>
 
-            <!-- Email Address -->
             <div class="col-12">
               <label for="custEmail" class="form-label fw-semibold">Email Address</label>
               <div class="input-group">
@@ -795,7 +526,6 @@
               </div>
             </div>
 
-            <!-- Address Textarea -->
             <div class="col-12">
               <label for="custAddress" class="form-label fw-semibold">Delivery Address</label>
               <textarea class="form-control" id="custAddress" rows="3">No. 18/4, Temple Road, Mount Lavinia</textarea>
@@ -813,10 +543,7 @@
     </div>
   </div>
 
-  <!-- =========================================================================
-       5. "CANNOT DELETE CUSTOMER" MODAL VARIANT (#cannotDeleteCustomerModal)
-       Displayed when customer has active/historical orders on file
-       ========================================================================= -->
+  <!-- CANNOT DELETE CUSTOMER MODAL (#cannotDeleteCustomerModal) -->
   <div class="modal fade" id="cannotDeleteCustomerModal" tabindex="-1" aria-labelledby="cannotDeleteCustomerModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-sm">
       <div class="modal-content">
@@ -837,10 +564,7 @@
     </div>
   </div>
 
-  <!-- =========================================================================
-       6. STANDARD DELETE CONFIRMATION MODAL (#deleteCustomerModal)
-       Allowed for customers with 0 orders
-       ========================================================================= -->
+  <!-- STANDARD DELETE CONFIRMATION MODAL (#deleteCustomerModal) -->
   <div class="modal fade" id="deleteCustomerModal" tabindex="-1" aria-labelledby="deleteCustomerModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-sm">
       <div class="modal-content">
@@ -859,9 +583,7 @@
     </div>
   </div>
 
-  <!-- =========================================================================
-       7. TOAST CONTAINER (Shared Static Demo Toasts)
-       ========================================================================= -->
+  <!-- TOAST CONTAINER -->
   <div class="toast-container position-fixed bottom-0 end-0 p-3 mb-5 mb-md-3 me-md-3" style="z-index: 1060;">
     <div id="customerDemoToast" class="toast show align-items-center text-bg-dark border-0 shadow-lg" role="alert" aria-live="assertive" aria-atomic="true">
       <div class="d-flex">
