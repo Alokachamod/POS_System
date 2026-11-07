@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FCE4EC"/>
+      <stop offset="100%" stop-color="#F8BBD0"/>
+    </linearGradient>
+    <linearGradient id="shake" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F48FB1"/>
+      <stop offset="100%" stop-color="#D81B60"/>
+    </linearGradient>
+    <linearGradient id="whip" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F3E5F5"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" fill="url(#bg)"/>
+  <ellipse cx="200" cy="275" rx="70" ry="12" fill="#000" opacity="0.15"/>
+
+  <!-- Striped straw -->
+  <path d="M225 15 L205 90" stroke="#FF4081" stroke-width="10" stroke-linecap="round"/>
+  <path d="M225 15 L205 90" stroke="#FFF" stroke-width="3" stroke-dasharray="6 6"/>
+
+  <!-- Glass Cup -->
+  <path d="M145 95 L255 95 L235 240 Q230 255 200 255 Q170 255 165 240 Z" fill="url(#shake)"/>
+  
+  <!-- Glass highlights -->
+  <path d="M152 105 L168 235" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" opacity="0.4"/>
+  <path d="M248 105 L236 235" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" opacity="0.3"/>
+
+  <!-- Whipped cream on top -->
+  <path d="M140 95 Q135 60 170 65 Q180 40 205 45 Q235 40 240 65 Q265 60 260 95 Z" fill="url(#whip)"/>
+  <circle cx="160" cy="80" r="14" fill="#FFF"/>
+  <circle cx="200" cy="65" r="16" fill="#FFF"/>
+  <circle cx="240" cy="80" r="14" fill="#FFF"/>
+
+  <!-- Cherry on Top -->
+  <circle cx="205" cy="40" r="14" fill="#C2185B"/>
+  <circle cx="202" cy="36" r="3.5" fill="#FFF" opacity="0.7"/>
+  <path d="M205 28 Q220 15 228 10" stroke="#4E342E" stroke-width="3" stroke-linecap="round" fill="none"/>
+
+  <!-- Sprinkles -->
+  <rect x="165" y="75" width="8" height="3" rx="1.5" fill="#FFEB3B" transform="rotate(25 165 75)"/>
+  <rect x="225" y="70" width="8" height="3" rx="1.5" fill="#00E676" transform="rotate(-30 225 70)"/>
+  <rect x="185" y="60" width="8" height="3" rx="1.5" fill="#00B0FF" transform="rotate(15 185 60)"/>
+  <rect x="215" y="85" width="8" height="3" rx="1.5" fill="#FF9100" transform="rotate(-10 215 85)"/>
+</svg>

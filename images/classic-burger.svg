@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FFF3E0"/>
+      <stop offset="100%" stop-color="#FFE0B2"/>
+    </linearGradient>
+    <linearGradient id="bunTop" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E58E26"/>
+      <stop offset="100%" stop-color="#B76510"/>
+    </linearGradient>
+    <linearGradient id="bunBottom" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#DE801B"/>
+      <stop offset="100%" stop-color="#A55406"/>
+    </linearGradient>
+    <linearGradient id="patty" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#592A13"/>
+      <stop offset="100%" stop-color="#381507"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" fill="url(#bg)"/>
+  <ellipse cx="200" cy="255" rx="140" ry="20" fill="#000" opacity="0.12"/>
+  <!-- Bottom bun -->
+  <path d="M100 210 Q200 215 300 210 C300 240 280 250 200 250 C120 250 100 240 100 210 Z" fill="url(#bunBottom)"/>
+  <!-- Lettuce -->
+  <path d="M90 205 C110 215 130 195 150 208 C170 198 190 215 210 202 C230 216 250 198 270 210 C290 200 310 212 315 202 C318 195 295 195 270 195 C200 195 120 195 90 205 Z" fill="#4CAF50"/>
+  <path d="M95 208 C115 218 135 198 155 210 C175 200 195 218 215 204 C235 218 255 200 275 212 C295 202 312 214 315 205" fill="none" stroke="#81C784" stroke-width="4"/>
+  <!-- Patty -->
+  <rect x="95" y="172" width="210" height="30" rx="15" fill="url(#patty)"/>
+  <!-- Tomato -->
+  <rect x="105" y="155" width="90" height="15" rx="7" fill="#E63946"/>
+  <rect x="205" y="155" width="90" height="15" rx="7" fill="#E63946"/>
+  <!-- Pickle -->
+  <ellipse cx="160" cy="150" rx="25" ry="8" fill="#388E3C"/>
+  <ellipse cx="240" cy="150" rx="25" ry="8" fill="#2E7D32"/>
+  <!-- Top Bun -->
+  <path d="M95 145 C95 75 140 55 200 55 C260 55 305 75 305 145 Z" fill="url(#bunTop)"/>
+  <ellipse cx="140" cy="85" rx="3" ry="6" transform="rotate(-20 140 85)" fill="#FFE0B2"/>
+  <ellipse cx="180" cy="72" rx="3" ry="6" transform="rotate(10 180 72)" fill="#FFE0B2"/>
+  <ellipse cx="220" cy="74" rx="3" ry="6" transform="rotate(-15 220 74)" fill="#FFE0B2"/>
+  <ellipse cx="260" cy="88" rx="3" ry="6" transform="rotate(25 260 88)" fill="#FFE0B2"/>
+  <ellipse cx="160" cy="105" rx="3" ry="6" transform="rotate(15 160 105)" fill="#FFE0B2"/>
+  <ellipse cx="210" cy="100" rx="3" ry="6" transform="rotate(-30 210 100)" fill="#FFE0B2"/>
+  <ellipse cx="250" cy="115" rx="3" ry="6" transform="rotate(5 250 115)" fill="#FFE0B2"/>
+</svg>

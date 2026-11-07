@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GrillMaster POS - Customers</title>
+
+  <!-- Google Fonts: Poppins & Bangers -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Custom Theme CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+  <!-- =========================================================================
+       1. SHARED NAVIGATION
+       ========================================================================= -->
+
+  <!-- Desktop Sidebar (lg and up) -->
+  <aside class="gm-sidebar-lg d-none d-lg-flex flex-column p-3 text-white" aria-label="Desktop Navigation">
+    <div class="d-flex align-items-center mb-4 pb-2 border-bottom border-secondary border-opacity-25 px-2">
+      <i class="bi bi-fire text-danger fs-3 me-2"></i>
+      <span class="brand-font fs-3 text-white lh-1">GrillMaster<span class="text-warning"> POS</span></span>
+    </div>
+
+    <ul class="nav flex-column mb-auto">
+      <li class="nav-item">
+        <a href="index.html" class="nav-link">
+          <i class="bi bi-grid-fill me-2 fs-5"></i>
+          <span>POS / Order</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="products.html" class="nav-link">
+          <i class="bi bi-box-seam me-2 fs-5"></i>
+          <span>Products</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="customers.html" class="nav-link active" aria-current="page">
+          <i class="bi bi-people me-2 fs-5"></i>
+          <span>Customers</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="orders.html" class="nav-link">
+          <i class="bi bi-receipt me-2 fs-5"></i>
+          <span>Orders</span>
+        </a>
+      </li>
+    </ul>
+
+    <div class="mt-auto pt-3 border-top border-secondary border-opacity-25 px-2 d-flex align-items-center">
+      <div class="rounded-circle bg-warning text-dark d-flex align-items-center justify-content-center fw-bold me-2" style="width: 36px; height: 36px; font-size: 0.85rem;">
+        CA
+      </div>
+      <div class="small overflow-hidden">
+        <div class="fw-semibold text-white text-truncate">Cashier 01</div>
+        <div class="text-white-50 small">Terminal #2</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Tablet Rail Sidebar (md only) -->
+  <aside class="gm-sidebar-md d-none d-md-flex d-lg-none flex-column align-items-center py-3 text-white" aria-label="Tablet Navigation">
+    <div class="mb-4">
+      <a href="index.html" class="text-decoration-none text-white" aria-label="GrillMaster POS Home">
+        <i class="bi bi-fire text-danger fs-2"></i>
+      </a>
+    </div>
+
+    <ul class="nav flex-column w-100 px-2 text-center">
+      <li class="nav-item mb-2">
+        <a href="index.html" class="nav-link" title="POS / Order" aria-label="POS / Order">
+          <i class="bi bi-grid-fill"></i>
+        </a>
+      </li>
+      <li class="nav-item mb-2">
+        <a href="products.html" class="nav-link" title="Products" aria-label="Products">
+          <i class="bi bi-box-seam"></i>
+        </a>
+      </li>
+      <li class="nav-item mb-2">
+        <a href="customers.html" class="nav-link active" title="Customers" aria-label="Customers" aria-current="page">
+          <i class="bi bi-people"></i>
+        </a>
+      </li>
+      <li class="nav-item mb-2">
+        <a href="orders.html" class="nav-link" title="Orders" aria-label="Orders">
+          <i class="bi bi-receipt"></i>
+        </a>
+      </li>
+    </ul>
+
+    <div class="mt-auto">
+      <div class="rounded-circle bg-warning text-dark d-flex align-items-center justify-content-center fw-bold" style="width: 38px; height: 38px; font-size: 0.85rem;" title="Cashier 01">
+        CA
+      </div>
+    </div>
+  </aside>
+
+  <!-- Mobile Sticky Top Navbar (below md) -->
+  <nav class="gm-mobile-topbar navbar sticky-top d-md-none px-3" aria-label="Mobile Top Bar">
+    <div class="container-fluid p-0 d-flex justify-content-between align-items-center">
+      <a class="navbar-brand d-flex align-items-center text-white m-0" href="index.html">
+        <i class="bi bi-fire text-danger fs-3 me-2"></i>
+        <span class="brand-font fs-3 text-white">GrillMaster<span class="text-warning"> POS</span></span>
+      </a>
+
+      <!-- Quick Add Customer Trigger for Mobile -->
+      <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#addCustomerModal" aria-label="Add New Customer">
+        <i class="bi bi-person-plus-fill me-1"></i> Add
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Fixed Bottom Nav (< md) -->
+  <nav class="gm-bottom-nav fixed-bottom d-md-none" aria-label="Mobile Bottom Navigation">
+    <div class="container-fluid h-100 px-0">
+      <div class="row g-0 h-100 text-center align-items-center">
+        <div class="col-3">
+          <a href="index.html" class="nav-link">
+            <i class="bi bi-grid-fill"></i>
+            <span>POS</span>
+          </a>
+        </div>
+        <div class="col-3">
+          <a href="products.html" class="nav-link">
+            <i class="bi bi-box-seam"></i>
+            <span>Products</span>
+          </a>
+        </div>
+        <div class="col-3">
+          <a href="customers.html" class="nav-link active" aria-current="page">
+            <i class="bi bi-people"></i>
+            <span>Customers</span>
+          </a>
+        </div>
+        <div class="col-3">
+          <a href="orders.html" class="nav-link">
+            <i class="bi bi-receipt"></i>
+            <span>Orders</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- =========================================================================
+       2. MAIN CONTENT AREA
+       ========================================================================= -->
+  <div class="gm-main-layout d-flex flex-column flex-grow-1">
+    <main class="flex-grow-1 p-3 p-md-4">
+      <div class="container-fluid p-0">
+
+        <!-- Page Header & Action Controls -->
+        <header class="row align-items-center justify-content-between g-3 mb-4">
+          <div class="col-12 col-md-5">
+            <h1 class="h3 fw-bold mb-0 text-dark d-flex align-items-center">
+              Customers
+              <span class="badge bg-secondary-subtle text-dark fs-6 ms-2 rounded-pill px-3 py-1 fw-normal">8 registered</span>
+            </h1>
+            <p class="text-muted small mb-0 mt-1">Loyalty members and registered burger lovers</p>
+          </div>
+
+          <div class="col-12 col-md-7">
+            <div class="row g-2 justify-content-md-end">
+              <!-- Search Input -->
+              <div class="col-8 col-sm-7 col-lg-6">
+                <div class="input-group">
+                  <span class="input-group-text bg-white border-end-0 text-muted" id="customer-search-addon">
+                    <i class="bi bi-search"></i>
+                  </span>
+                  <input type="text" class="form-control bg-white border-start-0 ps-0" placeholder="Search by name or phone..." aria-label="Search by name or phone" aria-describedby="customer-search-addon">
+                </div>
+              </div>
+
+              <!-- Add Customer Button (Opens Modal) -->
+              <div class="col-4 col-sm-5 col-lg-5 text-end">
+                <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#addCustomerModal">
+                  <i class="bi bi-person-plus-fill me-1"></i>
+                  <span class="d-none d-sm-inline">+ Add Customer</span>
+                  <span class="d-inline d-sm-none">+ Add</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- ===================================================================
+             TABLE VIEW (Visible on md and up: d-none d-md-block)
+             =================================================================== -->
+        <div class="card d-none d-md-block overflow-hidden shadow-sm">
+          <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+              <thead>
+                <tr>
+                  <th scope="col">Customer Name</th>
+                  <th scope="col">Phone Number</th>
+                  <th scope="col">Email Address</th>
+                  <th scope="col">Total Orders</th>
+                  <th scope="col" class="text-end">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                <!-- Customer 1 -->
+                <tr>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <div class="gm-avatar me-3">NP</div>
+                      <div>
+                        <div class="fw-semibold text-dark">Nimal Perera</div>
+                        <div class="small text-muted">ID: #CUST-101</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="font-monospace">077 123 4567</span></td>
+                  <td>nimal.perera@gmail.com</td>
+                  <td>
+                    <span class="badge bg-danger-subtle text-danger fw-semibold px-2 py-1">
+                      <i class="bi bi-bag-heart-fill me-1"></i> 14 orders
+                    </span>
+                  </td>
+                  <td class="text-end">
+                    <button type="button" class="btn btn-outline-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#addCustomerModal" title="Edit customer" aria-label="Edit Nimal Perera">
+                      <i class="bi bi-pencil-square"></i>
+                    </button>
+                    <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteCustomerModal" title="Delete customer" aria-label="Delete Nimal Perera">
+                      <i class="bi bi-trash3"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <!-- Customer 2 -->
+                <tr>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <div class="gm-avatar me-3">KS</div>
+                      <div>
+                        <div class="fw-semibold text-dark">Kasun Silva</div>
+                        <div class="small text-muted">ID: #CUST-102</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="font-monospace">071 987 6543</span></td>
+                  <td>kasun.silva@outlook.com</td>
+                  <td>
+                    <span class="badge bg-danger-subtle text-danger fw-semibold px-2 py-1">
+                      <i class="bi bi-bag-heart-fill me-1"></i> 8 orders
+                    </span>
+                  </td>
+                  <td class="text-end">
+                    <button type="button" class="btn btn-outline-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#addCustomerModal" title="Edit customer" aria-label="Edit Kasun Silva">
+                      <i class="bi bi-pencil-square"></i>
+                    </button>
+                    <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteCustomerModal" title="Delete customer" aria-label="Delete Kasun Silva">
+                      <i class="bi bi-trash3"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <!-- Customer 3 -->
+                <tr>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <div class="gm-avatar me-3">DF</div>
+                      <div>
+                        <div class="fw-semibold text-dark">Dilani Fernando</div>
+                        <div class="small text-muted">ID: #CUST-103</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="font-monospace">076 555 1234</span></td>
+                  <td>dilani.fernando@yahoo.com</td>
+                  <td>
+                    <span class="badge bg-danger-subtle text-danger fw-semibold px-2 py-1">
+                      <i class="bi bi-bag-heart-fill me-1"></i> 19 orders
+                    </span>
+                  </td>
+                  <td class="text-end">
+                    <button type="button" class="btn btn-outline-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#addCustomerModal" title="Edit customer" aria-label="Edit Dilani Fernando">
+                      <i class="bi bi-pencil-square"></i>
+                    </button>
+                    <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteCustomerModal" title="Delete customer" aria-label="Delete Dilani Fernando">
+                      <i class="bi bi-trash3"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <!-- Customer 4 -->
+                <tr>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <div class="gm-avatar me-3">CB</div>
+                      <div>
+                        <div class="fw-semibold text-dark">Chaminda Bandara</div>
+                        <div class="small text-muted">ID: #CUST-104</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="font-monospace">072 334 8899</span></td>
+                  <td>chaminda.bandara@gmail.com</td>
+                  <td>
+                    <span class="badge bg-danger-subtle text-danger fw-semibold px-2 py-1">
+                      <i class="bi bi-bag-heart-fill me-1"></i> 5 orders
+                    </span>
+                  </td>
+                  <td class="text-end">
+                    <button type="button" class="btn btn-outline-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#addCustomerModal" title="Edit customer" aria-label="Edit Chaminda Bandara">
+                      <i class="bi bi-pencil-square"></i>
+                    </button>
+                    <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteCustomerModal" title="Delete customer" aria-label="Delete Chaminda Bandara">
+                      <i class="bi bi-trash3"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <!-- Customer 5 -->
+                <tr>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <div class="gm-avatar me-3">AJ</div>
+                      <div>
+                        <div class="fw-semibold text-dark">Anura Jayawardena</div>
+                        <div class="small text-muted">ID: #CUST-105</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="font-monospace">077 445 6677</span></td>
+                  <td>anura.jaya@gmail.com</td>
+                  <td>
+                    <span class="badge bg-danger-subtle text-danger fw-semibold px-2 py-1">
+                      <i class="bi bi-bag-heart-fill me-1"></i> 23 orders
+                    </span>
+                  </td>
+                  <td class="text-end">
+                    <button type="button" class="btn btn-outline-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#addCustomerModal" title="Edit customer" aria-label="Edit Anura Jayawardena">
+                      <i class="bi bi-pencil-square"></i>
+                    </button>
+                    <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteCustomerModal" title="Delete customer" aria-label="Delete Anura Jayawardena">
+                      <i class="bi bi-trash3"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <!-- Customer 6 -->
+                <tr>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <div class="gm-avatar me-3">SW</div>
+                      <div>
+                        <div class="fw-semibold text-dark">Sanduni Wickramasinghe</div>
+                        <div class="small text-muted">ID: #CUST-106</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="font-monospace">078 889 2211</span></td>
+                  <td>sanduni.w@hotmail.com</td>
+                  <td>
+                    <span class="badge bg-danger-subtle text-danger fw-semibold px-2 py-1">
+                      <i class="bi bi-bag-heart-fill me-1"></i> 3 orders
+                    </span>
+                  </td>
+                  <td class="text-end">
+                    <button type="button" class="btn btn-outline-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#addCustomerModal" title="Edit customer" aria-label="Edit Sanduni Wickramasinghe">
+                      <i class="bi bi-pencil-square"></i>
+                    </button>
+                    <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteCustomerModal" title="Delete customer" aria-label="Delete Sanduni Wickramasinghe">
+                      <i class="bi bi-trash3"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <!-- Customer 7 -->
+                <tr>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <div class="gm-avatar me-3">RP</div>
+                      <div>
+                        <div class="fw-semibold text-dark">Roshan Perera</div>
+                        <div class="small text-muted">ID: #CUST-107</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="font-monospace">075 221 3344</span></td>
+                  <td>roshan.perera@live.com</td>
+                  <td>
+                    <span class="badge bg-danger-subtle text-danger fw-semibold px-2 py-1">
+                      <i class="bi bi-bag-heart-fill me-1"></i> 11 orders
+                    </span>
+                  </td>
+                  <td class="text-end">
+                    <button type="button" class="btn btn-outline-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#addCustomerModal" title="Edit customer" aria-label="Edit Roshan Perera">
+                      <i class="bi bi-pencil-square"></i>
+                    </button>
+                    <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteCustomerModal" title="Delete customer" aria-label="Delete Roshan Perera">
+                      <i class="bi bi-trash3"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <!-- Customer 8 -->
+                <tr>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <div class="gm-avatar me-3">KA</div>
+                      <div>
+                        <div class="fw-semibold text-dark">Kaveesha Alwis</div>
+                        <div class="small text-muted">ID: #CUST-108</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="font-monospace">071 443 9900</span></td>
+                  <td>kaveesha.alwis@gmail.com</td>
+                  <td>
+                    <span class="badge bg-danger-subtle text-danger fw-semibold px-2 py-1">
+                      <i class="bi bi-bag-heart-fill me-1"></i> 6 orders
+                    </span>
+                  </td>
+                  <td class="text-end">
+                    <button type="button" class="btn btn-outline-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#addCustomerModal" title="Edit customer" aria-label="Edit Kaveesha Alwis">
+                      <i class="bi bi-pencil-square"></i>
+                    </button>
+                    <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteCustomerModal" title="Delete customer" aria-label="Delete Kaveesha Alwis">
+                      <i class="bi bi-trash3"></i>
+                    </button>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ===================================================================
+             MOBILE CARD VIEW (Visible below md: d-md-none)
+             Stacked cards with mustard initials avatar, name, phone, email & actions
+             =================================================================== -->
+        <div class="d-md-none">
+          <div class="row g-3">
+
+            <!-- Card 1 -->
+            <div class="col-12">
+              <div class="card p-3 shadow-sm">
+                <div class="d-flex align-items-center mb-3">
+                  <div class="gm-avatar me-3">NP</div>
+                  <div class="flex-grow-1">
+                    <h2 class="h6 fw-bold mb-0 text-dark">Nimal Perera</h2>
+                    <div class="small text-muted font-monospace"><i class="bi bi-telephone me-1"></i>077 123 4567</div>
+                    <div class="small text-muted text-truncate"><i class="bi bi-envelope me-1"></i>nimal.perera@gmail.com</div>
+                  </div>
+                  <span class="badge bg-danger-subtle text-danger">14 orders</span>
+                </div>
+                <div class="d-flex gap-2 pt-2 border-top">
+                  <button type="button" class="btn btn-outline-secondary btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#addCustomerModal">
+                    <i class="bi bi-pencil-square me-1"></i> Edit
+                  </button>
+                  <button type="button" class="btn btn-outline-danger btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#deleteCustomerModal">
+                    <i class="bi bi-trash3 me-1"></i> Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="col-12">
+              <div class="card p-3 shadow-sm">
+                <div class="d-flex align-items-center mb-3">
+                  <div class="gm-avatar me-3">KS</div>
+                  <div class="flex-grow-1">
+                    <h2 class="h6 fw-bold mb-0 text-dark">Kasun Silva</h2>
+                    <div class="small text-muted font-monospace"><i class="bi bi-telephone me-1"></i>071 987 6543</div>
+                    <div class="small text-muted text-truncate"><i class="bi bi-envelope me-1"></i>kasun.silva@outlook.com</div>
+                  </div>
+                  <span class="badge bg-danger-subtle text-danger">8 orders</span>
+                </div>
+                <div class="d-flex gap-2 pt-2 border-top">
+                  <button type="button" class="btn btn-outline-secondary btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#addCustomerModal">
+                    <i class="bi bi-pencil-square me-1"></i> Edit
+                  </button>
+                  <button type="button" class="btn btn-outline-danger btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#deleteCustomerModal">
+                    <i class="bi bi-trash3 me-1"></i> Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="col-12">
+              <div class="card p-3 shadow-sm">
+                <div class="d-flex align-items-center mb-3">
+                  <div class="gm-avatar me-3">DF</div>
+                  <div class="flex-grow-1">
+                    <h2 class="h6 fw-bold mb-0 text-dark">Dilani Fernando</h2>
+                    <div class="small text-muted font-monospace"><i class="bi bi-telephone me-1"></i>076 555 1234</div>
+                    <div class="small text-muted text-truncate"><i class="bi bi-envelope me-1"></i>dilani.fernando@yahoo.com</div>
+                  </div>
+                  <span class="badge bg-danger-subtle text-danger">19 orders</span>
+                </div>
+                <div class="d-flex gap-2 pt-2 border-top">
+                  <button type="button" class="btn btn-outline-secondary btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#addCustomerModal">
+                    <i class="bi bi-pencil-square me-1"></i> Edit
+                  </button>
+                  <button type="button" class="btn btn-outline-danger btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#deleteCustomerModal">
+                    <i class="bi bi-trash3 me-1"></i> Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="col-12">
+              <div class="card p-3 shadow-sm">
+                <div class="d-flex align-items-center mb-3">
+                  <div class="gm-avatar me-3">CB</div>
+                  <div class="flex-grow-1">
+                    <h2 class="h6 fw-bold mb-0 text-dark">Chaminda Bandara</h2>
+                    <div class="small text-muted font-monospace"><i class="bi bi-telephone me-1"></i>072 334 8899</div>
+                    <div class="small text-muted text-truncate"><i class="bi bi-envelope me-1"></i>chaminda.bandara@gmail.com</div>
+                  </div>
+                  <span class="badge bg-danger-subtle text-danger">5 orders</span>
+                </div>
+                <div class="d-flex gap-2 pt-2 border-top">
+                  <button type="button" class="btn btn-outline-secondary btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#addCustomerModal">
+                    <i class="bi bi-pencil-square me-1"></i> Edit
+                  </button>
+                  <button type="button" class="btn btn-outline-danger btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#deleteCustomerModal">
+                    <i class="bi bi-trash3 me-1"></i> Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="col-12">
+              <div class="card p-3 shadow-sm">
+                <div class="d-flex align-items-center mb-3">
+                  <div class="gm-avatar me-3">AJ</div>
+                  <div class="flex-grow-1">
+                    <h2 class="h6 fw-bold mb-0 text-dark">Anura Jayawardena</h2>
+                    <div class="small text-muted font-monospace"><i class="bi bi-telephone me-1"></i>077 445 6677</div>
+                    <div class="small text-muted text-truncate"><i class="bi bi-envelope me-1"></i>anura.jaya@gmail.com</div>
+                  </div>
+                  <span class="badge bg-danger-subtle text-danger">23 orders</span>
+                </div>
+                <div class="d-flex gap-2 pt-2 border-top">
+                  <button type="button" class="btn btn-outline-secondary btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#addCustomerModal">
+                    <i class="bi bi-pencil-square me-1"></i> Edit
+                  </button>
+                  <button type="button" class="btn btn-outline-danger btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#deleteCustomerModal">
+                    <i class="bi bi-trash3 me-1"></i> Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="col-12">
+              <div class="card p-3 shadow-sm">
+                <div class="d-flex align-items-center mb-3">
+                  <div class="gm-avatar me-3">SW</div>
+                  <div class="flex-grow-1">
+                    <h2 class="h6 fw-bold mb-0 text-dark">Sanduni Wickramasinghe</h2>
+                    <div class="small text-muted font-monospace"><i class="bi bi-telephone me-1"></i>078 889 2211</div>
+                    <div class="small text-muted text-truncate"><i class="bi bi-envelope me-1"></i>sanduni.w@hotmail.com</div>
+                  </div>
+                  <span class="badge bg-danger-subtle text-danger">3 orders</span>
+                </div>
+                <div class="d-flex gap-2 pt-2 border-top">
+                  <button type="button" class="btn btn-outline-secondary btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#addCustomerModal">
+                    <i class="bi bi-pencil-square me-1"></i> Edit
+                  </button>
+                  <button type="button" class="btn btn-outline-danger btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#deleteCustomerModal">
+                    <i class="bi bi-trash3 me-1"></i> Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 7 -->
+            <div class="col-12">
+              <div class="card p-3 shadow-sm">
+                <div class="d-flex align-items-center mb-3">
+                  <div class="gm-avatar me-3">RP</div>
+                  <div class="flex-grow-1">
+                    <h2 class="h6 fw-bold mb-0 text-dark">Roshan Perera</h2>
+                    <div class="small text-muted font-monospace"><i class="bi bi-telephone me-1"></i>075 221 3344</div>
+                    <div class="small text-muted text-truncate"><i class="bi bi-envelope me-1"></i>roshan.perera@live.com</div>
+                  </div>
+                  <span class="badge bg-danger-subtle text-danger">11 orders</span>
+                </div>
+                <div class="d-flex gap-2 pt-2 border-top">
+                  <button type="button" class="btn btn-outline-secondary btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#addCustomerModal">
+                    <i class="bi bi-pencil-square me-1"></i> Edit
+                  </button>
+                  <button type="button" class="btn btn-outline-danger btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#deleteCustomerModal">
+                    <i class="bi bi-trash3 me-1"></i> Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 8 -->
+            <div class="col-12">
+              <div class="card p-3 shadow-sm">
+                <div class="d-flex align-items-center mb-3">
+                  <div class="gm-avatar me-3">KA</div>
+                  <div class="flex-grow-1">
+                    <h2 class="h6 fw-bold mb-0 text-dark">Kaveesha Alwis</h2>
+                    <div class="small text-muted font-monospace"><i class="bi bi-telephone me-1"></i>071 443 9900</div>
+                    <div class="small text-muted text-truncate"><i class="bi bi-envelope me-1"></i>kaveesha.alwis@gmail.com</div>
+                  </div>
+                  <span class="badge bg-danger-subtle text-danger">6 orders</span>
+                </div>
+                <div class="d-flex gap-2 pt-2 border-top">
+                  <button type="button" class="btn btn-outline-secondary btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#addCustomerModal">
+                    <i class="bi bi-pencil-square me-1"></i> Edit
+                  </button>
+                  <button type="button" class="btn btn-outline-danger btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#deleteCustomerModal">
+                    <i class="bi bi-trash3 me-1"></i> Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- =========================================================================
+       3. ADD / EDIT CUSTOMER MODAL (#addCustomerModal)
+       With static validation hint: is-invalid + invalid-feedback
+       ========================================================================= -->
+  <div class="modal fade" id="addCustomerModal" tabindex="-1" aria-labelledby="addCustomerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-charcoal text-white">
+          <h2 class="modal-title h5 mb-0" id="addCustomerModalLabel">
+            <i class="bi bi-person-fill-gear me-2"></i>Customer Information
+          </h2>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body p-4">
+          <form class="row g-3" novalidate>
+
+            <!-- Full Name -->
+            <div class="col-12 col-md-6">
+              <label for="custFullName" class="form-label fw-semibold">Full Name <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" id="custFullName" value="Nimal Perera" required>
+            </div>
+
+            <!-- Phone Number with static is-invalid Validation example -->
+            <div class="col-12 col-md-6">
+              <label for="custPhone" class="form-label fw-semibold">Phone Number <span class="text-danger">*</span></label>
+              <div class="input-group has-validation">
+                <span class="input-group-text"><i class="bi bi-telephone-fill"></i></span>
+                <input type="tel" class="form-control is-invalid" id="custPhone" value="07712" aria-describedby="phoneFeedback" required>
+                <div id="phoneFeedback" class="invalid-feedback">
+                  Please enter a valid 10-digit Sri Lankan phone number (e.g., 077 123 4567).
+                </div>
+              </div>
+            </div>
+
+            <!-- Email Address -->
+            <div class="col-12">
+              <label for="custEmail" class="form-label fw-semibold">Email Address</label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-envelope-fill"></i></span>
+                <input type="email" class="form-control" id="custEmail" value="nimal.perera@gmail.com">
+              </div>
+            </div>
+
+            <!-- Address Textarea -->
+            <div class="col-12">
+              <label for="custAddress" class="form-label fw-semibold">Delivery Address</label>
+              <textarea class="form-control" id="custAddress" rows="3" placeholder="Street, City, Postal Code...">No. 18/4, Temple Road, Mount Lavinia</textarea>
+            </div>
+
+          </form>
+        </div>
+
+        <div class="modal-footer bg-light">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+            <i class="bi bi-check2-circle me-1"></i> Save Customer
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       4. DELETE CONFIRMATION MODAL (#deleteCustomerModal)
+       ========================================================================= -->
+  <div class="modal fade" id="deleteCustomerModal" tabindex="-1" aria-labelledby="deleteCustomerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+      <div class="modal-content">
+        <div class="modal-body text-center p-4">
+          <div class="rounded-circle bg-danger-subtle text-danger d-inline-flex align-items-center justify-content-center mb-3" style="width: 56px; height: 56px;">
+            <i class="bi bi-person-x-fill fs-3"></i>
+          </div>
+          <h2 class="h5 fw-bold mb-2" id="deleteCustomerModalLabel">Delete customer?</h2>
+          <p class="text-muted small mb-0">Are you sure you want to remove <strong class="text-dark">Nimal Perera</strong>? Their order history will remain linked as archived.</p>
+        </div>
+        <div class="modal-footer flex-nowrap p-0 border-top">
+          <button type="button" class="btn btn-link fs-6 text-decoration-none col-6 m-0 rounded-0 border-end py-3 text-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-link fs-6 text-decoration-none col-6 m-0 rounded-0 py-3 text-danger fw-semibold" data-bs-dismiss="modal">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap 5.3 Bundle JS via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

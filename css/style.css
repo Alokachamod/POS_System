@@ -1,0 +1,470 @@
+/* ==========================================================================
+   GrillMaster POS - Master Theme & Custom Styles
+   Framework: Bootstrap 5.3 (CDN)
+   Fonts: Poppins, Bangers
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Theme Variables & Root Overrides
+   -------------------------------------------------------------------------- */
+:root {
+  /* Brand Palette */
+  --bs-primary: #E63946;
+  --bs-primary-rgb: 230, 57, 70;
+  --bs-warning: #FFB703;
+  --bs-warning-rgb: 255, 183, 3;
+  --bs-success: #2A9D8F;
+  --bs-success-rgb: 42, 157, 143;
+  --bs-danger: #C1121F;
+  --bs-danger-rgb: 193, 18, 31;
+  --bs-body-bg: #FFF8F0;
+  --bs-body-color: #242424;
+
+  /* Custom Charcoal for Chrome & Contrast */
+  --gm-charcoal: #1F1F1F;
+  --gm-charcoal-light: #2A2A2A;
+  --gm-cream-card: #FFFFFF;
+
+  /* Typography & Shape */
+  --bs-body-font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --bs-border-radius: 12px;
+  --bs-border-radius-sm: 8px;
+  --bs-border-radius-lg: 16px;
+  --bs-border-radius-xl: 20px;
+
+  /* Component Shadows */
+  --gm-card-shadow: 0 4px 14px rgba(31, 31, 31, 0.05);
+  --gm-hover-shadow: 0 8px 24px rgba(31, 31, 31, 0.12);
+
+  /* Layout Dimensions */
+  --gm-sidebar-width-lg: 220px;
+  --gm-sidebar-width-md: 72px;
+  --gm-bottom-nav-height: 64px;
+  --gm-top-navbar-height: 60px;
+}
+
+/* --------------------------------------------------------------------------
+   2. Typography & Base Resets
+   -------------------------------------------------------------------------- */
+body {
+  font-family: var(--bs-body-font-family);
+  background-color: var(--bs-body-bg);
+  color: var(--bs-body-color);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.brand-font {
+  font-family: 'Bangers', cursive;
+  letter-spacing: 0.06em;
+}
+
+/* Page subtle fade-in transition */
+main {
+  animation: gmFadeIn 0.25s ease-out;
+}
+
+@keyframes gmFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Clear visible focus outlines across buttons and inputs */
+:focus-visible,
+.form-control:focus,
+.form-select:focus,
+.btn:focus,
+.btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 0.25rem rgba(230, 57, 70, 0.25) !important;
+  border-color: var(--bs-primary) !important;
+}
+
+/* Minimum 44px touch targets on buttons & links */
+.btn,
+.nav-link,
+.form-control,
+.form-select,
+.input-group-text,
+.pagination .page-link {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-sm {
+  min-height: 36px;
+  min-width: 36px;
+}
+
+/* Primary Button Styling */
+.btn-primary {
+  background-color: var(--bs-primary);
+  border-color: var(--bs-primary);
+  color: #FFFFFF;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover,
+.btn-primary:active {
+  background-color: #D12F3C !important;
+  border-color: #D12F3C !important;
+  color: #FFFFFF !important;
+}
+
+/* Navigation Pills (Categories & Filters) */
+.nav-pills .nav-link {
+  color: #555555;
+  background-color: #EFE6DD;
+  font-weight: 500;
+  border-radius: 50rem;
+  padding: 0.45rem 1.25rem;
+  margin-right: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.nav-pills .nav-link:hover {
+  background-color: #E5DBD0;
+  color: #1F1F1F;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  background-color: var(--bs-primary);
+  color: #FFFFFF;
+  box-shadow: 0 3px 10px rgba(230, 57, 70, 0.3);
+}
+
+/* --------------------------------------------------------------------------
+   3. Card Enhancements & Product Card Hover
+   -------------------------------------------------------------------------- */
+.card {
+  background-color: var(--gm-cream-card);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: var(--bs-border-radius);
+  box-shadow: var(--gm-card-shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--gm-hover-shadow);
+}
+
+.product-card .card-img-top,
+.product-card .ratio img {
+  border-top-left-radius: calc(var(--bs-border-radius) - 1px);
+  border-top-right-radius: calc(var(--bs-border-radius) - 1px);
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover .card-img-top,
+.product-card:hover .ratio img {
+  transform: scale(1.03);
+}
+
+/* --------------------------------------------------------------------------
+   4. Shared Navigation: Sidebar, Top Navbar, Bottom Nav
+   -------------------------------------------------------------------------- */
+/* Charcoal background elements */
+.bg-charcoal {
+  background-color: var(--gm-charcoal) !important;
+}
+
+/* Desktop Sidebar (Fixed left, 220px) */
+.gm-sidebar-lg {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: var(--gm-sidebar-width-lg);
+  background-color: var(--gm-charcoal);
+  z-index: 1020;
+}
+
+.gm-sidebar-lg .nav-link {
+  color: #C0C0C0;
+  border-radius: var(--bs-border-radius-sm);
+  padding: 0.65rem 1rem;
+  margin-bottom: 0.4rem;
+  font-weight: 500;
+  justify-content: flex-start;
+  transition: all 0.2s ease;
+}
+
+.gm-sidebar-lg .nav-link:hover {
+  background-color: var(--gm-charcoal-light);
+  color: #FFFFFF;
+}
+
+.gm-sidebar-lg .nav-link.active {
+  background-color: var(--bs-primary);
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(230, 57, 70, 0.35);
+}
+
+/* Tablet Rail Sidebar (Fixed left, 72px) */
+.gm-sidebar-md {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: var(--gm-sidebar-width-md);
+  background-color: var(--gm-charcoal);
+  z-index: 1020;
+}
+
+.gm-sidebar-md .nav-link {
+  color: #C0C0C0;
+  border-radius: var(--bs-border-radius-sm);
+  padding: 0.75rem 0;
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  transition: all 0.2s ease;
+}
+
+.gm-sidebar-md .nav-link:hover {
+  background-color: var(--gm-charcoal-light);
+  color: #FFFFFF;
+}
+
+.gm-sidebar-md .nav-link.active {
+  background-color: var(--bs-primary);
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(230, 57, 70, 0.35);
+}
+
+/* Responsive Main Layout Margins */
+.gm-main-layout {
+  min-height: 100vh;
+}
+
+@media (min-width: 992px) {
+  .gm-main-layout {
+    margin-left: var(--gm-sidebar-width-lg);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .gm-main-layout {
+    margin-left: var(--gm-sidebar-width-md);
+  }
+}
+
+@media (max-width: 767.98px) {
+  .gm-main-layout {
+    margin-left: 0;
+    padding-bottom: calc(var(--gm-bottom-nav-height) + 16px);
+  }
+}
+
+/* Mobile Sticky Top Bar */
+.gm-mobile-topbar {
+  background-color: var(--gm-charcoal);
+  height: var(--gm-top-navbar-height);
+  z-index: 1010;
+}
+
+/* Mobile Fixed Bottom Nav */
+.gm-bottom-nav {
+  height: var(--gm-bottom-nav-height);
+  background-color: var(--gm-charcoal);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  z-index: 1020;
+}
+
+.gm-bottom-nav .nav-link {
+  color: #A0A0A0;
+  font-size: 0.72rem;
+  padding: 0.35rem 0;
+  min-height: 52px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s ease;
+}
+
+.gm-bottom-nav .nav-link i {
+  font-size: 1.25rem;
+  margin-bottom: 2px;
+}
+
+.gm-bottom-nav .nav-link.active {
+  color: var(--bs-warning);
+  font-weight: 600;
+}
+
+/* Offcanvas Top Drag Handle Indicator */
+.gm-drag-handle {
+  width: 44px;
+  height: 5px;
+  background-color: #D6D6D6;
+  border-radius: 99px;
+  margin: 10px auto 4px auto;
+}
+
+/* --------------------------------------------------------------------------
+   5. POS Order Panel & Quantity Stepper
+   -------------------------------------------------------------------------- */
+.gm-pos-order-panel {
+  width: 340px;
+  background-color: #FFFFFF;
+  border-left: 1px solid rgba(0, 0, 0, 0.08);
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  overflow-y: auto;
+}
+
+.gm-stepper-btn {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+/* --------------------------------------------------------------------------
+   6. Table Enhancements & Mobile Card Avatars
+   -------------------------------------------------------------------------- */
+.table thead th {
+  background-color: var(--gm-charcoal);
+  color: #FFFFFF;
+  border-bottom: none;
+  font-weight: 600;
+  font-size: 0.88rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 0.9rem 1rem;
+}
+
+.table tbody td {
+  padding: 0.85rem 1rem;
+  vertical-align: middle;
+}
+
+.table tbody tr:hover td {
+  background-color: rgba(230, 57, 70, 0.03);
+}
+
+/* Customer Initials Avatar */
+.gm-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: var(--bs-warning);
+  color: #1F1F1F;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+
+/* File Upload Drop Area */
+.gm-drop-zone {
+  border: 2px dashed #D0D0D0;
+  border-radius: var(--bs-border-radius);
+  background-color: #FAF6F0;
+  transition: border-color 0.2s ease;
+  cursor: pointer;
+}
+
+.gm-drop-zone:hover {
+  border-color: var(--bs-primary);
+}
+
+/* --------------------------------------------------------------------------
+   7. Receipt Ticket Component
+   -------------------------------------------------------------------------- */
+.receipt-ticket {
+  background: #FFFFFF;
+  font-family: 'Courier New', Courier, monospace;
+  padding: 1.5rem;
+  border-radius: var(--bs-border-radius);
+  border: 1px dashed #BEBEBE;
+  position: relative;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.receipt-ticket .receipt-title {
+  font-family: 'Bangers', cursive;
+  letter-spacing: 0.08em;
+  font-size: 1.85rem;
+}
+
+.receipt-divider {
+  border-top: 2px dashed #999999;
+  margin: 0.85rem 0;
+}
+
+.receipt-total {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #1F1F1F;
+}
+
+/* --------------------------------------------------------------------------
+   8. Print Styles (@media print)
+   Only prints receipt ticket; hides all UI chrome
+   -------------------------------------------------------------------------- */
+@media print {
+  body {
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
+    font-size: 12pt;
+  }
+
+  .gm-sidebar-lg,
+  .gm-sidebar-md,
+  .gm-mobile-topbar,
+  .gm-bottom-nav,
+  .gm-pos-order-panel,
+  .modal-backdrop,
+  .modal-header,
+  .modal-footer,
+  .btn,
+  .toast-container,
+  main > *:not(.receipt-print-wrapper) {
+    display: none !important;
+  }
+
+  .modal {
+    position: static !important;
+    display: block !important;
+    background: none !important;
+  }
+
+  .modal-dialog {
+    margin: 0 auto !important;
+    max-width: 100% !important;
+  }
+
+  .modal-content {
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+  }
+
+  .receipt-ticket {
+    border: 1px solid #000000 !important;
+    box-shadow: none !important;
+    padding: 1rem !important;
+    width: 320px !important;
+    margin: 0 auto !important;
+  }
+}
+

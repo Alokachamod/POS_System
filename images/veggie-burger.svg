@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F1F8E9"/>
+      <stop offset="100%" stop-color="#DCEDC8"/>
+    </linearGradient>
+    <linearGradient id="veggiePatty" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4E6E34"/>
+      <stop offset="100%" stop-color="#334B20"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" fill="url(#bg)"/>
+  <ellipse cx="200" cy="255" rx="140" ry="20" fill="#000" opacity="0.12"/>
+  <!-- Bottom bun -->
+  <path d="M100 215 Q200 220 300 215 C300 245 280 252 200 252 C120 252 100 245 100 215 Z" fill="#D37517"/>
+  <!-- Veggie Patty -->
+  <rect x="95" y="175" width="210" height="32" rx="16" fill="url(#veggiePatty)"/>
+  <!-- Corn & pea flecks in patty -->
+  <circle cx="130" cy="190" r="4" fill="#FFCA28"/>
+  <circle cx="170" cy="184" r="3.5" fill="#C8E6C9"/>
+  <circle cx="215" cy="192" r="4" fill="#FFCA28"/>
+  <circle cx="260" cy="186" r="3.5" fill="#FF7043"/>
+  <!-- Avocado Slices -->
+  <path d="M110 172 Q150 162 190 172" stroke="#8BC34A" stroke-width="9" stroke-linecap="round"/>
+  <path d="M210 172 Q250 162 290 172" stroke="#8BC34A" stroke-width="9" stroke-linecap="round"/>
+  <!-- Tomato Slice -->
+  <rect x="105" y="152" width="190" height="14" rx="7" fill="#E63946"/>
+  <!-- Fresh Lettuce -->
+  <path d="M88 148 C110 158 135 140 160 152 C185 142 210 158 235 144 C260 156 285 140 312 148 C305 138 200 138 88 148 Z" fill="#4CAF50"/>
+  <!-- Top Bun with Oats/Seeds -->
+  <path d="M95 138 C95 68 140 50 200 50 C260 50 305 68 305 138 Z" fill="#E58E26"/>
+  <!-- Pumpkin/Sunflower seeds -->
+  <ellipse cx="140" cy="85" rx="2.5" ry="7" transform="rotate(-30 140 85)" fill="#558B2F"/>
+  <ellipse cx="180" cy="70" rx="2.5" ry="7" transform="rotate(20 180 70)" fill="#558B2F"/>
+  <ellipse cx="225" cy="72" rx="2.5" ry="7" transform="rotate(-10 225 72)" fill="#558B2F"/>
+  <ellipse cx="265" cy="88" rx="2.5" ry="7" transform="rotate(35 265 88)" fill="#558B2F"/>
+  <ellipse cx="165" cy="102" rx="2.5" ry="7" transform="rotate(15 165 102)" fill="#FFE0B2"/>
+  <ellipse cx="215" cy="98" rx="2.5" ry="7" transform="rotate(-25 215 98)" fill="#FFE0B2"/>
+</svg>

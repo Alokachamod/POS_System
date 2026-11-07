@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FFEBEE"/>
+      <stop offset="100%" stop-color="#FFCDD2"/>
+    </linearGradient>
+    <linearGradient id="cup" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E63946"/>
+      <stop offset="100%" stop-color="#9B0D17"/>
+    </linearGradient>
+    <linearGradient id="lid" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#CFD8DC"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" fill="url(#bg)"/>
+  <ellipse cx="200" cy="270" rx="75" ry="14" fill="#000" opacity="0.15"/>
+  
+  <!-- Straw -->
+  <path d="M210 20 L240 60 L200 100" stroke="#FFB703" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M210 20 L240 60 L200 100" stroke="#E63946" stroke-width="3" stroke-dasharray="8 8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+  <!-- Cup body -->
+  <polygon points="140,95 260,95 240,260 160,260" fill="url(#cup)"/>
+
+  <!-- Brand Wave Ribbon -->
+  <path d="M145 155 Q200 130 255 170 L250 205 Q195 165 150 190 Z" fill="#FFF"/>
+  <text x="200" y="180" font-family="'Poppins', sans-serif" font-weight="900" font-size="16" fill="#C1121F" text-anchor="middle" font-style="italic">GRILL COLA</text>
+
+  <!-- Cup Rim & Lid -->
+  <path d="M132 90 L268 90 L262 100 L138 100 Z" fill="url(#lid)"/>
+  <ellipse cx="200" cy="90" rx="68" ry="10" fill="url(#lid)"/>
+  <ellipse cx="200" cy="85" rx="50" ry="7" fill="#ECEFF1"/>
+  <circle cx="205" cy="85" r="7" fill="#78909C"/>
+
+  <!-- Ice cubes condensation dots -->
+  <circle cx="170" cy="130" r="3" fill="#FFF" opacity="0.6"/>
+  <circle cx="180" cy="220" r="2.5" fill="#FFF" opacity="0.6"/>
+  <circle cx="230" cy="140" r="3" fill="#FFF" opacity="0.6"/>
+  <circle cx="220" cy="230" r="2" fill="#FFF" opacity="0.6"/>
+</svg>
