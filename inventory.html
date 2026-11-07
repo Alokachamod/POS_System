@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GrillMaster POS - Inventory Management</title>
+
+  <!-- Google Fonts: Poppins & Bangers -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Custom Theme CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+  <!-- =========================================================================
+       1. SHARED NAVIGATION (6-Item Menu)
+       ========================================================================= -->
+
+  <!-- Desktop Sidebar (lg and up) -->
+  <aside class="gm-sidebar-lg d-none d-lg-flex flex-column p-3 text-white" aria-label="Desktop Navigation">
+    <div class="d-flex align-items-center mb-4 pb-2 border-bottom border-secondary border-opacity-25 px-2">
+      <i class="bi bi-fire text-danger fs-3 me-2"></i>
+      <span class="brand-font fs-3 text-white lh-1">GrillMaster<span class="text-warning"> POS</span></span>
+    </div>
+
+    <ul class="nav flex-column mb-auto" id="desktopNavMenu">
+      <li class="nav-item">
+        <a href="dashboard.html" class="nav-link">
+          <i class="bi bi-speedometer2 me-2 fs-5"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="index.html" class="nav-link">
+          <i class="bi bi-cart-fill me-2 fs-5"></i>
+          <span>POS / Order</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="products.html" class="nav-link">
+          <i class="bi bi-box-seam me-2 fs-5"></i>
+          <span>Products</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="inventory.html" class="nav-link active" aria-current="page">
+          <i class="bi bi-clipboard-data me-2 fs-5"></i>
+          <span>Inventory</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="customers.html" class="nav-link">
+          <i class="bi bi-people me-2 fs-5"></i>
+          <span>Customers</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="orders.html" class="nav-link">
+          <i class="bi bi-receipt me-2 fs-5"></i>
+          <span>Orders</span>
+        </a>
+      </li>
+    </ul>
+
+    <div class="mt-auto pt-3 border-top border-secondary border-opacity-25 px-2 d-flex align-items-center">
+      <div class="rounded-circle bg-warning text-dark d-flex align-items-center justify-content-center fw-bold me-2" style="width: 36px; height: 36px; font-size: 0.85rem;">
+        CA
+      </div>
+      <div class="small overflow-hidden">
+        <div class="fw-semibold text-white text-truncate">Cashier 01</div>
+        <div class="text-white-50 small">Terminal #2</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Tablet Rail Sidebar (md only) -->
+  <aside class="gm-sidebar-md d-none d-md-flex d-lg-none flex-column align-items-center py-3 text-white" aria-label="Tablet Navigation">
+    <div class="mb-4">
+      <a href="index.html" class="text-decoration-none text-white" aria-label="GrillMaster POS Home">
+        <i class="bi bi-fire text-danger fs-2"></i>
+      </a>
+    </div>
+
+    <ul class="nav flex-column w-100 px-2 text-center" id="tabletNavMenu">
+      <li class="nav-item mb-2">
+        <a href="dashboard.html" class="nav-link" title="Dashboard" aria-label="Dashboard">
+          <i class="bi bi-speedometer2"></i>
+        </a>
+      </li>
+      <li class="nav-item mb-2">
+        <a href="index.html" class="nav-link" title="POS / Order" aria-label="POS / Order">
+          <i class="bi bi-cart-fill"></i>
+        </a>
+      </li>
+      <li class="nav-item mb-2">
+        <a href="products.html" class="nav-link" title="Products" aria-label="Products">
+          <i class="bi bi-box-seam"></i>
+        </a>
+      </li>
+      <li class="nav-item mb-2">
+        <a href="inventory.html" class="nav-link active" title="Inventory" aria-label="Inventory" aria-current="page">
+          <i class="bi bi-clipboard-data"></i>
+        </a>
+      </li>
+      <li class="nav-item mb-2">
+        <a href="customers.html" class="nav-link" title="Customers" aria-label="Customers">
+          <i class="bi bi-people"></i>
+        </a>
+      </li>
+      <li class="nav-item mb-2">
+        <a href="orders.html" class="nav-link" title="Orders" aria-label="Orders">
+          <i class="bi bi-receipt"></i>
+        </a>
+      </li>
+    </ul>
+
+    <div class="mt-auto">
+      <div class="rounded-circle bg-warning text-dark d-flex align-items-center justify-content-center fw-bold" style="width: 38px; height: 38px; font-size: 0.85rem;" title="Cashier 01">
+        CA
+      </div>
+    </div>
+  </aside>
+
+  <!-- Mobile Sticky Top Navbar (below md) -->
+  <nav class="gm-mobile-topbar navbar sticky-top d-md-none px-3" aria-label="Mobile Top Bar">
+    <div class="container-fluid p-0 d-flex justify-content-between align-items-center">
+      <div class="d-flex align-items-center">
+        <i class="bi bi-clipboard-data text-warning fs-4 me-2"></i>
+        <span class="fw-bold text-white fs-5">Inventory</span>
+      </div>
+      <button class="btn btn-warning btn-sm text-dark fw-semibold" type="button" data-bs-toggle="modal" data-bs-target="#adjustStockModal" aria-label="Adjust Stock">
+        <i class="bi bi-plus-slash-minus me-1"></i> Adjust
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Fixed Bottom Nav (< md, 5 items max) -->
+  <nav class="gm-bottom-nav fixed-bottom d-md-none" aria-label="Mobile Bottom Navigation">
+    <div class="container-fluid h-100 px-0">
+      <div class="row g-0 h-100 text-center align-items-center" id="mobileBottomNav">
+        <div class="col-nav-5">
+          <a href="dashboard.html" class="nav-link">
+            <i class="bi bi-speedometer2"></i>
+            <span>Dashboard</span>
+          </a>
+        </div>
+        <div class="col-nav-5">
+          <a href="index.html" class="nav-link">
+            <i class="bi bi-cart-fill"></i>
+            <span>POS</span>
+          </a>
+        </div>
+        <div class="col-nav-5">
+          <a href="orders.html" class="nav-link">
+            <i class="bi bi-receipt"></i>
+            <span>Orders</span>
+          </a>
+        </div>
+        <div class="col-nav-5">
+          <a href="customers.html" class="nav-link">
+            <i class="bi bi-people"></i>
+            <span>Customers</span>
+          </a>
+        </div>
+        <div class="col-nav-5">
+          <button type="button" class="nav-link w-100 border-0 bg-transparent active text-warning" data-bs-toggle="offcanvas" data-bs-target="#moreNavOffcanvas" aria-controls="moreNavOffcanvas" aria-label="Open More Menu">
+            <i class="bi bi-grid-fill"></i>
+            <span>More</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile "More" Offcanvas Drawer -->
+  <div class="offcanvas offcanvas-bottom d-md-none rounded-top-4" tabindex="-1" id="moreNavOffcanvas" aria-labelledby="moreNavOffcanvasLabel" style="height: 60vh;">
+    <div class="offcanvas-header pb-1 pt-2 flex-column align-items-stretch border-bottom">
+      <div class="gm-drag-handle" aria-hidden="true"></div>
+      <div class="d-flex align-items-center justify-content-between w-100 mt-2">
+        <h2 class="h5 fw-bold mb-0" id="moreNavOffcanvasLabel">Quick Navigation</h2>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close menu"></button>
+      </div>
+    </div>
+    <div class="offcanvas-body p-3">
+      <div class="row g-2">
+        <div class="col-6">
+          <a href="products.html" class="card text-center p-3 text-decoration-none card-hover border h-100">
+            <i class="bi bi-box-seam fs-2 text-primary mb-1"></i>
+            <span class="fw-semibold text-dark">Products</span>
+            <span class="small text-muted">Catalog & Prices</span>
+          </a>
+        </div>
+        <div class="col-6">
+          <a href="inventory.html" class="card text-center p-3 text-decoration-none card-hover border border-warning h-100 bg-warning-subtle bg-opacity-25">
+            <i class="bi bi-clipboard-data fs-2 text-warning mb-1"></i>
+            <span class="fw-bold text-dark">Inventory</span>
+            <span class="small text-muted">Stock & Adjust</span>
+          </a>
+        </div>
+        <div class="col-6">
+          <a href="customers.html" class="card text-center p-3 text-decoration-none card-hover border h-100">
+            <i class="bi bi-people fs-2 text-success mb-1"></i>
+            <span class="fw-semibold text-dark">Customers</span>
+            <span class="small text-muted">Loyalty & Profiles</span>
+          </a>
+        </div>
+        <div class="col-6">
+          <a href="orders.html" class="card text-center p-3 text-decoration-none card-hover border h-100">
+            <i class="bi bi-receipt fs-2 text-danger mb-1"></i>
+            <span class="fw-semibold text-dark">Orders</span>
+            <span class="small text-muted">History & Tickets</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       2. MAIN CONTENT AREA
+       ========================================================================= -->
+  <div class="gm-main-layout d-flex flex-column flex-grow-1">
+    <main class="flex-grow-1 p-3 p-md-4">
+      <div class="container-fluid p-0">
+
+        <!-- Page Header & Action Controls -->
+        <header class="row align-items-center justify-content-between g-3 mb-4">
+          <div class="col-12 col-md-5">
+            <h1 class="h3 fw-bold mb-0 text-dark d-flex align-items-center">
+              Inventory
+              <span class="badge bg-secondary-subtle text-dark fs-6 ms-2 rounded-pill px-3 py-1 fw-normal">10 items tracked</span>
+            </h1>
+            <p class="text-muted small mb-0 mt-1">Real-time stock tracking, audit history, and threshold alerts</p>
+          </div>
+
+          <div class="col-12 col-md-7">
+            <div class="row g-2 justify-content-md-end">
+              <!-- Search Input -->
+              <div class="col-12 col-sm-6 col-lg-6">
+                <div class="input-group">
+                  <span class="input-group-text bg-white border-end-0 text-muted" id="inventory-search-addon">
+                    <i class="bi bi-search"></i>
+                  </span>
+                  <input type="text" class="form-control bg-white border-start-0 ps-0" id="inventorySearchInput" placeholder="Search item or SKU..." aria-label="Search item or SKU" aria-describedby="inventory-search-addon">
+                </div>
+              </div>
+
+              <!-- Category Select -->
+              <div class="col-7 col-sm-3 col-lg-3">
+                <select class="form-select bg-white" id="inventoryCategorySelect" aria-label="Filter by category">
+                  <option selected>All Categories</option>
+                  <option value="burgers">Burgers</option>
+                  <option value="fries">Fries</option>
+                  <option value="drinks">Drinks</option>
+                </select>
+              </div>
+
+              <!-- Quick Adjust Button -->
+              <div class="col-5 col-sm-3 col-lg-3 text-end">
+                <button type="button" class="btn btn-warning text-dark fw-semibold w-100" data-bs-toggle="modal" data-bs-target="#adjustStockModal">
+                  <i class="bi bi-plus-slash-minus me-1"></i> Adjust
+                </button>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- a) INVENTORY SUMMARY STAT CARDS (row g-3) -->
+        <section class="row g-3 mb-4" aria-label="Inventory Metrics">
+          <div class="col-6 col-md-3">
+            <div class="card p-3 border-0 shadow-sm">
+              <span class="small text-muted fw-semibold">Total Products</span>
+              <div class="fs-4 fw-bold text-dark mt-1" id="statTotalProducts">18</div>
+              <span class="small text-muted">Across 3 categories</span>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="card p-3 border-0 shadow-sm">
+              <span class="small text-muted fw-semibold">Units in Stock</span>
+              <div class="fs-4 fw-bold text-dark mt-1" id="statTotalUnits">384</div>
+              <span class="small text-success"><i class="bi bi-check2 me-1"></i>Healthy overall</span>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="card p-3 border-warning border-opacity-50 shadow-sm bg-warning-subtle bg-opacity-25">
+              <span class="small text-dark fw-bold">Low Stock Items</span>
+              <div class="fs-4 fw-bold text-warning-emphasis mt-1" id="statLowStockItems">5</div>
+              <span class="small text-danger"><i class="bi bi-exclamation-circle me-1"></i>Below reorder level</span>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="card p-3 border-danger border-opacity-50 shadow-sm bg-danger-subtle bg-opacity-25">
+              <span class="small text-danger fw-bold">Out of Stock Items</span>
+              <div class="fs-4 fw-bold text-danger mt-1" id="statOutOfStockItems">2</div>
+              <span class="small text-danger fw-semibold"><i class="bi bi-x-circle me-1"></i>POS sales blocked</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Status Filter Pills -->
+        <section class="mb-3" aria-label="Filter by Stock Status">
+          <div class="overflow-auto pb-2 flex-nowrap text-nowrap">
+            <ul class="nav nav-pills flex-nowrap" id="inventoryStatusPills" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="pills-inv-all" data-bs-toggle="pill" type="button" role="tab" aria-selected="true">
+                  All Items (10)
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-inv-instock" data-bs-toggle="pill" type="button" role="tab" aria-selected="false">
+                  <i class="bi bi-check-circle-fill text-success me-1"></i> In Stock (6)
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-inv-low" data-bs-toggle="pill" type="button" role="tab" aria-selected="false">
+                  <i class="bi bi-exclamation-triangle-fill text-warning me-1"></i> Low Stock (2)
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-inv-out" data-bs-toggle="pill" type="button" role="tab" aria-selected="false">
+                  <i class="bi bi-x-circle-fill text-danger me-1"></i> Out of Stock (2)
+                </button>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- ===================================================================
+             b) DESKTOP TABLE VIEW (Visible on md and up: d-none d-md-block)
+             =================================================================== -->
+        <div class="card d-none d-md-block overflow-hidden shadow-sm">
+          <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+              <thead>
+                <tr>
+                  <th scope="col" style="width: 70px;">Image</th>
+                  <th scope="col">Product Name</th>
+                  <th scope="col">Category</th>
+                  <th scope="col" style="width: 180px;">Current Stock</th>
+                  <th scope="col">Reorder Level</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Last Updated</th>
+                  <th scope="col" class="text-end">Actions</th>
+                </tr>
+              </thead>
+              <!-- JS: render inventory products here -->
+              <tbody id="inventoryTableBody">
+
+                <!-- Row 1: Classic Burger (In Stock) -->
+                <tr data-id="1">
+                  <td>
+                    <img src="images/classic-burger.svg" alt="Classic Burger" class="rounded" style="width: 48px; height: 38px; object-fit: cover;">
+                  </td>
+                  <td>
+                    <div class="fw-semibold text-dark">Classic Burger</div>
+                    <div class="small text-muted">SKU: GM-BUR-01</div>
+                  </td>
+                  <td><span class="badge bg-secondary-subtle text-dark">Burgers</span></td>
+                  <td>
+                    <div class="d-flex justify-content-between small fw-bold mb-1">
+                      <span>45 units</span>
+                      <span class="text-muted">75%</span>
+                    </div>
+                    <div class="progress gm-stock-progress">
+                      <div class="progress-bar bg-success" role="progressbar" style="width: 75%;" aria-valuenow="45" aria-valuemin="0" aria-valuemax="60" aria-label="Stock level"></div>
+                    </div>
+                  </td>
+                  <td><span class="small fw-semibold text-muted">15 units</span></td>
+                  <td><span class="badge bg-success">In Stock</span></td>
+                  <td class="small text-muted">Today, 10:30 AM</td>
+                  <td class="text-end">
+                    <button type="button" class="btn btn-outline-warning text-dark btn-sm me-1" data-bs-toggle="modal" data-bs-target="#adjustStockModal" data-product="Classic Burger" data-stock="45" title="Adjust stock" aria-label="Adjust stock for Classic Burger">
+                      <i class="bi bi-pencil-square"></i>
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#stockHistoryModal" data-product="Classic Burger" title="View stock audit history" aria-label="View history for Classic Burger">
+                      <i class="bi bi-clock-history"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <!-- Row 2: Cheese Burger (In Stock) -->
+                <tr data-id="2">
+                  <td>
+                    <img src="images/cheese-burger.svg" alt="Cheese Burger" class="rounded" style="width: 48px; height: 38px; object-fit: cover;">
+                  </td>
+                  <td>
+                    <div class="fw-semibold text-dark">Cheese Burger</div>
+                    <div class="small text-muted">SKU: GM-BUR-02</div>
+                  </td>
+                  <td><span class="badge bg-secondary-subtle text-dark">Burgers</span></td>
+                  <td>
+                    <div class="d-flex justify-content-between small fw-bold mb-1">
+                      <span>32 units</span>
+                      <span class="text-muted">64%</span>
+                    </div>
+                    <div class="progress gm-stock-progress">
+                      <div class="progress-bar bg-success" role="progressbar" style="width: 64%;" aria-valuenow="32" aria-valuemin="0" aria-valuemax="50" aria-label="Stock level"></div>
+                    </div>
+                  </td>
+                  <td><span class="small fw-semibold text-muted">15 units</span></td>
+                  <td><span class="badge bg-success">In Stock</span></td>
+                  <td class="small text-muted">Today, 09:15 AM</td>
+                  <td class="text-end">
+                    <button type="button" class="btn btn-outline-warning text-dark btn-sm me-1" data-bs-toggle="modal" data-bs-target="#adjustStockModal" data-product="Cheese Burger" data-stock="32" title="Adjust stock" aria-label="Adjust stock for Cheese Burger">
+                      <i class="bi bi-pencil-square"></i>
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#stockHistoryModal" title="View history" aria-label="View history for Cheese Burger">
+                      <i class="bi bi-clock-history"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <!-- Row 3: Chicken Burger (In Stock) -->
+                <tr data-id="3">
+                  <td>
+                    <img src="images/chicken-burger.svg" alt="Chicken Burger" class="rounded" style="width: 48px; height: 38px; object-fit: cover;">
+                  </td>
+                  <td>
+                    <div class="fw-semibold text-dark">Chicken Burger</div>
+                    <div class="small text-muted">SKU: GM-BUR-03</div>
+                  </td>
+                  <td><span class="badge bg-secondary-subtle text-dark">Burgers</span></td>
+                  <td>
+                    <div class="d-flex justify-content-between small fw-bold mb-1">
+                      <span>28 units</span>
+                      <span class="text-muted">56%</span>
+                    </div>
+                    <div class="progress gm-stock-progress">
+                      <div class="progress-bar bg-success" role="progressbar" style="width: 56%;" aria-valuenow="28" aria-valuemin="0" aria-valuemax="50" aria-label="Stock level"></div>
+                    </div>
+                  </td>
+                  <td><span class="small fw-semibold text-muted">15 units</span></td>
+                  <td><span class="badge bg-success">In Stock</span></td>
+                  <td class="small text-muted">Yesterday</td>
+                  <td class="text-end">
+                    <button type="button" class="btn btn-outline-warning text-dark btn-sm me-1" data-bs-toggle="modal" data-bs-target="#adjustStockModal" data-product="Chicken Burger" data-stock="28" title="Adjust stock" aria-label="Adjust stock for Chicken Burger">
+                      <i class="bi bi-pencil-square"></i>
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#stockHistoryModal" title="View history" aria-label="View history for Chicken Burger">
+                      <i class="bi bi-clock-history"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <!-- Row 4: Veggie Burger (Low Stock) -->
+                <tr data-id="4" class="table-warning bg-opacity-10">
+                  <td>
+                    <img src="images/veggie-burger.svg" alt="Veggie Burger" class="rounded" style="width: 48px; height: 38px; object-fit: cover;">
+                  </td>
+                  <td>
+                    <div class="fw-semibold text-dark">Veggie Burger</div>
+                    <div class="small text-muted">SKU: GM-BUR-04</div>
+                  </td>
+                  <td><span class="badge bg-secondary-subtle text-dark">Burgers</span></td>
+                  <td>
+                    <div class="d-flex justify-content-between small fw-bold mb-1 text-warning-emphasis">
+                      <span>8 units</span>
+                      <span>Low</span>
+                    </div>
+                    <div class="progress gm-stock-progress">
+                      <div class="progress-bar bg-warning" role="progressbar" style="width: 27%;" aria-valuenow="8" aria-valuemin="0" aria-valuemax="30" aria-label="Stock level"></div>
+                    </div>
+                  </td>
+                  <td><span class="small fw-bold text-danger">10 units</span></td>
+                  <td><span class="badge bg-warning text-dark">Low Stock</span></td>
+                  <td class="small text-muted">05 Nov 2026</td>
+                  <td class="text-end">
+                    <button type="button" class="btn btn-outline-warning text-dark btn-sm me-1" data-bs-toggle="modal" data-bs-target="#adjustStockModal" data-product="Veggie Burger" data-stock="8" title="Adjust stock" aria-label="Adjust stock for Veggie Burger">
+                      <i class="bi bi-pencil-square"></i>
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#stockHistoryModal" title="View history" aria-label="View history for Veggie Burger">
+                      <i class="bi bi-clock-history"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <!-- Row 5: French Fries (In Stock) -->
+                <tr data-id="5">
+                  <td>
+                    <img src="images/french-fries.svg" alt="French Fries" class="rounded" style="width: 48px; height: 38px; object-fit: cover;">
+                  </td>
+                  <td>
+                    <div class="fw-semibold text-dark">French Fries</div>
+                    <div class="small text-muted">SKU: GM-FRY-01</div>
+                  </td>
+                  <td><span class="badge bg-secondary-subtle text-dark">Fries</span></td>
+                  <td>
+                    <div class="d-flex justify-content-between small fw-bold mb-1">
+                      <span>60 units</span>
+                      <span class="text-muted">75%</span>
+                    </div>
+                    <div class="progress gm-stock-progress">
+                      <div class="progress-bar bg-success" role="progressbar" style="width: 75%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="80" aria-label="Stock level"></div>
+                    </div>
+                  </td>
+                  <td><span class="small fw-semibold text-muted">20 units</span></td>
+                  <td><span class="badge bg-success">In Stock</span></td>
+                  <td class="small text-muted">Today, 08:00 AM</td>
+                  <td class="text-end">
+                    <button type="button" class="btn btn-outline-warning text-dark btn-sm me-1" data-bs-toggle="modal" data-bs-target="#adjustStockModal" data-product="French Fries" data-stock="60" title="Adjust stock" aria-label="Adjust stock for French Fries">
+                      <i class="bi bi-pencil-square"></i>
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#stockHistoryModal" title="View history" aria-label="View history for French Fries">
+                      <i class="bi bi-clock-history"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <!-- Row 6: Cheesy Fries (Low Stock) -->
+                <tr data-id="6" class="table-warning bg-opacity-10">
+                  <td>
+                    <img src="images/cheesy-fries.svg" alt="Cheesy Fries" class="rounded" style="width: 48px; height: 38px; object-fit: cover;">
+                  </td>
+                  <td>
+                    <div class="fw-semibold text-dark">Cheesy Fries</div>
+                    <div class="small text-muted">SKU: GM-FRY-02</div>
+                  </td>
+                  <td><span class="badge bg-secondary-subtle text-dark">Fries</span></td>
+                  <td>
+                    <div class="d-flex justify-content-between small fw-bold mb-1 text-warning-emphasis">
+                      <span>4 units</span>
+                      <span>Critical</span>
+                    </div>
+                    <div class="progress gm-stock-progress">
+                      <div class="progress-bar bg-warning" role="progressbar" style="width: 16%;" aria-valuenow="4" aria-valuemin="0" aria-valuemax="25" aria-label="Stock level"></div>
+                    </div>
+                  </td>
+                  <td><span class="small fw-bold text-danger">10 units</span></td>
+                  <td><span class="badge bg-warning text-dark">Low Stock</span></td>
+                  <td class="small text-muted">Today, 11:20 AM</td>
+                  <td class="text-end">
+                    <button type="button" class="btn btn-outline-warning text-dark btn-sm me-1" data-bs-toggle="modal" data-bs-target="#adjustStockModal" data-product="Cheesy Fries" data-stock="4" title="Adjust stock" aria-label="Adjust stock for Cheesy Fries">
+                      <i class="bi bi-pencil-square"></i>
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#stockHistoryModal" title="View history" aria-label="View history for Cheesy Fries">
+                      <i class="bi bi-clock-history"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <!-- Row 7: Cola (In Stock) -->
+                <tr data-id="7">
+                  <td>
+                    <img src="images/cola.svg" alt="Cola" class="rounded" style="width: 48px; height: 38px; object-fit: cover;">
+                  </td>
+                  <td>
+                    <div class="fw-semibold text-dark">Cola (Regular)</div>
+                    <div class="small text-muted">SKU: GM-DRK-01</div>
+                  </td>
+                  <td><span class="badge bg-secondary-subtle text-dark">Drinks</span></td>
+                  <td>
+                    <div class="d-flex justify-content-between small fw-bold mb-1">
+                      <span>120 units</span>
+                      <span class="text-muted">80%</span>
+                    </div>
+                    <div class="progress gm-stock-progress">
+                      <div class="progress-bar bg-success" role="progressbar" style="width: 80%;" aria-valuenow="120" aria-valuemin="0" aria-valuemax="150" aria-label="Stock level"></div>
+                    </div>
+                  </td>
+                  <td><span class="small fw-semibold text-muted">30 units</span></td>
+                  <td><span class="badge bg-success">In Stock</span></td>
+                  <td class="small text-muted">06 Nov 2026</td>
+                  <td class="text-end">
+                    <button type="button" class="btn btn-outline-warning text-dark btn-sm me-1" data-bs-toggle="modal" data-bs-target="#adjustStockModal" data-product="Cola (Regular)" data-stock="120" title="Adjust stock" aria-label="Adjust stock for Cola">
+                      <i class="bi bi-pencil-square"></i>
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#stockHistoryModal" title="View history" aria-label="View history for Cola">
+                      <i class="bi bi-clock-history"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <!-- Row 8: Milkshake (In Stock) -->
+                <tr data-id="8">
+                  <td>
+                    <img src="images/milkshake.svg" alt="Milkshake" class="rounded" style="width: 48px; height: 38px; object-fit: cover;">
+                  </td>
+                  <td>
+                    <div class="fw-semibold text-dark">Milkshake</div>
+                    <div class="small text-muted">SKU: GM-DRK-02</div>
+                  </td>
+                  <td><span class="badge bg-secondary-subtle text-dark">Drinks</span></td>
+                  <td>
+                    <div class="d-flex justify-content-between small fw-bold mb-1">
+                      <span>18 units</span>
+                      <span class="text-muted">45%</span>
+                    </div>
+                    <div class="progress gm-stock-progress">
+                      <div class="progress-bar bg-success" role="progressbar" style="width: 45%;" aria-valuenow="18" aria-valuemin="0" aria-valuemax="40" aria-label="Stock level"></div>
+                    </div>
+                  </td>
+                  <td><span class="small fw-semibold text-muted">10 units</span></td>
+                  <td><span class="badge bg-success">In Stock</span></td>
+                  <td class="small text-muted">Yesterday</td>
+                  <td class="text-end">
+                    <button type="button" class="btn btn-outline-warning text-dark btn-sm me-1" data-bs-toggle="modal" data-bs-target="#adjustStockModal" data-product="Milkshake" data-stock="18" title="Adjust stock" aria-label="Adjust stock for Milkshake">
+                      <i class="bi bi-pencil-square"></i>
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#stockHistoryModal" title="View history" aria-label="View history for Milkshake">
+                      <i class="bi bi-clock-history"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <!-- Row 9: BBQ Bacon Burger (Out of Stock) -->
+                <tr data-id="9" class="table-danger bg-opacity-10">
+                  <td>
+                    <img src="images/chicken-burger.svg" alt="BBQ Bacon Burger" class="rounded opacity-50" style="width: 48px; height: 38px; object-fit: cover; filter: grayscale(100%);">
+                  </td>
+                  <td>
+                    <div class="fw-semibold text-dark">BBQ Bacon Burger</div>
+                    <div class="small text-muted">SKU: GM-BUR-05</div>
+                  </td>
+                  <td><span class="badge bg-secondary-subtle text-dark">Burgers</span></td>
+                  <td>
+                    <div class="d-flex justify-content-between small fw-bold mb-1 text-danger">
+                      <span>0 units</span>
+                      <span>Empty</span>
+                    </div>
+                    <div class="progress gm-stock-progress">
+                      <div class="progress-bar bg-danger" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="30" aria-label="Stock level"></div>
+                    </div>
+                  </td>
+                  <td><span class="small fw-bold text-danger">10 units</span></td>
+                  <td><span class="badge bg-danger">Out of Stock</span></td>
+                  <td class="small text-muted">Today, 08:30 AM</td>
+                  <td class="text-end">
+                    <button type="button" class="btn btn-danger btn-sm text-white me-1" data-bs-toggle="modal" data-bs-target="#adjustStockModal" data-product="BBQ Bacon Burger" data-stock="0" title="Restock now" aria-label="Restock BBQ Bacon Burger">
+                      <i class="bi bi-plus-lg"></i> Restock
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#stockHistoryModal" title="View history" aria-label="View history for BBQ Bacon Burger">
+                      <i class="bi bi-clock-history"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <!-- Row 10: Mint Lemonade (Out of Stock) -->
+                <tr data-id="10" class="table-danger bg-opacity-10">
+                  <td>
+                    <img src="images/cola.svg" alt="Mint Lemonade" class="rounded opacity-50" style="width: 48px; height: 38px; object-fit: cover; filter: grayscale(100%);">
+                  </td>
+                  <td>
+                    <div class="fw-semibold text-dark">Mint Lemonade</div>
+                    <div class="small text-muted">SKU: GM-DRK-03</div>
+                  </td>
+                  <td><span class="badge bg-secondary-subtle text-dark">Drinks</span></td>
+                  <td>
+                    <div class="d-flex justify-content-between small fw-bold mb-1 text-danger">
+                      <span>0 units</span>
+                      <span>Empty</span>
+                    </div>
+                    <div class="progress gm-stock-progress">
+                      <div class="progress-bar bg-danger" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="40" aria-label="Stock level"></div>
+                    </div>
+                  </td>
+                  <td><span class="small fw-bold text-danger">15 units</span></td>
+                  <td><span class="badge bg-danger">Out of Stock</span></td>
+                  <td class="small text-muted">04 Nov 2026</td>
+                  <td class="text-end">
+                    <button type="button" class="btn btn-danger btn-sm text-white me-1" data-bs-toggle="modal" data-bs-target="#adjustStockModal" data-product="Mint Lemonade" data-stock="0" title="Restock now" aria-label="Restock Mint Lemonade">
+                      <i class="bi bi-plus-lg"></i> Restock
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#stockHistoryModal" title="View history" aria-label="View history for Mint Lemonade">
+                      <i class="bi bi-clock-history"></i>
+                    </button>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ===================================================================
+             c) MOBILE STACKED CARDS VIEW (< md: d-md-none)
+             =================================================================== -->
+        <!-- JS: render mobile inventory cards here -->
+        <div class="d-md-none" id="inventoryMobileList">
+          <div class="row g-3">
+
+            <!-- Mobile Card 1: Classic Burger -->
+            <div class="col-12" data-id="1">
+              <div class="card p-3 shadow-sm">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                  <div class="d-flex align-items-center">
+                    <img src="images/classic-burger.svg" alt="Classic Burger" class="rounded me-2" style="width: 50px; height: 40px; object-fit: cover;">
+                    <div>
+                      <h2 class="h6 fw-bold mb-0 text-dark">Classic Burger</h2>
+                      <span class="small text-muted">Burgers • Reorder at 15</span>
+                    </div>
+                  </div>
+                  <span class="badge bg-success">In Stock</span>
+                </div>
+                <div class="mb-2">
+                  <div class="d-flex justify-content-between small fw-semibold text-muted mb-1">
+                    <span>Current Stock</span>
+                    <span class="text-dark fw-bold">45 units</span>
+                  </div>
+                  <div class="progress gm-stock-progress">
+                    <div class="progress-bar bg-success" style="width: 75%;"></div>
+                  </div>
+                </div>
+                <div class="d-flex gap-2 pt-2 border-top">
+                  <button type="button" class="btn btn-outline-warning text-dark btn-sm flex-fill fw-semibold" data-bs-toggle="modal" data-bs-target="#adjustStockModal" data-product="Classic Burger" data-stock="45">
+                    <i class="bi bi-plus-slash-minus me-1"></i> Adjust Stock
+                  </button>
+                  <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#stockHistoryModal" aria-label="History">
+                    <i class="bi bi-clock-history"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mobile Card 2: Cheesy Fries (Low stock) -->
+            <div class="col-12" data-id="6">
+              <div class="card p-3 shadow-sm border-warning border-opacity-50">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                  <div class="d-flex align-items-center">
+                    <img src="images/cheesy-fries.svg" alt="Cheesy Fries" class="rounded me-2" style="width: 50px; height: 40px; object-fit: cover;">
+                    <div>
+                      <h2 class="h6 fw-bold mb-0 text-dark">Cheesy Fries</h2>
+                      <span class="small text-muted">Fries • Reorder at 10</span>
+                    </div>
+                  </div>
+                  <span class="badge bg-warning text-dark">Low (4)</span>
+                </div>
+                <div class="mb-2">
+                  <div class="d-flex justify-content-between small fw-semibold text-muted mb-1">
+                    <span>Current Stock</span>
+                    <span class="text-warning-emphasis fw-bold">4 units left!</span>
+                  </div>
+                  <div class="progress gm-stock-progress">
+                    <div class="progress-bar bg-warning" style="width: 16%;"></div>
+                  </div>
+                </div>
+                <div class="d-flex gap-2 pt-2 border-top">
+                  <button type="button" class="btn btn-warning text-dark btn-sm flex-fill fw-semibold" data-bs-toggle="modal" data-bs-target="#adjustStockModal" data-product="Cheesy Fries" data-stock="4">
+                    <i class="bi bi-plus-slash-minus me-1"></i> Restock
+                  </button>
+                  <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#stockHistoryModal" aria-label="History">
+                    <i class="bi bi-clock-history"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mobile Card 3: BBQ Bacon Burger (Out of stock) -->
+            <div class="col-12" data-id="9">
+              <div class="card p-3 shadow-sm border-danger border-opacity-50 bg-danger-subtle bg-opacity-10">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                  <div class="d-flex align-items-center">
+                    <img src="images/chicken-burger.svg" alt="BBQ Bacon Burger" class="rounded me-2 opacity-50" style="width: 50px; height: 40px; object-fit: cover; filter: grayscale(100%);">
+                    <div>
+                      <h2 class="h6 fw-bold mb-0 text-dark">BBQ Bacon Burger</h2>
+                      <span class="small text-muted">Burgers • Reorder at 10</span>
+                    </div>
+                  </div>
+                  <span class="badge bg-danger">Out of Stock</span>
+                </div>
+                <div class="mb-2">
+                  <div class="d-flex justify-content-between small fw-semibold text-muted mb-1">
+                    <span>Current Stock</span>
+                    <span class="text-danger fw-bold">0 units (Blocked)</span>
+                  </div>
+                  <div class="progress gm-stock-progress">
+                    <div class="progress-bar bg-danger" style="width: 0%;"></div>
+                  </div>
+                </div>
+                <div class="d-flex gap-2 pt-2 border-top">
+                  <button type="button" class="btn btn-danger btn-sm flex-fill text-white fw-semibold" data-bs-toggle="modal" data-bs-target="#adjustStockModal" data-product="BBQ Bacon Burger" data-stock="0">
+                    <i class="bi bi-plus-lg me-1"></i> Restock Immediately
+                  </button>
+                  <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#stockHistoryModal" aria-label="History">
+                    <i class="bi bi-clock-history"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ===================================================================
+             f) COMMENTED-OUT EMPTY STATE BLOCK (READY TO SWITCH ON)
+             =================================================================== -->
+        <!--
+        <div class="card text-center p-5 border-dashed my-4" id="inventoryEmptyState">
+          <i class="bi bi-search fs-1 text-muted opacity-50 mb-2"></i>
+          <h2 class="h5 fw-bold text-dark mb-1">No products match your filter</h2>
+          <p class="small text-muted mb-3">Try adjusting your search query or selecting a different stock status category above.</p>
+          <div>
+            <button type="button" class="btn btn-outline-secondary btn-sm">Clear Filters</button>
+          </div>
+        </div>
+        -->
+
+      </div>
+    </main>
+  </div>
+
+  <!-- =========================================================================
+       3. ADJUST STOCK MODAL (#adjustStockModal)
+       ========================================================================= -->
+  <div class="modal fade" id="adjustStockModal" tabindex="-1" aria-labelledby="adjustStockModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-charcoal text-white">
+          <h2 class="modal-title h5 mb-0" id="adjustStockModalLabel">
+            <i class="bi bi-clipboard-pulse me-2"></i>Adjust Product Stock
+          </h2>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body p-4">
+          <!-- Product Name & Current Stock Preview -->
+          <div class="p-3 bg-light rounded-3 mb-3 d-flex justify-content-between align-items-center">
+            <div>
+              <span class="small text-muted d-block">Selected Product</span>
+              <strong class="fs-6 text-dark" id="adjustModalProductName">Cheesy Fries</strong>
+            </div>
+            <div class="text-end">
+              <span class="small text-muted d-block">Current Stock</span>
+              <span class="badge bg-warning text-dark fs-6" id="adjustModalCurrentStock">4 units</span>
+            </div>
+          </div>
+
+          <form id="adjustStockForm" novalidate>
+            <!-- Segmented Control: Add Stock / Remove Stock -->
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">Adjustment Type</label>
+              <div class="btn-group w-100 gm-segmented-group" role="group" aria-label="Stock adjustment type">
+                <input type="radio" class="btn-check" name="stockAdjustType" id="adjustTypeAdd" value="add" checked autocomplete="off">
+                <label class="btn btn-outline-success" for="adjustTypeAdd"><i class="bi bi-plus-circle me-1"></i>Add Stock</label>
+
+                <input type="radio" class="btn-check" name="stockAdjustType" id="adjustTypeRemove" value="remove" autocomplete="off">
+                <label class="btn btn-outline-danger" for="adjustTypeRemove"><i class="bi bi-dash-circle me-1"></i>Remove Stock</label>
+              </div>
+            </div>
+
+            <!-- Quantity Input with Stepper & Static Validation Example -->
+            <div class="mb-3">
+              <label for="adjustQuantityInput" class="form-label small fw-semibold">Quantity to Adjust <span class="text-danger">*</span></label>
+              <div class="input-group has-validation">
+                <button type="button" class="btn btn-outline-secondary px-3" aria-label="Decrease quantity">-</button>
+                <input type="number" class="form-control text-center fw-bold is-invalid" id="adjustQuantityInput" value="0" min="1" aria-describedby="adjustQtyFeedback" required>
+                <button type="button" class="btn btn-outline-secondary px-3" aria-label="Increase quantity">+</button>
+                <div id="adjustQtyFeedback" class="invalid-feedback text-center">
+                  Quantity must be at least 1.
+                </div>
+              </div>
+            </div>
+
+            <!-- Reason Select -->
+            <div class="mb-3">
+              <label for="adjustReasonSelect" class="form-label small fw-semibold">Reason for Adjustment <span class="text-danger">*</span></label>
+              <select class="form-select" id="adjustReasonSelect" required>
+                <option value="delivery" selected>New delivery from kitchen/supplier</option>
+                <option value="damaged">Damaged / Expired / Spoiled</option>
+                <option value="correction">Inventory audit correction</option>
+                <option value="other">Other reason</option>
+              </select>
+            </div>
+
+            <!-- Note Textarea -->
+            <div class="mb-3">
+              <label for="adjustNotes" class="form-label small fw-semibold">Reference / Notes</label>
+              <textarea class="form-control" id="adjustNotes" rows="2" placeholder="e.g. Supplier Batch #GR-889"></textarea>
+            </div>
+
+            <!-- Calculated Preview Line -->
+            <div class="alert alert-info py-2 px-3 small mb-0 d-flex align-items-center justify-content-between" id="stockPreviewCalc">
+              <span><i class="bi bi-info-circle me-1"></i>Calculated Outcome:</span>
+              <strong class="text-dark">New stock: 4 + 10 = 14 units</strong>
+            </div>
+          </form>
+        </div>
+
+        <div class="modal-footer bg-light">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+            <i class="bi bi-check2-circle me-1"></i> Save Stock Change
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       4. STOCK HISTORY MODAL (#stockHistoryModal)
+       Displays audit log for a single product
+       ========================================================================= -->
+  <div class="modal fade" id="stockHistoryModal" tabindex="-1" aria-labelledby="stockHistoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-charcoal text-white">
+          <h2 class="modal-title h5 mb-0" id="stockHistoryModalLabel">
+            <i class="bi bi-clock-history me-2"></i>Stock History: Classic Burger
+          </h2>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body p-0">
+          <div class="p-3 bg-light border-bottom d-flex justify-content-between align-items-center">
+            <div>
+              <span class="small text-muted">Current On Hand</span>
+              <span class="fw-bold fs-5 text-dark ms-2">45 units</span>
+            </div>
+            <span class="badge bg-secondary-subtle text-dark">Audit Log: Last 30 Days</span>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+              <thead class="table-light">
+                <tr>
+                  <th scope="col">Date & Time</th>
+                  <th scope="col">Change</th>
+                  <th scope="col">Reason</th>
+                  <th scope="col">Reference</th>
+                  <th scope="col">Logged By</th>
+                </tr>
+              </thead>
+              <!-- JS: render stock history rows here -->
+              <tbody id="stockHistoryTableBody">
+                <tr>
+                  <td class="small">07 Nov 2026, 12:45 PM</td>
+                  <td><span class="badge bg-danger-subtle text-danger fw-bold">-2</span></td>
+                  <td>POS Sale</td>
+                  <td><span class="font-monospace small">Order #1042</span></td>
+                  <td class="small text-muted">Cashier 01</td>
+                </tr>
+                <tr>
+                  <td class="small">07 Nov 2026, 11:20 AM</td>
+                  <td><span class="badge bg-danger-subtle text-danger fw-bold">-3</span></td>
+                  <td>POS Sale</td>
+                  <td><span class="font-monospace small">Order #1038</span></td>
+                  <td class="small text-muted">Cashier 01</td>
+                </tr>
+                <tr>
+                  <td class="small">07 Nov 2026, 08:30 AM</td>
+                  <td><span class="badge bg-success-subtle text-success fw-bold">+50</span></td>
+                  <td>Supplier Delivery</td>
+                  <td><span class="font-monospace small">PO-2026-991</span></td>
+                  <td class="small text-muted">Manager</td>
+                </tr>
+                <tr>
+                  <td class="small">06 Nov 2026, 07:15 PM</td>
+                  <td><span class="badge bg-danger-subtle text-danger fw-bold">-1</span></td>
+                  <td>Damaged / Dropped</td>
+                  <td><span class="font-monospace small">Waste Log #88</span></td>
+                  <td class="small text-muted">Kitchen Lead</td>
+                </tr>
+                <tr>
+                  <td class="small">06 Nov 2026, 02:40 PM</td>
+                  <td><span class="badge bg-danger-subtle text-danger fw-bold">-4</span></td>
+                  <td>POS Sale</td>
+                  <td><span class="font-monospace small">Order #1032</span></td>
+                  <td class="small text-muted">Cashier 02</td>
+                </tr>
+                <tr>
+                  <td class="small">05 Nov 2026, 09:00 AM</td>
+                  <td><span class="badge bg-success-subtle text-success fw-bold">+30</span></td>
+                  <td>Kitchen Restock</td>
+                  <td><span class="font-monospace small">Batch #BUR-14</span></td>
+                  <td class="small text-muted">Manager</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="modal-footer bg-light">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       5. TOAST CONTAINER (Shared Static Demo Toasts)
+       ========================================================================= -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3 mb-5 mb-md-3 me-md-3" style="z-index: 1060;">
+    <div id="inventoryDemoToast" class="toast show align-items-center text-bg-dark border-0 shadow-lg" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body d-flex align-items-center">
+          <i class="bi bi-check-circle-fill text-success fs-5 me-2"></i>
+          <div>
+            <strong class="d-block text-white">Stock Synced</strong>
+            <span class="small text-white-50">Inventory ledger is up to date</span>
+          </div>
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap 5.3 Bundle JS via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

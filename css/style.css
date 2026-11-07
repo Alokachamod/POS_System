@@ -468,3 +468,174 @@ main {
   }
 }
 
+
+
+/* ==========================================================================
+   /* ===== v2 additions ===== */
+   GrillMaster POS - v2 Dashboard, Inventory & Multi-relational UI Additions
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   v2.1 5-Item Mobile Bottom Navigation
+   -------------------------------------------------------------------------- */
+.gm-bottom-nav .col-nav-5 {
+  flex: 0 0 20%;
+  max-width: 20%;
+  text-align: center;
+}
+
+.gm-bottom-nav .nav-link span {
+  font-size: 0.68rem;
+  letter-spacing: -0.01em;
+}
+
+/* --------------------------------------------------------------------------
+   v2.2 CSS-Only Bar Chart (Dashboard)
+   -------------------------------------------------------------------------- */
+.gm-bar-chart {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  height: 210px;
+  padding: 10px 4px 0 4px;
+}
+
+.gm-bar-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.gm-bar-track {
+  width: 100%;
+  max-width: 38px;
+  flex-grow: 1;
+  background-color: #F3EDE6;
+  border-radius: 8px 8px 4px 4px;
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.gm-bar-track:hover .gm-bar-fill {
+  filter: brightness(0.92);
+}
+
+.gm-bar-fill {
+  width: 100%;
+  background: linear-gradient(180deg, var(--bs-primary) 0%, #D12F3C 100%);
+  border-radius: 8px 8px 0 0;
+  transition: height 0.4s ease-in-out;
+}
+
+.gm-bar-fill.bar-accent {
+  background: linear-gradient(180deg, var(--bs-warning) 0%, #EAA200 100%);
+}
+
+.gm-bar-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #6C757D;
+  margin-top: 8px;
+  text-transform: uppercase;
+}
+
+/* --------------------------------------------------------------------------
+   v2.3 CSS-Only Conic Donut Chart (Dashboard)
+   -------------------------------------------------------------------------- */
+.gm-donut-chart {
+  width: 154px;
+  height: 154px;
+  border-radius: 50%;
+  background: conic-gradient(
+    var(--bs-primary) 0% 58%,
+    var(--bs-warning) 58% 85%,
+    var(--bs-success) 85% 100%
+  );
+  position: relative;
+  margin: 0 auto;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+.gm-donut-hole {
+  width: 98px;
+  height: 98px;
+  background-color: #FFFFFF;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Legend dots */
+.gm-legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+/* --------------------------------------------------------------------------
+   v2.4 Stat Card Circles & Progress Bars
+   -------------------------------------------------------------------------- */
+.gm-stat-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+}
+
+.gm-stock-progress {
+  height: 6px;
+  border-radius: 3px;
+  background-color: #ECE5DC;
+}
+
+/* --------------------------------------------------------------------------
+   v2.5 Product Card Out-of-Stock Overlay & Badge Ribbon
+   -------------------------------------------------------------------------- */
+.product-card.out-of-stock .ratio img {
+  filter: grayscale(90%) opacity(0.5);
+}
+
+.gm-out-overlay {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 5;
+}
+
+/* --------------------------------------------------------------------------
+   v2.6 Customer Details Offcanvas (Desktop side panel 440px)
+   -------------------------------------------------------------------------- */
+.gm-customer-offcanvas {
+  width: 100%;
+}
+
+@media (min-width: 992px) {
+  .gm-customer-offcanvas {
+    width: 440px !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   v2.7 Segmented Radio Button Group for Add/Remove Stock
+   -------------------------------------------------------------------------- */
+.gm-segmented-group .btn-check:checked + .btn {
+  font-weight: 600;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}

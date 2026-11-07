@@ -22,7 +22,7 @@
 <body class="d-flex flex-column min-vh-100">
 
   <!-- =========================================================================
-       1. SHARED NAVIGATION
+       1. SHARED NAVIGATION (v2 Update: 6 Links in strict order)
        ========================================================================= -->
 
   <!-- Desktop Sidebar (lg and up) -->
@@ -32,10 +32,16 @@
       <span class="brand-font fs-3 text-white lh-1">GrillMaster<span class="text-warning"> POS</span></span>
     </div>
 
-    <ul class="nav flex-column mb-auto">
+    <ul class="nav flex-column mb-auto" id="desktopNavMenu">
+      <li class="nav-item">
+        <a href="dashboard.html" class="nav-link">
+          <i class="bi bi-speedometer2 me-2 fs-5"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
       <li class="nav-item">
         <a href="index.html" class="nav-link">
-          <i class="bi bi-grid-fill me-2 fs-5"></i>
+          <i class="bi bi-cart-fill me-2 fs-5"></i>
           <span>POS / Order</span>
         </a>
       </li>
@@ -43,6 +49,12 @@
         <a href="products.html" class="nav-link active" aria-current="page">
           <i class="bi bi-box-seam me-2 fs-5"></i>
           <span>Products</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="inventory.html" class="nav-link">
+          <i class="bi bi-clipboard-data me-2 fs-5"></i>
+          <span>Inventory</span>
         </a>
       </li>
       <li class="nav-item">
@@ -78,15 +90,25 @@
       </a>
     </div>
 
-    <ul class="nav flex-column w-100 px-2 text-center">
+    <ul class="nav flex-column w-100 px-2 text-center" id="tabletNavMenu">
+      <li class="nav-item mb-2">
+        <a href="dashboard.html" class="nav-link" title="Dashboard" aria-label="Dashboard">
+          <i class="bi bi-speedometer2"></i>
+        </a>
+      </li>
       <li class="nav-item mb-2">
         <a href="index.html" class="nav-link" title="POS / Order" aria-label="POS / Order">
-          <i class="bi bi-grid-fill"></i>
+          <i class="bi bi-cart-fill"></i>
         </a>
       </li>
       <li class="nav-item mb-2">
         <a href="products.html" class="nav-link active" title="Products" aria-label="Products" aria-current="page">
           <i class="bi bi-box-seam"></i>
+        </a>
+      </li>
+      <li class="nav-item mb-2">
+        <a href="inventory.html" class="nav-link" title="Inventory" aria-label="Inventory">
+          <i class="bi bi-clipboard-data"></i>
         </a>
       </li>
       <li class="nav-item mb-2">
@@ -111,49 +133,96 @@
   <!-- Mobile Sticky Top Navbar (below md) -->
   <nav class="gm-mobile-topbar navbar sticky-top d-md-none px-3" aria-label="Mobile Top Bar">
     <div class="container-fluid p-0 d-flex justify-content-between align-items-center">
-      <a class="navbar-brand d-flex align-items-center text-white m-0" href="index.html">
-        <i class="bi bi-fire text-danger fs-3 me-2"></i>
-        <span class="brand-font fs-3 text-white">GrillMaster<span class="text-warning"> POS</span></span>
-      </a>
-
-      <!-- Quick Add Product Trigger for Mobile -->
+      <div class="d-flex align-items-center">
+        <i class="bi bi-box-seam text-warning fs-4 me-2"></i>
+        <span class="fw-bold text-white fs-5">Products</span>
+      </div>
       <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#addProductModal" aria-label="Add New Product">
         <i class="bi bi-plus-lg me-1"></i> Add
       </button>
     </div>
   </nav>
 
-  <!-- Mobile Fixed Bottom Nav (< md) -->
+  <!-- Mobile Fixed Bottom Nav (< md, 5 items max) -->
   <nav class="gm-bottom-nav fixed-bottom d-md-none" aria-label="Mobile Bottom Navigation">
     <div class="container-fluid h-100 px-0">
-      <div class="row g-0 h-100 text-center align-items-center">
-        <div class="col-3">
+      <div class="row g-0 h-100 text-center align-items-center" id="mobileBottomNav">
+        <div class="col-nav-5">
+          <a href="dashboard.html" class="nav-link">
+            <i class="bi bi-speedometer2"></i>
+            <span>Dashboard</span>
+          </a>
+        </div>
+        <div class="col-nav-5">
           <a href="index.html" class="nav-link">
-            <i class="bi bi-grid-fill"></i>
+            <i class="bi bi-cart-fill"></i>
             <span>POS</span>
           </a>
         </div>
-        <div class="col-3">
-          <a href="products.html" class="nav-link active" aria-current="page">
-            <i class="bi bi-box-seam"></i>
-            <span>Products</span>
-          </a>
-        </div>
-        <div class="col-3">
-          <a href="customers.html" class="nav-link">
-            <i class="bi bi-people"></i>
-            <span>Customers</span>
-          </a>
-        </div>
-        <div class="col-3">
+        <div class="col-nav-5">
           <a href="orders.html" class="nav-link">
             <i class="bi bi-receipt"></i>
             <span>Orders</span>
           </a>
         </div>
+        <div class="col-nav-5">
+          <a href="customers.html" class="nav-link">
+            <i class="bi bi-people"></i>
+            <span>Customers</span>
+          </a>
+        </div>
+        <div class="col-nav-5">
+          <button type="button" class="nav-link w-100 border-0 bg-transparent active text-warning" data-bs-toggle="offcanvas" data-bs-target="#moreNavOffcanvas" aria-controls="moreNavOffcanvas" aria-label="Open More Menu">
+            <i class="bi bi-grid-fill"></i>
+            <span>More</span>
+          </button>
+        </div>
       </div>
     </div>
   </nav>
+
+  <!-- Mobile "More" Offcanvas Drawer -->
+  <div class="offcanvas offcanvas-bottom d-md-none rounded-top-4" tabindex="-1" id="moreNavOffcanvas" aria-labelledby="moreNavOffcanvasLabel" style="height: 60vh;">
+    <div class="offcanvas-header pb-1 pt-2 flex-column align-items-stretch border-bottom">
+      <div class="gm-drag-handle" aria-hidden="true"></div>
+      <div class="d-flex align-items-center justify-content-between w-100 mt-2">
+        <h2 class="h5 fw-bold mb-0" id="moreNavOffcanvasLabel">Quick Navigation</h2>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close menu"></button>
+      </div>
+    </div>
+    <div class="offcanvas-body p-3">
+      <div class="row g-2">
+        <div class="col-6">
+          <a href="products.html" class="card text-center p-3 text-decoration-none card-hover border border-danger h-100 bg-danger-subtle bg-opacity-10">
+            <i class="bi bi-box-seam fs-2 text-danger mb-1"></i>
+            <span class="fw-bold text-dark">Products</span>
+            <span class="small text-muted">Catalog & Prices</span>
+          </a>
+        </div>
+        <div class="col-6">
+          <a href="inventory.html" class="card text-center p-3 text-decoration-none card-hover border h-100">
+            <i class="bi bi-clipboard-data fs-2 text-warning mb-1"></i>
+            <span class="fw-semibold text-dark">Inventory</span>
+            <span class="small text-muted">Stock & Adjust</span>
+          </a>
+        </div>
+        <div class="col-6">
+          <a href="customers.html" class="card text-center p-3 text-decoration-none card-hover border h-100">
+            <i class="bi bi-people fs-2 text-success mb-1"></i>
+            <span class="fw-semibold text-dark">Customers</span>
+            <span class="small text-muted">Loyalty & Profiles</span>
+          </a>
+        </div>
+        <div class="col-6">
+          <a href="orders.html" class="card text-center p-3 text-decoration-none card-hover border h-100">
+            <i class="bi bi-receipt fs-2 text-danger mb-1"></i>
+            <span class="fw-semibold text-dark">Orders</span>
+            <span class="small text-muted">History & Tickets</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- =========================================================================
        2. MAIN CONTENT AREA
@@ -181,13 +250,13 @@
                   <span class="input-group-text bg-white border-end-0 text-muted" id="product-search-addon">
                     <i class="bi bi-search"></i>
                   </span>
-                  <input type="text" class="form-control bg-white border-start-0 ps-0" placeholder="Search product..." aria-label="Search product" aria-describedby="product-search-addon">
+                  <input type="text" class="form-control bg-white border-start-0 ps-0" id="productSearchInput" placeholder="Search product..." aria-label="Search product" aria-describedby="product-search-addon">
                 </div>
               </div>
 
               <!-- Category Select -->
               <div class="col-7 col-sm-4 col-lg-3">
-                <select class="form-select bg-white" aria-label="Filter by category">
+                <select class="form-select bg-white" id="productCategorySelect" aria-label="Filter by category">
                   <option selected>All Categories</option>
                   <option value="burgers">Burgers</option>
                   <option value="fries">Fries</option>
@@ -197,7 +266,7 @@
 
               <!-- Add Product Button (Opens Modal) -->
               <div class="col-5 col-sm-3 col-lg-4 text-end">
-                <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#addProductModal">
+                <button type="button" class="btn btn-primary w-100" id="btnOpenAddProduct" data-bs-toggle="modal" data-bs-target="#addProductModal">
                   <i class="bi bi-plus-circle me-1"></i>
                   <span class="d-none d-sm-inline">+ Add Product</span>
                   <span class="d-inline d-sm-none">+ Add</span>
@@ -209,6 +278,8 @@
 
         <!-- ===================================================================
              TABLE VIEW (Visible on md and up: d-none d-md-block)
+             Updated stock badges (green In Stock, yellow Low Stock, red Out)
+             + Stock link icon in actions
              =================================================================== -->
         <div class="card d-none d-md-block overflow-hidden shadow-sm">
           <div class="table-responsive">
@@ -223,10 +294,11 @@
                   <th scope="col" class="text-end">Actions</th>
                 </tr>
               </thead>
-              <tbody>
+              <!-- JS: render products table here -->
+              <tbody id="productTableBody">
 
                 <!-- Row 1: Classic Burger -->
-                <tr>
+                <tr data-id="1">
                   <td>
                     <img src="images/classic-burger.svg" alt="Classic Burger" class="rounded" style="width: 50px; height: 40px; object-fit: cover;">
                   </td>
@@ -238,21 +310,25 @@
                   <td class="fw-bold">Rs. 850</td>
                   <td>
                     <span class="badge bg-success px-2 py-1">
-                      <i class="bi bi-check2-circle me-1"></i> 45 in stock
+                      <i class="bi bi-check-circle-fill me-1"></i> 45 in stock
                     </span>
                   </td>
                   <td class="text-end">
+                    <a href="inventory.html" class="btn btn-outline-warning text-dark btn-sm me-1" title="View in inventory" aria-label="Stock level in inventory">
+                      <i class="bi bi-clipboard-data"></i>
+                    </a>
                     <button type="button" class="btn btn-outline-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#addProductModal" title="Edit product" aria-label="Edit Classic Burger">
                       <i class="bi bi-pencil-square"></i>
                     </button>
-                    <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteProductModal" title="Delete product" aria-label="Delete Classic Burger">
+                    <!-- Triggers Cannot Delete Modal because item appears in past orders -->
+                    <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#cannotDeleteProductModal" title="Delete product" aria-label="Delete Classic Burger">
                       <i class="bi bi-trash3"></i>
                     </button>
                   </td>
                 </tr>
 
                 <!-- Row 2: Cheese Burger -->
-                <tr>
+                <tr data-id="2">
                   <td>
                     <img src="images/cheese-burger.svg" alt="Cheese Burger" class="rounded" style="width: 50px; height: 40px; object-fit: cover;">
                   </td>
@@ -264,21 +340,24 @@
                   <td class="fw-bold">Rs. 950</td>
                   <td>
                     <span class="badge bg-success px-2 py-1">
-                      <i class="bi bi-check2-circle me-1"></i> 32 in stock
+                      <i class="bi bi-check-circle-fill me-1"></i> 32 in stock
                     </span>
                   </td>
                   <td class="text-end">
+                    <a href="inventory.html" class="btn btn-outline-warning text-dark btn-sm me-1" title="View in inventory" aria-label="Stock in inventory">
+                      <i class="bi bi-clipboard-data"></i>
+                    </a>
                     <button type="button" class="btn btn-outline-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#addProductModal" title="Edit product" aria-label="Edit Cheese Burger">
                       <i class="bi bi-pencil-square"></i>
                     </button>
-                    <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteProductModal" title="Delete product" aria-label="Delete Cheese Burger">
+                    <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#cannotDeleteProductModal" title="Delete product" aria-label="Delete Cheese Burger">
                       <i class="bi bi-trash3"></i>
                     </button>
                   </td>
                 </tr>
 
                 <!-- Row 3: Chicken Burger -->
-                <tr>
+                <tr data-id="3">
                   <td>
                     <img src="images/chicken-burger.svg" alt="Chicken Burger" class="rounded" style="width: 50px; height: 40px; object-fit: cover;">
                   </td>
@@ -290,21 +369,24 @@
                   <td class="fw-bold">Rs. 900</td>
                   <td>
                     <span class="badge bg-success px-2 py-1">
-                      <i class="bi bi-check2-circle me-1"></i> 28 in stock
+                      <i class="bi bi-check-circle-fill me-1"></i> 28 in stock
                     </span>
                   </td>
                   <td class="text-end">
+                    <a href="inventory.html" class="btn btn-outline-warning text-dark btn-sm me-1" title="View in inventory" aria-label="Stock in inventory">
+                      <i class="bi bi-clipboard-data"></i>
+                    </a>
                     <button type="button" class="btn btn-outline-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#addProductModal" title="Edit product" aria-label="Edit Chicken Burger">
                       <i class="bi bi-pencil-square"></i>
                     </button>
-                    <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteProductModal" title="Delete product" aria-label="Delete Chicken Burger">
+                    <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#cannotDeleteProductModal" title="Delete product" aria-label="Delete Chicken Burger">
                       <i class="bi bi-trash3"></i>
                     </button>
                   </td>
                 </tr>
 
                 <!-- Row 4: Veggie Burger (Low Stock) -->
-                <tr>
+                <tr data-id="4" class="table-warning bg-opacity-10">
                   <td>
                     <img src="images/veggie-burger.svg" alt="Veggie Burger" class="rounded" style="width: 50px; height: 40px; object-fit: cover;">
                   </td>
@@ -320,17 +402,20 @@
                     </span>
                   </td>
                   <td class="text-end">
+                    <a href="inventory.html" class="btn btn-outline-warning text-dark btn-sm me-1" title="View in inventory" aria-label="Stock in inventory">
+                      <i class="bi bi-clipboard-data"></i>
+                    </a>
                     <button type="button" class="btn btn-outline-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#addProductModal" title="Edit product" aria-label="Edit Veggie Burger">
                       <i class="bi bi-pencil-square"></i>
                     </button>
-                    <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteProductModal" title="Delete product" aria-label="Delete Veggie Burger">
+                    <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#cannotDeleteProductModal" title="Delete product" aria-label="Delete Veggie Burger">
                       <i class="bi bi-trash3"></i>
                     </button>
                   </td>
                 </tr>
 
                 <!-- Row 5: French Fries -->
-                <tr>
+                <tr data-id="5">
                   <td>
                     <img src="images/french-fries.svg" alt="French Fries" class="rounded" style="width: 50px; height: 40px; object-fit: cover;">
                   </td>
@@ -342,13 +427,17 @@
                   <td class="fw-bold">Rs. 450</td>
                   <td>
                     <span class="badge bg-success px-2 py-1">
-                      <i class="bi bi-check2-circle me-1"></i> 60 in stock
+                      <i class="bi bi-check-circle-fill me-1"></i> 60 in stock
                     </span>
                   </td>
                   <td class="text-end">
+                    <a href="inventory.html" class="btn btn-outline-warning text-dark btn-sm me-1" title="View in inventory" aria-label="Stock in inventory">
+                      <i class="bi bi-clipboard-data"></i>
+                    </a>
                     <button type="button" class="btn btn-outline-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#addProductModal" title="Edit product" aria-label="Edit French Fries">
                       <i class="bi bi-pencil-square"></i>
                     </button>
+                    <!-- Normal delete confirm modal for non-locked product -->
                     <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteProductModal" title="Delete product" aria-label="Delete French Fries">
                       <i class="bi bi-trash3"></i>
                     </button>
@@ -356,7 +445,7 @@
                 </tr>
 
                 <!-- Row 6: Cheesy Fries (Low Stock) -->
-                <tr>
+                <tr data-id="6" class="table-warning bg-opacity-10">
                   <td>
                     <img src="images/cheesy-fries.svg" alt="Cheesy Fries" class="rounded" style="width: 50px; height: 40px; object-fit: cover;">
                   </td>
@@ -372,17 +461,20 @@
                     </span>
                   </td>
                   <td class="text-end">
+                    <a href="inventory.html" class="btn btn-outline-warning text-dark btn-sm me-1" title="View in inventory" aria-label="Stock in inventory">
+                      <i class="bi bi-clipboard-data"></i>
+                    </a>
                     <button type="button" class="btn btn-outline-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#addProductModal" title="Edit product" aria-label="Edit Cheesy Fries">
                       <i class="bi bi-pencil-square"></i>
                     </button>
-                    <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteProductModal" title="Delete product" aria-label="Delete Cheesy Fries">
+                    <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#cannotDeleteProductModal" title="Delete product" aria-label="Delete Cheesy Fries">
                       <i class="bi bi-trash3"></i>
                     </button>
                   </td>
                 </tr>
 
                 <!-- Row 7: Cola -->
-                <tr>
+                <tr data-id="7">
                   <td>
                     <img src="images/cola.svg" alt="Cola" class="rounded" style="width: 50px; height: 40px; object-fit: cover;">
                   </td>
@@ -394,40 +486,46 @@
                   <td class="fw-bold">Rs. 250</td>
                   <td>
                     <span class="badge bg-success px-2 py-1">
-                      <i class="bi bi-check2-circle me-1"></i> 120 in stock
+                      <i class="bi bi-check-circle-fill me-1"></i> 120 in stock
                     </span>
                   </td>
                   <td class="text-end">
+                    <a href="inventory.html" class="btn btn-outline-warning text-dark btn-sm me-1" title="View in inventory" aria-label="Stock in inventory">
+                      <i class="bi bi-clipboard-data"></i>
+                    </a>
                     <button type="button" class="btn btn-outline-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#addProductModal" title="Edit product" aria-label="Edit Cola">
                       <i class="bi bi-pencil-square"></i>
                     </button>
-                    <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteProductModal" title="Delete product" aria-label="Delete Cola">
+                    <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#cannotDeleteProductModal" title="Delete product" aria-label="Delete Cola">
                       <i class="bi bi-trash3"></i>
                     </button>
                   </td>
                 </tr>
 
-                <!-- Row 8: Milkshake -->
-                <tr>
+                <!-- Row 8: Mint Lemonade (Out of Stock) -->
+                <tr data-id="8" class="table-danger bg-opacity-10">
                   <td>
-                    <img src="images/milkshake.svg" alt="Milkshake" class="rounded" style="width: 50px; height: 40px; object-fit: cover;">
+                    <img src="images/milkshake.svg" alt="Mint Lemonade" class="rounded opacity-50" style="width: 50px; height: 40px; object-fit: cover; filter: grayscale(100%);">
                   </td>
                   <td>
-                    <div class="fw-semibold text-dark">Milkshake</div>
-                    <div class="small text-muted">SKU: GM-DRK-02</div>
+                    <div class="fw-semibold text-dark">Mint Lemonade</div>
+                    <div class="small text-muted">SKU: GM-DRK-03</div>
                   </td>
                   <td><span class="badge bg-secondary-subtle text-dark">Drinks</span></td>
-                  <td class="fw-bold">Rs. 480</td>
+                  <td class="fw-bold">Rs. 350</td>
                   <td>
-                    <span class="badge bg-success px-2 py-1">
-                      <i class="bi bi-check2-circle me-1"></i> 18 in stock
+                    <span class="badge bg-danger px-2 py-1">
+                      <i class="bi bi-x-circle-fill me-1"></i> 0 in stock (Out)
                     </span>
                   </td>
                   <td class="text-end">
-                    <button type="button" class="btn btn-outline-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#addProductModal" title="Edit product" aria-label="Edit Milkshake">
+                    <a href="inventory.html" class="btn btn-outline-warning text-dark btn-sm me-1" title="View in inventory" aria-label="Stock in inventory">
+                      <i class="bi bi-clipboard-data"></i>
+                    </a>
+                    <button type="button" class="btn btn-outline-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#addProductModal" title="Edit product" aria-label="Edit Mint Lemonade">
                       <i class="bi bi-pencil-square"></i>
                     </button>
-                    <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteProductModal" title="Delete product" aria-label="Delete Milkshake">
+                    <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteProductModal" title="Delete product" aria-label="Delete Mint Lemonade">
                       <i class="bi bi-trash3"></i>
                     </button>
                   </td>
@@ -440,13 +538,13 @@
 
         <!-- ===================================================================
              MOBILE CARD VIEW (Visible below md: d-md-none)
-             Stacked cards: image left, details right, actions bottom
              =================================================================== -->
-        <div class="d-md-none">
+        <!-- JS: render mobile product cards here -->
+        <div class="d-md-none" id="productMobileCardsList">
           <div class="row g-3">
 
             <!-- Mobile Card 1: Classic Burger -->
-            <div class="col-12">
+            <div class="col-12" data-id="1">
               <div class="card p-3 shadow-sm">
                 <div class="d-flex align-items-center mb-2">
                   <img src="images/classic-burger.svg" alt="Classic Burger" class="rounded me-3" style="width: 70px; height: 60px; object-fit: cover;">
@@ -460,119 +558,20 @@
                   </div>
                 </div>
                 <div class="d-flex gap-2 pt-2 border-top">
+                  <a href="inventory.html" class="btn btn-outline-warning text-dark btn-sm" aria-label="Stock in inventory"><i class="bi bi-clipboard-data"></i></a>
                   <button type="button" class="btn btn-outline-secondary btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#addProductModal">
                     <i class="bi bi-pencil-square me-1"></i> Edit
                   </button>
-                  <button type="button" class="btn btn-outline-danger btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#deleteProductModal">
+                  <button type="button" class="btn btn-outline-danger btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#cannotDeleteProductModal">
                     <i class="bi bi-trash3 me-1"></i> Delete
                   </button>
                 </div>
               </div>
             </div>
 
-            <!-- Mobile Card 2: Cheese Burger -->
-            <div class="col-12">
-              <div class="card p-3 shadow-sm">
-                <div class="d-flex align-items-center mb-2">
-                  <img src="images/cheese-burger.svg" alt="Cheese Burger" class="rounded me-3" style="width: 70px; height: 60px; object-fit: cover;">
-                  <div class="flex-grow-1">
-                    <div class="d-flex justify-content-between align-items-start">
-                      <h2 class="h6 fw-bold mb-0 text-dark">Cheese Burger</h2>
-                      <span class="fw-bold text-danger">Rs. 950</span>
-                    </div>
-                    <div class="small text-muted mb-1">Burgers • SKU: GM-BUR-02</div>
-                    <span class="badge bg-success">32 in stock</span>
-                  </div>
-                </div>
-                <div class="d-flex gap-2 pt-2 border-top">
-                  <button type="button" class="btn btn-outline-secondary btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#addProductModal">
-                    <i class="bi bi-pencil-square me-1"></i> Edit
-                  </button>
-                  <button type="button" class="btn btn-outline-danger btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#deleteProductModal">
-                    <i class="bi bi-trash3 me-1"></i> Delete
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Mobile Card 3: Chicken Burger -->
-            <div class="col-12">
-              <div class="card p-3 shadow-sm">
-                <div class="d-flex align-items-center mb-2">
-                  <img src="images/chicken-burger.svg" alt="Chicken Burger" class="rounded me-3" style="width: 70px; height: 60px; object-fit: cover;">
-                  <div class="flex-grow-1">
-                    <div class="d-flex justify-content-between align-items-start">
-                      <h2 class="h6 fw-bold mb-0 text-dark">Chicken Burger</h2>
-                      <span class="fw-bold text-danger">Rs. 900</span>
-                    </div>
-                    <div class="small text-muted mb-1">Burgers • SKU: GM-BUR-03</div>
-                    <span class="badge bg-success">28 in stock</span>
-                  </div>
-                </div>
-                <div class="d-flex gap-2 pt-2 border-top">
-                  <button type="button" class="btn btn-outline-secondary btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#addProductModal">
-                    <i class="bi bi-pencil-square me-1"></i> Edit
-                  </button>
-                  <button type="button" class="btn btn-outline-danger btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#deleteProductModal">
-                    <i class="bi bi-trash3 me-1"></i> Delete
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Mobile Card 4: Veggie Burger (Low stock) -->
-            <div class="col-12">
-              <div class="card p-3 shadow-sm">
-                <div class="d-flex align-items-center mb-2">
-                  <img src="images/veggie-burger.svg" alt="Veggie Burger" class="rounded me-3" style="width: 70px; height: 60px; object-fit: cover;">
-                  <div class="flex-grow-1">
-                    <div class="d-flex justify-content-between align-items-start">
-                      <h2 class="h6 fw-bold mb-0 text-dark">Veggie Burger</h2>
-                      <span class="fw-bold text-danger">Rs. 780</span>
-                    </div>
-                    <div class="small text-muted mb-1">Burgers • SKU: GM-BUR-04</div>
-                    <span class="badge bg-warning text-dark">8 in stock (Low)</span>
-                  </div>
-                </div>
-                <div class="d-flex gap-2 pt-2 border-top">
-                  <button type="button" class="btn btn-outline-secondary btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#addProductModal">
-                    <i class="bi bi-pencil-square me-1"></i> Edit
-                  </button>
-                  <button type="button" class="btn btn-outline-danger btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#deleteProductModal">
-                    <i class="bi bi-trash3 me-1"></i> Delete
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Mobile Card 5: French Fries -->
-            <div class="col-12">
-              <div class="card p-3 shadow-sm">
-                <div class="d-flex align-items-center mb-2">
-                  <img src="images/french-fries.svg" alt="French Fries" class="rounded me-3" style="width: 70px; height: 60px; object-fit: cover;">
-                  <div class="flex-grow-1">
-                    <div class="d-flex justify-content-between align-items-start">
-                      <h2 class="h6 fw-bold mb-0 text-dark">French Fries</h2>
-                      <span class="fw-bold text-danger">Rs. 450</span>
-                    </div>
-                    <div class="small text-muted mb-1">Fries • SKU: GM-FRY-01</div>
-                    <span class="badge bg-success">60 in stock</span>
-                  </div>
-                </div>
-                <div class="d-flex gap-2 pt-2 border-top">
-                  <button type="button" class="btn btn-outline-secondary btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#addProductModal">
-                    <i class="bi bi-pencil-square me-1"></i> Edit
-                  </button>
-                  <button type="button" class="btn btn-outline-danger btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#deleteProductModal">
-                    <i class="bi bi-trash3 me-1"></i> Delete
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Mobile Card 6: Cheesy Fries (Low stock) -->
-            <div class="col-12">
-              <div class="card p-3 shadow-sm">
+            <!-- Mobile Card 6: Cheesy Fries -->
+            <div class="col-12" data-id="6">
+              <div class="card p-3 shadow-sm border-warning border-opacity-50">
                 <div class="d-flex align-items-center mb-2">
                   <img src="images/cheesy-fries.svg" alt="Cheesy Fries" class="rounded me-3" style="width: 70px; height: 60px; object-fit: cover;">
                   <div class="flex-grow-1">
@@ -585,56 +584,33 @@
                   </div>
                 </div>
                 <div class="d-flex gap-2 pt-2 border-top">
+                  <a href="inventory.html" class="btn btn-outline-warning text-dark btn-sm" aria-label="Stock in inventory"><i class="bi bi-clipboard-data"></i></a>
                   <button type="button" class="btn btn-outline-secondary btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#addProductModal">
                     <i class="bi bi-pencil-square me-1"></i> Edit
                   </button>
-                  <button type="button" class="btn btn-outline-danger btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#deleteProductModal">
+                  <button type="button" class="btn btn-outline-danger btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#cannotDeleteProductModal">
                     <i class="bi bi-trash3 me-1"></i> Delete
                   </button>
                 </div>
               </div>
             </div>
 
-            <!-- Mobile Card 7: Cola -->
-            <div class="col-12">
-              <div class="card p-3 shadow-sm">
+            <!-- Mobile Card 8: Mint Lemonade -->
+            <div class="col-12" data-id="8">
+              <div class="card p-3 shadow-sm border-danger border-opacity-50 bg-danger-subtle bg-opacity-10">
                 <div class="d-flex align-items-center mb-2">
-                  <img src="images/cola.svg" alt="Cola" class="rounded me-3" style="width: 70px; height: 60px; object-fit: cover;">
+                  <img src="images/milkshake.svg" alt="Mint Lemonade" class="rounded me-3 opacity-50" style="width: 70px; height: 60px; object-fit: cover; filter: grayscale(100%);">
                   <div class="flex-grow-1">
                     <div class="d-flex justify-content-between align-items-start">
-                      <h2 class="h6 fw-bold mb-0 text-dark">Cola (Regular)</h2>
-                      <span class="fw-bold text-danger">Rs. 250</span>
+                      <h2 class="h6 fw-bold mb-0 text-dark">Mint Lemonade</h2>
+                      <span class="fw-bold text-muted">Rs. 350</span>
                     </div>
-                    <div class="small text-muted mb-1">Drinks • SKU: GM-DRK-01</div>
-                    <span class="badge bg-success">120 in stock</span>
+                    <div class="small text-muted mb-1">Drinks • SKU: GM-DRK-03</div>
+                    <span class="badge bg-danger">0 in stock (Out)</span>
                   </div>
                 </div>
                 <div class="d-flex gap-2 pt-2 border-top">
-                  <button type="button" class="btn btn-outline-secondary btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#addProductModal">
-                    <i class="bi bi-pencil-square me-1"></i> Edit
-                  </button>
-                  <button type="button" class="btn btn-outline-danger btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#deleteProductModal">
-                    <i class="bi bi-trash3 me-1"></i> Delete
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Mobile Card 8: Milkshake -->
-            <div class="col-12">
-              <div class="card p-3 shadow-sm">
-                <div class="d-flex align-items-center mb-2">
-                  <img src="images/milkshake.svg" alt="Milkshake" class="rounded me-3" style="width: 70px; height: 60px; object-fit: cover;">
-                  <div class="flex-grow-1">
-                    <div class="d-flex justify-content-between align-items-start">
-                      <h2 class="h6 fw-bold mb-0 text-dark">Milkshake</h2>
-                      <span class="fw-bold text-danger">Rs. 480</span>
-                    </div>
-                    <div class="small text-muted mb-1">Drinks • SKU: GM-DRK-02</div>
-                    <span class="badge bg-success">18 in stock</span>
-                  </div>
-                </div>
-                <div class="d-flex gap-2 pt-2 border-top">
+                  <a href="inventory.html" class="btn btn-outline-warning text-dark btn-sm" aria-label="Stock in inventory"><i class="bi bi-clipboard-data"></i></a>
                   <button type="button" class="btn btn-outline-secondary btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#addProductModal">
                     <i class="bi bi-pencil-square me-1"></i> Edit
                   </button>
@@ -654,7 +630,7 @@
 
   <!-- =========================================================================
        3. ADD / EDIT PRODUCT MODAL (#addProductModal)
-       Includes required static Bootstrap validation: is-invalid + invalid-feedback
+       Includes status toggle: form-switch "Available for POS Sale"
        ========================================================================= -->
   <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -667,7 +643,7 @@
         </div>
 
         <div class="modal-body p-4">
-          <form class="row g-3" novalidate>
+          <form class="row g-3" id="productEditForm" novalidate>
 
             <!-- Product Name -->
             <div class="col-12 col-md-8">
@@ -703,6 +679,21 @@
               <input type="number" class="form-control" id="productStock" value="4" required>
             </div>
 
+            <!-- Status Toggle (form-switch "Available for POS Sale") -->
+            <div class="col-12">
+              <div class="p-3 bg-light rounded d-flex align-items-center justify-content-between">
+                <div>
+                  <label class="form-check-label fw-semibold text-dark mb-0 d-block" for="productAvailableSwitch">
+                    Available for POS Sale
+                  </label>
+                  <span class="small text-muted">When toggled off, this product is hidden from cashiers on the POS terminal.</span>
+                </div>
+                <div class="form-check form-switch fs-5 mb-0">
+                  <input class="form-check-input" type="checkbox" role="switch" id="productAvailableSwitch" checked>
+                </div>
+              </div>
+            </div>
+
             <!-- Image Upload Drop Area -->
             <div class="col-12">
               <label class="form-label fw-semibold">Product Image</label>
@@ -728,7 +719,31 @@
   </div>
 
   <!-- =========================================================================
-       4. DELETE CONFIRMATION MODAL (#deleteProductModal)
+       4. "CANNOT DELETE PRODUCT" MODAL VARIANT (#cannotDeleteProductModal)
+       Displayed when product appears in past sales orders
+       ========================================================================= -->
+  <div class="modal fade" id="cannotDeleteProductModal" tabindex="-1" aria-labelledby="cannotDeleteProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+      <div class="modal-content">
+        <div class="modal-body text-center p-4">
+          <div class="rounded-circle bg-warning-subtle text-warning-emphasis d-inline-flex align-items-center justify-content-center mb-3" style="width: 56px; height: 56px;">
+            <i class="bi bi-slash-circle-fill fs-3 text-warning"></i>
+          </div>
+          <h2 class="h5 fw-bold mb-2" id="cannotDeleteProductModalLabel">Can't delete this product</h2>
+          <p class="text-muted small mb-0">
+            This product appears in past completed sales orders. To maintain financial and audit accuracy, it cannot be permanently erased. You can mark it as unavailable instead.
+          </p>
+        </div>
+        <div class="modal-footer flex-nowrap p-0 border-top">
+          <button type="button" class="btn btn-link fs-6 text-decoration-none col-6 m-0 rounded-0 border-end py-3 text-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-link fs-6 text-decoration-none col-6 m-0 rounded-0 py-3 text-warning-emphasis fw-bold" data-bs-dismiss="modal">Mark Unavailable</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       5. STANDARD DELETE CONFIRMATION MODAL (#deleteProductModal)
        ========================================================================= -->
   <div class="modal fade" id="deleteProductModal" tabindex="-1" aria-labelledby="deleteProductModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-sm">
@@ -738,12 +753,30 @@
             <i class="bi bi-trash3-fill fs-3"></i>
           </div>
           <h2 class="h5 fw-bold mb-2" id="deleteProductModalLabel">Delete this product?</h2>
-          <p class="text-muted small mb-0">Are you sure you want to remove <strong class="text-dark">Cheesy Fries</strong>? This item will no longer appear on the POS terminal.</p>
+          <p class="text-muted small mb-0">Are you sure you want to permanently remove this product from the master catalog?</p>
         </div>
         <div class="modal-footer flex-nowrap p-0 border-top">
           <button type="button" class="btn btn-link fs-6 text-decoration-none col-6 m-0 rounded-0 border-end py-3 text-secondary" data-bs-dismiss="modal">Cancel</button>
           <button type="button" class="btn btn-link fs-6 text-decoration-none col-6 m-0 rounded-0 py-3 text-danger fw-semibold" data-bs-dismiss="modal">Delete</button>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       6. TOAST CONTAINER (Shared Static Demo Toasts)
+       ========================================================================= -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3 mb-5 mb-md-3 me-md-3" style="z-index: 1060;">
+    <div id="productDemoToast" class="toast show align-items-center text-bg-dark border-0 shadow-lg" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body d-flex align-items-center">
+          <i class="bi bi-box-seam text-warning fs-5 me-2"></i>
+          <div>
+            <strong class="d-block text-white">Catalog Updated</strong>
+            <span class="small text-white-50">8 products available for POS</span>
+          </div>
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
       </div>
     </div>
   </div>

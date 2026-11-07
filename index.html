@@ -22,10 +22,7 @@
 <body class="d-flex flex-column min-vh-100">
 
   <!-- =========================================================================
-       1. SHARED NAVIGATION
-       - Desktop (lg+): Fixed 220px Charcoal Sidebar
-       - Tablet (md): Fixed 72px Icon-Only Rail
-       - Mobile (<md): Sticky Top Navbar + Fixed Bottom Nav
+       1. SHARED NAVIGATION (v2 Update: 6 Links in strict order)
        ========================================================================= -->
 
   <!-- Desktop Sidebar (lg and up) -->
@@ -35,10 +32,16 @@
       <span class="brand-font fs-3 text-white lh-1">GrillMaster<span class="text-warning"> POS</span></span>
     </div>
 
-    <ul class="nav flex-column mb-auto">
+    <ul class="nav flex-column mb-auto" id="desktopNavMenu">
+      <li class="nav-item">
+        <a href="dashboard.html" class="nav-link">
+          <i class="bi bi-speedometer2 me-2 fs-5"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
       <li class="nav-item">
         <a href="index.html" class="nav-link active" aria-current="page">
-          <i class="bi bi-grid-fill me-2 fs-5"></i>
+          <i class="bi bi-cart-fill me-2 fs-5"></i>
           <span>POS / Order</span>
         </a>
       </li>
@@ -46,6 +49,12 @@
         <a href="products.html" class="nav-link">
           <i class="bi bi-box-seam me-2 fs-5"></i>
           <span>Products</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="inventory.html" class="nav-link">
+          <i class="bi bi-clipboard-data me-2 fs-5"></i>
+          <span>Inventory</span>
         </a>
       </li>
       <li class="nav-item">
@@ -81,15 +90,25 @@
       </a>
     </div>
 
-    <ul class="nav flex-column w-100 px-2 text-center">
+    <ul class="nav flex-column w-100 px-2 text-center" id="tabletNavMenu">
+      <li class="nav-item mb-2">
+        <a href="dashboard.html" class="nav-link" title="Dashboard" aria-label="Dashboard">
+          <i class="bi bi-speedometer2"></i>
+        </a>
+      </li>
       <li class="nav-item mb-2">
         <a href="index.html" class="nav-link active" title="POS / Order" aria-label="POS / Order" aria-current="page">
-          <i class="bi bi-grid-fill"></i>
+          <i class="bi bi-cart-fill"></i>
         </a>
       </li>
       <li class="nav-item mb-2">
         <a href="products.html" class="nav-link" title="Products" aria-label="Products">
           <i class="bi bi-box-seam"></i>
+        </a>
+      </li>
+      <li class="nav-item mb-2">
+        <a href="inventory.html" class="nav-link" title="Inventory" aria-label="Inventory">
+          <i class="bi bi-clipboard-data"></i>
         </a>
       </li>
       <li class="nav-item mb-2">
@@ -122,7 +141,7 @@
       <!-- Cart Trigger Button for Offcanvas on Mobile/Tablet -->
       <button class="btn btn-primary position-relative d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas" aria-controls="cartOffcanvas" aria-label="View current cart items">
         <i class="bi bi-bag-check-fill fs-5"></i>
-        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark fw-bold">
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark fw-bold" id="mobileCartItemBadge">
           3
           <span class="visually-hidden">items in cart</span>
         </span>
@@ -130,37 +149,86 @@
     </div>
   </nav>
 
-  <!-- Mobile Fixed Bottom Nav (< md) -->
+  <!-- Mobile Fixed Bottom Nav (< md, 5 items max) -->
   <nav class="gm-bottom-nav fixed-bottom d-md-none" aria-label="Mobile Bottom Navigation">
     <div class="container-fluid h-100 px-0">
-      <div class="row g-0 h-100 text-center align-items-center">
-        <div class="col-3">
+      <div class="row g-0 h-100 text-center align-items-center" id="mobileBottomNav">
+        <div class="col-nav-5">
+          <a href="dashboard.html" class="nav-link">
+            <i class="bi bi-speedometer2"></i>
+            <span>Dashboard</span>
+          </a>
+        </div>
+        <div class="col-nav-5">
           <a href="index.html" class="nav-link active" aria-current="page">
-            <i class="bi bi-grid-fill"></i>
+            <i class="bi bi-cart-fill"></i>
             <span>POS</span>
           </a>
         </div>
-        <div class="col-3">
-          <a href="products.html" class="nav-link">
-            <i class="bi bi-box-seam"></i>
-            <span>Products</span>
-          </a>
-        </div>
-        <div class="col-3">
-          <a href="customers.html" class="nav-link">
-            <i class="bi bi-people"></i>
-            <span>Customers</span>
-          </a>
-        </div>
-        <div class="col-3">
+        <div class="col-nav-5">
           <a href="orders.html" class="nav-link">
             <i class="bi bi-receipt"></i>
             <span>Orders</span>
           </a>
         </div>
+        <div class="col-nav-5">
+          <a href="customers.html" class="nav-link">
+            <i class="bi bi-people"></i>
+            <span>Customers</span>
+          </a>
+        </div>
+        <div class="col-nav-5">
+          <button type="button" class="nav-link w-100 border-0 bg-transparent" data-bs-toggle="offcanvas" data-bs-target="#moreNavOffcanvas" aria-controls="moreNavOffcanvas" aria-label="Open More Menu">
+            <i class="bi bi-grid-fill"></i>
+            <span>More</span>
+          </button>
+        </div>
       </div>
     </div>
   </nav>
+
+  <!-- Mobile "More" Offcanvas Drawer -->
+  <div class="offcanvas offcanvas-bottom d-md-none rounded-top-4" tabindex="-1" id="moreNavOffcanvas" aria-labelledby="moreNavOffcanvasLabel" style="height: 60vh;">
+    <div class="offcanvas-header pb-1 pt-2 flex-column align-items-stretch border-bottom">
+      <div class="gm-drag-handle" aria-hidden="true"></div>
+      <div class="d-flex align-items-center justify-content-between w-100 mt-2">
+        <h2 class="h5 fw-bold mb-0" id="moreNavOffcanvasLabel">Quick Navigation</h2>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close menu"></button>
+      </div>
+    </div>
+    <div class="offcanvas-body p-3">
+      <div class="row g-2">
+        <div class="col-6">
+          <a href="products.html" class="card text-center p-3 text-decoration-none card-hover border h-100">
+            <i class="bi bi-box-seam fs-2 text-primary mb-1"></i>
+            <span class="fw-semibold text-dark">Products</span>
+            <span class="small text-muted">Catalog & Prices</span>
+          </a>
+        </div>
+        <div class="col-6">
+          <a href="inventory.html" class="card text-center p-3 text-decoration-none card-hover border h-100">
+            <i class="bi bi-clipboard-data fs-2 text-warning mb-1"></i>
+            <span class="fw-semibold text-dark">Inventory</span>
+            <span class="small text-muted">Stock & Adjust</span>
+          </a>
+        </div>
+        <div class="col-6">
+          <a href="customers.html" class="card text-center p-3 text-decoration-none card-hover border h-100">
+            <i class="bi bi-people fs-2 text-success mb-1"></i>
+            <span class="fw-semibold text-dark">Customers</span>
+            <span class="small text-muted">Loyalty & Profiles</span>
+          </a>
+        </div>
+        <div class="col-6">
+          <a href="orders.html" class="card text-center p-3 text-decoration-none card-hover border h-100">
+            <i class="bi bi-receipt fs-2 text-danger mb-1"></i>
+            <span class="fw-semibold text-dark">Orders</span>
+            <span class="small text-muted">History & Tickets</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- =========================================================================
        2. MAIN CONTENT AREA
@@ -185,7 +253,7 @@
               <span class="input-group-text bg-white border-end-0 text-muted" id="search-addon">
                 <i class="bi bi-search"></i>
               </span>
-              <input type="text" class="form-control bg-white border-start-0 ps-0" placeholder="Search items..." aria-label="Search items" aria-describedby="search-addon">
+              <input type="text" class="form-control bg-white border-start-0 ps-0" id="posSearchInput" placeholder="Search items..." aria-label="Search items" aria-describedby="search-addon">
             </div>
           </div>
         </header>
@@ -218,23 +286,27 @@
           </div>
         </section>
 
-        <!-- Product Grid: 8 Cards (col-6 col-md-4 col-xl-3) -->
+        <!-- Product Grid: 8 Cards featuring Normal, Low Stock, and Out of Stock States -->
+        <!-- JS: render products here -->
         <section aria-label="Product Catalog">
-          <div class="row g-3">
+          <div class="row g-3" id="productGrid">
 
-            <!-- 1. Classic Burger -->
-            <div class="col-6 col-md-4 col-xl-3">
-              <div class="card card-hover product-card h-100">
+            <!-- 1. Classic Burger (Normal State) -->
+            <div class="col-6 col-md-4 col-xl-3" data-id="1" data-category="burgers">
+              <div class="card card-hover product-card h-100 position-relative">
                 <div class="ratio ratio-4x3 bg-light overflow-hidden">
-                  <img src="images/classic-burger.svg" alt="Classic beef burger with lettuce and tomato" class="img-fluid">
+                  <img src="images/classic-burger.svg" alt="Classic Burger" class="img-fluid">
                 </div>
                 <div class="card-body p-3 d-flex flex-column">
                   <div class="d-flex justify-content-between align-items-start mb-1">
                     <span class="badge bg-warning-subtle text-dark small fw-semibold">Burgers</span>
-                    <span class="small text-muted"><i class="bi bi-check-circle-fill text-success me-1"></i>In Stock</span>
+                    <span class="badge bg-success-subtle text-success small"><i class="bi bi-check-circle-fill me-1"></i>In Stock</span>
                   </div>
-                  <h2 class="card-title h6 fw-bold mb-1 text-truncate" title="Classic Burger">Classic Burger</h2>
-                  <div class="fw-bold text-danger mb-3 fs-6">Rs. 850</div>
+                  <h2 class="card-title h6 fw-bold mb-0 text-truncate" title="Classic Burger">Classic Burger</h2>
+                  <div class="d-flex justify-content-between align-items-baseline mb-2">
+                    <span class="fw-bold text-danger fs-6">Rs. 850</span>
+                    <span class="small text-muted">45 left</span>
+                  </div>
                   <button type="button" class="btn btn-primary btn-sm w-100 mt-auto" aria-label="Add Classic Burger to order">
                     <i class="bi bi-plus-lg me-1"></i> Add
                   </button>
@@ -242,19 +314,22 @@
               </div>
             </div>
 
-            <!-- 2. Cheese Burger -->
-            <div class="col-6 col-md-4 col-xl-3">
-              <div class="card card-hover product-card h-100">
+            <!-- 2. Cheese Burger (Normal State) -->
+            <div class="col-6 col-md-4 col-xl-3" data-id="2" data-category="burgers">
+              <div class="card card-hover product-card h-100 position-relative">
                 <div class="ratio ratio-4x3 bg-light overflow-hidden">
-                  <img src="images/cheese-burger.svg" alt="Juicy double cheese burger with cheddar cheese" class="img-fluid">
+                  <img src="images/cheese-burger.svg" alt="Cheese Burger" class="img-fluid">
                 </div>
                 <div class="card-body p-3 d-flex flex-column">
                   <div class="d-flex justify-content-between align-items-start mb-1">
                     <span class="badge bg-warning-subtle text-dark small fw-semibold">Burgers</span>
-                    <span class="small text-muted"><i class="bi bi-check-circle-fill text-success me-1"></i>In Stock</span>
+                    <span class="badge bg-success-subtle text-success small"><i class="bi bi-check-circle-fill me-1"></i>In Stock</span>
                   </div>
-                  <h2 class="card-title h6 fw-bold mb-1 text-truncate" title="Cheese Burger">Cheese Burger</h2>
-                  <div class="fw-bold text-danger mb-3 fs-6">Rs. 950</div>
+                  <h2 class="card-title h6 fw-bold mb-0 text-truncate" title="Cheese Burger">Cheese Burger</h2>
+                  <div class="d-flex justify-content-between align-items-baseline mb-2">
+                    <span class="fw-bold text-danger fs-6">Rs. 950</span>
+                    <span class="small text-muted">32 left</span>
+                  </div>
                   <button type="button" class="btn btn-primary btn-sm w-100 mt-auto" aria-label="Add Cheese Burger to order">
                     <i class="bi bi-plus-lg me-1"></i> Add
                   </button>
@@ -262,19 +337,22 @@
               </div>
             </div>
 
-            <!-- 3. Chicken Burger -->
-            <div class="col-6 col-md-4 col-xl-3">
-              <div class="card card-hover product-card h-100">
+            <!-- 3. Chicken Burger (Normal State) -->
+            <div class="col-6 col-md-4 col-xl-3" data-id="3" data-category="burgers">
+              <div class="card card-hover product-card h-100 position-relative">
                 <div class="ratio ratio-4x3 bg-light overflow-hidden">
-                  <img src="images/chicken-burger.svg" alt="Crispy golden fried chicken burger" class="img-fluid">
+                  <img src="images/chicken-burger.svg" alt="Chicken Burger" class="img-fluid">
                 </div>
                 <div class="card-body p-3 d-flex flex-column">
                   <div class="d-flex justify-content-between align-items-start mb-1">
                     <span class="badge bg-warning-subtle text-dark small fw-semibold">Burgers</span>
-                    <span class="small text-muted"><i class="bi bi-check-circle-fill text-success me-1"></i>In Stock</span>
+                    <span class="badge bg-success-subtle text-success small"><i class="bi bi-check-circle-fill me-1"></i>In Stock</span>
                   </div>
-                  <h2 class="card-title h6 fw-bold mb-1 text-truncate" title="Chicken Burger">Chicken Burger</h2>
-                  <div class="fw-bold text-danger mb-3 fs-6">Rs. 900</div>
+                  <h2 class="card-title h6 fw-bold mb-0 text-truncate" title="Chicken Burger">Chicken Burger</h2>
+                  <div class="d-flex justify-content-between align-items-baseline mb-2">
+                    <span class="fw-bold text-danger fs-6">Rs. 900</span>
+                    <span class="small text-muted">28 left</span>
+                  </div>
                   <button type="button" class="btn btn-primary btn-sm w-100 mt-auto" aria-label="Add Chicken Burger to order">
                     <i class="bi bi-plus-lg me-1"></i> Add
                   </button>
@@ -282,19 +360,22 @@
               </div>
             </div>
 
-            <!-- 4. Veggie Burger -->
-            <div class="col-6 col-md-4 col-xl-3">
-              <div class="card card-hover product-card h-100">
+            <!-- 4. Veggie Burger (Low Stock State) -->
+            <div class="col-6 col-md-4 col-xl-3" data-id="4" data-category="burgers">
+              <div class="card card-hover product-card h-100 position-relative border-warning border-opacity-50">
                 <div class="ratio ratio-4x3 bg-light overflow-hidden">
-                  <img src="images/veggie-burger.svg" alt="Healthy veggie garden burger with fresh avocado" class="img-fluid">
+                  <img src="images/veggie-burger.svg" alt="Veggie Burger" class="img-fluid">
                 </div>
                 <div class="card-body p-3 d-flex flex-column">
                   <div class="d-flex justify-content-between align-items-start mb-1">
                     <span class="badge bg-warning-subtle text-dark small fw-semibold">Burgers</span>
-                    <span class="small text-muted"><i class="bi bi-check-circle-fill text-success me-1"></i>In Stock</span>
+                    <span class="badge bg-warning text-dark small fw-bold">Only 8 left</span>
                   </div>
-                  <h2 class="card-title h6 fw-bold mb-1 text-truncate" title="Veggie Burger">Veggie Burger</h2>
-                  <div class="fw-bold text-danger mb-3 fs-6">Rs. 780</div>
+                  <h2 class="card-title h6 fw-bold mb-0 text-truncate" title="Veggie Burger">Veggie Burger</h2>
+                  <div class="d-flex justify-content-between align-items-baseline mb-2">
+                    <span class="fw-bold text-danger fs-6">Rs. 780</span>
+                    <span class="small text-warning-emphasis fw-bold">8 left</span>
+                  </div>
                   <button type="button" class="btn btn-primary btn-sm w-100 mt-auto" aria-label="Add Veggie Burger to order">
                     <i class="bi bi-plus-lg me-1"></i> Add
                   </button>
@@ -302,19 +383,22 @@
               </div>
             </div>
 
-            <!-- 5. French Fries -->
-            <div class="col-6 col-md-4 col-xl-3">
-              <div class="card card-hover product-card h-100">
+            <!-- 5. French Fries (Normal State) -->
+            <div class="col-6 col-md-4 col-xl-3" data-id="5" data-category="fries">
+              <div class="card card-hover product-card h-100 position-relative">
                 <div class="ratio ratio-4x3 bg-light overflow-hidden">
-                  <img src="images/french-fries.svg" alt="Crispy salted french fries box" class="img-fluid">
+                  <img src="images/french-fries.svg" alt="French Fries" class="img-fluid">
                 </div>
                 <div class="card-body p-3 d-flex flex-column">
                   <div class="d-flex justify-content-between align-items-start mb-1">
                     <span class="badge bg-warning-subtle text-dark small fw-semibold">Fries</span>
-                    <span class="small text-muted"><i class="bi bi-check-circle-fill text-success me-1"></i>In Stock</span>
+                    <span class="badge bg-success-subtle text-success small"><i class="bi bi-check-circle-fill me-1"></i>In Stock</span>
                   </div>
-                  <h2 class="card-title h6 fw-bold mb-1 text-truncate" title="French Fries">French Fries</h2>
-                  <div class="fw-bold text-danger mb-3 fs-6">Rs. 450</div>
+                  <h2 class="card-title h6 fw-bold mb-0 text-truncate" title="French Fries">French Fries</h2>
+                  <div class="d-flex justify-content-between align-items-baseline mb-2">
+                    <span class="fw-bold text-danger fs-6">Rs. 450</span>
+                    <span class="small text-muted">60 left</span>
+                  </div>
                   <button type="button" class="btn btn-primary btn-sm w-100 mt-auto" aria-label="Add French Fries to order">
                     <i class="bi bi-plus-lg me-1"></i> Add
                   </button>
@@ -322,19 +406,22 @@
               </div>
             </div>
 
-            <!-- 6. Cheesy Fries -->
-            <div class="col-6 col-md-4 col-xl-3">
-              <div class="card card-hover product-card h-100">
+            <!-- 6. Cheesy Fries (Low Stock State: Only 4 left) -->
+            <div class="col-6 col-md-4 col-xl-3" data-id="6" data-category="fries">
+              <div class="card card-hover product-card h-100 position-relative border-warning border-opacity-75">
                 <div class="ratio ratio-4x3 bg-light overflow-hidden">
-                  <img src="images/cheesy-fries.svg" alt="Fries loaded with warm melted cheese and spring onions" class="img-fluid">
+                  <img src="images/cheesy-fries.svg" alt="Cheesy Fries" class="img-fluid">
                 </div>
                 <div class="card-body p-3 d-flex flex-column">
                   <div class="d-flex justify-content-between align-items-start mb-1">
                     <span class="badge bg-warning-subtle text-dark small fw-semibold">Fries</span>
-                    <span class="small text-muted"><i class="bi bi-exclamation-triangle-fill text-warning me-1"></i>Low Stock (4)</span>
+                    <span class="badge bg-warning text-dark small fw-bold">Only 4 left</span>
                   </div>
-                  <h2 class="card-title h6 fw-bold mb-1 text-truncate" title="Cheesy Fries">Cheesy Fries</h2>
-                  <div class="fw-bold text-danger mb-3 fs-6">Rs. 550</div>
+                  <h2 class="card-title h6 fw-bold mb-0 text-truncate" title="Cheesy Fries">Cheesy Fries</h2>
+                  <div class="d-flex justify-content-between align-items-baseline mb-2">
+                    <span class="fw-bold text-danger fs-6">Rs. 550</span>
+                    <span class="small text-danger fw-bold">4 left</span>
+                  </div>
                   <button type="button" class="btn btn-primary btn-sm w-100 mt-auto" aria-label="Add Cheesy Fries to order">
                     <i class="bi bi-plus-lg me-1"></i> Add
                   </button>
@@ -342,19 +429,22 @@
               </div>
             </div>
 
-            <!-- 7. Cola -->
-            <div class="col-6 col-md-4 col-xl-3">
-              <div class="card card-hover product-card h-100">
+            <!-- 7. Cola (Normal State) -->
+            <div class="col-6 col-md-4 col-xl-3" data-id="7" data-category="drinks">
+              <div class="card card-hover product-card h-100 position-relative">
                 <div class="ratio ratio-4x3 bg-light overflow-hidden">
-                  <img src="images/cola.svg" alt="Ice chilled cup of carbonated cola" class="img-fluid">
+                  <img src="images/cola.svg" alt="Cola" class="img-fluid">
                 </div>
                 <div class="card-body p-3 d-flex flex-column">
                   <div class="d-flex justify-content-between align-items-start mb-1">
                     <span class="badge bg-warning-subtle text-dark small fw-semibold">Drinks</span>
-                    <span class="small text-muted"><i class="bi bi-check-circle-fill text-success me-1"></i>In Stock</span>
+                    <span class="badge bg-success-subtle text-success small"><i class="bi bi-check-circle-fill me-1"></i>In Stock</span>
                   </div>
-                  <h2 class="card-title h6 fw-bold mb-1 text-truncate" title="Grill Cola">Cola (Regular)</h2>
-                  <div class="fw-bold text-danger mb-3 fs-6">Rs. 250</div>
+                  <h2 class="card-title h6 fw-bold mb-0 text-truncate" title="Cola">Cola (Regular)</h2>
+                  <div class="d-flex justify-content-between align-items-baseline mb-2">
+                    <span class="fw-bold text-danger fs-6">Rs. 250</span>
+                    <span class="small text-muted">120 left</span>
+                  </div>
                   <button type="button" class="btn btn-primary btn-sm w-100 mt-auto" aria-label="Add Cola to order">
                     <i class="bi bi-plus-lg me-1"></i> Add
                   </button>
@@ -362,21 +452,30 @@
               </div>
             </div>
 
-            <!-- 8. Milkshake -->
-            <div class="col-6 col-md-4 col-xl-3">
-              <div class="card card-hover product-card h-100">
-                <div class="ratio ratio-4x3 bg-light overflow-hidden">
-                  <img src="images/milkshake.svg" alt="Strawberry milkshake with whipped cream and cherry on top" class="img-fluid">
+            <!-- 8. Mint Lemonade (Out of Stock State: Disabled + Ribbon + Greyscale) -->
+            <div class="col-6 col-md-4 col-xl-3" data-id="8" data-category="drinks">
+              <div class="card product-card out-of-stock h-100 position-relative border-danger border-opacity-50">
+                <!-- Out of Stock Ribbon / Overlay -->
+                <div class="gm-out-overlay">
+                  <span class="badge bg-danger shadow-sm text-uppercase fw-bold px-2 py-1">
+                    <i class="bi bi-slash-circle me-1"></i>Out of Stock
+                  </span>
                 </div>
-                <div class="card-body p-3 d-flex flex-column">
+                <div class="ratio ratio-4x3 bg-light overflow-hidden">
+                  <img src="images/milkshake.svg" alt="Mint Lemonade" class="img-fluid">
+                </div>
+                <div class="card-body p-3 d-flex flex-column opacity-75">
                   <div class="d-flex justify-content-between align-items-start mb-1">
-                    <span class="badge bg-warning-subtle text-dark small fw-semibold">Drinks</span>
-                    <span class="small text-muted"><i class="bi bi-check-circle-fill text-success me-1"></i>In Stock</span>
+                    <span class="badge bg-secondary-subtle text-dark small fw-semibold">Drinks</span>
+                    <span class="badge bg-danger-subtle text-danger small">0 left</span>
                   </div>
-                  <h2 class="card-title h6 fw-bold mb-1 text-truncate" title="Milkshake">Milkshake</h2>
-                  <div class="fw-bold text-danger mb-3 fs-6">Rs. 480</div>
-                  <button type="button" class="btn btn-primary btn-sm w-100 mt-auto" aria-label="Add Milkshake to order">
-                    <i class="bi bi-plus-lg me-1"></i> Add
+                  <h2 class="card-title h6 fw-bold mb-0 text-truncate text-muted" title="Mint Lemonade">Mint Lemonade</h2>
+                  <div class="d-flex justify-content-between align-items-baseline mb-2">
+                    <span class="fw-bold text-muted fs-6">Rs. 350</span>
+                    <span class="small text-danger fw-bold">Unavailable</span>
+                  </div>
+                  <button type="button" class="btn btn-secondary btn-sm w-100 mt-auto disabled" aria-disabled="true" aria-label="Out of stock">
+                    <i class="bi bi-x-circle me-1"></i> Out of Stock
                   </button>
                 </div>
               </div>
@@ -390,7 +489,7 @@
            3. ORDER PANEL (Desktop lg+ Sticky Right Column)
            ===================================================================== -->
       <aside class="gm-pos-order-panel d-none d-lg-flex flex-column p-3" aria-label="Current Order Summary">
-        <div class="d-flex align-items-center justify-content-between pb-2 mb-3 border-bottom">
+        <div class="d-flex align-items-center justify-content-between pb-2 mb-2 border-bottom">
           <div class="d-flex align-items-center">
             <i class="bi bi-receipt-cutoff text-danger fs-4 me-2"></i>
             <h2 class="h5 fw-bold mb-0">Current Order</h2>
@@ -398,30 +497,53 @@
           <span class="badge bg-warning text-dark fw-bold">#1042</span>
         </div>
 
-        <!-- Customer Select -->
+        <!-- Customer Select Area with "+ New Customer" Link -->
         <div class="mb-3">
-          <label for="desktopCustomerSelect" class="form-label small text-muted mb-1 fw-medium">Customer</label>
+          <div class="d-flex justify-content-between align-items-center mb-1">
+            <label for="posCustomerSelect" class="form-label small text-muted mb-0 fw-medium">Customer</label>
+            <button type="button" class="btn btn-link p-0 small text-decoration-none fw-semibold text-danger" data-bs-toggle="modal" data-bs-target="#quickAddCustomerModal">
+              <i class="bi bi-plus-circle me-1"></i>New Customer
+            </button>
+          </div>
           <div class="input-group">
             <span class="input-group-text bg-light text-muted border-end-0">
               <i class="bi bi-person-fill"></i>
             </span>
-            <select class="form-select border-start-0" id="desktopCustomerSelect" aria-label="Select Customer">
-              <option selected>Walk-in customer</option>
+            <select class="form-select border-start-0" id="posCustomerSelect" aria-label="Select Customer">
+              <option selected value="walkin">Walk-in customer</option>
               <option value="1">Nimal Perera (077 123 4567)</option>
               <option value="2">Kasun Silva (071 987 6543)</option>
               <option value="3">Dilani Fernando (076 555 1234)</option>
             </select>
           </div>
+          <!-- Customer Info Strip (Displays chosen customer details) -->
+          <div class="mt-1 p-2 bg-light rounded d-flex align-items-center justify-content-between small text-muted" id="customerInfoStrip">
+            <span><i class="bi bi-person-check me-1 text-success"></i>Walk-in (Standard Rate)</span>
+            <span class="badge bg-secondary-subtle text-dark">Default</span>
+          </div>
+        </div>
+
+        <!-- Checkout Warning Alert (Failed checkout demo) -->
+        <div class="alert alert-danger alert-dismissible fade show p-2 small mb-2" role="alert" id="posStockWarningAlert">
+          <div class="d-flex align-items-start">
+            <i class="bi bi-exclamation-triangle-fill fs-6 me-2 mt-1"></i>
+            <div>
+              <strong class="d-block">Checkout Blocked!</strong>
+              Not enough stock for Cheese burger (Requested 4, only 2 left).
+            </div>
+          </div>
+          <button type="button" class="btn-close p-2" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
 
         <!-- Order Items List -->
-        <div class="flex-grow-1 overflow-y-auto pe-1 mb-3">
+        <div class="flex-grow-1 overflow-y-auto pe-1 mb-2">
           
-          <!-- Sample 3 Item Rows in List Group -->
-          <ul class="list-group list-group-flush" aria-label="Cart items list">
+          <!-- Sample 3 Item Rows in List Group with stock warning under Row 2 -->
+          <!-- JS: render cart items here -->
+          <ul class="list-group list-group-flush" id="posCartItemsList" aria-label="Cart items list">
 
             <!-- Item 1: Classic Burger -->
-            <li class="list-group-item px-0 py-2 border-bottom">
+            <li class="list-group-item px-0 py-2 border-bottom" data-id="1">
               <div class="d-flex justify-content-between align-items-start mb-1">
                 <div>
                   <div class="fw-semibold text-dark">Classic Burger</div>
@@ -444,8 +566,8 @@
               </div>
             </li>
 
-            <!-- Item 2: Cheesy Fries -->
-            <li class="list-group-item px-0 py-2 border-bottom">
+            <!-- Item 2: Cheesy Fries (With Stock Warning state under row) -->
+            <li class="list-group-item px-0 py-2 border-bottom bg-warning-subtle bg-opacity-10" data-id="6">
               <div class="d-flex justify-content-between align-items-start mb-1">
                 <div>
                   <div class="fw-semibold text-dark">Cheesy Fries</div>
@@ -459,17 +581,21 @@
                 </div>
               </div>
               <div class="d-flex align-items-center justify-content-between mt-1">
-                <span class="badge bg-light text-muted border">Qty</span>
+                <span class="badge bg-light text-muted border">Qty (Max)</span>
                 <div class="btn-group btn-group-sm" role="group" aria-label="Quantity stepper">
                   <button type="button" class="btn btn-outline-secondary gm-stepper-btn" aria-label="Decrease quantity">-</button>
                   <button type="button" class="btn btn-outline-secondary gm-stepper-btn px-2 disabled fw-bold text-dark border-start-0 border-end-0">1</button>
-                  <button type="button" class="btn btn-outline-secondary gm-stepper-btn" aria-label="Increase quantity">+</button>
+                  <button type="button" class="btn btn-outline-secondary gm-stepper-btn disabled" aria-label="Increase quantity" disabled>+</button>
                 </div>
+              </div>
+              <!-- Visible Low Stock Warning Under Row -->
+              <div class="small text-danger fw-semibold mt-1">
+                <i class="bi bi-exclamation-circle-fill me-1"></i>Only 3 in stock! Max limit reached.
               </div>
             </li>
 
             <!-- Item 3: Cola -->
-            <li class="list-group-item px-0 py-2 border-bottom">
+            <li class="list-group-item px-0 py-2 border-bottom" data-id="7">
               <div class="d-flex justify-content-between align-items-start mb-1">
                 <div>
                   <div class="fw-semibold text-dark">Cola (Regular)</div>
@@ -495,7 +621,7 @@
           </ul>
 
           <!-- COMMENTED-OUT EMPTY STATE BLOCK (READY TO SWITCH ON)
-          <div class="text-center py-5 text-muted">
+          <div class="text-center py-5 text-muted" id="cartEmptyState">
             <i class="bi bi-cart-x fs-1 text-secondary opacity-50 mb-2 d-block"></i>
             <h3 class="h6 fw-semibold">Your cart is empty</h3>
             <p class="small text-muted mb-0">Select items from the catalog on the left to start this order.</p>
@@ -504,30 +630,61 @@
 
         </div>
 
-        <!-- Summary & Checkout Controls -->
-        <div class="pt-3 border-top bg-white">
-          <div class="d-flex justify-content-between text-muted mb-2">
+        <!-- Totals & Payment Method Section -->
+        <div class="pt-2 border-top bg-white">
+          <div class="d-flex justify-content-between text-muted small mb-1">
             <span>Subtotal</span>
-            <span>Rs. 2,750</span>
+            <span id="posSubtotal">Rs. 2,750</span>
           </div>
 
-          <div class="d-flex justify-content-between align-items-center text-muted mb-2">
-            <label for="desktopDiscountInput" class="form-label mb-0 small">Discount (Rs.)</label>
-            <input type="number" class="form-control form-control-sm text-end w-25" id="desktopDiscountInput" value="250" aria-label="Discount amount">
+          <!-- Discount with % / Rs. Toggle -->
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span class="small text-muted">Discount</span>
+            <div class="d-flex align-items-center gap-1">
+              <div class="btn-group btn-group-sm" role="group" id="discountTypeGroup" aria-label="Discount Type">
+                <input type="radio" class="btn-check" name="discountType" id="discRs" checked autocomplete="off">
+                <label class="btn btn-outline-secondary py-0 px-2" for="discRs">Rs.</label>
+                <input type="radio" class="btn-check" name="discountType" id="discPct" autocomplete="off">
+                <label class="btn btn-outline-secondary py-0 px-2" for="discPct">%</label>
+              </div>
+              <input type="number" class="form-control form-control-sm text-end" id="posDiscountInput" style="width: 70px;" value="250" aria-label="Discount value">
+            </div>
           </div>
 
-          <div class="d-flex justify-content-between align-items-baseline mb-3 pt-2 border-top">
+          <!-- Grand Total -->
+          <div class="d-flex justify-content-between align-items-baseline mb-2 pt-1 border-top">
             <span class="fs-5 fw-bold text-dark">Total</span>
-            <span class="fs-4 fw-bold text-danger">Rs. 2,500</span>
+            <span class="fs-4 fw-bold text-danger" id="posTotal">Rs. 2,500</span>
+          </div>
+
+          <!-- Payment Method Select -->
+          <div class="row g-2 mb-2">
+            <div class="col-6">
+              <label for="posPaymentMethod" class="form-label small text-muted mb-0">Payment Method</label>
+              <select class="form-select form-select-sm" id="posPaymentMethod">
+                <option value="cash" selected>Cash</option>
+                <option value="card">Credit / Debit Card</option>
+              </select>
+            </div>
+            <div class="col-6">
+              <label for="cashReceivedInput" class="form-label small text-muted mb-0">Cash Received</label>
+              <input type="number" class="form-control form-control-sm text-end fw-semibold" id="cashReceivedInput" value="3000">
+            </div>
+          </div>
+
+          <!-- Change Due Line -->
+          <div class="d-flex justify-content-between small text-muted mb-3 bg-light p-2 rounded" id="changeDueDisplay">
+            <span>Change Due:</span>
+            <strong class="text-success fs-6">Rs. 500</strong>
           </div>
 
           <!-- Checkout Trigger Button (Opens Receipt Modal) -->
-          <button type="button" class="btn btn-primary w-100 py-2 fw-semibold fs-6 mb-2 shadow-sm" data-bs-toggle="modal" data-bs-target="#receiptModal">
+          <button type="button" class="btn btn-primary w-100 py-2 fw-semibold fs-6 mb-2 shadow-sm" id="btnPosCheckout" data-bs-toggle="modal" data-bs-target="#receiptModal">
             <i class="bi bi-check2-circle me-1"></i> Checkout (Rs. 2,500)
           </button>
 
           <!-- Clear Order Button -->
-          <button type="button" class="btn btn-link text-muted w-100 p-1 text-decoration-none small">
+          <button type="button" class="btn btn-link text-muted w-100 p-0 text-decoration-none small" id="btnPosClearOrder">
             <i class="bi bi-x-circle me-1"></i> Clear Order
           </button>
         </div>
@@ -538,11 +695,9 @@
 
   <!-- =========================================================================
        4. MOBILE / TABLET CART OFFCANVAS (< lg)
-       Identical content to desktop order panel, opens via Cart Button
        ========================================================================= -->
-  <div class="offcanvas offcanvas-bottom d-lg-none rounded-top-4" tabindex="-1" id="cartOffcanvas" aria-labelledby="cartOffcanvasLabel" style="height: 82vh;">
+  <div class="offcanvas offcanvas-bottom d-lg-none rounded-top-4" tabindex="-1" id="cartOffcanvas" aria-labelledby="cartOffcanvasLabel" style="height: 85vh;">
     <div class="offcanvas-header pb-1 pt-2 flex-column align-items-stretch border-bottom">
-      <!-- Visual Drag Handle -->
       <div class="gm-drag-handle" aria-hidden="true"></div>
       
       <div class="d-flex align-items-center justify-content-between w-100 mt-2">
@@ -558,28 +713,25 @@
     </div>
 
     <div class="offcanvas-body d-flex flex-column p-3">
-      <!-- Customer Select -->
+      <!-- Customer Select Area with Quick Add -->
       <div class="mb-3">
-        <label for="mobileCustomerSelect" class="form-label small text-muted mb-1 fw-medium">Customer</label>
-        <div class="input-group">
-          <span class="input-group-text bg-light text-muted border-end-0">
-            <i class="bi bi-person-fill"></i>
-          </span>
-          <select class="form-select border-start-0" id="mobileCustomerSelect" aria-label="Select Customer">
-            <option selected>Walk-in customer</option>
-            <option value="1">Nimal Perera (077 123 4567)</option>
-            <option value="2">Kasun Silva (071 987 6543)</option>
-            <option value="3">Dilani Fernando (076 555 1234)</option>
-          </select>
+        <div class="d-flex justify-content-between align-items-center mb-1">
+          <label for="mobileCustomerSelect" class="form-label small text-muted mb-0 fw-medium">Customer</label>
+          <button type="button" class="btn btn-link p-0 small text-decoration-none fw-semibold text-danger" data-bs-toggle="modal" data-bs-target="#quickAddCustomerModal">
+            + New
+          </button>
         </div>
+        <select class="form-select" id="mobileCustomerSelect">
+          <option selected value="walkin">Walk-in customer</option>
+          <option value="1">Nimal Perera (077 123 4567)</option>
+          <option value="2">Kasun Silva (071 987 6543)</option>
+        </select>
       </div>
 
       <!-- Item Rows -->
-      <div class="flex-grow-1 overflow-y-auto mb-3">
-        <ul class="list-group list-group-flush" aria-label="Mobile cart items list">
-          
-          <!-- Item 1 -->
-          <li class="list-group-item px-0 py-2 border-bottom">
+      <div class="flex-grow-1 overflow-y-auto mb-2">
+        <ul class="list-group list-group-flush" id="posMobileCartItemsList">
+          <li class="list-group-item px-0 py-2 border-bottom" data-id="1">
             <div class="d-flex justify-content-between align-items-start mb-1">
               <div>
                 <div class="fw-semibold text-dark">Classic Burger</div>
@@ -587,23 +739,14 @@
               </div>
               <div class="text-end">
                 <div class="fw-bold text-dark">Rs. 1,700</div>
-                <button type="button" class="btn btn-link text-danger p-0 border-0 small text-decoration-none" title="Remove item" aria-label="Remove Classic Burger">
-                  <i class="bi bi-trash3"></i>
-                </button>
               </div>
             </div>
             <div class="d-flex align-items-center justify-content-between mt-1">
-              <span class="badge bg-light text-muted border">Qty</span>
-              <div class="btn-group btn-group-sm" role="group" aria-label="Quantity stepper">
-                <button type="button" class="btn btn-outline-secondary gm-stepper-btn" aria-label="Decrease quantity">-</button>
-                <button type="button" class="btn btn-outline-secondary gm-stepper-btn px-2 disabled fw-bold text-dark border-start-0 border-end-0">2</button>
-                <button type="button" class="btn btn-outline-secondary gm-stepper-btn" aria-label="Increase quantity">+</button>
-              </div>
+              <span class="badge bg-light text-muted border">Qty: 2</span>
+              <button type="button" class="btn btn-link text-danger p-0 small text-decoration-none"><i class="bi bi-trash3"></i> Remove</button>
             </div>
           </li>
-
-          <!-- Item 2 -->
-          <li class="list-group-item px-0 py-2 border-bottom">
+          <li class="list-group-item px-0 py-2 border-bottom bg-warning-subtle bg-opacity-10" data-id="6">
             <div class="d-flex justify-content-between align-items-start mb-1">
               <div>
                 <div class="fw-semibold text-dark">Cheesy Fries</div>
@@ -611,23 +754,11 @@
               </div>
               <div class="text-end">
                 <div class="fw-bold text-dark">Rs. 550</div>
-                <button type="button" class="btn btn-link text-danger p-0 border-0 small text-decoration-none" title="Remove item" aria-label="Remove Cheesy Fries">
-                  <i class="bi bi-trash3"></i>
-                </button>
               </div>
             </div>
-            <div class="d-flex align-items-center justify-content-between mt-1">
-              <span class="badge bg-light text-muted border">Qty</span>
-              <div class="btn-group btn-group-sm" role="group" aria-label="Quantity stepper">
-                <button type="button" class="btn btn-outline-secondary gm-stepper-btn" aria-label="Decrease quantity">-</button>
-                <button type="button" class="btn btn-outline-secondary gm-stepper-btn px-2 disabled fw-bold text-dark border-start-0 border-end-0">1</button>
-                <button type="button" class="btn btn-outline-secondary gm-stepper-btn" aria-label="Increase quantity">+</button>
-              </div>
-            </div>
+            <div class="small text-danger fw-semibold">Only 3 in stock! Max limit reached.</div>
           </li>
-
-          <!-- Item 3 -->
-          <li class="list-group-item px-0 py-2 border-bottom">
+          <li class="list-group-item px-0 py-2 border-bottom" data-id="7">
             <div class="d-flex justify-content-between align-items-start mb-1">
               <div>
                 <div class="fw-semibold text-dark">Cola (Regular)</div>
@@ -635,52 +766,75 @@
               </div>
               <div class="text-end">
                 <div class="fw-bold text-dark">Rs. 500</div>
-                <button type="button" class="btn btn-link text-danger p-0 border-0 small text-decoration-none" title="Remove item" aria-label="Remove Cola">
-                  <i class="bi bi-trash3"></i>
-                </button>
-              </div>
-            </div>
-            <div class="d-flex align-items-center justify-content-between mt-1">
-              <span class="badge bg-light text-muted border">Qty</span>
-              <div class="btn-group btn-group-sm" role="group" aria-label="Quantity stepper">
-                <button type="button" class="btn btn-outline-secondary gm-stepper-btn" aria-label="Decrease quantity">-</button>
-                <button type="button" class="btn btn-outline-secondary gm-stepper-btn px-2 disabled fw-bold text-dark border-start-0 border-end-0">2</button>
-                <button type="button" class="btn btn-outline-secondary gm-stepper-btn" aria-label="Increase quantity">+</button>
               </div>
             </div>
           </li>
-
         </ul>
       </div>
 
-      <!-- Offcanvas Checkout Summary -->
+      <!-- Totals & Payment -->
       <div class="pt-2 border-top bg-white">
-        <div class="d-flex justify-content-between text-muted mb-2">
+        <div class="d-flex justify-content-between text-muted small mb-1">
           <span>Subtotal</span>
           <span>Rs. 2,750</span>
         </div>
-        <div class="d-flex justify-content-between align-items-center text-muted mb-2">
-          <label for="mobileDiscountInput" class="form-label mb-0 small">Discount (Rs.)</label>
-          <input type="number" class="form-control form-control-sm text-end w-25" id="mobileDiscountInput" value="250" aria-label="Discount amount">
+        <div class="d-flex justify-content-between text-muted small mb-2">
+          <span>Discount</span>
+          <span>- Rs. 250</span>
         </div>
-        <div class="d-flex justify-content-between align-items-baseline mb-3 pt-2 border-top">
+        <div class="d-flex justify-content-between align-items-baseline mb-2 pt-1 border-top">
           <span class="fs-5 fw-bold text-dark">Total</span>
           <span class="fs-4 fw-bold text-danger">Rs. 2,500</span>
         </div>
 
-        <button type="button" class="btn btn-primary w-100 py-2 fw-semibold fs-6 mb-2 shadow-sm" data-bs-toggle="modal" data-bs-target="#receiptModal">
+        <button type="button" class="btn btn-primary w-100 py-2 fw-semibold fs-6 mb-2" data-bs-toggle="modal" data-bs-target="#receiptModal">
           <i class="bi bi-check2-circle me-1"></i> Checkout (Rs. 2,500)
-        </button>
-        <button type="button" class="btn btn-link text-muted w-100 p-1 text-decoration-none small">
-          <i class="bi bi-x-circle me-1"></i> Clear Order
         </button>
       </div>
     </div>
   </div>
 
   <!-- =========================================================================
-       5. RECEIPT MODAL (#receiptModal)
-       Narrow Ticket Style with dashed dividers & print support
+       5. QUICK ADD CUSTOMER MODAL (#quickAddCustomerModal)
+       ========================================================================= -->
+  <div class="modal fade" id="quickAddCustomerModal" tabindex="-1" aria-labelledby="quickAddCustomerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-charcoal text-white">
+          <h2 class="modal-title h5 mb-0" id="quickAddCustomerModalLabel">
+            <i class="bi bi-person-plus me-2"></i>Quick Register Customer
+          </h2>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4">
+          <form id="quickAddCustomerForm">
+            <div class="mb-3">
+              <label for="quickCustName" class="form-label small fw-semibold">Customer Full Name <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" id="quickCustName" placeholder="e.g. Kasun Fernando" required>
+            </div>
+            <div class="mb-3">
+              <label for="quickCustPhone" class="form-label small fw-semibold">Phone Number <span class="text-danger">*</span></label>
+              <input type="tel" class="form-control" id="quickCustPhone" placeholder="e.g. 077 123 4567" required>
+            </div>
+            <div class="mb-3">
+              <label for="quickCustEmail" class="form-label small fw-semibold">Email (Optional)</label>
+              <input type="email" class="form-control" id="quickCustEmail" placeholder="customer@example.com">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer bg-light">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+            <i class="bi bi-check2-circle me-1"></i> Add & Select
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       6. RECEIPT MODAL (#receiptModal)
+       Enhanced with Cashier, Customer, Payment, Cash received & Change due
        ========================================================================= -->
   <div class="modal fade" id="receiptModal" tabindex="-1" aria-labelledby="receiptModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-sm">
@@ -702,11 +856,11 @@
             <span>Date: 07/11/2026</span>
           </div>
           <div class="d-flex justify-content-between small text-muted">
-            <span>Server: Cashier 01</span>
+            <span>Server: <strong>Cashier 01</strong></span>
             <span>Time: 12:45 PM</span>
           </div>
           <div class="small text-muted">
-            <span>Customer: Walk-in Customer</span>
+            <span>Customer: <strong>Walk-in Customer</strong></span>
           </div>
 
           <div class="receipt-divider"></div>
@@ -751,9 +905,19 @@
             <span class="receipt-total">TOTAL:</span>
             <span class="receipt-total text-danger">Rs. 2,500.00</span>
           </div>
-          <div class="d-flex justify-content-between small text-muted mt-1">
+
+          <!-- Payment Breakdown -->
+          <div class="d-flex justify-content-between small text-muted mt-2 pt-1 border-top border-secondary border-opacity-25">
             <span>Payment Method:</span>
-            <span>CASH</span>
+            <span class="fw-bold text-dark">CASH</span>
+          </div>
+          <div class="d-flex justify-content-between small text-muted">
+            <span>Cash Received:</span>
+            <span>Rs. 3,000.00</span>
+          </div>
+          <div class="d-flex justify-content-between small text-muted">
+            <span>Change Due:</span>
+            <span class="fw-bold text-dark">Rs. 500.00</span>
           </div>
 
           <div class="receipt-divider"></div>
@@ -783,8 +947,7 @@
   </div>
 
   <!-- =========================================================================
-       6. DEMO TOAST NOTIFICATION
-       Static Bootstrap toast ("Added to cart") visible at bottom right
+       7. DEMO TOAST NOTIFICATION
        ========================================================================= -->
   <div class="toast-container position-fixed bottom-0 end-0 p-3 mb-5 mb-md-3 me-md-3" style="z-index: 1060;">
     <div id="cartDemoToast" class="toast show align-items-center text-bg-dark border-0 shadow-lg" role="alert" aria-live="assertive" aria-atomic="true">
@@ -801,7 +964,7 @@
     </div>
   </div>
 
-  <!-- Bootstrap 5.3 Bundle JS via CDN (Only JS permitted) -->
+  <!-- Bootstrap 5.3 Bundle JS via CDN -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

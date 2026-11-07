@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GrillMaster POS - Dashboard</title>
+
+  <!-- Google Fonts: Poppins & Bangers -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Custom Theme CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+  <!-- =========================================================================
+       1. SHARED NAVIGATION (v2 Update: 6 Links in strict order)
+       - Desktop (lg+): Fixed 220px Charcoal Sidebar
+       - Tablet (md): Fixed 72px Icon-Only Rail
+       - Mobile (<md): Sticky Top Navbar + 5-Item Bottom Nav + "More" Offcanvas
+       ========================================================================= -->
+
+  <!-- Desktop Sidebar (lg and up) -->
+  <aside class="gm-sidebar-lg d-none d-lg-flex flex-column p-3 text-white" aria-label="Desktop Navigation">
+    <div class="d-flex align-items-center mb-4 pb-2 border-bottom border-secondary border-opacity-25 px-2">
+      <i class="bi bi-fire text-danger fs-3 me-2"></i>
+      <span class="brand-font fs-3 text-white lh-1">GrillMaster<span class="text-warning"> POS</span></span>
+    </div>
+
+    <ul class="nav flex-column mb-auto" id="desktopNavMenu">
+      <li class="nav-item">
+        <a href="dashboard.html" class="nav-link active" aria-current="page">
+          <i class="bi bi-speedometer2 me-2 fs-5"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="index.html" class="nav-link">
+          <i class="bi bi-cart-fill me-2 fs-5"></i>
+          <span>POS / Order</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="products.html" class="nav-link">
+          <i class="bi bi-box-seam me-2 fs-5"></i>
+          <span>Products</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="inventory.html" class="nav-link">
+          <i class="bi bi-clipboard-data me-2 fs-5"></i>
+          <span>Inventory</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="customers.html" class="nav-link">
+          <i class="bi bi-people me-2 fs-5"></i>
+          <span>Customers</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="orders.html" class="nav-link">
+          <i class="bi bi-receipt me-2 fs-5"></i>
+          <span>Orders</span>
+        </a>
+      </li>
+    </ul>
+
+    <div class="mt-auto pt-3 border-top border-secondary border-opacity-25 px-2 d-flex align-items-center">
+      <div class="rounded-circle bg-warning text-dark d-flex align-items-center justify-content-center fw-bold me-2" style="width: 36px; height: 36px; font-size: 0.85rem;">
+        CA
+      </div>
+      <div class="small overflow-hidden">
+        <div class="fw-semibold text-white text-truncate">Cashier 01</div>
+        <div class="text-white-50 small">Terminal #2</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Tablet Rail Sidebar (md only) -->
+  <aside class="gm-sidebar-md d-none d-md-flex d-lg-none flex-column align-items-center py-3 text-white" aria-label="Tablet Navigation">
+    <div class="mb-4">
+      <a href="index.html" class="text-decoration-none text-white" aria-label="GrillMaster POS Home">
+        <i class="bi bi-fire text-danger fs-2"></i>
+      </a>
+    </div>
+
+    <ul class="nav flex-column w-100 px-2 text-center" id="tabletNavMenu">
+      <li class="nav-item mb-2">
+        <a href="dashboard.html" class="nav-link active" title="Dashboard" aria-label="Dashboard" aria-current="page">
+          <i class="bi bi-speedometer2"></i>
+        </a>
+      </li>
+      <li class="nav-item mb-2">
+        <a href="index.html" class="nav-link" title="POS / Order" aria-label="POS / Order">
+          <i class="bi bi-cart-fill"></i>
+        </a>
+      </li>
+      <li class="nav-item mb-2">
+        <a href="products.html" class="nav-link" title="Products" aria-label="Products">
+          <i class="bi bi-box-seam"></i>
+        </a>
+      </li>
+      <li class="nav-item mb-2">
+        <a href="inventory.html" class="nav-link" title="Inventory" aria-label="Inventory">
+          <i class="bi bi-clipboard-data"></i>
+        </a>
+      </li>
+      <li class="nav-item mb-2">
+        <a href="customers.html" class="nav-link" title="Customers" aria-label="Customers">
+          <i class="bi bi-people"></i>
+        </a>
+      </li>
+      <li class="nav-item mb-2">
+        <a href="orders.html" class="nav-link" title="Orders" aria-label="Orders">
+          <i class="bi bi-receipt"></i>
+        </a>
+      </li>
+    </ul>
+
+    <div class="mt-auto">
+      <div class="rounded-circle bg-warning text-dark d-flex align-items-center justify-content-center fw-bold" style="width: 38px; height: 38px; font-size: 0.85rem;" title="Cashier 01">
+        CA
+      </div>
+    </div>
+  </aside>
+
+  <!-- Mobile Sticky Top Navbar (below md) -->
+  <nav class="gm-mobile-topbar navbar sticky-top d-md-none px-3" aria-label="Mobile Top Bar">
+    <div class="container-fluid p-0 d-flex justify-content-between align-items-center">
+      <div class="d-flex align-items-center">
+        <i class="bi bi-speedometer2 text-warning fs-4 me-2"></i>
+        <span class="fw-bold text-white fs-5">Dashboard</span>
+      </div>
+      <a href="index.html" class="btn btn-primary btn-sm" aria-label="Create new order">
+        <i class="bi bi-plus-lg me-1"></i> New
+      </a>
+    </div>
+  </nav>
+
+  <!-- Mobile Fixed Bottom Nav (< md, 5 items max) -->
+  <nav class="gm-bottom-nav fixed-bottom d-md-none" aria-label="Mobile Bottom Navigation">
+    <div class="container-fluid h-100 px-0">
+      <div class="row g-0 h-100 text-center align-items-center" id="mobileBottomNav">
+        <div class="col-nav-5">
+          <a href="dashboard.html" class="nav-link active" aria-current="page">
+            <i class="bi bi-speedometer2"></i>
+            <span>Dashboard</span>
+          </a>
+        </div>
+        <div class="col-nav-5">
+          <a href="index.html" class="nav-link">
+            <i class="bi bi-cart-fill"></i>
+            <span>POS</span>
+          </a>
+        </div>
+        <div class="col-nav-5">
+          <a href="orders.html" class="nav-link">
+            <i class="bi bi-receipt"></i>
+            <span>Orders</span>
+          </a>
+        </div>
+        <div class="col-nav-5">
+          <a href="customers.html" class="nav-link">
+            <i class="bi bi-people"></i>
+            <span>Customers</span>
+          </a>
+        </div>
+        <div class="col-nav-5">
+          <button type="button" class="nav-link w-100 border-0 bg-transparent" data-bs-toggle="offcanvas" data-bs-target="#moreNavOffcanvas" aria-controls="moreNavOffcanvas" aria-label="Open More Menu">
+            <i class="bi bi-grid-fill"></i>
+            <span>More</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile "More" Offcanvas Drawer -->
+  <div class="offcanvas offcanvas-bottom d-md-none rounded-top-4" tabindex="-1" id="moreNavOffcanvas" aria-labelledby="moreNavOffcanvasLabel" style="height: 60vh;">
+    <div class="offcanvas-header pb-1 pt-2 flex-column align-items-stretch border-bottom">
+      <div class="gm-drag-handle" aria-hidden="true"></div>
+      <div class="d-flex align-items-center justify-content-between w-100 mt-2">
+        <h2 class="h5 fw-bold mb-0" id="moreNavOffcanvasLabel">Quick Navigation</h2>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close menu"></button>
+      </div>
+    </div>
+    <div class="offcanvas-body p-3">
+      <div class="row g-2">
+        <div class="col-6">
+          <a href="products.html" class="card text-center p-3 text-decoration-none card-hover border h-100">
+            <i class="bi bi-box-seam fs-2 text-primary mb-1"></i>
+            <span class="fw-semibold text-dark">Products</span>
+            <span class="small text-muted">Catalog & Prices</span>
+          </a>
+        </div>
+        <div class="col-6">
+          <a href="inventory.html" class="card text-center p-3 text-decoration-none card-hover border h-100">
+            <i class="bi bi-clipboard-data fs-2 text-warning mb-1"></i>
+            <span class="fw-semibold text-dark">Inventory</span>
+            <span class="small text-muted">Stock & Adjust</span>
+          </a>
+        </div>
+        <div class="col-6">
+          <a href="customers.html" class="card text-center p-3 text-decoration-none card-hover border h-100">
+            <i class="bi bi-people fs-2 text-success mb-1"></i>
+            <span class="fw-semibold text-dark">Customers</span>
+            <span class="small text-muted">Loyalty & Profiles</span>
+          </a>
+        </div>
+        <div class="col-6">
+          <a href="orders.html" class="card text-center p-3 text-decoration-none card-hover border h-100">
+            <i class="bi bi-receipt fs-2 text-danger mb-1"></i>
+            <span class="fw-semibold text-dark">Orders</span>
+            <span class="small text-muted">History & Tickets</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       2. MAIN CONTENT AREA
+       ========================================================================= -->
+  <div class="gm-main-layout d-flex flex-column flex-grow-1">
+    <main class="flex-grow-1 p-3 p-md-4">
+      <div class="container-fluid p-0">
+
+        <!-- Page Header -->
+        <header class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4">
+          <div>
+            <h1 class="h3 fw-bold mb-0 text-dark">Dashboard</h1>
+            <p class="text-muted small mb-0 mt-1">
+              <i class="bi bi-calendar3 me-1"></i>Saturday, 07 November 2026 • Live Terminal Overview
+            </p>
+          </div>
+          <div>
+            <a href="index.html" class="btn btn-primary shadow-sm" id="btnDashboardNewOrder">
+              <i class="bi bi-plus-circle me-1"></i> New Order
+            </a>
+          </div>
+        </header>
+
+        <!-- a) STAT CARDS ROW (row g-3, col-6 col-xl-3) -->
+        <section class="row g-3 mb-4" aria-label="Key Performance Statistics">
+          
+          <!-- Stat 1: Today's Sales -->
+          <div class="col-6 col-xl-3">
+            <div class="card card-hover p-3 h-100 border-0 shadow-sm">
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <span class="small text-muted fw-semibold">Today's Sales</span>
+                <div class="gm-stat-icon bg-success-subtle text-success">
+                  <i class="bi bi-currency-exchange"></i>
+                </div>
+              </div>
+              <div class="fs-4 fw-bold text-dark mb-1" id="statTodaySales">Rs. 48,250</div>
+              <div class="small text-success">
+                <i class="bi bi-arrow-up-right me-1"></i>+12% vs yesterday
+              </div>
+            </div>
+          </div>
+
+          <!-- Stat 2: Orders Today -->
+          <div class="col-6 col-xl-3">
+            <div class="card card-hover p-3 h-100 border-0 shadow-sm">
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <span class="small text-muted fw-semibold">Orders Today</span>
+                <div class="gm-stat-icon bg-primary-subtle text-danger">
+                  <i class="bi bi-bag-check-fill"></i>
+                </div>
+              </div>
+              <div class="fs-4 fw-bold text-dark mb-1" id="statTodayOrders">23</div>
+              <div class="small text-success">
+                <i class="bi bi-arrow-up-right me-1"></i>+4 vs yesterday
+              </div>
+            </div>
+          </div>
+
+          <!-- Stat 3: Total Customers -->
+          <div class="col-6 col-xl-3">
+            <div class="card card-hover p-3 h-100 border-0 shadow-sm">
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <span class="small text-muted fw-semibold">Total Customers</span>
+                <div class="gm-stat-icon bg-info-subtle text-info">
+                  <i class="bi bi-people-fill"></i>
+                </div>
+              </div>
+              <div class="fs-4 fw-bold text-dark mb-1" id="statTotalCustomers">126</div>
+              <div class="small text-muted">
+                <i class="bi bi-plus-lg me-1"></i>+8 this week
+              </div>
+            </div>
+          </div>
+
+          <!-- Stat 4: Low Stock Alert -->
+          <div class="col-6 col-xl-3">
+            <div class="card card-hover p-3 h-100 border-warning border-opacity-50 shadow-sm bg-warning-subtle bg-opacity-25">
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <span class="small text-dark fw-bold">Low Stock Items</span>
+                <div class="gm-stat-icon bg-warning text-dark">
+                  <i class="bi bi-exclamation-triangle-fill"></i>
+                </div>
+              </div>
+              <div class="fs-4 fw-bold text-danger mb-1" id="statLowStock">5</div>
+              <div class="small text-danger fw-semibold">
+                <i class="bi bi-bell-fill me-1"></i>Action needed
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- CHARTS ROW: Sales Last 7 Days (col-lg-8) + Sales by Category (col-lg-4) -->
+        <div class="row g-3 mb-4">
+          
+          <!-- b) CSS-Only Bar Chart Card (col-lg-8) -->
+          <div class="col-12 col-lg-8">
+            <div class="card p-3 p-md-4 h-100 border-0 shadow-sm">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                  <h2 class="h5 fw-bold text-dark mb-0">Sales, Last 7 Days</h2>
+                  <span class="small text-muted">Weekly revenue trend (Mon - Sun)</span>
+                </div>
+                <span class="badge bg-light text-dark border fw-medium px-2 py-1">Peak: Friday (Rs. 58k)</span>
+              </div>
+
+              <!-- Bar Chart Container -->
+              <div class="gm-bar-chart" id="salesBarChart" aria-label="Sales last 7 days chart">
+                <!-- Mon -->
+                <div class="gm-bar-col">
+                  <div class="gm-bar-track" title="Monday: Rs. 38,000">
+                    <div class="gm-bar-fill" style="height: 65%;"></div>
+                  </div>
+                  <span class="gm-bar-label">Mon</span>
+                </div>
+                <!-- Tue -->
+                <div class="gm-bar-col">
+                  <div class="gm-bar-track" title="Tuesday: Rs. 32,500">
+                    <div class="gm-bar-fill" style="height: 55%;"></div>
+                  </div>
+                  <span class="gm-bar-label">Tue</span>
+                </div>
+                <!-- Wed -->
+                <div class="gm-bar-col">
+                  <div class="gm-bar-track" title="Wednesday: Rs. 41,200">
+                    <div class="gm-bar-fill" style="height: 70%;"></div>
+                  </div>
+                  <span class="gm-bar-label">Wed</span>
+                </div>
+                <!-- Thu -->
+                <div class="gm-bar-col">
+                  <div class="gm-bar-track" title="Thursday: Rs. 45,000">
+                    <div class="gm-bar-fill" style="height: 76%;"></div>
+                  </div>
+                  <span class="gm-bar-label">Thu</span>
+                </div>
+                <!-- Fri -->
+                <div class="gm-bar-col">
+                  <div class="gm-bar-track" title="Friday: Rs. 58,000">
+                    <div class="gm-bar-fill bar-accent" style="height: 98%;"></div>
+                  </div>
+                  <span class="gm-bar-label">Fri</span>
+                </div>
+                <!-- Sat (Today) -->
+                <div class="gm-bar-col">
+                  <div class="gm-bar-track" title="Saturday (Today): Rs. 48,250">
+                    <div class="gm-bar-fill" style="height: 82%;"></div>
+                  </div>
+                  <span class="gm-bar-label fw-bold text-danger">Sat</span>
+                </div>
+                <!-- Sun -->
+                <div class="gm-bar-col">
+                  <div class="gm-bar-track" title="Sunday (Forecast): Rs. 52,000">
+                    <div class="gm-bar-fill" style="height: 88%; opacity: 0.5;"></div>
+                  </div>
+                  <span class="gm-bar-label">Sun</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- c) CSS-Only Conic Donut Chart Card (col-lg-4) -->
+          <div class="col-12 col-lg-4">
+            <div class="card p-3 p-md-4 h-100 border-0 shadow-sm">
+              <div class="mb-3 text-center text-sm-start">
+                <h2 class="h5 fw-bold text-dark mb-0">Sales by Category</h2>
+                <span class="small text-muted">Product volume distribution</span>
+              </div>
+
+              <!-- Conic Donut -->
+              <div class="py-2">
+                <div class="gm-donut-chart" role="img" aria-label="Category sales: Burgers 58%, Fries 27%, Drinks 15%">
+                  <div class="gm-donut-hole">
+                    <span class="fs-4 fw-bold text-dark">100%</span>
+                    <span class="small text-muted" style="font-size: 0.72rem;">248 items</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Legend -->
+              <div class="mt-3 pt-2 border-top">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                  <span class="small fw-semibold text-dark">
+                    <span class="gm-legend-dot" style="background-color: var(--bs-primary);"></span>Burgers
+                  </span>
+                  <span class="small fw-bold">58% (144 sold)</span>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                  <span class="small fw-semibold text-dark">
+                    <span class="gm-legend-dot" style="background-color: var(--bs-warning);"></span>Fries
+                  </span>
+                  <span class="small fw-bold">27% (67 sold)</span>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <span class="small fw-semibold text-dark">
+                    <span class="gm-legend-dot" style="background-color: var(--bs-success);"></span>Drinks
+                  </span>
+                  <span class="small fw-bold">15% (37 sold)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- RECENT ORDERS & LOW STOCK ROW -->
+        <div class="row g-3 mb-4">
+          
+          <!-- d) Recent Orders Card (col-lg-7) -->
+          <div class="col-12 col-lg-7">
+            <div class="card p-3 p-md-4 h-100 border-0 shadow-sm">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                  <h2 class="h5 fw-bold text-dark mb-0">Recent Orders</h2>
+                  <span class="small text-muted">Latest 5 sales through terminal</span>
+                </div>
+                <a href="orders.html" class="btn btn-outline-danger btn-sm">
+                  View All <i class="bi bi-arrow-right ms-1"></i>
+                </a>
+              </div>
+
+              <!-- Desktop/Tablet Table (md and up) -->
+              <div class="table-responsive d-none d-md-block">
+                <table class="table table-hover align-middle mb-0">
+                  <thead class="table-light">
+                    <tr>
+                      <th scope="col">Order No.</th>
+                      <th scope="col">Customer</th>
+                      <th scope="col">Total</th>
+                      <th scope="col">Status</th>
+                      <th scope="col" class="text-end">View</th>
+                    </tr>
+                  </thead>
+                  <!-- JS: render recent orders here -->
+                  <tbody id="recentOrdersTableBody">
+                    <tr data-id="1042">
+                      <td><span class="badge bg-dark fw-bold">#1042</span></td>
+                      <td class="fw-semibold text-dark">Walk-in Customer</td>
+                      <td class="fw-bold">Rs. 2,500</td>
+                      <td><span class="badge bg-success">Completed</span></td>
+                      <td class="text-end">
+                        <a href="orders.html" class="btn btn-sm btn-outline-secondary py-0 px-2" aria-label="View order 1042"><i class="bi bi-eye"></i></a>
+                      </td>
+                    </tr>
+                    <tr data-id="1041">
+                      <td><span class="badge bg-dark fw-bold">#1041</span></td>
+                      <td class="fw-semibold text-dark">Nimal Perera</td>
+                      <td class="fw-bold">Rs. 1,880</td>
+                      <td><span class="badge bg-warning text-dark">Pending</span></td>
+                      <td class="text-end">
+                        <a href="orders.html" class="btn btn-sm btn-outline-secondary py-0 px-2" aria-label="View order 1041"><i class="bi bi-eye"></i></a>
+                      </td>
+                    </tr>
+                    <tr data-id="1040">
+                      <td><span class="badge bg-dark fw-bold">#1040</span></td>
+                      <td class="fw-semibold text-dark">Dilani Fernando</td>
+                      <td class="fw-bold">Rs. 2,300</td>
+                      <td><span class="badge bg-success">Completed</span></td>
+                      <td class="text-end">
+                        <a href="orders.html" class="btn btn-sm btn-outline-secondary py-0 px-2" aria-label="View order 1040"><i class="bi bi-eye"></i></a>
+                      </td>
+                    </tr>
+                    <tr data-id="1039">
+                      <td><span class="badge bg-dark fw-bold">#1039</span></td>
+                      <td class="fw-semibold text-dark">Kasun Silva</td>
+                      <td class="fw-bold">Rs. 1,230</td>
+                      <td><span class="badge bg-success">Completed</span></td>
+                      <td class="text-end">
+                        <a href="orders.html" class="btn btn-sm btn-outline-secondary py-0 px-2" aria-label="View order 1039"><i class="bi bi-eye"></i></a>
+                      </td>
+                    </tr>
+                    <tr data-id="1038">
+                      <td><span class="badge bg-dark fw-bold">#1038</span></td>
+                      <td class="fw-semibold text-dark">Chaminda Bandara</td>
+                      <td class="fw-bold">Rs. 3,650</td>
+                      <td><span class="badge bg-warning text-dark">Pending</span></td>
+                      <td class="text-end">
+                        <a href="orders.html" class="btn btn-sm btn-outline-secondary py-0 px-2" aria-label="View order 1038"><i class="bi bi-eye"></i></a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Mobile Compact List (< md) -->
+              <!-- JS: render mobile recent orders here -->
+              <div class="d-md-none" id="recentOrdersMobileList">
+                <div class="list-group list-group-flush">
+                  <div class="list-group-item px-0 py-2 d-flex justify-content-between align-items-center" data-id="1042">
+                    <div>
+                      <div class="fw-semibold text-dark">#1042 • Walk-in</div>
+                      <span class="badge bg-success">Completed</span>
+                    </div>
+                    <div class="text-end">
+                      <div class="fw-bold text-danger">Rs. 2,500</div>
+                      <a href="orders.html" class="small text-muted text-decoration-none">View <i class="bi bi-chevron-right"></i></a>
+                    </div>
+                  </div>
+                  <div class="list-group-item px-0 py-2 d-flex justify-content-between align-items-center" data-id="1041">
+                    <div>
+                      <div class="fw-semibold text-dark">#1041 • Nimal Perera</div>
+                      <span class="badge bg-warning text-dark">Pending</span>
+                    </div>
+                    <div class="text-end">
+                      <div class="fw-bold text-danger">Rs. 1,880</div>
+                      <a href="orders.html" class="small text-muted text-decoration-none">View <i class="bi bi-chevron-right"></i></a>
+                    </div>
+                  </div>
+                  <div class="list-group-item px-0 py-2 d-flex justify-content-between align-items-center" data-id="1040">
+                    <div>
+                      <div class="fw-semibold text-dark">#1040 • Dilani Fernando</div>
+                      <span class="badge bg-success">Completed</span>
+                    </div>
+                    <div class="text-end">
+                      <div class="fw-bold text-danger">Rs. 2,300</div>
+                      <a href="orders.html" class="small text-muted text-decoration-none">View <i class="bi bi-chevron-right"></i></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- e) Low Stock Alerts Card (col-lg-5) -->
+          <div class="col-12 col-lg-5">
+            <div class="card p-3 p-md-4 h-100 border-0 shadow-sm">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                  <h2 class="h5 fw-bold text-dark mb-0">Low Stock Alerts</h2>
+                  <span class="small text-muted">Immediate replenishment required</span>
+                </div>
+                <a href="inventory.html" class="btn btn-outline-warning text-dark btn-sm">
+                  Inventory <i class="bi bi-arrow-right ms-1"></i>
+                </a>
+              </div>
+
+              <!-- JS: render low stock alert list here -->
+              <ul class="list-group list-group-flush" id="lowStockAlertsList">
+                
+                <!-- 1. Cheesy Fries (4 left - yellow) -->
+                <li class="list-group-item px-0 py-2" data-id="6">
+                  <div class="d-flex justify-content-between align-items-center mb-1">
+                    <span class="fw-semibold text-dark">Cheesy Fries</span>
+                    <span class="badge bg-warning text-dark">4 left</span>
+                  </div>
+                  <div class="progress gm-stock-progress mb-2">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: 20%;" aria-valuenow="4" aria-valuemin="0" aria-valuemax="20" aria-label="Cheesy Fries stock"></div>
+                  </div>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span class="small text-muted">Threshold: 10 units</span>
+                    <button type="button" class="btn btn-sm btn-outline-danger py-0 px-2" data-bs-toggle="modal" data-bs-target="#adjustStockModal" data-product="Cheesy Fries" data-stock="4">
+                      Restock
+                    </button>
+                  </div>
+                </li>
+
+                <!-- 2. Veggie Burger (8 left - yellow) -->
+                <li class="list-group-item px-0 py-2" data-id="4">
+                  <div class="d-flex justify-content-between align-items-center mb-1">
+                    <span class="fw-semibold text-dark">Veggie Burger</span>
+                    <span class="badge bg-warning text-dark">8 left</span>
+                  </div>
+                  <div class="progress gm-stock-progress mb-2">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: 40%;" aria-valuenow="8" aria-valuemin="0" aria-valuemax="20" aria-label="Veggie Burger stock"></div>
+                  </div>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span class="small text-muted">Threshold: 10 units</span>
+                    <button type="button" class="btn btn-sm btn-outline-danger py-0 px-2" data-bs-toggle="modal" data-bs-target="#adjustStockModal" data-product="Veggie Burger" data-stock="8">
+                      Restock
+                    </button>
+                  </div>
+                </li>
+
+                <!-- 3. BBQ Bacon Burger (0 left - red) -->
+                <li class="list-group-item px-0 py-2" data-id="9">
+                  <div class="d-flex justify-content-between align-items-center mb-1">
+                    <span class="fw-semibold text-dark">BBQ Bacon Burger</span>
+                    <span class="badge bg-danger">0 left</span>
+                  </div>
+                  <div class="progress gm-stock-progress mb-2">
+                    <div class="progress-bar bg-danger" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="20" aria-label="BBQ Bacon Burger stock"></div>
+                  </div>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span class="small text-danger fw-semibold">Out of Stock!</span>
+                    <button type="button" class="btn btn-sm btn-danger py-0 px-2 text-white" data-bs-toggle="modal" data-bs-target="#adjustStockModal" data-product="BBQ Bacon Burger" data-stock="0">
+                      Restock
+                    </button>
+                  </div>
+                </li>
+
+                <!-- 4. Onion Rings (2 left - yellow) -->
+                <li class="list-group-item px-0 py-2" data-id="10">
+                  <div class="d-flex justify-content-between align-items-center mb-1">
+                    <span class="fw-semibold text-dark">Crispy Onion Rings</span>
+                    <span class="badge bg-warning text-dark">2 left</span>
+                  </div>
+                  <div class="progress gm-stock-progress mb-2">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: 15%;" aria-valuenow="2" aria-valuemin="0" aria-valuemax="20" aria-label="Onion Rings stock"></div>
+                  </div>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span class="small text-muted">Threshold: 15 units</span>
+                    <button type="button" class="btn btn-sm btn-outline-danger py-0 px-2" data-bs-toggle="modal" data-bs-target="#adjustStockModal" data-product="Crispy Onion Rings" data-stock="2">
+                      Restock
+                    </button>
+                  </div>
+                </li>
+
+                <!-- 5. Lemonade (0 left - red) -->
+                <li class="list-group-item px-0 py-2" data-id="11">
+                  <div class="d-flex justify-content-between align-items-center mb-1">
+                    <span class="fw-semibold text-dark">Mint Lemonade</span>
+                    <span class="badge bg-danger">0 left</span>
+                  </div>
+                  <div class="progress gm-stock-progress mb-2">
+                    <div class="progress-bar bg-danger" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="20" aria-label="Mint Lemonade stock"></div>
+                  </div>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span class="small text-danger fw-semibold">Out of Stock!</span>
+                    <button type="button" class="btn btn-sm btn-danger py-0 px-2 text-white" data-bs-toggle="modal" data-bs-target="#adjustStockModal" data-product="Mint Lemonade" data-stock="0">
+                      Restock
+                    </button>
+                  </div>
+                </li>
+
+              </ul>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- TOP SELLING PRODUCTS & QUICK ACTIONS -->
+        <div class="row g-3">
+          
+          <!-- f) Top Selling Products Card (col-lg-8) -->
+          <div class="col-12 col-lg-8">
+            <div class="card p-3 p-md-4 h-100 border-0 shadow-sm">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                  <h2 class="h5 fw-bold text-dark mb-0">Top Selling Products</h2>
+                  <span class="small text-muted">Ranked by volume sold today</span>
+                </div>
+                <span class="badge bg-secondary-subtle text-dark">Today</span>
+              </div>
+
+              <!-- JS: render top selling products list here -->
+              <div class="vstack gap-3" id="topSellingProductsList">
+                
+                <!-- Rank 1: Classic Burger -->
+                <div class="d-flex align-items-center gap-3">
+                  <span class="fw-bold fs-5 text-muted" style="width: 24px;">#1</span>
+                  <div class="flex-grow-1">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                      <span class="fw-semibold text-dark">Classic Burger</span>
+                      <span class="fw-bold text-danger">52 sold <small class="text-muted fw-normal">(Rs. 44,200)</small></span>
+                    </div>
+                    <div class="progress gm-stock-progress">
+                      <div class="progress-bar bg-primary" role="progressbar" style="width: 100%;" aria-valuenow="52" aria-valuemin="0" aria-valuemax="52" aria-label="Classic Burger sales volume"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Rank 2: Cheese Burger -->
+                <div class="d-flex align-items-center gap-3">
+                  <span class="fw-bold fs-5 text-muted" style="width: 24px;">#2</span>
+                  <div class="flex-grow-1">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                      <span class="fw-semibold text-dark">Cheese Burger</span>
+                      <span class="fw-bold text-danger">41 sold <small class="text-muted fw-normal">(Rs. 38,950)</small></span>
+                    </div>
+                    <div class="progress gm-stock-progress">
+                      <div class="progress-bar bg-primary" role="progressbar" style="width: 78%;" aria-valuenow="41" aria-valuemin="0" aria-valuemax="52" aria-label="Cheese Burger sales volume"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Rank 3: French Fries -->
+                <div class="d-flex align-items-center gap-3">
+                  <span class="fw-bold fs-5 text-muted" style="width: 24px;">#3</span>
+                  <div class="flex-grow-1">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                      <span class="fw-semibold text-dark">French Fries</span>
+                      <span class="fw-bold text-danger">38 sold <small class="text-muted fw-normal">(Rs. 17,100)</small></span>
+                    </div>
+                    <div class="progress gm-stock-progress">
+                      <div class="progress-bar bg-warning" role="progressbar" style="width: 73%;" aria-valuenow="38" aria-valuemin="0" aria-valuemax="52" aria-label="French Fries sales volume"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Rank 4: Chicken Burger -->
+                <div class="d-flex align-items-center gap-3">
+                  <span class="fw-bold fs-5 text-muted" style="width: 24px;">#4</span>
+                  <div class="flex-grow-1">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                      <span class="fw-semibold text-dark">Chicken Burger</span>
+                      <span class="fw-bold text-danger">30 sold <small class="text-muted fw-normal">(Rs. 27,000)</small></span>
+                    </div>
+                    <div class="progress gm-stock-progress">
+                      <div class="progress-bar bg-primary" role="progressbar" style="width: 57%;" aria-valuenow="30" aria-valuemin="0" aria-valuemax="52" aria-label="Chicken Burger sales volume"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Rank 5: Cola (Regular) -->
+                <div class="d-flex align-items-center gap-3">
+                  <span class="fw-bold fs-5 text-muted" style="width: 24px;">#5</span>
+                  <div class="flex-grow-1">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                      <span class="fw-semibold text-dark">Cola (Regular)</span>
+                      <span class="fw-bold text-danger">26 sold <small class="text-muted fw-normal">(Rs. 6,500)</small></span>
+                    </div>
+                    <div class="progress gm-stock-progress">
+                      <div class="progress-bar bg-success" role="progressbar" style="width: 50%;" aria-valuenow="26" aria-valuemin="0" aria-valuemax="52" aria-label="Cola sales volume"></div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- g) Quick Actions Card (col-lg-4) -->
+          <div class="col-12 col-lg-4">
+            <div class="card p-3 p-md-4 h-100 border-0 shadow-sm" id="dashboardQuickActions">
+              <h2 class="h5 fw-bold text-dark mb-1">Quick Actions</h2>
+              <p class="small text-muted mb-3">Frequently executed cashier shortcuts</p>
+
+              <div class="d-grid gap-2">
+                <a href="index.html" class="btn btn-primary py-2 text-start d-flex align-items-center justify-content-between">
+                  <span><i class="bi bi-cart-plus me-2"></i>New POS Order</span>
+                  <i class="bi bi-arrow-right"></i>
+                </a>
+                <a href="products.html" class="btn btn-outline-dark py-2 text-start d-flex align-items-center justify-content-between">
+                  <span><i class="bi bi-box-seam me-2"></i>Add New Product</span>
+                  <i class="bi bi-arrow-right"></i>
+                </a>
+                <a href="customers.html" class="btn btn-outline-dark py-2 text-start d-flex align-items-center justify-content-between">
+                  <span><i class="bi bi-person-plus me-2"></i>Register Customer</span>
+                  <i class="bi bi-arrow-right"></i>
+                </a>
+                <button type="button" class="btn btn-outline-warning text-dark py-2 text-start d-flex align-items-center justify-content-between" data-bs-toggle="modal" data-bs-target="#adjustStockModal">
+                  <span><i class="bi bi-clipboard-plus me-2"></i>Adjust Stock Level</span>
+                  <i class="bi bi-arrow-right"></i>
+                </button>
+              </div>
+
+              <!-- Terminal Status Badge -->
+              <div class="mt-4 pt-3 border-top d-flex align-items-center justify-content-between small text-muted">
+                <span>Terminal State:</span>
+                <span class="badge bg-success-subtle text-success"><i class="bi bi-wifi me-1"></i>Online & Synced</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- =========================================================================
+       3. ADJUST STOCK MODAL (#adjustStockModal)
+       Shared across Dashboard and Inventory
+       ========================================================================= -->
+  <div class="modal fade" id="adjustStockModal" tabindex="-1" aria-labelledby="adjustStockModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-charcoal text-white">
+          <h2 class="modal-title h5 mb-0" id="adjustStockModalLabel">
+            <i class="bi bi-clipboard-pulse me-2"></i>Adjust Product Stock
+          </h2>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body p-4">
+          <!-- Product Name & Current Stock Preview -->
+          <div class="p-3 bg-light rounded-3 mb-3 d-flex justify-content-between align-items-center">
+            <div>
+              <span class="small text-muted d-block">Selected Product</span>
+              <strong class="fs-6 text-dark" id="adjustModalProductName">Cheesy Fries</strong>
+            </div>
+            <div class="text-end">
+              <span class="small text-muted d-block">Current Stock</span>
+              <span class="badge bg-warning text-dark fs-6" id="adjustModalCurrentStock">4 units</span>
+            </div>
+          </div>
+
+          <form id="adjustStockForm" novalidate>
+            <!-- Segmented Control: Add Stock / Remove Stock -->
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">Adjustment Type</label>
+              <div class="btn-group w-100 gm-segmented-group" role="group" aria-label="Stock adjustment type">
+                <input type="radio" class="btn-check" name="stockAdjustType" id="adjustTypeAdd" value="add" checked autocomplete="off">
+                <label class="btn btn-outline-success" for="adjustTypeAdd"><i class="bi bi-plus-circle me-1"></i>Add Stock</label>
+
+                <input type="radio" class="btn-check" name="stockAdjustType" id="adjustTypeRemove" value="remove" autocomplete="off">
+                <label class="btn btn-outline-danger" for="adjustTypeRemove"><i class="bi bi-dash-circle me-1"></i>Remove Stock</label>
+              </div>
+            </div>
+
+            <!-- Quantity Input with Stepper & Static Validation Example -->
+            <div class="mb-3">
+              <label for="adjustQuantityInput" class="form-label small fw-semibold">Quantity to Adjust <span class="text-danger">*</span></label>
+              <div class="input-group has-validation">
+                <button type="button" class="btn btn-outline-secondary px-3" aria-label="Decrease quantity">-</button>
+                <input type="number" class="form-control text-center fw-bold is-invalid" id="adjustQuantityInput" value="0" min="1" aria-describedby="adjustQtyFeedback" required>
+                <button type="button" class="btn btn-outline-secondary px-3" aria-label="Increase quantity">+</button>
+                <div id="adjustQtyFeedback" class="invalid-feedback text-center">
+                  Quantity must be at least 1.
+                </div>
+              </div>
+            </div>
+
+            <!-- Reason Select -->
+            <div class="mb-3">
+              <label for="adjustReasonSelect" class="form-label small fw-semibold">Reason for Adjustment <span class="text-danger">*</span></label>
+              <select class="form-select" id="adjustReasonSelect" required>
+                <option value="delivery" selected>New delivery from kitchen/supplier</option>
+                <option value="damaged">Damaged / Expired / Spoiled</option>
+                <option value="correction">Inventory audit correction</option>
+                <option value="other">Other reason</option>
+              </select>
+            </div>
+
+            <!-- Note Textarea -->
+            <div class="mb-3">
+              <label for="adjustNotes" class="form-label small fw-semibold">Reference / Notes</label>
+              <textarea class="form-control" id="adjustNotes" rows="2" placeholder="e.g. Supplier Invoice #INV-8841"></textarea>
+            </div>
+
+            <!-- Calculated Preview Line -->
+            <div class="alert alert-info py-2 px-3 small mb-0 d-flex align-items-center justify-content-between" id="stockPreviewCalc">
+              <span><i class="bi bi-info-circle me-1"></i>Forecasted Result:</span>
+              <strong class="text-dark">New stock: 4 + 10 = 14 units</strong>
+            </div>
+          </form>
+        </div>
+
+        <div class="modal-footer bg-light">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+            <i class="bi bi-check2-circle me-1"></i> Save Stock Change
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       4. TOAST CONTAINER (Shared Static Demo Toasts)
+       ========================================================================= -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3 mb-5 mb-md-3 me-md-3" style="z-index: 1060;">
+    <div id="dashboardDemoToast" class="toast show align-items-center text-bg-dark border-0 shadow-lg" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body d-flex align-items-center">
+          <i class="bi bi-info-circle-fill text-warning fs-5 me-2"></i>
+          <div>
+            <strong class="d-block text-white">Stock Alert</strong>
+            <span class="small text-white-50">5 products below minimum threshold</span>
+          </div>
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap 5.3 Bundle JS via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -22,7 +22,7 @@
 <body class="d-flex flex-column min-vh-100">
 
   <!-- =========================================================================
-       1. SHARED NAVIGATION
+       1. SHARED NAVIGATION (v2 Update: 6 Links in strict order)
        ========================================================================= -->
 
   <!-- Desktop Sidebar (lg and up) -->
@@ -32,10 +32,16 @@
       <span class="brand-font fs-3 text-white lh-1">GrillMaster<span class="text-warning"> POS</span></span>
     </div>
 
-    <ul class="nav flex-column mb-auto">
+    <ul class="nav flex-column mb-auto" id="desktopNavMenu">
+      <li class="nav-item">
+        <a href="dashboard.html" class="nav-link">
+          <i class="bi bi-speedometer2 me-2 fs-5"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
       <li class="nav-item">
         <a href="index.html" class="nav-link">
-          <i class="bi bi-grid-fill me-2 fs-5"></i>
+          <i class="bi bi-cart-fill me-2 fs-5"></i>
           <span>POS / Order</span>
         </a>
       </li>
@@ -43,6 +49,12 @@
         <a href="products.html" class="nav-link">
           <i class="bi bi-box-seam me-2 fs-5"></i>
           <span>Products</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="inventory.html" class="nav-link">
+          <i class="bi bi-clipboard-data me-2 fs-5"></i>
+          <span>Inventory</span>
         </a>
       </li>
       <li class="nav-item">
@@ -78,15 +90,25 @@
       </a>
     </div>
 
-    <ul class="nav flex-column w-100 px-2 text-center">
+    <ul class="nav flex-column w-100 px-2 text-center" id="tabletNavMenu">
+      <li class="nav-item mb-2">
+        <a href="dashboard.html" class="nav-link" title="Dashboard" aria-label="Dashboard">
+          <i class="bi bi-speedometer2"></i>
+        </a>
+      </li>
       <li class="nav-item mb-2">
         <a href="index.html" class="nav-link" title="POS / Order" aria-label="POS / Order">
-          <i class="bi bi-grid-fill"></i>
+          <i class="bi bi-cart-fill"></i>
         </a>
       </li>
       <li class="nav-item mb-2">
         <a href="products.html" class="nav-link" title="Products" aria-label="Products">
           <i class="bi bi-box-seam"></i>
+        </a>
+      </li>
+      <li class="nav-item mb-2">
+        <a href="inventory.html" class="nav-link" title="Inventory" aria-label="Inventory">
+          <i class="bi bi-clipboard-data"></i>
         </a>
       </li>
       <li class="nav-item mb-2">
@@ -111,48 +133,96 @@
   <!-- Mobile Sticky Top Navbar (below md) -->
   <nav class="gm-mobile-topbar navbar sticky-top d-md-none px-3" aria-label="Mobile Top Bar">
     <div class="container-fluid p-0 d-flex justify-content-between align-items-center">
-      <a class="navbar-brand d-flex align-items-center text-white m-0" href="index.html">
-        <i class="bi bi-fire text-danger fs-3 me-2"></i>
-        <span class="brand-font fs-3 text-white">GrillMaster<span class="text-warning"> POS</span></span>
-      </a>
-
+      <div class="d-flex align-items-center">
+        <i class="bi bi-receipt text-warning fs-4 me-2"></i>
+        <span class="fw-bold text-white fs-5">Orders</span>
+      </div>
       <a href="index.html" class="btn btn-primary btn-sm" aria-label="Create new order">
         <i class="bi bi-plus-lg me-1"></i> New
       </a>
     </div>
   </nav>
 
-  <!-- Mobile Fixed Bottom Nav (< md) -->
+  <!-- Mobile Fixed Bottom Nav (< md, 5 items max) -->
   <nav class="gm-bottom-nav fixed-bottom d-md-none" aria-label="Mobile Bottom Navigation">
     <div class="container-fluid h-100 px-0">
-      <div class="row g-0 h-100 text-center align-items-center">
-        <div class="col-3">
+      <div class="row g-0 h-100 text-center align-items-center" id="mobileBottomNav">
+        <div class="col-nav-5">
+          <a href="dashboard.html" class="nav-link">
+            <i class="bi bi-speedometer2"></i>
+            <span>Dashboard</span>
+          </a>
+        </div>
+        <div class="col-nav-5">
           <a href="index.html" class="nav-link">
-            <i class="bi bi-grid-fill"></i>
+            <i class="bi bi-cart-fill"></i>
             <span>POS</span>
           </a>
         </div>
-        <div class="col-3">
-          <a href="products.html" class="nav-link">
-            <i class="bi bi-box-seam"></i>
-            <span>Products</span>
-          </a>
-        </div>
-        <div class="col-3">
-          <a href="customers.html" class="nav-link">
-            <i class="bi bi-people"></i>
-            <span>Customers</span>
-          </a>
-        </div>
-        <div class="col-3">
+        <div class="col-nav-5">
           <a href="orders.html" class="nav-link active" aria-current="page">
             <i class="bi bi-receipt"></i>
             <span>Orders</span>
           </a>
         </div>
+        <div class="col-nav-5">
+          <a href="customers.html" class="nav-link">
+            <i class="bi bi-people"></i>
+            <span>Customers</span>
+          </a>
+        </div>
+        <div class="col-nav-5">
+          <button type="button" class="nav-link w-100 border-0 bg-transparent active text-warning" data-bs-toggle="offcanvas" data-bs-target="#moreNavOffcanvas" aria-controls="moreNavOffcanvas" aria-label="Open More Menu">
+            <i class="bi bi-grid-fill"></i>
+            <span>More</span>
+          </button>
+        </div>
       </div>
     </div>
   </nav>
+
+  <!-- Mobile "More" Offcanvas Drawer -->
+  <div class="offcanvas offcanvas-bottom d-md-none rounded-top-4" tabindex="-1" id="moreNavOffcanvas" aria-labelledby="moreNavOffcanvasLabel" style="height: 60vh;">
+    <div class="offcanvas-header pb-1 pt-2 flex-column align-items-stretch border-bottom">
+      <div class="gm-drag-handle" aria-hidden="true"></div>
+      <div class="d-flex align-items-center justify-content-between w-100 mt-2">
+        <h2 class="h5 fw-bold mb-0" id="moreNavOffcanvasLabel">Quick Navigation</h2>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close menu"></button>
+      </div>
+    </div>
+    <div class="offcanvas-body p-3">
+      <div class="row g-2">
+        <div class="col-6">
+          <a href="products.html" class="card text-center p-3 text-decoration-none card-hover border h-100">
+            <i class="bi bi-box-seam fs-2 text-primary mb-1"></i>
+            <span class="fw-semibold text-dark">Products</span>
+            <span class="small text-muted">Catalog & Prices</span>
+          </a>
+        </div>
+        <div class="col-6">
+          <a href="inventory.html" class="card text-center p-3 text-decoration-none card-hover border h-100">
+            <i class="bi bi-clipboard-data fs-2 text-warning mb-1"></i>
+            <span class="fw-semibold text-dark">Inventory</span>
+            <span class="small text-muted">Stock & Adjust</span>
+          </a>
+        </div>
+        <div class="col-6">
+          <a href="customers.html" class="card text-center p-3 text-decoration-none card-hover border h-100">
+            <i class="bi bi-people fs-2 text-success mb-1"></i>
+            <span class="fw-semibold text-dark">Customers</span>
+            <span class="small text-muted">Loyalty & Profiles</span>
+          </a>
+        </div>
+        <div class="col-6">
+          <a href="orders.html" class="card text-center p-3 text-decoration-none card-hover border border-danger h-100 bg-danger-subtle bg-opacity-10">
+            <i class="bi bi-receipt fs-2 text-danger mb-1"></i>
+            <span class="fw-bold text-dark">Orders</span>
+            <span class="small text-muted">History & Tickets</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- =========================================================================
        2. MAIN CONTENT AREA
@@ -161,88 +231,145 @@
     <main class="flex-grow-1 p-3 p-md-4">
       <div class="container-fluid p-0">
 
-        <!-- Page Header & Filter Pills -->
-        <header class="row align-items-center justify-content-between g-3 mb-4">
-          <div class="col-12 col-md-5">
+        <!-- Page Header -->
+        <header class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+          <div>
             <h1 class="h3 fw-bold mb-0 text-dark d-flex align-items-center">
               Orders History
               <span class="badge bg-secondary-subtle text-dark fs-6 ms-2 rounded-pill px-3 py-1 fw-normal">8 records</span>
             </h1>
-            <p class="text-muted small mb-0 mt-1">Track orders, status updates, and reprint receipts</p>
+            <p class="text-muted small mb-0 mt-1">Multi-relational sales transactions, audit breakdowns, and reprints</p>
           </div>
+          <div>
+            <a href="index.html" class="btn btn-primary">
+              <i class="bi bi-plus-circle me-1"></i> New Order
+            </a>
+          </div>
+        </header>
 
-          <div class="col-12 col-md-7">
-            <div class="row g-2 justify-content-md-end align-items-center">
-              <!-- Search Input -->
-              <div class="col-12 col-sm-6 col-lg-6">
-                <div class="input-group">
-                  <span class="input-group-text bg-white border-end-0 text-muted" id="order-search-addon">
-                    <i class="bi bi-search"></i>
-                  </span>
-                  <input type="text" class="form-control bg-white border-start-0 ps-0" placeholder="Search order no. (e.g. #1042)..." aria-label="Search order number" aria-describedby="order-search-addon">
-                </div>
-              </div>
+        <!-- SUMMARY METRICS STRIP -->
+        <section class="row g-2 mb-4" aria-label="Orders Summary Metrics">
+          <div class="col-6 col-md-3">
+            <div class="card p-2 p-md-3 border-0 shadow-sm text-center">
+              <span class="small text-muted">Total Orders</span>
+              <strong class="fs-4 text-dark" id="statTotalOrdersSummary">8</strong>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="card p-2 p-md-3 border-0 shadow-sm text-center">
+              <span class="small text-muted">Completed</span>
+              <strong class="fs-4 text-success" id="statCompletedOrdersSummary">5</strong>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="card p-2 p-md-3 border-0 shadow-sm text-center">
+              <span class="small text-muted">Pending</span>
+              <strong class="fs-4 text-warning-emphasis" id="statPendingOrdersSummary">2</strong>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="card p-2 p-md-3 border-0 shadow-sm text-center">
+              <span class="small text-muted">Total Revenue</span>
+              <strong class="fs-4 text-danger" id="statRevenueSummary">Rs. 14,890</strong>
+            </div>
+          </div>
+        </section>
 
-              <!-- Filter Pills: All, Pending, Completed -->
-              <div class="col-12 col-sm-6 col-lg-6 text-sm-end">
+        <!-- ADVANCED FILTERS ROW: Date Range + Customer Select + Status Pills -->
+        <section class="card p-3 mb-4 border-0 shadow-sm" aria-label="Order Filter Controls">
+          <div class="row g-2 align-items-center">
+            
+            <!-- Date From -->
+            <div class="col-6 col-md-2">
+              <label for="orderDateFrom" class="form-label small text-muted mb-1">From Date</label>
+              <input type="date" class="form-control form-control-sm" id="orderDateFrom" value="2026-11-06">
+            </div>
+
+            <!-- Date To -->
+            <div class="col-6 col-md-2">
+              <label for="orderDateTo" class="form-label small text-muted mb-1">To Date</label>
+              <input type="date" class="form-control form-control-sm" id="orderDateTo" value="2026-11-07">
+            </div>
+
+            <!-- Customer Select -->
+            <div class="col-12 col-md-3">
+              <label for="orderCustomerFilter" class="form-label small text-muted mb-1">Customer</label>
+              <select class="form-select form-select-sm" id="orderCustomerFilter">
+                <option selected value="all">All Customers</option>
+                <option value="walkin">Walk-in Customer</option>
+                <option value="1">Nimal Perera</option>
+                <option value="2">Kasun Silva</option>
+                <option value="3">Dilani Fernando</option>
+              </select>
+            </div>
+
+            <!-- Search by Order No. -->
+            <div class="col-12 col-md-2">
+              <label for="orderSearchInput" class="form-label small text-muted mb-1">Search</label>
+              <input type="text" class="form-control form-control-sm" id="orderSearchInput" placeholder="#1042">
+            </div>
+
+            <!-- Status Pills -->
+            <div class="col-12 col-md-3 text-md-end mt-md-4">
+              <div class="overflow-auto pb-1 flex-nowrap text-nowrap">
                 <ul class="nav nav-pills d-inline-flex flex-nowrap" id="orderFilterPills" role="tablist">
-                  <li class="nav-item" role="presentation">
-                    <button class="nav-link active py-2 px-3 small" id="filter-all-tab" data-bs-toggle="pill" type="button" role="tab" aria-selected="true">All (8)</button>
+                  <li class="nav-item">
+                    <button class="nav-link active py-1 px-2 small" id="filter-all" data-bs-toggle="pill" type="button" role="tab">All</button>
                   </li>
-                  <li class="nav-item" role="presentation">
-                    <button class="nav-link py-2 px-3 small" id="filter-pending-tab" data-bs-toggle="pill" type="button" role="tab" aria-selected="false">Pending (2)</button>
+                  <li class="nav-item">
+                    <button class="nav-link py-1 px-2 small" id="filter-pending" data-bs-toggle="pill" type="button" role="tab">Pending</button>
                   </li>
-                  <li class="nav-item" role="presentation">
-                    <button class="nav-link py-2 px-3 small" id="filter-completed-tab" data-bs-toggle="pill" type="button" role="tab" aria-selected="false">Completed (6)</button>
+                  <li class="nav-item">
+                    <button class="nav-link py-1 px-2 small" id="filter-completed" data-bs-toggle="pill" type="button" role="tab">Paid</button>
+                  </li>
+                  <li class="nav-item">
+                    <button class="nav-link py-1 px-2 small" id="filter-cancelled" data-bs-toggle="pill" type="button" role="tab">Cancelled</button>
                   </li>
                 </ul>
               </div>
             </div>
+
           </div>
-        </header>
+        </section>
 
         <!-- ===================================================================
              TABLE VIEW (Visible on md and up: d-none d-md-block)
+             Columns: Order no., Date, Customer, Items count, Subtotal, Discount, Total, Status, Actions
              =================================================================== -->
         <div class="card d-none d-md-block overflow-hidden shadow-sm">
           <div class="table-responsive">
             <table class="table table-hover align-middle mb-0">
               <thead>
                 <tr>
-                  <th scope="col" style="width: 100px;">Order No.</th>
+                  <th scope="col" style="width: 90px;">Order No.</th>
                   <th scope="col">Date & Time</th>
                   <th scope="col">Customer</th>
-                  <th scope="col">Items Ordered</th>
+                  <th scope="col">Items</th>
+                  <th scope="col">Subtotal</th>
+                  <th scope="col">Discount</th>
                   <th scope="col">Total</th>
                   <th scope="col">Status</th>
                   <th scope="col" class="text-end">Actions</th>
                 </tr>
               </thead>
-              <tbody>
+              <!-- JS: render orders table here -->
+              <tbody id="ordersTableBody">
 
-                <!-- Order 1: #1042 -->
-                <tr>
+                <!-- Order 1: #1042 (Completed) -->
+                <tr data-id="1042">
                   <td><span class="badge bg-dark fw-bold px-2 py-1">#1042</span></td>
                   <td>
                     <div class="fw-semibold text-dark">07 Nov 2026</div>
                     <div class="small text-muted">12:45 PM</div>
                   </td>
-                  <td>
-                    <span class="fw-semibold text-dark">Walk-in Customer</span>
-                  </td>
-                  <td>
-                    <div class="small text-dark text-truncate" style="max-width: 240px;" title="2x Classic Burger, 1x Cheesy Fries, 2x Cola">
-                      2x Classic Burger, 1x Cheesy Fries, 2x Cola
-                    </div>
-                  </td>
+                  <td><span class="fw-semibold text-dark">Walk-in Customer</span></td>
+                  <td><span class="badge bg-light text-dark border">5 items</span></td>
+                  <td>Rs. 2,750</td>
+                  <td class="text-danger">- Rs. 250</td>
                   <td class="fw-bold text-dark">Rs. 2,500</td>
-                  <td>
-                    <span class="badge bg-success px-2 py-1">
-                      <i class="bi bi-check-circle-fill me-1"></i> Completed
-                    </span>
-                  </td>
+                  <td><span class="badge bg-success"><i class="bi bi-check-circle-fill me-1"></i>Completed</span></td>
                   <td class="text-end">
-                    <button type="button" class="btn btn-outline-dark btn-sm me-1" data-bs-toggle="modal" data-bs-target="#viewOrderModal" title="View receipt" aria-label="View Order #1042">
+                    <button type="button" class="btn btn-outline-dark btn-sm me-1" data-bs-toggle="modal" data-bs-target="#viewOrderModal" title="View order items & receipt" aria-label="View Order #1042">
                       <i class="bi bi-eye"></i>
                     </button>
                     <button type="button" class="btn btn-outline-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#editOrderModal" title="Edit order" aria-label="Edit Order #1042">
@@ -255,7 +382,7 @@
                 </tr>
 
                 <!-- Order 2: #1041 (Pending) -->
-                <tr>
+                <tr data-id="1041">
                   <td><span class="badge bg-dark fw-bold px-2 py-1">#1041</span></td>
                   <td>
                     <div class="fw-semibold text-dark">07 Nov 2026</div>
@@ -265,19 +392,13 @@
                     <span class="fw-semibold text-dark">Nimal Perera</span>
                     <div class="small text-muted">077 123 4567</div>
                   </td>
-                  <td>
-                    <div class="small text-dark text-truncate" style="max-width: 240px;" title="1x Cheese Burger, 1x French Fries, 1x Milkshake">
-                      1x Cheese Burger, 1x French Fries, 1x Milkshake
-                    </div>
-                  </td>
+                  <td><span class="badge bg-light text-dark border">3 items</span></td>
+                  <td>Rs. 1,880</td>
+                  <td>Rs. 0</td>
                   <td class="fw-bold text-dark">Rs. 1,880</td>
-                  <td>
-                    <span class="badge bg-warning text-dark px-2 py-1">
-                      <i class="bi bi-hourglass-split me-1"></i> Pending
-                    </span>
-                  </td>
+                  <td><span class="badge bg-warning text-dark"><i class="bi bi-hourglass-split me-1"></i>Pending</span></td>
                   <td class="text-end">
-                    <button type="button" class="btn btn-outline-dark btn-sm me-1" data-bs-toggle="modal" data-bs-target="#viewOrderModal" title="View receipt" aria-label="View Order #1041">
+                    <button type="button" class="btn btn-outline-dark btn-sm me-1" data-bs-toggle="modal" data-bs-target="#viewOrderModal" title="View order items" aria-label="View Order #1041">
                       <i class="bi bi-eye"></i>
                     </button>
                     <button type="button" class="btn btn-outline-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#editOrderModal" title="Edit order" aria-label="Edit Order #1041">
@@ -289,8 +410,8 @@
                   </td>
                 </tr>
 
-                <!-- Order 3: #1040 -->
-                <tr>
+                <!-- Order 3: #1040 (Completed) -->
+                <tr data-id="1040">
                   <td><span class="badge bg-dark fw-bold px-2 py-1">#1040</span></td>
                   <td>
                     <div class="fw-semibold text-dark">07 Nov 2026</div>
@@ -300,19 +421,13 @@
                     <span class="fw-semibold text-dark">Dilani Fernando</span>
                     <div class="small text-muted">076 555 1234</div>
                   </td>
-                  <td>
-                    <div class="small text-dark text-truncate" style="max-width: 240px;" title="2x Chicken Burger, 2x Cola">
-                      2x Chicken Burger, 2x Cola
-                    </div>
-                  </td>
+                  <td><span class="badge bg-light text-dark border">4 items</span></td>
+                  <td>Rs. 2,300</td>
+                  <td>Rs. 0</td>
                   <td class="fw-bold text-dark">Rs. 2,300</td>
-                  <td>
-                    <span class="badge bg-success px-2 py-1">
-                      <i class="bi bi-check-circle-fill me-1"></i> Completed
-                    </span>
-                  </td>
+                  <td><span class="badge bg-success"><i class="bi bi-check-circle-fill me-1"></i>Completed</span></td>
                   <td class="text-end">
-                    <button type="button" class="btn btn-outline-dark btn-sm me-1" data-bs-toggle="modal" data-bs-target="#viewOrderModal" title="View receipt" aria-label="View Order #1040">
+                    <button type="button" class="btn btn-outline-dark btn-sm me-1" data-bs-toggle="modal" data-bs-target="#viewOrderModal" title="View order items" aria-label="View Order #1040">
                       <i class="bi bi-eye"></i>
                     </button>
                     <button type="button" class="btn btn-outline-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#editOrderModal" title="Edit order" aria-label="Edit Order #1040">
@@ -324,8 +439,8 @@
                   </td>
                 </tr>
 
-                <!-- Order 4: #1039 -->
-                <tr>
+                <!-- Order 4: #1039 (Completed) -->
+                <tr data-id="1039">
                   <td><span class="badge bg-dark fw-bold px-2 py-1">#1039</span></td>
                   <td>
                     <div class="fw-semibold text-dark">07 Nov 2026</div>
@@ -335,19 +450,13 @@
                     <span class="fw-semibold text-dark">Kasun Silva</span>
                     <div class="small text-muted">071 987 6543</div>
                   </td>
-                  <td>
-                    <div class="small text-dark text-truncate" style="max-width: 240px;" title="1x Veggie Burger, 1x French Fries">
-                      1x Veggie Burger, 1x French Fries
-                    </div>
-                  </td>
+                  <td><span class="badge bg-light text-dark border">2 items</span></td>
+                  <td>Rs. 1,230</td>
+                  <td>Rs. 0</td>
                   <td class="fw-bold text-dark">Rs. 1,230</td>
-                  <td>
-                    <span class="badge bg-success px-2 py-1">
-                      <i class="bi bi-check-circle-fill me-1"></i> Completed
-                    </span>
-                  </td>
+                  <td><span class="badge bg-success"><i class="bi bi-check-circle-fill me-1"></i>Completed</span></td>
                   <td class="text-end">
-                    <button type="button" class="btn btn-outline-dark btn-sm me-1" data-bs-toggle="modal" data-bs-target="#viewOrderModal" title="View receipt" aria-label="View Order #1039">
+                    <button type="button" class="btn btn-outline-dark btn-sm me-1" data-bs-toggle="modal" data-bs-target="#viewOrderModal" title="View order items" aria-label="View Order #1039">
                       <i class="bi bi-eye"></i>
                     </button>
                     <button type="button" class="btn btn-outline-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#editOrderModal" title="Edit order" aria-label="Edit Order #1039">
@@ -360,7 +469,7 @@
                 </tr>
 
                 <!-- Order 5: #1038 (Pending) -->
-                <tr>
+                <tr data-id="1038">
                   <td><span class="badge bg-dark fw-bold px-2 py-1">#1038</span></td>
                   <td>
                     <div class="fw-semibold text-dark">07 Nov 2026</div>
@@ -370,19 +479,13 @@
                     <span class="fw-semibold text-dark">Chaminda Bandara</span>
                     <div class="small text-muted">072 334 8899</div>
                   </td>
-                  <td>
-                    <div class="small text-dark text-truncate" style="max-width: 240px;" title="3x Classic Burger, 2x Cheesy Fries">
-                      3x Classic Burger, 2x Cheesy Fries
-                    </div>
-                  </td>
+                  <td><span class="badge bg-light text-dark border">5 items</span></td>
+                  <td>Rs. 3,650</td>
+                  <td>Rs. 0</td>
                   <td class="fw-bold text-dark">Rs. 3,650</td>
-                  <td>
-                    <span class="badge bg-warning text-dark px-2 py-1">
-                      <i class="bi bi-hourglass-split me-1"></i> Pending
-                    </span>
-                  </td>
+                  <td><span class="badge bg-warning text-dark"><i class="bi bi-hourglass-split me-1"></i>Pending</span></td>
                   <td class="text-end">
-                    <button type="button" class="btn btn-outline-dark btn-sm me-1" data-bs-toggle="modal" data-bs-target="#viewOrderModal" title="View receipt" aria-label="View Order #1038">
+                    <button type="button" class="btn btn-outline-dark btn-sm me-1" data-bs-toggle="modal" data-bs-target="#viewOrderModal" title="View order items" aria-label="View Order #1038">
                       <i class="bi bi-eye"></i>
                     </button>
                     <button type="button" class="btn btn-outline-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#editOrderModal" title="Edit order" aria-label="Edit Order #1038">
@@ -394,8 +497,8 @@
                   </td>
                 </tr>
 
-                <!-- Order 6: #1037 -->
-                <tr>
+                <!-- Order 6: #1037 (Completed) -->
+                <tr data-id="1037">
                   <td><span class="badge bg-dark fw-bold px-2 py-1">#1037</span></td>
                   <td>
                     <div class="fw-semibold text-dark">07 Nov 2026</div>
@@ -405,19 +508,13 @@
                     <span class="fw-semibold text-dark">Anura Jayawardena</span>
                     <div class="small text-muted">077 445 6677</div>
                   </td>
-                  <td>
-                    <div class="small text-dark text-truncate" style="max-width: 240px;" title="1x Chicken Burger, 1x Milkshake">
-                      1x Chicken Burger, 1x Milkshake
-                    </div>
-                  </td>
+                  <td><span class="badge bg-light text-dark border">2 items</span></td>
+                  <td>Rs. 1,380</td>
+                  <td>Rs. 0</td>
                   <td class="fw-bold text-dark">Rs. 1,380</td>
-                  <td>
-                    <span class="badge bg-success px-2 py-1">
-                      <i class="bi bi-check-circle-fill me-1"></i> Completed
-                    </span>
-                  </td>
+                  <td><span class="badge bg-success"><i class="bi bi-check-circle-fill me-1"></i>Completed</span></td>
                   <td class="text-end">
-                    <button type="button" class="btn btn-outline-dark btn-sm me-1" data-bs-toggle="modal" data-bs-target="#viewOrderModal" title="View receipt" aria-label="View Order #1037">
+                    <button type="button" class="btn btn-outline-dark btn-sm me-1" data-bs-toggle="modal" data-bs-target="#viewOrderModal" title="View order items" aria-label="View Order #1037">
                       <i class="bi bi-eye"></i>
                     </button>
                     <button type="button" class="btn btn-outline-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#editOrderModal" title="Edit order" aria-label="Edit Order #1037">
@@ -429,43 +526,36 @@
                   </td>
                 </tr>
 
-                <!-- Order 7: #1036 -->
-                <tr>
-                  <td><span class="badge bg-dark fw-bold px-2 py-1">#1036</span></td>
+                <!-- Order 7: #1036 (Cancelled Example - Grey Badge) -->
+                <tr data-id="1036" class="table-light opacity-75">
+                  <td><span class="badge bg-secondary fw-bold px-2 py-1">#1036</span></td>
                   <td>
-                    <div class="fw-semibold text-dark">06 Nov 2026</div>
+                    <div class="fw-semibold text-muted">06 Nov 2026</div>
                     <div class="small text-muted">08:40 PM</div>
                   </td>
                   <td>
-                    <span class="fw-semibold text-dark">Sanduni Wickramasinghe</span>
-                    <div class="small text-muted">078 889 2211</div>
+                    <span class="fw-semibold text-muted">Sanduni Wickramasinghe</span>
                   </td>
-                  <td>
-                    <div class="small text-dark text-truncate" style="max-width: 240px;" title="2x Cheese Burger, 2x French Fries">
-                      2x Cheese Burger, 2x French Fries
-                    </div>
-                  </td>
-                  <td class="fw-bold text-dark">Rs. 2,800</td>
-                  <td>
-                    <span class="badge bg-success px-2 py-1">
-                      <i class="bi bi-check-circle-fill me-1"></i> Completed
-                    </span>
-                  </td>
+                  <td><span class="badge bg-light text-muted border">4 items</span></td>
+                  <td><del class="text-muted">Rs. 2,800</del></td>
+                  <td>Rs. 0</td>
+                  <td class="fw-bold text-muted">Rs. 0 (Void)</td>
+                  <td><span class="badge bg-secondary"><i class="bi bi-x-circle me-1"></i>Cancelled</span></td>
                   <td class="text-end">
-                    <button type="button" class="btn btn-outline-dark btn-sm me-1" data-bs-toggle="modal" data-bs-target="#viewOrderModal" title="View receipt" aria-label="View Order #1036">
+                    <button type="button" class="btn btn-outline-dark btn-sm me-1" data-bs-toggle="modal" data-bs-target="#viewOrderModal" title="View order items" aria-label="View Order #1036">
                       <i class="bi bi-eye"></i>
                     </button>
-                    <button type="button" class="btn btn-outline-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#editOrderModal" title="Edit order" aria-label="Edit Order #1036">
+                    <button type="button" class="btn btn-outline-secondary btn-sm me-1 disabled" aria-disabled="true" title="Cannot edit cancelled order">
                       <i class="bi bi-pencil-square"></i>
                     </button>
-                    <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteOrderModal" title="Delete order" aria-label="Delete Order #1036">
+                    <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteOrderModal" title="Purge order log" aria-label="Delete Order #1036">
                       <i class="bi bi-trash3"></i>
                     </button>
                   </td>
                 </tr>
 
-                <!-- Order 8: #1035 -->
-                <tr>
+                <!-- Order 8: #1035 (Completed) -->
+                <tr data-id="1035">
                   <td><span class="badge bg-dark fw-bold px-2 py-1">#1035</span></td>
                   <td>
                     <div class="fw-semibold text-dark">06 Nov 2026</div>
@@ -475,19 +565,13 @@
                     <span class="fw-semibold text-dark">Roshan Perera</span>
                     <div class="small text-muted">075 221 3344</div>
                   </td>
-                  <td>
-                    <div class="small text-dark text-truncate" style="max-width: 240px;" title="1x Veggie Burger, 1x Cola">
-                      1x Veggie Burger, 1x Cola
-                    </div>
-                  </td>
+                  <td><span class="badge bg-light text-dark border">2 items</span></td>
+                  <td>Rs. 1,030</td>
+                  <td>Rs. 0</td>
                   <td class="fw-bold text-dark">Rs. 1,030</td>
-                  <td>
-                    <span class="badge bg-success px-2 py-1">
-                      <i class="bi bi-check-circle-fill me-1"></i> Completed
-                    </span>
-                  </td>
+                  <td><span class="badge bg-success"><i class="bi bi-check-circle-fill me-1"></i>Completed</span></td>
                   <td class="text-end">
-                    <button type="button" class="btn btn-outline-dark btn-sm me-1" data-bs-toggle="modal" data-bs-target="#viewOrderModal" title="View receipt" aria-label="View Order #1035">
+                    <button type="button" class="btn btn-outline-dark btn-sm me-1" data-bs-toggle="modal" data-bs-target="#viewOrderModal" title="View order items" aria-label="View Order #1035">
                       <i class="bi bi-eye"></i>
                     </button>
                     <button type="button" class="btn btn-outline-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#editOrderModal" title="Edit order" aria-label="Edit Order #1035">
@@ -506,13 +590,13 @@
 
         <!-- ===================================================================
              MOBILE CARD VIEW (Visible below md: d-md-none)
-             Stacked cards with order no., status badge, customer, date, total & actions
              =================================================================== -->
-        <div class="d-md-none">
+        <!-- JS: render mobile order cards here -->
+        <div class="d-md-none" id="ordersMobileCardsList">
           <div class="row g-3">
 
             <!-- Card 1: #1042 -->
-            <div class="col-12">
+            <div class="col-12" data-id="1042">
               <div class="card p-3 shadow-sm">
                 <div class="d-flex justify-content-between align-items-center mb-2">
                   <span class="badge bg-dark fw-bold">#1042</span>
@@ -523,14 +607,11 @@
                   <span class="fs-6 fw-bold text-danger">Rs. 2,500</span>
                 </div>
                 <div class="small text-muted mb-2">
-                  <i class="bi bi-clock me-1"></i>07 Nov 2026, 12:45 PM
-                </div>
-                <div class="small text-muted bg-light p-2 rounded mb-2 text-truncate">
-                  2x Classic Burger, 1x Cheesy Fries, 2x Cola
+                  <i class="bi bi-clock me-1"></i>07 Nov 2026, 12:45 PM • 5 items (Disc: Rs. 250)
                 </div>
                 <div class="d-flex gap-2 pt-2 border-top">
                   <button type="button" class="btn btn-outline-dark btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#viewOrderModal">
-                    <i class="bi bi-eye me-1"></i> Receipt
+                    <i class="bi bi-eye me-1"></i> View Items
                   </button>
                   <button type="button" class="btn btn-outline-secondary btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#editOrderModal">
                     <i class="bi bi-pencil-square me-1"></i> Edit
@@ -542,215 +623,23 @@
               </div>
             </div>
 
-            <!-- Card 2: #1041 (Pending) -->
-            <div class="col-12">
-              <div class="card p-3 shadow-sm">
+            <!-- Card 7: #1036 (Cancelled) -->
+            <div class="col-12" data-id="1036">
+              <div class="card p-3 shadow-sm border-secondary border-opacity-50 bg-light opacity-75">
                 <div class="d-flex justify-content-between align-items-center mb-2">
-                  <span class="badge bg-dark fw-bold">#1041</span>
-                  <span class="badge bg-warning text-dark px-2 py-1">Pending</span>
+                  <span class="badge bg-secondary fw-bold">#1036</span>
+                  <span class="badge bg-secondary px-2 py-1">Cancelled</span>
                 </div>
                 <div class="d-flex justify-content-between align-items-baseline mb-1">
-                  <h2 class="h6 fw-bold mb-0 text-dark">Nimal Perera</h2>
-                  <span class="fs-6 fw-bold text-danger">Rs. 1,880</span>
+                  <h2 class="h6 fw-bold mb-0 text-muted">Sanduni Wickramasinghe</h2>
+                  <span class="fs-6 fw-bold text-muted">Rs. 0 (Void)</span>
                 </div>
                 <div class="small text-muted mb-2">
-                  <i class="bi bi-clock me-1"></i>07 Nov 2026, 12:30 PM
-                </div>
-                <div class="small text-muted bg-light p-2 rounded mb-2 text-truncate">
-                  1x Cheese Burger, 1x French Fries, 1x Milkshake
+                  <i class="bi bi-clock me-1"></i>06 Nov 2026, 08:40 PM • Cancelled by customer
                 </div>
                 <div class="d-flex gap-2 pt-2 border-top">
                   <button type="button" class="btn btn-outline-dark btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#viewOrderModal">
-                    <i class="bi bi-eye me-1"></i> Receipt
-                  </button>
-                  <button type="button" class="btn btn-outline-secondary btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#editOrderModal">
-                    <i class="bi bi-pencil-square me-1"></i> Edit
-                  </button>
-                  <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteOrderModal" aria-label="Delete order">
-                    <i class="bi bi-trash3"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Card 3: #1040 -->
-            <div class="col-12">
-              <div class="card p-3 shadow-sm">
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                  <span class="badge bg-dark fw-bold">#1040</span>
-                  <span class="badge bg-success px-2 py-1">Completed</span>
-                </div>
-                <div class="d-flex justify-content-between align-items-baseline mb-1">
-                  <h2 class="h6 fw-bold mb-0 text-dark">Dilani Fernando</h2>
-                  <span class="fs-6 fw-bold text-danger">Rs. 2,300</span>
-                </div>
-                <div class="small text-muted mb-2">
-                  <i class="bi bi-clock me-1"></i>07 Nov 2026, 12:10 PM
-                </div>
-                <div class="small text-muted bg-light p-2 rounded mb-2 text-truncate">
-                  2x Chicken Burger, 2x Cola
-                </div>
-                <div class="d-flex gap-2 pt-2 border-top">
-                  <button type="button" class="btn btn-outline-dark btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#viewOrderModal">
-                    <i class="bi bi-eye me-1"></i> Receipt
-                  </button>
-                  <button type="button" class="btn btn-outline-secondary btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#editOrderModal">
-                    <i class="bi bi-pencil-square me-1"></i> Edit
-                  </button>
-                  <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteOrderModal" aria-label="Delete order">
-                    <i class="bi bi-trash3"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Card 4: #1039 -->
-            <div class="col-12">
-              <div class="card p-3 shadow-sm">
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                  <span class="badge bg-dark fw-bold">#1039</span>
-                  <span class="badge bg-success px-2 py-1">Completed</span>
-                </div>
-                <div class="d-flex justify-content-between align-items-baseline mb-1">
-                  <h2 class="h6 fw-bold mb-0 text-dark">Kasun Silva</h2>
-                  <span class="fs-6 fw-bold text-danger">Rs. 1,230</span>
-                </div>
-                <div class="small text-muted mb-2">
-                  <i class="bi bi-clock me-1"></i>07 Nov 2026, 11:45 AM
-                </div>
-                <div class="small text-muted bg-light p-2 rounded mb-2 text-truncate">
-                  1x Veggie Burger, 1x French Fries
-                </div>
-                <div class="d-flex gap-2 pt-2 border-top">
-                  <button type="button" class="btn btn-outline-dark btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#viewOrderModal">
-                    <i class="bi bi-eye me-1"></i> Receipt
-                  </button>
-                  <button type="button" class="btn btn-outline-secondary btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#editOrderModal">
-                    <i class="bi bi-pencil-square me-1"></i> Edit
-                  </button>
-                  <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteOrderModal" aria-label="Delete order">
-                    <i class="bi bi-trash3"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Card 5: #1038 (Pending) -->
-            <div class="col-12">
-              <div class="card p-3 shadow-sm">
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                  <span class="badge bg-dark fw-bold">#1038</span>
-                  <span class="badge bg-warning text-dark px-2 py-1">Pending</span>
-                </div>
-                <div class="d-flex justify-content-between align-items-baseline mb-1">
-                  <h2 class="h6 fw-bold mb-0 text-dark">Chaminda Bandara</h2>
-                  <span class="fs-6 fw-bold text-danger">Rs. 3,650</span>
-                </div>
-                <div class="small text-muted mb-2">
-                  <i class="bi bi-clock me-1"></i>07 Nov 2026, 11:20 AM
-                </div>
-                <div class="small text-muted bg-light p-2 rounded mb-2 text-truncate">
-                  3x Classic Burger, 2x Cheesy Fries
-                </div>
-                <div class="d-flex gap-2 pt-2 border-top">
-                  <button type="button" class="btn btn-outline-dark btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#viewOrderModal">
-                    <i class="bi bi-eye me-1"></i> Receipt
-                  </button>
-                  <button type="button" class="btn btn-outline-secondary btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#editOrderModal">
-                    <i class="bi bi-pencil-square me-1"></i> Edit
-                  </button>
-                  <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteOrderModal" aria-label="Delete order">
-                    <i class="bi bi-trash3"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Card 6: #1037 -->
-            <div class="col-12">
-              <div class="card p-3 shadow-sm">
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                  <span class="badge bg-dark fw-bold">#1037</span>
-                  <span class="badge bg-success px-2 py-1">Completed</span>
-                </div>
-                <div class="d-flex justify-content-between align-items-baseline mb-1">
-                  <h2 class="h6 fw-bold mb-0 text-dark">Anura Jayawardena</h2>
-                  <span class="fs-6 fw-bold text-danger">Rs. 1,380</span>
-                </div>
-                <div class="small text-muted mb-2">
-                  <i class="bi bi-clock me-1"></i>07 Nov 2026, 10:55 AM
-                </div>
-                <div class="small text-muted bg-light p-2 rounded mb-2 text-truncate">
-                  1x Chicken Burger, 1x Milkshake
-                </div>
-                <div class="d-flex gap-2 pt-2 border-top">
-                  <button type="button" class="btn btn-outline-dark btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#viewOrderModal">
-                    <i class="bi bi-eye me-1"></i> Receipt
-                  </button>
-                  <button type="button" class="btn btn-outline-secondary btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#editOrderModal">
-                    <i class="bi bi-pencil-square me-1"></i> Edit
-                  </button>
-                  <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteOrderModal" aria-label="Delete order">
-                    <i class="bi bi-trash3"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Card 7: #1036 -->
-            <div class="col-12">
-              <div class="card p-3 shadow-sm">
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                  <span class="badge bg-dark fw-bold">#1036</span>
-                  <span class="badge bg-success px-2 py-1">Completed</span>
-                </div>
-                <div class="d-flex justify-content-between align-items-baseline mb-1">
-                  <h2 class="h6 fw-bold mb-0 text-dark">Sanduni Wickramasinghe</h2>
-                  <span class="fs-6 fw-bold text-danger">Rs. 2,800</span>
-                </div>
-                <div class="small text-muted mb-2">
-                  <i class="bi bi-clock me-1"></i>06 Nov 2026, 08:40 PM
-                </div>
-                <div class="small text-muted bg-light p-2 rounded mb-2 text-truncate">
-                  2x Cheese Burger, 2x French Fries
-                </div>
-                <div class="d-flex gap-2 pt-2 border-top">
-                  <button type="button" class="btn btn-outline-dark btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#viewOrderModal">
-                    <i class="bi bi-eye me-1"></i> Receipt
-                  </button>
-                  <button type="button" class="btn btn-outline-secondary btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#editOrderModal">
-                    <i class="bi bi-pencil-square me-1"></i> Edit
-                  </button>
-                  <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteOrderModal" aria-label="Delete order">
-                    <i class="bi bi-trash3"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Card 8: #1035 -->
-            <div class="col-12">
-              <div class="card p-3 shadow-sm">
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                  <span class="badge bg-dark fw-bold">#1035</span>
-                  <span class="badge bg-success px-2 py-1">Completed</span>
-                </div>
-                <div class="d-flex justify-content-between align-items-baseline mb-1">
-                  <h2 class="h6 fw-bold mb-0 text-dark">Roshan Perera</h2>
-                  <span class="fs-6 fw-bold text-danger">Rs. 1,030</span>
-                </div>
-                <div class="small text-muted mb-2">
-                  <i class="bi bi-clock me-1"></i>06 Nov 2026, 08:15 PM
-                </div>
-                <div class="small text-muted bg-light p-2 rounded mb-2 text-truncate">
-                  1x Veggie Burger, 1x Cola
-                </div>
-                <div class="d-flex gap-2 pt-2 border-top">
-                  <button type="button" class="btn btn-outline-dark btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#viewOrderModal">
-                    <i class="bi bi-eye me-1"></i> Receipt
-                  </button>
-                  <button type="button" class="btn btn-outline-secondary btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#editOrderModal">
-                    <i class="bi bi-pencil-square me-1"></i> Edit
+                    <i class="bi bi-eye me-1"></i> View Items
                   </button>
                   <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteOrderModal" aria-label="Delete order">
                     <i class="bi bi-trash3"></i>
@@ -767,109 +656,123 @@
   </div>
 
   <!-- =========================================================================
-       3. VIEW ORDER / RECEIPT MODAL (#viewOrderModal)
-       Ticket design identical to checkout ticket
+       3. VIEW ORDER MODAL (#viewOrderModal, modal-lg)
+       Customer info block + orderItems table + totals + print
        ========================================================================= -->
   <div class="modal fade" id="viewOrderModal" tabindex="-1" aria-labelledby="viewOrderModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-sm">
-      <div class="modal-content border-0 bg-transparent">
-        
-        <div class="receipt-ticket">
-          <div class="text-center mb-2">
-            <div class="brand-font receipt-title text-danger mb-0">GRILLMASTER</div>
-            <div class="small fw-bold text-uppercase tracking-wider">Fresh Gourmet Burgers</div>
-            <div class="small text-muted">No. 42, Galle Road, Colombo 03</div>
-            <div class="small text-muted">Tel: +94 11 234 5678</div>
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-charcoal text-white">
+          <div class="d-flex align-items-center gap-2">
+            <h2 class="modal-title h5 mb-0" id="viewOrderModalLabel">Order Breakdown: #1042</h2>
+            <span class="badge bg-success">Completed & Paid</span>
           </div>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
 
-          <div class="receipt-divider"></div>
-
-          <div class="d-flex justify-content-between small text-muted">
-            <span>Order: <strong>#1042</strong></span>
-            <span>Date: 07/11/2026</span>
-          </div>
-          <div class="d-flex justify-content-between small text-muted">
-            <span>Server: Cashier 01</span>
-            <span>Time: 12:45 PM</span>
-          </div>
-          <div class="small text-muted">
-            <span>Customer: Walk-in Customer</span>
-          </div>
-
-          <div class="receipt-divider"></div>
-
-          <!-- Items on Ticket -->
-          <div class="small mb-1">
-            <div class="d-flex justify-content-between fw-semibold">
-              <span>Classic Burger x 2</span>
-              <span>1,700.00</span>
+        <div class="modal-body p-4">
+          <!-- Customer Info Block -->
+          <div class="card bg-light border-0 p-3 mb-3">
+            <div class="row g-2">
+              <div class="col-6 col-md-3">
+                <span class="small text-muted d-block">Customer</span>
+                <strong class="text-dark">Walk-in Customer</strong>
+              </div>
+              <div class="col-6 col-md-3">
+                <span class="small text-muted d-block">Terminal Server</span>
+                <strong class="text-dark">Cashier 01</strong>
+              </div>
+              <div class="col-6 col-md-3">
+                <span class="small text-muted d-block">Date & Time</span>
+                <span class="small text-dark">07 Nov 2026, 12:45 PM</span>
+              </div>
+              <div class="col-6 col-md-3">
+                <span class="small text-muted d-block">Payment Method</span>
+                <span class="badge bg-dark">CASH</span>
+              </div>
             </div>
-            <div class="text-muted small ps-2">@ 850.00 each</div>
           </div>
 
-          <div class="small mb-1">
-            <div class="d-flex justify-content-between fw-semibold">
-              <span>Cheesy Fries x 1</span>
-              <span>550.00</span>
-            </div>
-            <div class="text-muted small ps-2">@ 550.00 each</div>
+          <!-- orderItems Table -->
+          <h3 class="h6 fw-bold mb-2 text-dark">Ordered Items (orderItems relation)</h3>
+          <div class="table-responsive mb-3 border rounded">
+            <table class="table table-hover align-middle mb-0">
+              <thead class="table-light">
+                <tr>
+                  <th scope="col">Product Item</th>
+                  <th scope="col" class="text-end">Sale Price</th>
+                  <th scope="col" class="text-center">Qty</th>
+                  <th scope="col" class="text-end">Line Total</th>
+                </tr>
+              </thead>
+              <!-- JS: render order items table here -->
+              <tbody id="viewOrderItemsTableBody">
+                <tr data-product-id="1">
+                  <td>
+                    <div class="fw-semibold">Classic Burger</div>
+                    <div class="small text-muted">SKU: GM-BUR-01</div>
+                  </td>
+                  <td class="text-end">Rs. 850.00</td>
+                  <td class="text-center"><span class="badge bg-light text-dark border">2</span></td>
+                  <td class="text-end fw-bold">Rs. 1,700.00</td>
+                </tr>
+                <tr data-product-id="6">
+                  <td>
+                    <div class="fw-semibold">Cheesy Fries</div>
+                    <div class="small text-muted">SKU: GM-FRY-02</div>
+                  </td>
+                  <td class="text-end">Rs. 550.00</td>
+                  <td class="text-center"><span class="badge bg-light text-dark border">1</span></td>
+                  <td class="text-end fw-bold">Rs. 550.00</td>
+                </tr>
+                <tr data-product-id="7">
+                  <td>
+                    <div class="fw-semibold">Cola (Regular)</div>
+                    <div class="small text-muted">SKU: GM-DRK-01</div>
+                  </td>
+                  <td class="text-end">Rs. 250.00</td>
+                  <td class="text-center"><span class="badge bg-light text-dark border">2</span></td>
+                  <td class="text-end fw-bold">Rs. 500.00</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
-          <div class="small mb-2">
-            <div class="d-flex justify-content-between fw-semibold">
-              <span>Cola (Regular) x 2</span>
-              <span>500.00</span>
-            </div>
-            <div class="text-muted small ps-2">@ 250.00 each</div>
-          </div>
-
-          <div class="receipt-divider"></div>
-
-          <div class="d-flex justify-content-between small text-muted mb-1">
-            <span>Subtotal:</span>
-            <span>Rs. 2,750.00</span>
-          </div>
-          <div class="d-flex justify-content-between small text-muted mb-1">
-            <span>Discount:</span>
-            <span>- Rs. 250.00</span>
-          </div>
-          <div class="d-flex justify-content-between align-items-center mt-2 pt-2 border-top border-dark border-1">
-            <span class="receipt-total">TOTAL:</span>
-            <span class="receipt-total text-danger">Rs. 2,500.00</span>
-          </div>
-          <div class="d-flex justify-content-between small text-muted mt-1">
-            <span>Status:</span>
-            <span class="badge bg-success">PAID & COMPLETED</span>
-          </div>
-
-          <div class="receipt-divider"></div>
-
-          <div class="text-center small text-muted mt-3">
-            <div class="fw-bold">*** CUSTOMER RECEIPT COPY ***</div>
-            <div class="mt-2 text-dark font-monospace fw-bold" style="letter-spacing: 0.25em;">
-              ||| | ||||| || |||| ||| ||
+          <!-- Totals Breakdown Block -->
+          <div class="row justify-content-end">
+            <div class="col-12 col-md-5">
+              <div class="d-flex justify-content-between small text-muted mb-1">
+                <span>Subtotal:</span>
+                <span>Rs. 2,750.00</span>
+              </div>
+              <div class="d-flex justify-content-between small text-muted mb-2">
+                <span>Discount Applied:</span>
+                <span class="text-danger">- Rs. 250.00</span>
+              </div>
+              <div class="d-flex justify-content-between align-items-center pt-2 border-top border-dark">
+                <strong class="fs-5 text-dark">Order Total:</strong>
+                <strong class="fs-4 text-danger">Rs. 2,500.00</strong>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="mt-3 d-flex gap-2">
-          <button type="button" class="btn btn-dark flex-fill" onclick="window.print()" aria-label="Print receipt">
-            <i class="bi bi-printer-fill me-1"></i> Print
+        <div class="modal-footer bg-light d-flex justify-content-between">
+          <button type="button" class="btn btn-dark" onclick="window.print()" aria-label="Print receipt">
+            <i class="bi bi-printer-fill me-1"></i> Print Ticket
           </button>
-          <button type="button" class="btn btn-outline-light flex-fill" data-bs-dismiss="modal">
-            Close
-          </button>
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
         </div>
-
       </div>
     </div>
   </div>
 
   <!-- =========================================================================
        4. EDIT ORDER MODAL (#editOrderModal)
+       Status select, customer select, editable items table & "+ Add item" row
        ========================================================================= -->
   <div class="modal fade" id="editOrderModal" tabindex="-1" aria-labelledby="editOrderModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-md">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content">
         <div class="modal-header bg-charcoal text-white">
           <h2 class="modal-title h5 mb-0" id="editOrderModalLabel">
@@ -879,7 +782,7 @@
         </div>
 
         <div class="modal-body p-4">
-          <form class="row g-3">
+          <form class="row g-3" id="editOrderForm">
 
             <!-- Status Select -->
             <div class="col-12 col-sm-6">
@@ -895,63 +798,97 @@
             <div class="col-12 col-sm-6">
               <label for="editOrderCustomer" class="form-label fw-semibold">Customer</label>
               <select class="form-select" id="editOrderCustomer">
-                <option value="1" selected>Nimal Perera</option>
-                <option value="2">Kasun Silva</option>
-                <option value="3">Dilani Fernando</option>
+                <option value="1" selected>Nimal Perera (077 123 4567)</option>
+                <option value="2">Kasun Silva (071 987 6543)</option>
+                <option value="3">Dilani Fernando (076 555 1234)</option>
                 <option value="walkin">Walk-in Customer</option>
               </select>
             </div>
 
-            <!-- Items and Quantity Editor -->
+            <!-- Editable Items Table -->
             <div class="col-12">
-              <label class="form-label fw-semibold mb-2">Order Items & Quantities</label>
-              <ul class="list-group">
-                <li class="list-group-item d-flex justify-content-between align-items-center py-2">
-                  <div>
-                    <div class="fw-semibold">Cheese Burger</div>
-                    <div class="small text-muted">Rs. 950 each</div>
-                  </div>
-                  <div class="d-flex align-items-center gap-2">
-                    <label for="qtyItem1" class="visually-hidden">Quantity for Cheese Burger</label>
-                    <input type="number" id="qtyItem1" class="form-control form-control-sm text-center" style="width: 65px;" value="1" min="1">
-                    <button type="button" class="btn btn-outline-danger btn-sm" aria-label="Remove Cheese Burger">
-                      <i class="bi bi-trash3"></i>
-                    </button>
-                  </div>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center py-2">
-                  <div>
-                    <div class="fw-semibold">French Fries</div>
-                    <div class="small text-muted">Rs. 450 each</div>
-                  </div>
-                  <div class="d-flex align-items-center gap-2">
-                    <label for="qtyItem2" class="visually-hidden">Quantity for French Fries</label>
-                    <input type="number" id="qtyItem2" class="form-control form-control-sm text-center" style="width: 65px;" value="1" min="1">
-                    <button type="button" class="btn btn-outline-danger btn-sm" aria-label="Remove French Fries">
-                      <i class="bi bi-trash3"></i>
-                    </button>
-                  </div>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center py-2">
-                  <div>
-                    <div class="fw-semibold">Milkshake</div>
-                    <div class="small text-muted">Rs. 480 each</div>
-                  </div>
-                  <div class="d-flex align-items-center gap-2">
-                    <label for="qtyItem3" class="visually-hidden">Quantity for Milkshake</label>
-                    <input type="number" id="qtyItem3" class="form-control form-control-sm text-center" style="width: 65px;" value="1" min="1">
-                    <button type="button" class="btn btn-outline-danger btn-sm" aria-label="Remove Milkshake">
-                      <i class="bi bi-trash3"></i>
-                    </button>
-                  </div>
-                </li>
-              </ul>
+              <label class="form-label fw-semibold mb-2">Order Items (Quantities & Add Items)</label>
+              <div class="table-responsive border rounded mb-2">
+                <table class="table table-hover align-middle mb-0">
+                  <thead class="table-light">
+                    <tr>
+                      <th scope="col">Product Item</th>
+                      <th scope="col" style="width: 110px;">Unit Price</th>
+                      <th scope="col" style="width: 90px;" class="text-center">Quantity</th>
+                      <th scope="col" style="width: 110px;" class="text-end">Total</th>
+                      <th scope="col" style="width: 50px;" class="text-end">Remove</th>
+                    </tr>
+                  </thead>
+                  <!-- JS: render editable order items here -->
+                  <tbody id="editOrderItemsTableBody">
+                    <tr data-product-id="2">
+                      <td class="fw-semibold">Cheese Burger</td>
+                      <td>Rs. 950</td>
+                      <td>
+                        <input type="number" class="form-control form-control-sm text-center" value="1" min="1" aria-label="Quantity for Cheese Burger">
+                      </td>
+                      <td class="text-end fw-bold">Rs. 950</td>
+                      <td class="text-end">
+                        <button type="button" class="btn btn-outline-danger btn-sm p-1" aria-label="Remove item"><i class="bi bi-trash3"></i></button>
+                      </td>
+                    </tr>
+                    <tr data-product-id="5">
+                      <td class="fw-semibold">French Fries</td>
+                      <td>Rs. 450</td>
+                      <td>
+                        <input type="number" class="form-control form-control-sm text-center" value="1" min="1" aria-label="Quantity for French Fries">
+                      </td>
+                      <td class="text-end fw-bold">Rs. 450</td>
+                      <td class="text-end">
+                        <button type="button" class="btn btn-outline-danger btn-sm p-1" aria-label="Remove item"><i class="bi bi-trash3"></i></button>
+                      </td>
+                    </tr>
+                    <tr data-product-id="8">
+                      <td class="fw-semibold">Milkshake</td>
+                      <td>Rs. 480</td>
+                      <td>
+                        <input type="number" class="form-control form-control-sm text-center" value="1" min="1" aria-label="Quantity for Milkshake">
+                      </td>
+                      <td class="text-end fw-bold">Rs. 480</td>
+                      <td class="text-end">
+                        <button type="button" class="btn btn-outline-danger btn-sm p-1" aria-label="Remove item"><i class="bi bi-trash3"></i></button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- "+ Add Item" Row with Product Select -->
+              <div class="row g-2 align-items-center p-2 bg-light rounded">
+                <div class="col-8 col-sm-9">
+                  <select class="form-select form-select-sm" id="addItemSelect" aria-label="Select product to append">
+                    <option selected disabled>+ Select product to add to order...</option>
+                    <option value="1">Classic Burger (Rs. 850)</option>
+                    <option value="3">Chicken Burger (Rs. 900)</option>
+                    <option value="4">Veggie Burger (Rs. 780)</option>
+                    <option value="7">Cola (Regular) (Rs. 250)</option>
+                  </select>
+                </div>
+                <div class="col-4 col-sm-3">
+                  <button type="button" class="btn btn-outline-primary btn-sm w-100" id="btnAddItemToOrder">
+                    <i class="bi bi-plus-lg me-1"></i> Add Item
+                  </button>
+                </div>
+              </div>
             </div>
 
-            <!-- Notes -->
+            <!-- Live-looking Totals Strip -->
             <div class="col-12">
-              <label for="orderNotes" class="form-label fw-semibold">Special Instructions</label>
-              <textarea class="form-control" id="orderNotes" rows="2" placeholder="e.g. Extra ketchup, no onions..."></textarea>
+              <div class="d-flex justify-content-between align-items-center p-3 bg-light rounded border">
+                <div>
+                  <span class="small text-muted d-block">Subtotal: Rs. 1,880 • Discount: Rs. 0</span>
+                  <span class="small text-muted">Stock reduction will be recalculated upon save.</span>
+                </div>
+                <div class="text-end">
+                  <span class="small text-muted d-block">Updated Total:</span>
+                  <strong class="fs-4 text-danger">Rs. 1,880</strong>
+                </div>
+              </div>
             </div>
 
           </form>
@@ -969,21 +906,49 @@
 
   <!-- =========================================================================
        5. DELETE CONFIRMATION MODAL (#deleteOrderModal)
+       With warning box: "Stock for the items in this order will be added back..."
        ========================================================================= -->
   <div class="modal fade" id="deleteOrderModal" tabindex="-1" aria-labelledby="deleteOrderModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-dialog modal-dialog-centered modal-md">
       <div class="modal-content">
         <div class="modal-body text-center p-4">
           <div class="rounded-circle bg-danger-subtle text-danger d-inline-flex align-items-center justify-content-center mb-3" style="width: 56px; height: 56px;">
             <i class="bi bi-trash3-fill fs-3"></i>
           </div>
-          <h2 class="h5 fw-bold mb-2" id="deleteOrderModalLabel">Delete this order?</h2>
-          <p class="text-muted small mb-0">Are you sure you want to delete order <strong class="text-dark">#1041</strong>? This will permanently cancel and void this transaction.</p>
+          <h2 class="h5 fw-bold mb-2" id="deleteOrderModalLabel">Delete this order transaction?</h2>
+          <p class="text-muted small mb-3">Are you sure you want to delete order <strong class="text-dark">#1041</strong>? This will permanently cancel and void this sales record.</p>
+          
+          <!-- Warning Alert Box regarding Stock Reversion -->
+          <div class="alert alert-warning text-start small mb-0 d-flex align-items-start">
+            <i class="bi bi-exclamation-triangle-fill fs-5 text-warning-emphasis me-2"></i>
+            <div>
+              <strong>Inventory Reversal Notice:</strong><br>
+              Stock for the items in this order will be automatically added back to inventory upon confirmation.
+            </div>
+          </div>
         </div>
         <div class="modal-footer flex-nowrap p-0 border-top">
           <button type="button" class="btn btn-link fs-6 text-decoration-none col-6 m-0 rounded-0 border-end py-3 text-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-link fs-6 text-decoration-none col-6 m-0 rounded-0 py-3 text-danger fw-semibold" data-bs-dismiss="modal">Delete</button>
+          <button type="button" class="btn btn-link fs-6 text-decoration-none col-6 m-0 rounded-0 py-3 text-danger fw-semibold" data-bs-dismiss="modal">Confirm & Void</button>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       6. TOAST CONTAINER (Shared Static Demo Toasts)
+       ========================================================================= -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3 mb-5 mb-md-3 me-md-3" style="z-index: 1060;">
+    <div id="ordersDemoToast" class="toast show align-items-center text-bg-dark border-0 shadow-lg" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body d-flex align-items-center">
+          <i class="bi bi-receipt text-warning fs-5 me-2"></i>
+          <div>
+            <strong class="d-block text-white">Orders Synchronized</strong>
+            <span class="small text-white-50">8 transaction records loaded</span>
+          </div>
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
       </div>
     </div>
   </div>
