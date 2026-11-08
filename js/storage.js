@@ -534,7 +534,7 @@ function getDashboardStats() {
  */
 function formatPrice(amount) {
   const num = Number(amount) || 0;
-  return 'Rs. ' + num.toLocaleString('en-US', {
+  return 'LKR ' + num.toLocaleString('en-US', {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2
   });
@@ -578,41 +578,59 @@ function formatDate(isoString) {
 function seedData() {
   const existingRaw = localStorage.getItem(STORAGE_KEYS.PRODUCTS);
 
-  // If products already exist in localStorage, upgrade old placeholder URLs to local SVGs
+  // LKR Pricing map for initial fast-food menu
+  const lkrPriceMap = {
+    'BRG-001': 1450.00,
+    'BRG-002': 1850.00,
+    'BRG-003': 1650.00,
+    'BRG-004': 1750.00,
+    'FRY-001': 950.00,
+    'FRY-002': 850.00,
+    'DRK-001': 750.00
+  };
+
+  const svgMap = {
+    'BRG-001': 'images/classic-cheeseburger.svg',
+    'BRG-002': 'images/double-bacon-smash.svg',
+    'BRG-003': 'images/spicy-jalapeno.svg',
+    'BRG-004': 'images/mushroom-swiss.svg',
+    'FRY-001': 'images/loaded-fries.svg',
+    'FRY-002': 'images/crispy-onion-rings.svg',
+    'DRK-001': 'images/chocolate-thickshake.svg'
+  };
+
+  // If products already exist in localStorage, upgrade old placeholder URLs and dollar prices to LKR
   if (existingRaw !== null) {
     const existing = getAll(STORAGE_KEYS.PRODUCTS);
-    const svgMap = {
-      'BRG-001': 'images/classic-cheeseburger.svg',
-      'BRG-002': 'images/double-bacon-smash.svg',
-      'BRG-003': 'images/spicy-jalapeno.svg',
-      'BRG-004': 'images/mushroom-swiss.svg',
-      'FRY-001': 'images/loaded-fries.svg',
-      'FRY-002': 'images/crispy-onion-rings.svg',
-      'DRK-001': 'images/chocolate-thickshake.svg'
-    };
-
     let updated = false;
+
     existing.forEach(p => {
+      // Upgrade image if old placeholder
       if (svgMap[p.sku] && (!p.image || p.image.includes('placehold.co'))) {
         p.image = svgMap[p.sku];
+        updated = true;
+      }
+      // Upgrade price to LKR if it was old dollar price (< 100)
+      if (lkrPriceMap[p.sku] && Number(p.price) < 100) {
+        p.price = lkrPriceMap[p.sku];
         updated = true;
       }
     });
 
     if (updated) {
       saveAll(STORAGE_KEYS.PRODUCTS, existing);
-      console.log('GrillMaster POS: Upgraded existing product images to local SVGs.');
+      console.log('GrillMaster POS: Upgraded existing products to LKR pricing & local SVGs.');
     }
     return;
   }
 
-  // 1. Initial 7 Burger Shop Products with custom vector SVGs
+  // 1. Initial 7 Burger Shop Products with LKR pricing and custom vector SVGs
   const initialProducts = [
     {
       id: 'prod_1',
       name: 'Classic Cheeseburger',
       category: 'Burgers',
-      price: 8.99,
+      price: 1450.00,
       stock: 45,
       sku: 'BRG-001',
       image: 'images/classic-cheeseburger.svg',
@@ -622,7 +640,7 @@ function seedData() {
       id: 'prod_2',
       name: 'Double Bacon Smash',
       category: 'Burgers',
-      price: 11.49,
+      price: 1850.00,
       stock: 28,
       sku: 'BRG-002',
       image: 'images/double-bacon-smash.svg',
@@ -632,7 +650,7 @@ function seedData() {
       id: 'prod_3',
       name: 'Spicy Jalapeño Burger',
       category: 'Burgers',
-      price: 9.99,
+      price: 1650.00,
       stock: 8, // Low Stock (<= 10)
       sku: 'BRG-003',
       image: 'images/spicy-jalapeno.svg',
@@ -642,7 +660,7 @@ function seedData() {
       id: 'prod_4',
       name: 'Mushroom Swiss Burger',
       category: 'Burgers',
-      price: 10.99,
+      price: 1750.00,
       stock: 4, // Low Stock (<= 10)
       sku: 'BRG-004',
       image: 'images/mushroom-swiss.svg',
@@ -652,7 +670,7 @@ function seedData() {
       id: 'prod_5',
       name: 'Loaded Truffle Fries',
       category: 'Fries & Sides',
-      price: 5.49,
+      price: 950.00,
       stock: 40,
       sku: 'FRY-001',
       image: 'images/loaded-fries.svg',
@@ -662,7 +680,7 @@ function seedData() {
       id: 'prod_6',
       name: 'Crispy Onion Rings',
       category: 'Fries & Sides',
-      price: 4.99,
+      price: 850.00,
       stock: 25,
       sku: 'FRY-002',
       image: 'images/crispy-onion-rings.svg',
@@ -672,7 +690,7 @@ function seedData() {
       id: 'prod_7',
       name: 'Chocolate Thickshake',
       category: 'Drinks',
-      price: 4.49,
+      price: 750.00,
       stock: 0, // Out of Stock (= 0)
       sku: 'DRK-001',
       image: 'images/chocolate-thickshake.svg',
@@ -705,7 +723,7 @@ function seedData() {
     }
   ];
 
-  // 3. Initial Sample Orders (so Dashboard and Orders table are immediately populated)
+  // 3. Initial Sample Orders with LKR pricing
   const initialOrders = [
     {
       id: 'ord_1',
@@ -713,12 +731,12 @@ function seedData() {
       customerId: 'cust_1',
       customerName: 'Alex Morgan',
       items: [
-        { productId: 'prod_1', name: 'Classic Cheeseburger', price: 8.99, qty: 2, total: 17.98 },
-        { productId: 'prod_5', name: 'Loaded Truffle Fries', price: 5.49, qty: 1, total: 5.49 }
+        { productId: 'prod_1', name: 'Classic Cheeseburger', price: 1450.00, qty: 2, total: 2900.00 },
+        { productId: 'prod_5', name: 'Loaded Truffle Fries', price: 950.00, qty: 1, total: 950.00 }
       ],
-      subtotal: 23.47,
-      discount: 2.00,
-      total: 21.47,
+      subtotal: 3850.00,
+      discount: 350.00,
+      total: 3500.00,
       status: 'Completed',
       createdAt: new Date(Date.now() - 3600000 * 3).toISOString() // 3 hours ago
     },
@@ -728,11 +746,11 @@ function seedData() {
       customerId: 'cust_2',
       customerName: 'Sarah Jenkins',
       items: [
-        { productId: 'prod_2', name: 'Double Bacon Smash', price: 11.49, qty: 1, total: 11.49 }
+        { productId: 'prod_2', name: 'Double Bacon Smash', price: 1850.00, qty: 1, total: 1850.00 }
       ],
-      subtotal: 11.49,
+      subtotal: 1850.00,
       discount: 0,
-      total: 11.49,
+      total: 1850.00,
       status: 'Completed',
       createdAt: new Date(Date.now() - 3600000 * 1.5).toISOString() // 1.5 hours ago
     }

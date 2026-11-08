@@ -95,26 +95,27 @@
         <div class="col-12 col-md-6 col-lg-5">
           <div class="search-input-group">
             <i class="bi bi-search"></i>
-            <input type="text" class="form-control" placeholder="Search product by name or SKU..." aria-label="Search product">
+            <input type="text" class="form-control" id="searchInput" oninput="applyFilters()" placeholder="Search product by name or SKU..." aria-label="Search product">
           </div>
         </div>
 
         <!-- Filter Select -->
         <div class="col-6 col-md-3 col-lg-3">
-          <select class="form-select" aria-label="Category filter">
-            <option selected>All Categories</option>
-            <option value="1">Burgers</option>
-            <option value="2">Fries &amp; Sides</option>
-            <option value="3">Drinks</option>
+          <select class="form-select" id="categoryFilter" onchange="applyFilters()" aria-label="Category filter">
+            <option value="All" selected>All Categories</option>
+            <option value="Burgers">Burgers</option>
+            <option value="Fries & Sides">Fries &amp; Sides</option>
+            <option value="Drinks">Drinks</option>
+            <option value="Desserts">Desserts</option>
           </select>
         </div>
 
         <!-- Stock Status Filter -->
         <div class="col-6 col-md-3 col-lg-4 text-md-end">
           <div class="btn-group" role="group" aria-label="Stock status pills">
-            <button type="button" class="btn btn-sm btn-outline-dark active">All (28)</button>
-            <button type="button" class="btn btn-sm btn-outline-dark">Low Stock (4)</button>
-            <button type="button" class="btn btn-sm btn-outline-dark">Out of Stock (1)</button>
+            <button type="button" class="btn btn-sm btn-outline-dark active" id="btnFilterAll" onclick="setStockFilter('all')">All (<span id="countAll">0</span>)</button>
+            <button type="button" class="btn btn-sm btn-outline-dark" id="btnFilterLow" onclick="setStockFilter('low')">Low Stock (<span id="countLow">0</span>)</button>
+            <button type="button" class="btn btn-sm btn-outline-dark" id="btnFilterOut" onclick="setStockFilter('out')">Out of Stock (<span id="countOut">0</span>)</button>
           </div>
         </div>
       </div>
@@ -168,21 +169,21 @@
 
             <!-- Category Select -->
             <div class="mb-3">
-              <label class="form-label fw-semibold small">Category</label>
+              <label class="form-label fw-semibold small" for="category">Category</label>
               <select class="form-select" required id="category">
                 <option value="" disabled selected>Select category...</option>
-                <option value="burgers">Burgers</option>
-                <option value="fries">Fries &amp; Sides</option>
-                <option value="drinks">Drinks</option>
-                <option value="desserts">Desserts</option>
+                <option value="Burgers">Burgers</option>
+                <option value="Fries & Sides">Fries &amp; Sides</option>
+                <option value="Drinks">Drinks</option>
+                <option value="Desserts">Desserts</option>
               </select>
             </div>
 
             <!-- Price and Stock Quantity -->
             <div class="row g-2 mb-3">
               <div class="col-6">
-                <label class="form-label fw-semibold small" for="price">Price ($)</label>
-                <input type="number" step="0.01" class="form-control" id="price" placeholder="9.99" required>
+                <label class="form-label fw-semibold small" for="price">Price (LKR)</label>
+                <input type="number" step="0.01" class="form-control" id="price" placeholder="1450.00" required>
               </div>
               <div class="col-6">
                 <label class="form-label fw-semibold small" >Stock Quantity</label>
@@ -219,41 +220,46 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form>
+          <form id="editProductForm">
+            <!-- Hidden ID Field -->
+            <input type="hidden" id="editProductId">
+
             <div class="mb-3">
-              <label class="form-label fw-semibold small">Product Name</label>
-              <input type="text" class="form-control" value="Spicy Jalapeño Burger">
+              <label class="form-label fw-semibold small" for="editProductName">Product Name</label>
+              <input type="text" class="form-control" id="editProductName" required>
             </div>
 
             <div class="mb-3">
-              <label class="form-label fw-semibold small">Category</label>
-              <select class="form-select">
-                <option value="burgers" selected>Burgers</option>
-                <option value="fries">Fries &amp; Sides</option>
-                <option value="drinks">Drinks</option>
+              <label class="form-label fw-semibold small" for="editCategory">Category</label>
+              <select class="form-select" id="editCategory" required>
+                <option value="Burgers">Burgers</option>
+                <option value="Fries & Sides">Fries &amp; Sides</option>
+                <option value="Drinks">Drinks</option>
+                <option value="Desserts">Desserts</option>
               </select>
             </div>
 
             <div class="row g-2 mb-3">
               <div class="col-6">
-                <label class="form-label fw-semibold small">Price ($)</label>
-                <input type="number" step="0.01" class="form-control" value="9.99">
+                <label class="form-label fw-semibold small" for="editPrice">Price (LKR)</label>
+                <input type="number" step="0.01" class="form-control" id="editPrice" required>
               </div>
               <div class="col-6">
-                <label class="form-label fw-semibold small">Stock Quantity</label>
-                <input type="number" class="form-control" value="8">
+                <label class="form-label fw-semibold small" for="editQty">Stock Quantity</label>
+                <input type="number" class="form-control" id="editQty" required>
               </div>
             </div>
 
             <div class="mb-3">
-              <label class="form-label fw-semibold small">Image URL</label>
-              <input type="url" class="form-control" value="https://images.unsplash.com/photo-1550547660-d9450f859349">
+              <label class="form-label fw-semibold small" for="editImgLink">Image URL / Path</label>
+              <input type="text" class="form-control" id="editImgLink">
+              <div class="form-text small text-muted">Paste an image link or leave empty for default.</div>
             </div>
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-primary-custom" data-bs-dismiss="modal">Update Product</button>
+          <button type="button" class="btn btn-primary-custom" onclick="handleUpdateProduct();">Update Product</button>
         </div>
       </div>
     </div>
@@ -272,20 +278,21 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
+          <input type="hidden" id="stockProductId">
           <div class="mb-2">
-            <strong class="text-dark d-block">Spicy Jalapeño Burger</strong>
-            <span class="text-muted small">Current inventory: <strong>8 units</strong></span>
+            <strong class="text-dark d-block" id="stockProductName">Product Name</strong>
+            <span class="text-muted small">Current inventory: <strong id="stockCurrentQty">0 pcs</strong></span>
           </div>
 
           <div class="my-3">
-            <label class="form-label fw-semibold small">Quantity to Add (+)</label>
-            <input type="number" class="form-control form-control-lg text-center fw-bold" value="20" min="1">
+            <label class="form-label fw-semibold small" for="stockAddQty">Quantity to Add (+)</label>
+            <input type="number" class="form-control form-control-lg text-center fw-bold" id="stockAddQty" value="10" min="1" oninput="updateStockPreview()">
           </div>
-          <div class="text-muted small text-center">New Total Stock: <strong>28 units</strong></div>
+          <div class="text-muted small text-center">New Total Stock: <strong id="stockNewQtyPreview">—</strong></div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-success btn-sm px-3" data-bs-dismiss="modal">Confirm Stock</button>
+          <button type="button" class="btn btn-success btn-sm px-3" onclick="handleConfirmStock();">Confirm Stock</button>
         </div>
       </div>
     </div>
@@ -298,14 +305,15 @@
     <div class="modal-dialog modal-dialog-centered modal-sm">
       <div class="modal-content text-center p-2">
         <div class="modal-body">
+          <input type="hidden" id="deleteProductId">
           <div class="text-danger mb-2">
             <i class="bi bi-exclamation-triangle-fill fs-1"></i>
           </div>
           <h5 class="fw-bold mb-1">Delete Product?</h5>
-          <p class="text-muted small mb-3">Are you sure you want to remove this item from the active menu?</p>
+          <p class="text-muted small mb-3">Are you sure you want to remove <strong id="deleteProductName">this item</strong> from the active menu?</p>
           <div class="d-flex justify-content-center gap-2">
             <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal">Yes, Delete</button>
+            <button type="button" class="btn btn-danger btn-sm" onclick="handleConfirmDelete();">Yes, Delete</button>
           </div>
         </div>
       </div>
