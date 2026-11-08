@@ -3,876 +3,374 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GrillMaster POS - New Order</title>
+  <title>GrillMaster POS - Burger Shop Dashboard</title>
 
-  <!-- Google Fonts: Poppins & Bangers -->
+  <!-- Google Font: Poppins -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Bootstrap 5.3 CSS -->
+  <!-- Bootstrap 5 CSS CDN -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Bootstrap Icons -->
+  <!-- Bootstrap Icons CDN -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-  <!-- Custom Theme CSS -->
+  <!-- Custom Theme Stylesheet -->
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="d-flex flex-column min-vh-100">
+<body>
 
   <!-- =========================================================================
-       1. SHARED NAVIGATION (Streamlined 5-Item Menu: 100% Native on Mobile)
+       Single Responsive Navbar (Desktop: Fixed Top / Mobile: Fixed Bottom)
        ========================================================================= -->
-
-  <!-- Desktop Sidebar (lg and up) -->
-  <aside class="gm-sidebar-lg d-none d-lg-flex flex-column p-3 text-white" aria-label="Desktop Navigation">
-    <div class="d-flex align-items-center mb-4 pb-2 border-bottom border-secondary border-opacity-25 px-2">
-      <i class="bi bi-fire text-danger fs-3 me-2"></i>
-      <span class="brand-font fs-3 text-white lh-1">GrillMaster<span class="text-warning"> POS</span></span>
-    </div>
-
-    <ul class="nav flex-column mb-auto" id="desktopNavMenu">
-      <li class="nav-item">
-        <a href="dashboard.html" class="nav-link">
-          <i class="bi bi-speedometer2 me-2 fs-5"></i>
-          <span>Dashboard</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="index.html" class="nav-link active" aria-current="page">
-          <i class="bi bi-cart-fill me-2 fs-5"></i>
-          <span>POS / Order</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="products.html" class="nav-link">
-          <i class="bi bi-box-seam me-2 fs-5"></i>
-          <span>Products & Stock</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="customers.html" class="nav-link">
-          <i class="bi bi-people me-2 fs-5"></i>
-          <span>Customers</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="orders.html" class="nav-link">
-          <i class="bi bi-receipt me-2 fs-5"></i>
-          <span>Orders</span>
-        </a>
-      </li>
-    </ul>
-
-    <div class="mt-auto pt-3 border-top border-secondary border-opacity-25 px-2 d-flex align-items-center">
-      <div class="rounded-circle bg-warning text-dark d-flex align-items-center justify-content-center fw-bold me-2" style="width: 36px; height: 36px; font-size: 0.85rem;">
-        CA
-      </div>
-      <div class="small overflow-hidden">
-        <div class="fw-semibold text-white text-truncate">Cashier 01</div>
-        <div class="text-white-50 small">Terminal #2</div>
-      </div>
-    </div>
-  </aside>
-
-  <!-- Tablet Rail Sidebar (md only) -->
-  <aside class="gm-sidebar-md d-none d-md-flex d-lg-none flex-column align-items-center py-3 text-white" aria-label="Tablet Navigation">
-    <div class="mb-4">
-      <a href="index.html" class="text-decoration-none text-white" aria-label="GrillMaster POS Home">
-        <i class="bi bi-fire text-danger fs-2"></i>
-      </a>
-    </div>
-
-    <ul class="nav flex-column w-100 px-2 text-center" id="tabletNavMenu">
-      <li class="nav-item mb-2">
-        <a href="dashboard.html" class="nav-link" title="Dashboard" aria-label="Dashboard">
-          <i class="bi bi-speedometer2"></i>
-        </a>
-      </li>
-      <li class="nav-item mb-2">
-        <a href="index.html" class="nav-link active" title="POS / Order" aria-label="POS / Order" aria-current="page">
-          <i class="bi bi-cart-fill"></i>
-        </a>
-      </li>
-      <li class="nav-item mb-2">
-        <a href="products.html" class="nav-link" title="Products & Stock" aria-label="Products & Stock">
-          <i class="bi bi-box-seam"></i>
-        </a>
-      </li>
-      <li class="nav-item mb-2">
-        <a href="customers.html" class="nav-link" title="Customers" aria-label="Customers">
-          <i class="bi bi-people"></i>
-        </a>
-      </li>
-      <li class="nav-item mb-2">
-        <a href="orders.html" class="nav-link" title="Orders" aria-label="Orders">
-          <i class="bi bi-receipt"></i>
-        </a>
-      </li>
-    </ul>
-
-    <div class="mt-auto">
-      <div class="rounded-circle bg-warning text-dark d-flex align-items-center justify-content-center fw-bold" style="width: 38px; height: 38px; font-size: 0.85rem;" title="Cashier 01">
-        CA
-      </div>
-    </div>
-  </aside>
-
-  <!-- Mobile Sticky Top Navbar (below md) -->
-  <nav class="gm-mobile-topbar navbar sticky-top d-md-none px-3" aria-label="Mobile Top Bar">
-    <div class="container-fluid p-0 d-flex justify-content-between align-items-center">
-      <a class="navbar-brand d-flex align-items-center text-white m-0" href="index.html">
-        <i class="bi bi-fire text-danger fs-3 me-2"></i>
-        <span class="brand-font fs-3 text-white">GrillMaster<span class="text-warning"> POS</span></span>
+  <nav class="custom-navbar">
+    <div class="nav-container">
+      <!-- Brand Logo (Hidden on mobile via CSS) -->
+      <a class="navbar-brand" href="index.html">
+        <i class="bi bi-fire brand-icon"></i>
+        <span>GrillMaster <span class="brand-highlight">POS</span></span>
       </a>
 
-      <!-- Cart Trigger Button for Offcanvas on Mobile/Tablet -->
-      <button class="btn btn-primary position-relative d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas" aria-controls="cartOffcanvas" aria-label="View current cart items">
-        <i class="bi bi-bag-check-fill fs-5"></i>
-        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark fw-bold" id="mobileCartItemBadge">
-          3
-          <span class="visually-hidden">items in cart</span>
-        </span>
-      </button>
-    </div>
-  </nav>
-
-  <!-- Mobile Fixed Bottom Nav (< md, 5 Slots: Perfect 1-Tap Access!) -->
-  <nav class="gm-bottom-nav fixed-bottom d-md-none" aria-label="Mobile Bottom Navigation">
-    <div class="container-fluid h-100 px-0">
-      <div class="row g-0 h-100 text-center align-items-center" id="mobileBottomNav">
-        <div class="col-nav-5">
-          <a href="dashboard.html" class="nav-link">
-            <i class="bi bi-speedometer2"></i>
+      <!-- Navigation Links -->
+      <ul class="nav-links-list">
+        <li class="nav-item">
+          <a class="nav-link active" href="index.html">
+            <i class="bi bi-speedometer2 nav-icon"></i>
             <span>Dashboard</span>
           </a>
-        </div>
-        <div class="col-nav-5">
-          <a href="index.html" class="nav-link active" aria-current="page">
-            <i class="bi bi-cart-fill"></i>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="pos.html">
+            <i class="bi bi-calculator nav-icon"></i>
             <span>POS</span>
           </a>
-        </div>
-        <div class="col-nav-5">
-          <a href="products.html" class="nav-link">
-            <i class="bi bi-box-seam"></i>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="products.html">
+            <i class="bi bi-box-seam nav-icon"></i>
             <span>Products</span>
           </a>
-        </div>
-        <div class="col-nav-5">
-          <a href="customers.html" class="nav-link">
-            <i class="bi bi-people"></i>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="customers.html">
+            <i class="bi bi-people nav-icon"></i>
             <span>Customers</span>
           </a>
-        </div>
-        <div class="col-nav-5">
-          <a href="orders.html" class="nav-link">
-            <i class="bi bi-receipt"></i>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="orders.html">
+            <i class="bi bi-receipt nav-icon"></i>
             <span>Orders</span>
           </a>
-        </div>
-      </div>
+        </li>
+      </ul>
     </div>
   </nav>
 
   <!-- =========================================================================
-       2. MAIN CONTENT AREA
-       Layout: Main Catalog Column + Sticky Desktop Order Panel
+       Main Content Container
        ========================================================================= -->
-  <div class="gm-main-layout d-flex flex-column flex-grow-1">
-    <div class="container-fluid p-0 d-flex flex-grow-1">
+  <main class="container animate-page">
 
-      <!-- Catalog Main Column -->
-      <main class="flex-grow-1 p-3 p-md-4 overflow-y-auto">
+    <!-- Page Header -->
+    <header class="page-header d-flex flex-wrap justify-content-between align-items-center gap-3">
+      <div>
+        <h1 class="page-title">Dashboard Overview</h1>
+        <p class="page-subtitle">Welcome back, Manager! Here is today's burger shop performance summary.</p>
+      </div>
+      <div>
+        <a href="pos.html" class="btn btn-primary-custom d-inline-flex align-items-center gap-2">
+          <i class="bi bi-plus-circle"></i>
+          <span>New Sale (POS)</span>
+        </a>
+      </div>
+    </header>
 
-        <!-- Top Header & Search Bar -->
-        <header class="row align-items-center mb-3 g-3">
-          <div class="col-12 col-sm-6">
-            <h1 class="h3 fw-bold mb-0 text-dark d-flex align-items-center">
-              New Order
-              <span class="badge bg-danger-subtle text-danger fs-6 ms-2 rounded-pill px-3 py-1 fw-normal">Dine In / Takeaway</span>
-            </h1>
+    <!-- 4 Summary Stat Cards (row + col-6 col-md-3 with staggered animation) -->
+    <section class="row g-3 mb-4">
+      <!-- Card 1: Total Sales -->
+      <div class="col-6 col-md-3">
+        <div class="stat-card animate-page delay-1">
+          <div class="stat-icon-wrapper stat-icon-sales">
+            <i class="bi bi-currency-dollar"></i>
           </div>
-          <div class="col-12 col-sm-6">
-            <div class="input-group">
-              <span class="input-group-text bg-white border-end-0 text-muted" id="search-addon">
-                <i class="bi bi-search"></i>
-              </span>
-              <input type="text" class="form-control bg-white border-start-0 ps-0" id="posSearchInput" placeholder="Search items..." aria-label="Search items" aria-describedby="search-addon">
-            </div>
-          </div>
-        </header>
-
-        <!-- Category Filter Pills (Horizontally scrollable on mobile) -->
-        <section class="mb-4" aria-label="Food Categories">
-          <div class="overflow-auto pb-2 flex-nowrap text-nowrap">
-            <ul class="nav nav-pills flex-nowrap" id="categoryPills" role="tablist">
-              <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="pills-all-tab" data-bs-toggle="pill" data-bs-target="#pills-all" type="button" role="tab" aria-selected="true">
-                  <i class="bi bi-grid me-1"></i> All Items (8)
-                </button>
-              </li>
-              <li class="nav-item" role="presentation">
-                <button class="nav-link" id="pills-burgers-tab" data-bs-toggle="pill" data-bs-target="#pills-burgers" type="button" role="tab" aria-selected="false">
-                  <i class="bi bi-egg-fried me-1"></i> Burgers (4)
-                </button>
-              </li>
-              <li class="nav-item" role="presentation">
-                <button class="nav-link" id="pills-fries-tab" data-bs-toggle="pill" data-bs-target="#pills-fries" type="button" role="tab" aria-selected="false">
-                  <i class="bi bi-fire me-1"></i> Fries (2)
-                </button>
-              </li>
-              <li class="nav-item" role="presentation">
-                <button class="nav-link" id="pills-drinks-tab" data-bs-toggle="pill" data-bs-target="#pills-drinks" type="button" role="tab" aria-selected="false">
-                  <i class="bi bi-cup-straw me-1"></i> Drinks (2)
-                </button>
-              </li>
-            </ul>
-          </div>
-        </section>
-
-        <!-- Product Grid: 8 Cards featuring Normal, Low Stock, and Out of Stock States -->
-        <section aria-label="Product Catalog">
-          <div class="row g-3" id="productGrid">
-
-            <!-- 1. Classic Burger (Normal State) -->
-            <div class="col-6 col-md-4 col-xl-3" data-id="1" data-category="burgers">
-              <div class="card card-hover product-card h-100 position-relative">
-                <div class="ratio ratio-4x3 bg-light overflow-hidden">
-                  <img src="images/classic-burger.svg" alt="Classic Burger" class="img-fluid">
-                </div>
-                <div class="card-body p-3 d-flex flex-column">
-                  <div class="d-flex justify-content-between align-items-start mb-1">
-                    <span class="badge bg-warning-subtle text-dark small fw-semibold">Burgers</span>
-                    <span class="badge bg-success-subtle text-success small"><i class="bi bi-check-circle-fill me-1"></i>In Stock</span>
-                  </div>
-                  <h2 class="card-title h6 fw-bold mb-0 text-truncate" title="Classic Burger">Classic Burger</h2>
-                  <div class="d-flex justify-content-between align-items-baseline mb-2">
-                    <span class="fw-bold text-danger fs-6">Rs. 850</span>
-                    <span class="small text-muted">45 left</span>
-                  </div>
-                  <button type="button" class="btn btn-primary btn-sm w-100 mt-auto" aria-label="Add Classic Burger to order">
-                    <i class="bi bi-plus-lg me-1"></i> Add
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- 2. Cheese Burger (Normal State) -->
-            <div class="col-6 col-md-4 col-xl-3" data-id="2" data-category="burgers">
-              <div class="card card-hover product-card h-100 position-relative">
-                <div class="ratio ratio-4x3 bg-light overflow-hidden">
-                  <img src="images/cheese-burger.svg" alt="Cheese Burger" class="img-fluid">
-                </div>
-                <div class="card-body p-3 d-flex flex-column">
-                  <div class="d-flex justify-content-between align-items-start mb-1">
-                    <span class="badge bg-warning-subtle text-dark small fw-semibold">Burgers</span>
-                    <span class="badge bg-success-subtle text-success small"><i class="bi bi-check-circle-fill me-1"></i>In Stock</span>
-                  </div>
-                  <h2 class="card-title h6 fw-bold mb-0 text-truncate" title="Cheese Burger">Cheese Burger</h2>
-                  <div class="d-flex justify-content-between align-items-baseline mb-2">
-                    <span class="fw-bold text-danger fs-6">Rs. 950</span>
-                    <span class="small text-muted">32 left</span>
-                  </div>
-                  <button type="button" class="btn btn-primary btn-sm w-100 mt-auto" aria-label="Add Cheese Burger to order">
-                    <i class="bi bi-plus-lg me-1"></i> Add
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- 3. Chicken Burger (Normal State) -->
-            <div class="col-6 col-md-4 col-xl-3" data-id="3" data-category="burgers">
-              <div class="card card-hover product-card h-100 position-relative">
-                <div class="ratio ratio-4x3 bg-light overflow-hidden">
-                  <img src="images/chicken-burger.svg" alt="Chicken Burger" class="img-fluid">
-                </div>
-                <div class="card-body p-3 d-flex flex-column">
-                  <div class="d-flex justify-content-between align-items-start mb-1">
-                    <span class="badge bg-warning-subtle text-dark small fw-semibold">Burgers</span>
-                    <span class="badge bg-success-subtle text-success small"><i class="bi bi-check-circle-fill me-1"></i>In Stock</span>
-                  </div>
-                  <h2 class="card-title h6 fw-bold mb-0 text-truncate" title="Chicken Burger">Chicken Burger</h2>
-                  <div class="d-flex justify-content-between align-items-baseline mb-2">
-                    <span class="fw-bold text-danger fs-6">Rs. 900</span>
-                    <span class="small text-muted">28 left</span>
-                  </div>
-                  <button type="button" class="btn btn-primary btn-sm w-100 mt-auto" aria-label="Add Chicken Burger to order">
-                    <i class="bi bi-plus-lg me-1"></i> Add
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- 4. Veggie Burger (Low Stock State) -->
-            <div class="col-6 col-md-4 col-xl-3" data-id="4" data-category="burgers">
-              <div class="card card-hover product-card h-100 position-relative border-warning border-opacity-50">
-                <div class="ratio ratio-4x3 bg-light overflow-hidden">
-                  <img src="images/veggie-burger.svg" alt="Veggie Burger" class="img-fluid">
-                </div>
-                <div class="card-body p-3 d-flex flex-column">
-                  <div class="d-flex justify-content-between align-items-start mb-1">
-                    <span class="badge bg-warning-subtle text-dark small fw-semibold">Burgers</span>
-                    <span class="badge bg-warning text-dark small fw-bold">Only 8 left</span>
-                  </div>
-                  <h2 class="card-title h6 fw-bold mb-0 text-truncate" title="Veggie Burger">Veggie Burger</h2>
-                  <div class="d-flex justify-content-between align-items-baseline mb-2">
-                    <span class="fw-bold text-danger fs-6">Rs. 780</span>
-                    <span class="small text-warning-emphasis fw-bold">8 left</span>
-                  </div>
-                  <button type="button" class="btn btn-primary btn-sm w-100 mt-auto" aria-label="Add Veggie Burger to order">
-                    <i class="bi bi-plus-lg me-1"></i> Add
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- 5. French Fries (Normal State) -->
-            <div class="col-6 col-md-4 col-xl-3" data-id="5" data-category="fries">
-              <div class="card card-hover product-card h-100 position-relative">
-                <div class="ratio ratio-4x3 bg-light overflow-hidden">
-                  <img src="images/french-fries.svg" alt="French Fries" class="img-fluid">
-                </div>
-                <div class="card-body p-3 d-flex flex-column">
-                  <div class="d-flex justify-content-between align-items-start mb-1">
-                    <span class="badge bg-warning-subtle text-dark small fw-semibold">Fries</span>
-                    <span class="badge bg-success-subtle text-success small"><i class="bi bi-check-circle-fill me-1"></i>In Stock</span>
-                  </div>
-                  <h2 class="card-title h6 fw-bold mb-0 text-truncate" title="French Fries">French Fries</h2>
-                  <div class="d-flex justify-content-between align-items-baseline mb-2">
-                    <span class="fw-bold text-danger fs-6">Rs. 450</span>
-                    <span class="small text-muted">60 left</span>
-                  </div>
-                  <button type="button" class="btn btn-primary btn-sm w-100 mt-auto" aria-label="Add French Fries to order">
-                    <i class="bi bi-plus-lg me-1"></i> Add
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- 6. Cheesy Fries (Low Stock State: Only 4 left) -->
-            <div class="col-6 col-md-4 col-xl-3" data-id="6" data-category="fries">
-              <div class="card card-hover product-card h-100 position-relative border-warning border-opacity-75">
-                <div class="ratio ratio-4x3 bg-light overflow-hidden">
-                  <img src="images/cheesy-fries.svg" alt="Cheesy Fries" class="img-fluid">
-                </div>
-                <div class="card-body p-3 d-flex flex-column">
-                  <div class="d-flex justify-content-between align-items-start mb-1">
-                    <span class="badge bg-warning-subtle text-dark small fw-semibold">Fries</span>
-                    <span class="badge bg-warning text-dark small fw-bold">Only 4 left</span>
-                  </div>
-                  <h2 class="card-title h6 fw-bold mb-0 text-truncate" title="Cheesy Fries">Cheesy Fries</h2>
-                  <div class="d-flex justify-content-between align-items-baseline mb-2">
-                    <span class="fw-bold text-danger fs-6">Rs. 550</span>
-                    <span class="small text-danger fw-bold">4 left</span>
-                  </div>
-                  <button type="button" class="btn btn-primary btn-sm w-100 mt-auto" aria-label="Add Cheesy Fries to order">
-                    <i class="bi bi-plus-lg me-1"></i> Add
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- 7. Cola (Normal State) -->
-            <div class="col-6 col-md-4 col-xl-3" data-id="7" data-category="drinks">
-              <div class="card card-hover product-card h-100 position-relative">
-                <div class="ratio ratio-4x3 bg-light overflow-hidden">
-                  <img src="images/cola.svg" alt="Cola" class="img-fluid">
-                </div>
-                <div class="card-body p-3 d-flex flex-column">
-                  <div class="d-flex justify-content-between align-items-start mb-1">
-                    <span class="badge bg-warning-subtle text-dark small fw-semibold">Drinks</span>
-                    <span class="badge bg-success-subtle text-success small"><i class="bi bi-check-circle-fill me-1"></i>In Stock</span>
-                  </div>
-                  <h2 class="card-title h6 fw-bold mb-0 text-truncate" title="Cola">Cola (Regular)</h2>
-                  <div class="d-flex justify-content-between align-items-baseline mb-2">
-                    <span class="fw-bold text-danger fs-6">Rs. 250</span>
-                    <span class="small text-muted">120 left</span>
-                  </div>
-                  <button type="button" class="btn btn-primary btn-sm w-100 mt-auto" aria-label="Add Cola to order">
-                    <i class="bi bi-plus-lg me-1"></i> Add
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- 8. Mint Lemonade (Out of Stock State: Disabled + Ribbon + Greyscale) -->
-            <div class="col-6 col-md-4 col-xl-3" data-id="8" data-category="drinks">
-              <div class="card product-card out-of-stock h-100 position-relative border-danger border-opacity-50">
-                <div class="gm-out-overlay">
-                  <span class="badge bg-danger shadow-sm text-uppercase fw-bold px-2 py-1">
-                    <i class="bi bi-slash-circle me-1"></i>Out of Stock
-                  </span>
-                </div>
-                <div class="ratio ratio-4x3 bg-light overflow-hidden">
-                  <img src="images/milkshake.svg" alt="Mint Lemonade" class="img-fluid">
-                </div>
-                <div class="card-body p-3 d-flex flex-column opacity-75">
-                  <div class="d-flex justify-content-between align-items-start mb-1">
-                    <span class="badge bg-secondary-subtle text-dark small fw-semibold">Drinks</span>
-                    <span class="badge bg-danger-subtle text-danger small">0 left</span>
-                  </div>
-                  <h2 class="card-title h6 fw-bold mb-0 text-truncate text-muted" title="Mint Lemonade">Mint Lemonade</h2>
-                  <div class="d-flex justify-content-between align-items-baseline mb-2">
-                    <span class="fw-bold text-muted fs-6">Rs. 350</span>
-                    <span class="small text-danger fw-bold">Unavailable</span>
-                  </div>
-                  <button type="button" class="btn btn-secondary btn-sm w-100 mt-auto disabled" aria-disabled="true" aria-label="Out of stock">
-                    <i class="bi bi-x-circle me-1"></i> Out of Stock
-                  </button>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </section>
-      </main>
-
-      <!-- =====================================================================
-           3. ORDER PANEL (Desktop lg+ Sticky Right Column)
-           ===================================================================== -->
-      <aside class="gm-pos-order-panel d-none d-lg-flex flex-column p-3" aria-label="Current Order Summary">
-        <div class="d-flex align-items-center justify-content-between pb-2 mb-2 border-bottom">
-          <div class="d-flex align-items-center">
-            <i class="bi bi-receipt-cutoff text-danger fs-4 me-2"></i>
-            <h2 class="h5 fw-bold mb-0">Current Order</h2>
-          </div>
-          <span class="badge bg-warning text-dark fw-bold">#1042</span>
-        </div>
-
-        <!-- Customer Select Area with "+ New Customer" Link -->
-        <div class="mb-3">
-          <div class="d-flex justify-content-between align-items-center mb-1">
-            <label for="posCustomerSelect" class="form-label small text-muted mb-0 fw-medium">Customer</label>
-            <button type="button" class="btn btn-link p-0 small text-decoration-none fw-semibold text-danger" data-bs-toggle="modal" data-bs-target="#quickAddCustomerModal">
-              <i class="bi bi-plus-circle me-1"></i>New Customer
-            </button>
-          </div>
-          <div class="input-group">
-            <span class="input-group-text bg-light text-muted border-end-0">
-              <i class="bi bi-person-fill"></i>
+          <div>
+            <div class="stat-title">Total Sales</div>
+            <h2 class="stat-value">$3,450.80</h2>
+            <span class="stat-badge bg-success-subtle text-success">
+              <i class="bi bi-arrow-up-short"></i> +14.2%
             </span>
-            <select class="form-select border-start-0" id="posCustomerSelect" aria-label="Select Customer">
-              <option selected value="walkin">Walk-in customer</option>
-              <option value="1">Nimal Perera (077 123 4567)</option>
-              <option value="2">Kasun Silva (071 987 6543)</option>
-              <option value="3">Dilani Fernando (076 555 1234)</option>
-            </select>
-          </div>
-          <div class="mt-1 p-2 bg-light rounded d-flex align-items-center justify-content-between small text-muted" id="customerInfoStrip">
-            <span><i class="bi bi-person-check me-1 text-success"></i>Walk-in (Standard Rate)</span>
-            <span class="badge bg-secondary-subtle text-dark">Default</span>
           </div>
         </div>
+      </div>
 
-        <!-- Checkout Warning Alert -->
-        <div class="alert alert-danger alert-dismissible fade show p-2 small mb-2" role="alert" id="posStockWarningAlert">
-          <div class="d-flex align-items-start">
-            <i class="bi bi-exclamation-triangle-fill fs-6 me-2 mt-1"></i>
-            <div>
-              <strong class="d-block">Checkout Blocked!</strong>
-              Not enough stock for Cheese burger (Requested 4, only 2 left).
-            </div>
+      <!-- Card 2: Total Orders -->
+      <div class="col-6 col-md-3">
+        <div class="stat-card animate-page delay-2">
+          <div class="stat-icon-wrapper stat-icon-orders">
+            <i class="bi bi-bag-check-fill"></i>
           </div>
-          <button type="button" class="btn-close p-2" data-bs-dismiss="alert" aria-label="Close"></button>
+          <div>
+            <div class="stat-title">Total Orders</div>
+            <h2 class="stat-value">168</h2>
+            <span class="stat-badge bg-primary-subtle text-primary">
+              <i class="bi bi-clock-history"></i> Today
+            </span>
+          </div>
         </div>
+      </div>
 
-        <!-- Order Items List -->
-        <div class="flex-grow-1 overflow-y-auto pe-1 mb-2">
-          <ul class="list-group list-group-flush" id="posCartItemsList" aria-label="Cart items list">
-            <!-- Item 1: Classic Burger -->
-            <li class="list-group-item px-0 py-2 border-bottom" data-id="1">
-              <div class="d-flex justify-content-between align-items-start mb-1">
-                <div>
-                  <div class="fw-semibold text-dark">Classic Burger</div>
-                  <div class="text-muted small">Rs. 850 each</div>
-                </div>
-                <div class="text-end">
-                  <div class="fw-bold text-dark">Rs. 1,700</div>
-                  <button type="button" class="btn btn-link text-danger p-0 border-0 small text-decoration-none" title="Remove item" aria-label="Remove Classic Burger">
-                    <i class="bi bi-trash3"></i>
-                  </button>
-                </div>
-              </div>
-              <div class="d-flex align-items-center justify-content-between mt-1">
-                <span class="badge bg-light text-muted border">Qty</span>
-                <div class="btn-group btn-group-sm" role="group" aria-label="Quantity stepper">
-                  <button type="button" class="btn btn-outline-secondary gm-stepper-btn" aria-label="Decrease quantity">-</button>
-                  <button type="button" class="btn btn-outline-secondary gm-stepper-btn px-2 disabled fw-bold text-dark border-start-0 border-end-0">2</button>
-                  <button type="button" class="btn btn-outline-secondary gm-stepper-btn" aria-label="Increase quantity">+</button>
-                </div>
-              </div>
-            </li>
-
-            <!-- Item 2: Cheesy Fries -->
-            <li class="list-group-item px-0 py-2 border-bottom bg-warning-subtle bg-opacity-10" data-id="6">
-              <div class="d-flex justify-content-between align-items-start mb-1">
-                <div>
-                  <div class="fw-semibold text-dark">Cheesy Fries</div>
-                  <div class="text-muted small">Rs. 550 each</div>
-                </div>
-                <div class="text-end">
-                  <div class="fw-bold text-dark">Rs. 550</div>
-                  <button type="button" class="btn btn-link text-danger p-0 border-0 small text-decoration-none" title="Remove item" aria-label="Remove Cheesy Fries">
-                    <i class="bi bi-trash3"></i>
-                  </button>
-                </div>
-              </div>
-              <div class="d-flex align-items-center justify-content-between mt-1">
-                <span class="badge bg-light text-muted border">Qty (Max)</span>
-                <div class="btn-group btn-group-sm" role="group" aria-label="Quantity stepper">
-                  <button type="button" class="btn btn-outline-secondary gm-stepper-btn" aria-label="Decrease quantity">-</button>
-                  <button type="button" class="btn btn-outline-secondary gm-stepper-btn px-2 disabled fw-bold text-dark border-start-0 border-end-0">1</button>
-                  <button type="button" class="btn btn-outline-secondary gm-stepper-btn disabled" aria-label="Increase quantity" disabled>+</button>
-                </div>
-              </div>
-              <div class="small text-danger fw-semibold mt-1">
-                <i class="bi bi-exclamation-circle-fill me-1"></i>Only 3 in stock! Max limit reached.
-              </div>
-            </li>
-
-            <!-- Item 3: Cola -->
-            <li class="list-group-item px-0 py-2 border-bottom" data-id="7">
-              <div class="d-flex justify-content-between align-items-start mb-1">
-                <div>
-                  <div class="fw-semibold text-dark">Cola (Regular)</div>
-                  <div class="text-muted small">Rs. 250 each</div>
-                </div>
-                <div class="text-end">
-                  <div class="fw-bold text-dark">Rs. 500</div>
-                  <button type="button" class="btn btn-link text-danger p-0 border-0 small text-decoration-none" title="Remove item" aria-label="Remove Cola">
-                    <i class="bi bi-trash3"></i>
-                  </button>
-                </div>
-              </div>
-              <div class="d-flex align-items-center justify-content-between mt-1">
-                <span class="badge bg-light text-muted border">Qty</span>
-                <div class="btn-group btn-group-sm" role="group" aria-label="Quantity stepper">
-                  <button type="button" class="btn btn-outline-secondary gm-stepper-btn" aria-label="Decrease quantity">-</button>
-                  <button type="button" class="btn btn-outline-secondary gm-stepper-btn px-2 disabled fw-bold text-dark border-start-0 border-end-0">2</button>
-                  <button type="button" class="btn btn-outline-secondary gm-stepper-btn" aria-label="Increase quantity">+</button>
-                </div>
-              </div>
-            </li>
-          </ul>
+      <!-- Card 3: Total Products -->
+      <div class="col-6 col-md-3">
+        <div class="stat-card animate-page delay-3">
+          <div class="stat-icon-wrapper stat-icon-products">
+            <i class="bi bi-grid-fill"></i>
+          </div>
+          <div>
+            <div class="stat-title">Total Products</div>
+            <h2 class="stat-value">32</h2>
+            <span class="stat-badge bg-info-subtle text-info">4 Categories</span>
+          </div>
         </div>
+      </div>
 
-        <!-- Totals & Payment Method Section -->
-        <div class="pt-2 border-top bg-white">
-          <div class="d-flex justify-content-between text-muted small mb-1">
-            <span>Subtotal</span>
-            <span id="posSubtotal">Rs. 2,750</span>
+      <!-- Card 4: Low Stock -->
+      <div class="col-6 col-md-3">
+        <div class="stat-card animate-page delay-4">
+          <div class="stat-icon-wrapper stat-icon-stock">
+            <i class="bi bi-exclamation-triangle-fill"></i>
           </div>
-
-          <div class="d-flex justify-content-between align-items-center mb-2">
-            <span class="small text-muted">Discount</span>
-            <div class="d-flex align-items-center gap-1">
-              <div class="btn-group btn-group-sm" role="group" id="discountTypeGroup" aria-label="Discount Type">
-                <input type="radio" class="btn-check" name="discountType" id="discRs" checked autocomplete="off">
-                <label class="btn btn-outline-secondary py-0 px-2" for="discRs">Rs.</label>
-                <input type="radio" class="btn-check" name="discountType" id="discPct" autocomplete="off">
-                <label class="btn btn-outline-secondary py-0 px-2" for="discPct">%</label>
-              </div>
-              <input type="number" class="form-control form-control-sm text-end" id="posDiscountInput" style="width: 70px;" value="250" aria-label="Discount value">
-            </div>
+          <div>
+            <div class="stat-title">Low Stock</div>
+            <h2 class="stat-value text-danger">4 Items</h2>
+            <span class="status-badge status-low-stock pulse-warning">
+              <span class="status-dot"></span> Needs Reorder
+            </span>
           </div>
-
-          <div class="d-flex justify-content-between align-items-baseline mb-2 pt-1 border-top">
-            <span class="fs-5 fw-bold text-dark">Total</span>
-            <span class="fs-4 fw-bold text-danger" id="posTotal">Rs. 2,500</span>
-          </div>
-
-          <div class="row g-2 mb-2">
-            <div class="col-6">
-              <label for="posPaymentMethod" class="form-label small text-muted mb-0">Payment Method</label>
-              <select class="form-select form-select-sm" id="posPaymentMethod">
-                <option value="cash" selected>Cash</option>
-                <option value="card">Credit / Debit Card</option>
-              </select>
-            </div>
-            <div class="col-6">
-              <label for="cashReceivedInput" class="form-label small text-muted mb-0">Cash Received</label>
-              <input type="number" class="form-control form-control-sm text-end fw-semibold" id="cashReceivedInput" value="3000">
-            </div>
-          </div>
-
-          <div class="d-flex justify-content-between small text-muted mb-3 bg-light p-2 rounded" id="changeDueDisplay">
-            <span>Change Due:</span>
-            <strong class="text-success fs-6">Rs. 500</strong>
-          </div>
-
-          <button type="button" class="btn btn-primary w-100 py-2 fw-semibold fs-6 mb-2 shadow-sm" id="btnPosCheckout" data-bs-toggle="modal" data-bs-target="#receiptModal">
-            <i class="bi bi-check2-circle me-1"></i> Checkout (Rs. 2,500)
-          </button>
-
-          <button type="button" class="btn btn-link text-muted w-100 p-0 text-decoration-none small" id="btnPosClearOrder">
-            <i class="bi bi-x-circle me-1"></i> Clear Order
-          </button>
         </div>
-      </aside>
+      </div>
+    </section>
 
-    </div>
-  </div>
-
-  <!-- =========================================================================
-       4. MOBILE / TABLET CART OFFCANVAS (< lg)
-       ========================================================================= -->
-  <div class="offcanvas offcanvas-bottom d-lg-none rounded-top-4" tabindex="-1" id="cartOffcanvas" aria-labelledby="cartOffcanvasLabel" style="height: 85vh;">
-    <div class="offcanvas-header pb-1 pt-2 flex-column align-items-stretch border-bottom">
-      <div class="gm-drag-handle" aria-hidden="true"></div>
-      
-      <div class="d-flex align-items-center justify-content-between w-100 mt-2">
-        <div class="d-flex align-items-center">
-          <i class="bi bi-receipt-cutoff text-danger fs-4 me-2"></i>
-          <h2 class="h5 fw-bold mb-0" id="cartOffcanvasLabel">Current Order</h2>
-        </div>
+    <!-- Recent Orders Section -->
+    <section class="custom-card mb-4">
+      <div class="d-flex justify-content-between align-items-center p-3 border-bottom">
         <div>
-          <span class="badge bg-warning text-dark fw-bold me-2">#1042</span>
-          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close cart panel"></button>
+          <h2 class="h5 fw-bold mb-0">Recent Orders</h2>
+          <small class="text-muted">Live incoming customer orders from counter & takeaway</small>
         </div>
-      </div>
-    </div>
-
-    <div class="offcanvas-body d-flex flex-column p-3">
-      <div class="mb-3">
-        <div class="d-flex justify-content-between align-items-center mb-1">
-          <label for="mobileCustomerSelect" class="form-label small text-muted mb-0 fw-medium">Customer</label>
-          <button type="button" class="btn btn-link p-0 small text-decoration-none fw-semibold text-danger" data-bs-toggle="modal" data-bs-target="#quickAddCustomerModal">
-            + New
-          </button>
-        </div>
-        <select class="form-select" id="mobileCustomerSelect">
-          <option selected value="walkin">Walk-in customer</option>
-          <option value="1">Nimal Perera (077 123 4567)</option>
-          <option value="2">Kasun Silva (071 987 6543)</option>
-        </select>
+        <a href="orders.html" class="btn btn-sm btn-outline-secondary">View All Orders</a>
       </div>
 
-      <div class="flex-grow-1 overflow-y-auto mb-2">
-        <ul class="list-group list-group-flush" id="posMobileCartItemsList">
-          <li class="list-group-item px-0 py-2 border-bottom" data-id="1">
-            <div class="d-flex justify-content-between align-items-start mb-1">
-              <div>
-                <div class="fw-semibold text-dark">Classic Burger</div>
-                <div class="text-muted small">Rs. 850 each</div>
-              </div>
-              <div class="text-end">
-                <div class="fw-bold text-dark">Rs. 1,700</div>
-              </div>
-            </div>
-            <div class="d-flex align-items-center justify-content-between mt-1">
-              <span class="badge bg-light text-muted border">Qty: 2</span>
-              <button type="button" class="btn btn-link text-danger p-0 small text-decoration-none"><i class="bi bi-trash3"></i> Remove</button>
-            </div>
-          </li>
-          <li class="list-group-item px-0 py-2 border-bottom bg-warning-subtle bg-opacity-10" data-id="6">
-            <div class="d-flex justify-content-between align-items-start mb-1">
-              <div>
-                <div class="fw-semibold text-dark">Cheesy Fries</div>
-                <div class="text-muted small">Rs. 550 each</div>
-              </div>
-              <div class="text-end">
-                <div class="fw-bold text-dark">Rs. 550</div>
-              </div>
-            </div>
-            <div class="small text-danger fw-semibold">Only 3 in stock! Max limit reached.</div>
-          </li>
-          <li class="list-group-item px-0 py-2 border-bottom" data-id="7">
-            <div class="d-flex justify-content-between align-items-start mb-1">
-              <div>
-                <div class="fw-semibold text-dark">Cola (Regular)</div>
-                <div class="text-muted small">Rs. 250 each</div>
-              </div>
-              <div class="text-end">
-                <div class="fw-bold text-dark">Rs. 500</div>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
+      <!-- Responsive Table (5 dummy rows) -->
+      <div class="table-responsive">
+        <table class="table custom-table">
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Customer</th>
+              <th>Items Ordered</th>
+              <th>Date & Time</th>
+              <th>Total</th>
+              <th>Status</th>
+              <th class="text-end">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="fw-semibold text-dark">#ORD-1048</span></td>
+              <td>
+                <div class="d-flex align-items-center gap-2">
+                  <span class="customer-avatar">AM</span>
+                  <span class="fw-medium">Alex Morgan</span>
+                </div>
+              </td>
+              <td>2x Classic Cheeseburger, 1x Loaded Fries</td>
+              <td>Today, 12:45 PM</td>
+              <td><span class="fw-bold text-dark">$24.50</span></td>
+              <td>
+                <span class="badge bg-success-subtle text-success px-2 py-1 rounded-pill">
+                  <i class="bi bi-check-circle-fill me-1"></i> Completed
+                </span>
+              </td>
+              <td class="text-end">
+                <button type="button" class="btn btn-action btn-action-view" data-bs-toggle="modal" data-bs-target="#recentOrderModal" title="View Order">
+                  <i class="bi bi-eye"></i>
+                </button>
+              </td>
+            </tr>
 
-      <div class="pt-2 border-top bg-white">
-        <div class="d-flex justify-content-between text-muted small mb-1">
-          <span>Subtotal</span>
-          <span>Rs. 2,750</span>
-        </div>
-        <div class="d-flex justify-content-between text-muted small mb-2">
-          <span>Discount</span>
-          <span>- Rs. 250</span>
-        </div>
-        <div class="d-flex justify-content-between align-items-baseline mb-2 pt-1 border-top">
-          <span class="fs-5 fw-bold text-dark">Total</span>
-          <span class="fs-4 fw-bold text-danger">Rs. 2,500</span>
-        </div>
+            <tr>
+              <td><span class="fw-semibold text-dark">#ORD-1047</span></td>
+              <td>
+                <div class="d-flex align-items-center gap-2">
+                  <span class="customer-avatar" style="background: linear-gradient(135deg, #4caf50, #8bc34a);">SJ</span>
+                  <span class="fw-medium">Sarah Jenkins</span>
+                </div>
+              </td>
+              <td>1x Double Bacon Smash, 1x Craft Root Beer</td>
+              <td>Today, 12:30 PM</td>
+              <td><span class="fw-bold text-dark">$14.48</span></td>
+              <td>
+                <span class="badge bg-warning-subtle text-warning-emphasis px-2 py-1 rounded-pill">
+                  <i class="bi bi-hourglass-split me-1"></i> Preparing
+                </span>
+              </td>
+              <td class="text-end">
+                <button type="button" class="btn btn-action btn-action-view" data-bs-toggle="modal" data-bs-target="#recentOrderModal" title="View Order">
+                  <i class="bi bi-eye"></i>
+                </button>
+              </td>
+            </tr>
 
-        <button type="button" class="btn btn-primary w-100 py-2 fw-semibold fs-6 mb-2" data-bs-toggle="modal" data-bs-target="#receiptModal">
-          <i class="bi bi-check2-circle me-1"></i> Checkout (Rs. 2,500)
-        </button>
+            <tr>
+              <td><span class="fw-semibold text-dark">#ORD-1046</span></td>
+              <td>
+                <div class="d-flex align-items-center gap-2">
+                  <span class="customer-avatar" style="background: linear-gradient(135deg, #2196f3, #00bcd4);">DK</span>
+                  <span class="fw-medium">David Kim</span>
+                </div>
+              </td>
+              <td>3x Spicy Jalapeño Burger, 2x Milkshakes</td>
+              <td>Today, 12:15 PM</td>
+              <td><span class="fw-bold text-dark">$38.95</span></td>
+              <td>
+                <span class="badge bg-success-subtle text-success px-2 py-1 rounded-pill">
+                  <i class="bi bi-check-circle-fill me-1"></i> Completed
+                </span>
+              </td>
+              <td class="text-end">
+                <button type="button" class="btn btn-action btn-action-view" data-bs-toggle="modal" data-bs-target="#recentOrderModal" title="View Order">
+                  <i class="bi bi-eye"></i>
+                </button>
+              </td>
+            </tr>
+
+            <tr>
+              <td><span class="fw-semibold text-dark">#ORD-1045</span></td>
+              <td>
+                <div class="d-flex align-items-center gap-2">
+                  <span class="customer-avatar" style="background: linear-gradient(135deg, #9c27b0, #e91e63);">JT</span>
+                  <span class="fw-medium">Jessica Taylor</span>
+                </div>
+              </td>
+              <td>1x BBQ Crispy Chicken, 1x Onion Rings</td>
+              <td>Today, 11:50 AM</td>
+              <td><span class="fw-bold text-dark">$15.28</span></td>
+              <td>
+                <span class="badge bg-success-subtle text-success px-2 py-1 rounded-pill">
+                  <i class="bi bi-check-circle-fill me-1"></i> Completed
+                </span>
+              </td>
+              <td class="text-end">
+                <button type="button" class="btn btn-action btn-action-view" data-bs-toggle="modal" data-bs-target="#recentOrderModal" title="View Order">
+                  <i class="bi bi-eye"></i>
+                </button>
+              </td>
+            </tr>
+
+            <tr>
+              <td><span class="fw-semibold text-dark">#ORD-1044</span></td>
+              <td>
+                <div class="d-flex align-items-center gap-2">
+                  <span class="customer-avatar" style="background: linear-gradient(135deg, #ff9800, #f44336);">MB</span>
+                  <span class="fw-medium">Michael Brown</span>
+                </div>
+              </td>
+              <td>4x Master Combo Meals, 4x Soda</td>
+              <td>Today, 11:35 AM</td>
+              <td><span class="fw-bold text-dark">$59.96</span></td>
+              <td>
+                <span class="badge bg-secondary-subtle text-secondary px-2 py-1 rounded-pill">
+                  <i class="bi bi-clock me-1"></i> Pending Payment
+                </span>
+              </td>
+              <td class="text-end">
+                <button type="button" class="btn btn-action btn-action-view" data-bs-toggle="modal" data-bs-target="#recentOrderModal" title="View Order">
+                  <i class="bi bi-eye"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </div>
-  </div>
+    </section>
+
+  </main>
 
   <!-- =========================================================================
-       5. QUICK ADD CUSTOMER MODAL (#quickAddCustomerModal)
+       Order Details Modal (Static Dummy Modal)
        ========================================================================= -->
-  <div class="modal fade" id="quickAddCustomerModal" tabindex="-1" aria-labelledby="quickAddCustomerModalLabel" aria-hidden="true">
+  <div class="modal fade" id="recentOrderModal" tabindex="-1" aria-labelledby="recentOrderModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
-        <div class="modal-header bg-charcoal text-white">
-          <h2 class="modal-title h5 mb-0" id="quickAddCustomerModalLabel">
-            <i class="bi bi-person-plus me-2"></i>Quick Register Customer
-          </h2>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body p-4">
-          <form id="quickAddCustomerForm">
-            <div class="mb-3">
-              <label for="quickCustName" class="form-label small fw-semibold">Customer Full Name <span class="text-danger">*</span></label>
-              <input type="text" class="form-control" id="quickCustName" placeholder="e.g. Kasun Fernando" required>
-            </div>
-            <div class="mb-3">
-              <label for="quickCustPhone" class="form-label small fw-semibold">Phone Number <span class="text-danger">*</span></label>
-              <input type="tel" class="form-control" id="quickCustPhone" placeholder="e.g. 077 123 4567" required>
-            </div>
-            <div class="mb-3">
-              <label for="quickCustEmail" class="form-label small fw-semibold">Email (Optional)</label>
-              <input type="email" class="form-control" id="quickCustEmail" placeholder="customer@example.com">
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer bg-light">
-          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
-            <i class="bi bi-check2-circle me-1"></i> Add & Select
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- =========================================================================
-       6. RECEIPT MODAL (#receiptModal)
-       ========================================================================= -->
-  <div class="modal fade" id="receiptModal" tabindex="-1" aria-labelledby="receiptModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-sm">
-      <div class="modal-content border-0 bg-transparent">
-        <div class="receipt-ticket">
-          <div class="text-center mb-2">
-            <div class="brand-font receipt-title text-danger mb-0">GRILLMASTER</div>
-            <div class="small fw-bold text-uppercase tracking-wider">Fresh Gourmet Burgers</div>
-            <div class="small text-muted">No. 42, Galle Road, Colombo 03</div>
-            <div class="small text-muted">Tel: +94 11 234 5678</div>
-          </div>
-
-          <div class="receipt-divider"></div>
-
-          <div class="d-flex justify-content-between small text-muted">
-            <span>Order: <strong>#1042</strong></span>
-            <span>Date: 07/11/2026</span>
-          </div>
-          <div class="d-flex justify-content-between small text-muted">
-            <span>Server: <strong>Cashier 01</strong></span>
-            <span>Time: 12:45 PM</span>
-          </div>
-          <div class="small text-muted">
-            <span>Customer: <strong>Walk-in Customer</strong></span>
-          </div>
-
-          <div class="receipt-divider"></div>
-
-          <div class="small mb-1">
-            <div class="d-flex justify-content-between fw-semibold">
-              <span>Classic Burger x 2</span>
-              <span>1,700.00</span>
-            </div>
-            <div class="text-muted small ps-2">@ 850.00 each</div>
-          </div>
-
-          <div class="small mb-1">
-            <div class="d-flex justify-content-between fw-semibold">
-              <span>Cheesy Fries x 1</span>
-              <span>550.00</span>
-            </div>
-            <div class="text-muted small ps-2">@ 550.00 each</div>
-          </div>
-
-          <div class="small mb-2">
-            <div class="d-flex justify-content-between fw-semibold">
-              <span>Cola (Regular) x 2</span>
-              <span>500.00</span>
-            </div>
-            <div class="text-muted small ps-2">@ 250.00 each</div>
-          </div>
-
-          <div class="receipt-divider"></div>
-
-          <div class="d-flex justify-content-between small text-muted mb-1">
-            <span>Subtotal:</span>
-            <span>Rs. 2,750.00</span>
-          </div>
-          <div class="d-flex justify-content-between small text-muted mb-1">
-            <span>Discount:</span>
-            <span>- Rs. 250.00</span>
-          </div>
-          <div class="d-flex justify-content-between align-items-center mt-2 pt-2 border-top border-dark border-1">
-            <span class="receipt-total">TOTAL:</span>
-            <span class="receipt-total text-danger">Rs. 2,500.00</span>
-          </div>
-
-          <div class="d-flex justify-content-between small text-muted mt-2 pt-1 border-top border-secondary border-opacity-25">
-            <span>Payment Method:</span>
-            <span class="fw-bold text-dark">CASH</span>
-          </div>
-          <div class="d-flex justify-content-between small text-muted">
-            <span>Cash Received:</span>
-            <span>Rs. 3,000.00</span>
-          </div>
-          <div class="d-flex justify-content-between small text-muted">
-            <span>Change Due:</span>
-            <span class="fw-bold text-dark">Rs. 500.00</span>
-          </div>
-
-          <div class="receipt-divider"></div>
-
-          <div class="text-center small text-muted mt-3">
-            <div class="fw-bold">*** THANK YOU, COME AGAIN! ***</div>
-            <div class="mt-1" style="font-size: 0.72rem;">Follow us @grillmaster_lk</div>
-            <div class="mt-2 text-dark font-monospace fw-bold" style="letter-spacing: 0.25em;">
-              ||| | ||||| || |||| ||| ||
-            </div>
-          </div>
-        </div>
-
-        <div class="mt-3 d-flex gap-2">
-          <button type="button" class="btn btn-dark flex-fill" onclick="window.print()" aria-label="Print receipt">
-            <i class="bi bi-printer-fill me-1"></i> Print
-          </button>
-          <button type="button" class="btn btn-primary flex-fill" data-bs-dismiss="modal" aria-label="Start new order">
-            <i class="bi bi-plus-circle me-1"></i> New Order
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- DEMO TOAST NOTIFICATION -->
-  <div class="toast-container position-fixed bottom-0 end-0 p-3 mb-5 mb-md-3 me-md-3" style="z-index: 1060;">
-    <div id="cartDemoToast" class="toast show align-items-center text-bg-dark border-0 shadow-lg" role="alert" aria-live="assertive" aria-atomic="true">
-      <div class="d-flex">
-        <div class="toast-body d-flex align-items-center">
-          <i class="bi bi-check-circle-fill text-success fs-5 me-2"></i>
+        <div class="modal-header">
           <div>
-            <strong class="d-block text-white">Added to Cart!</strong>
-            <span class="small text-white-50">1x Cheese Burger added to order</span>
+            <h5 class="modal-title" id="recentOrderModalLabel">Order Details #ORD-1048</h5>
+            <small class="text-muted">Table 04 &bull; Dine-In</small>
+          </div>
+          <button type="button" class="btn-close" data-bs-target="#recentOrderModal" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="d-flex justify-content-between mb-3 text-muted small">
+            <span>Customer: <strong class="text-dark">Alex Morgan</strong></span>
+            <span>Time: <strong>Today, 12:45 PM</strong></span>
+          </div>
+
+          <ul class="list-group list-group-flush mb-3">
+            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+              <div>
+                <span class="fw-medium">Classic Cheeseburger</span>
+                <div class="text-muted small">Qty: 2 &times; $8.99</div>
+              </div>
+              <span class="fw-semibold">$17.98</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+              <div>
+                <span class="fw-medium">Loaded Truffle Fries</span>
+                <div class="text-muted small">Qty: 1 &times; $5.49</div>
+              </div>
+              <span class="fw-semibold">$5.49</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+              <div>
+                <span class="fw-medium">Craft Root Beer</span>
+                <div class="text-muted small">Qty: 1 &times; $2.99</div>
+              </div>
+              <span class="fw-semibold">$2.99</span>
+            </li>
+          </ul>
+
+          <div class="border-top pt-2">
+            <div class="d-flex justify-content-between text-muted small mb-1">
+              <span>Subtotal:</span>
+              <span>$26.46</span>
+            </div>
+            <div class="d-flex justify-content-between text-muted small mb-1">
+              <span>Tax (8%):</span>
+              <span>$2.12</span>
+            </div>
+            <div class="d-flex justify-content-between text-muted small mb-1 text-success">
+              <span>Discount (Code: BURGER10):</span>
+              <span>-$4.08</span>
+            </div>
+            <div class="d-flex justify-content-between fw-bold fs-5 text-dark mt-2 pt-2 border-top">
+              <span>Total Amount:</span>
+              <span class="text-danger">$24.50</span>
+            </div>
           </div>
         </div>
-        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary-custom d-inline-flex align-items-center gap-1">
+            <i class="bi bi-printer"></i> Print Receipt
+          </button>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Bootstrap 5.3 Bundle JS via CDN -->
+  <!-- Bootstrap 5 Bundle JS CDN (Only script allowed for Bootstrap modals) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

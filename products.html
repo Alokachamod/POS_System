@@ -5,1089 +5,535 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GrillMaster POS - Products & Inventory</title>
 
-  <!-- Google Fonts: Poppins & Bangers -->
+  <!-- Google Font: Poppins -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Bootstrap 5.3 CSS -->
+  <!-- Bootstrap 5 CSS CDN -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Bootstrap Icons -->
+  <!-- Bootstrap Icons CDN -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-  <!-- Custom Theme CSS -->
+  <!-- Custom Theme Stylesheet -->
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="d-flex flex-column min-vh-100">
+<body>
 
   <!-- =========================================================================
-       1. SHARED NAVIGATION (Streamlined 5-Item Menu: 100% Native on Mobile)
-       - Desktop (lg+): Fixed 220px Left Sidebar
-       - Tablet (md): Fixed 72px Icon-Only Rail
-       - Mobile (<md): Sticky Top Bar + Direct 5-Slot Bottom Navigation
+       Single Responsive Navbar (Desktop: Fixed Top / Mobile: Fixed Bottom)
        ========================================================================= -->
-
-  <!-- Desktop Sidebar (lg and up) -->
-  <aside class="gm-sidebar-lg d-none d-lg-flex flex-column p-3 text-white" aria-label="Desktop Navigation">
-    <div class="d-flex align-items-center mb-4 pb-2 border-bottom border-secondary border-opacity-25 px-2">
-      <i class="bi bi-fire text-danger fs-3 me-2"></i>
-      <span class="brand-font fs-3 text-white lh-1">GrillMaster<span class="text-warning"> POS</span></span>
-    </div>
-
-    <ul class="nav flex-column mb-auto" id="desktopNavMenu">
-      <li class="nav-item">
-        <a href="dashboard.html" class="nav-link">
-          <i class="bi bi-speedometer2 me-2 fs-5"></i>
-          <span>Dashboard</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="index.html" class="nav-link">
-          <i class="bi bi-cart-fill me-2 fs-5"></i>
-          <span>POS / Order</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="products.html" class="nav-link active" aria-current="page">
-          <i class="bi bi-box-seam me-2 fs-5"></i>
-          <span>Products & Stock</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="customers.html" class="nav-link">
-          <i class="bi bi-people me-2 fs-5"></i>
-          <span>Customers</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="orders.html" class="nav-link">
-          <i class="bi bi-receipt me-2 fs-5"></i>
-          <span>Orders</span>
-        </a>
-      </li>
-    </ul>
-
-    <div class="mt-auto pt-3 border-top border-secondary border-opacity-25 px-2 d-flex align-items-center">
-      <div class="rounded-circle bg-warning text-dark d-flex align-items-center justify-content-center fw-bold me-2" style="width: 36px; height: 36px; font-size: 0.85rem;">
-        CA
-      </div>
-      <div class="small overflow-hidden">
-        <div class="fw-semibold text-white text-truncate">Cashier 01</div>
-        <div class="text-white-50 small">Terminal #2</div>
-      </div>
-    </div>
-  </aside>
-
-  <!-- Tablet Rail Sidebar (md only) -->
-  <aside class="gm-sidebar-md d-none d-md-flex d-lg-none flex-column align-items-center py-3 text-white" aria-label="Tablet Navigation">
-    <div class="mb-4">
-      <a href="index.html" class="text-decoration-none text-white" aria-label="GrillMaster POS Home">
-        <i class="bi bi-fire text-danger fs-2"></i>
+  <nav class="custom-navbar">
+    <div class="nav-container">
+      <!-- Brand Logo (Hidden on mobile via CSS) -->
+      <a class="navbar-brand" href="index.html">
+        <i class="bi bi-fire brand-icon"></i>
+        <span>GrillMaster <span class="brand-highlight">POS</span></span>
       </a>
-    </div>
 
-    <ul class="nav flex-column w-100 px-2 text-center" id="tabletNavMenu">
-      <li class="nav-item mb-2">
-        <a href="dashboard.html" class="nav-link" title="Dashboard" aria-label="Dashboard">
-          <i class="bi bi-speedometer2"></i>
-        </a>
-      </li>
-      <li class="nav-item mb-2">
-        <a href="index.html" class="nav-link" title="POS / Order" aria-label="POS / Order">
-          <i class="bi bi-cart-fill"></i>
-        </a>
-      </li>
-      <li class="nav-item mb-2">
-        <a href="products.html" class="nav-link active" title="Products & Inventory" aria-label="Products & Inventory" aria-current="page">
-          <i class="bi bi-box-seam"></i>
-        </a>
-      </li>
-      <li class="nav-item mb-2">
-        <a href="customers.html" class="nav-link" title="Customers" aria-label="Customers">
-          <i class="bi bi-people"></i>
-        </a>
-      </li>
-      <li class="nav-item mb-2">
-        <a href="orders.html" class="nav-link" title="Orders" aria-label="Orders">
-          <i class="bi bi-receipt"></i>
-        </a>
-      </li>
-    </ul>
-
-    <div class="mt-auto">
-      <div class="rounded-circle bg-warning text-dark d-flex align-items-center justify-content-center fw-bold" style="width: 38px; height: 38px; font-size: 0.85rem;" title="Cashier 01">
-        CA
-      </div>
-    </div>
-  </aside>
-
-  <!-- Mobile Sticky Top Navbar (below md) -->
-  <nav class="gm-mobile-topbar navbar sticky-top d-md-none px-3" aria-label="Mobile Top Bar">
-    <div class="container-fluid p-0 d-flex justify-content-between align-items-center">
-      <div class="d-flex align-items-center">
-        <i class="bi bi-box-seam text-warning fs-4 me-2"></i>
-        <span class="fw-bold text-white fs-5">Products & Stock</span>
-      </div>
-      <div class="d-flex gap-1">
-        <button class="btn btn-warning btn-sm text-dark fw-semibold" type="button" data-bs-toggle="modal" data-bs-target="#adjustStockModal" aria-label="Adjust Stock">
-          <i class="bi bi-plus-slash-minus"></i>
-        </button>
-        <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#addProductModal" aria-label="Add Product">
-          <i class="bi bi-plus-lg"></i>
-        </button>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Mobile Fixed Bottom Nav (< md, 5 Slots: Perfect 1-Tap Access!) -->
-  <nav class="gm-bottom-nav fixed-bottom d-md-none" aria-label="Mobile Bottom Navigation">
-    <div class="container-fluid h-100 px-0">
-      <div class="row g-0 h-100 text-center align-items-center" id="mobileBottomNav">
-        <div class="col-nav-5">
-          <a href="dashboard.html" class="nav-link">
-            <i class="bi bi-speedometer2"></i>
+      <!-- Navigation Links -->
+      <ul class="nav-links-list">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">
+            <i class="bi bi-speedometer2 nav-icon"></i>
             <span>Dashboard</span>
           </a>
-        </div>
-        <div class="col-nav-5">
-          <a href="index.html" class="nav-link">
-            <i class="bi bi-cart-fill"></i>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="pos.html">
+            <i class="bi bi-calculator nav-icon"></i>
             <span>POS</span>
           </a>
-        </div>
-        <div class="col-nav-5">
-          <a href="products.html" class="nav-link active" aria-current="page">
-            <i class="bi bi-box-seam"></i>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="products.html">
+            <i class="bi bi-box-seam nav-icon"></i>
             <span>Products</span>
           </a>
-        </div>
-        <div class="col-nav-5">
-          <a href="customers.html" class="nav-link">
-            <i class="bi bi-people"></i>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="customers.html">
+            <i class="bi bi-people nav-icon"></i>
             <span>Customers</span>
           </a>
-        </div>
-        <div class="col-nav-5">
-          <a href="orders.html" class="nav-link">
-            <i class="bi bi-receipt"></i>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="orders.html">
+            <i class="bi bi-receipt nav-icon"></i>
             <span>Orders</span>
           </a>
-        </div>
-      </div>
+        </li>
+      </ul>
     </div>
   </nav>
 
   <!-- =========================================================================
-       2. MAIN CONTENT AREA (Unified Products & Inventory Hub)
+       Main Content Container
        ========================================================================= -->
-  <div class="gm-main-layout d-flex flex-column flex-grow-1">
-    <main class="flex-grow-1 p-3 p-md-4">
-      <div class="container-fluid p-0">
+  <main class="container animate-page">
 
-        <!-- Unified Page Header -->
-        <header class="row align-items-center justify-content-between g-3 mb-3">
-          <div class="col-12 col-md-5">
-            <h1 class="h3 fw-bold mb-0 text-dark d-flex align-items-center">
-              Products & Inventory
-              <span class="badge bg-secondary-subtle text-dark fs-6 ms-2 rounded-pill px-3 py-1 fw-normal">10 items</span>
-            </h1>
-            <p class="text-muted small mb-0 mt-1">Unified hub for menu pricing, POS availability, and real-time stock levels</p>
+    <!-- Top Action & Search Bar -->
+    <header class="page-header d-flex flex-wrap justify-content-between align-items-center gap-3">
+      <div>
+        <h1 class="page-title">Products &amp; Inventory</h1>
+        <p class="page-subtitle">Track menu items, stock levels, and real-time inventory alerts</p>
+      </div>
+      <div>
+        <!-- + Add Product Button triggers Bootstrap Modal -->
+        <button type="button" class="btn btn-primary-custom d-inline-flex align-items-center gap-2" data-bs-toggle="modal" data-bs-target="#addProductModal">
+          <i class="bi bi-plus-lg"></i>
+          <span>Add Product</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Filter & Search Toolbar -->
+    <div class="custom-card p-3 mb-4">
+      <div class="row g-3 align-items-center">
+        <!-- Search Input -->
+        <div class="col-12 col-md-6 col-lg-5">
+          <div class="search-input-group">
+            <i class="bi bi-search"></i>
+            <input type="text" class="form-control" placeholder="Search product by name or SKU..." aria-label="Search product">
           </div>
-
-          <!-- Quick Action Buttons -->
-          <div class="col-12 col-md-7">
-            <div class="d-flex flex-wrap gap-2 justify-content-md-end align-items-center">
-              <button type="button" class="btn btn-warning text-dark fw-semibold" data-bs-toggle="modal" data-bs-target="#adjustStockModal" id="btnHeaderAdjustStock">
-                <i class="bi bi-plus-slash-minus me-1"></i> Adjust Stock
-              </button>
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProductModal" id="btnHeaderAddProduct">
-                <i class="bi bi-plus-circle me-1"></i> + Add Product
-              </button>
-            </div>
-          </div>
-        </header>
-
-        <!-- Navigation Tabs: Menu Catalog vs Stock Management -->
-        <section class="mb-4" aria-label="Products and Inventory View Selection">
-          <ul class="nav nav-pills bg-white p-1 rounded-3 shadow-sm d-inline-flex" id="productInventoryTabs" role="tablist">
-            <li class="nav-item" role="presentation">
-              <button class="nav-link active fw-semibold" id="tab-catalog-btn" data-bs-toggle="pill" data-bs-target="#tab-catalog-pane" type="button" role="tab" aria-controls="tab-catalog-pane" aria-selected="true">
-                <i class="bi bi-grid me-1"></i> Menu & Catalog
-              </button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link fw-semibold" id="tab-stock-btn" data-bs-toggle="pill" data-bs-target="#tab-stock-pane" type="button" role="tab" aria-controls="tab-stock-pane" aria-selected="false">
-                <i class="bi bi-clipboard-pulse me-1"></i> Stock & Inventory
-                <span class="badge bg-danger ms-1">2 Low</span>
-              </button>
-            </li>
-          </ul>
-        </section>
-
-        <!-- TAB CONTENT CONTAINER -->
-        <div class="tab-content" id="productInventoryTabContent">
-
-          <!-- =================================================================
-               TAB 1: MENU & CATALOG VIEW
-               ================================================================= -->
-          <div class="tab-pane fade show active" id="tab-catalog-pane" role="tabpanel" aria-labelledby="tab-catalog-btn" tabindex="0">
-            
-            <!-- Filters & Search for Catalog -->
-            <div class="card p-3 mb-3 border-0 shadow-sm">
-              <div class="row g-2 align-items-center">
-                <div class="col-12 col-sm-6 col-lg-5">
-                  <div class="input-group">
-                    <span class="input-group-text bg-white border-end-0 text-muted" id="catalog-search-addon">
-                      <i class="bi bi-search"></i>
-                    </span>
-                    <input type="text" class="form-control bg-white border-start-0 ps-0" id="catalogSearchInput" placeholder="Search product name or SKU..." aria-label="Search product name" aria-describedby="catalog-search-addon">
-                  </div>
-                </div>
-                <div class="col-7 col-sm-4 col-lg-3">
-                  <select class="form-select bg-white" id="catalogCategorySelect" aria-label="Filter catalog by category">
-                    <option selected>All Categories</option>
-                    <option value="burgers">Burgers</option>
-                    <option value="fries">Fries</option>
-                    <option value="drinks">Drinks</option>
-                  </select>
-                </div>
-                <div class="col-5 col-sm-2 col-lg-4 text-end">
-                  <span class="small text-muted">Showing 8 active items</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Desktop / Tablet Table: Catalog (md and up) -->
-            <div class="card d-none d-md-block overflow-hidden shadow-sm mb-4">
-              <div class="table-responsive">
-                <table class="table table-hover align-middle mb-0">
-                  <thead>
-                    <tr>
-                      <th scope="col" style="width: 80px;">Image</th>
-                      <th scope="col">Product Name</th>
-                      <th scope="col">Category</th>
-                      <th scope="col">Price</th>
-                      <th scope="col">Stock Status</th>
-                      <th scope="col">POS Visibility</th>
-                      <th scope="col" class="text-end">Actions</th>
-                    </tr>
-                  </thead>
-                  <!-- JS: render catalog products table here -->
-                  <tbody id="productTableBody">
-
-                    <!-- Row 1: Classic Burger -->
-                    <tr data-id="1">
-                      <td>
-                        <img src="images/classic-burger.svg" alt="Classic Burger" class="rounded" style="width: 50px; height: 40px; object-fit: cover;">
-                      </td>
-                      <td>
-                        <div class="fw-semibold text-dark">Classic Burger</div>
-                        <div class="small text-muted">SKU: GM-BUR-01</div>
-                      </td>
-                      <td><span class="badge bg-secondary-subtle text-dark">Burgers</span></td>
-                      <td class="fw-bold">Rs. 850</td>
-                      <td>
-                        <span class="badge bg-success px-2 py-1">
-                          <i class="bi bi-check-circle-fill me-1"></i> 45 in stock
-                        </span>
-                      </td>
-                      <td>
-                        <span class="badge bg-success-subtle text-success"><i class="bi bi-eye-fill me-1"></i>Active</span>
-                      </td>
-                      <td class="text-end">
-                        <button type="button" class="btn btn-outline-warning text-dark btn-sm me-1" data-bs-toggle="modal" data-bs-target="#adjustStockModal" data-product="Classic Burger" data-stock="45" title="Quick adjust stock" aria-label="Adjust stock for Classic Burger">
-                          <i class="bi bi-plus-slash-minus"></i>
-                        </button>
-                        <button type="button" class="btn btn-outline-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#addProductModal" title="Edit product" aria-label="Edit Classic Burger">
-                          <i class="bi bi-pencil-square"></i>
-                        </button>
-                        <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#cannotDeleteProductModal" title="Delete product" aria-label="Delete Classic Burger">
-                          <i class="bi bi-trash3"></i>
-                        </button>
-                      </td>
-                    </tr>
-
-                    <!-- Row 2: Cheese Burger -->
-                    <tr data-id="2">
-                      <td>
-                        <img src="images/cheese-burger.svg" alt="Cheese Burger" class="rounded" style="width: 50px; height: 40px; object-fit: cover;">
-                      </td>
-                      <td>
-                        <div class="fw-semibold text-dark">Cheese Burger</div>
-                        <div class="small text-muted">SKU: GM-BUR-02</div>
-                      </td>
-                      <td><span class="badge bg-secondary-subtle text-dark">Burgers</span></td>
-                      <td class="fw-bold">Rs. 950</td>
-                      <td>
-                        <span class="badge bg-success px-2 py-1">
-                          <i class="bi bi-check-circle-fill me-1"></i> 32 in stock
-                        </span>
-                      </td>
-                      <td>
-                        <span class="badge bg-success-subtle text-success"><i class="bi bi-eye-fill me-1"></i>Active</span>
-                      </td>
-                      <td class="text-end">
-                        <button type="button" class="btn btn-outline-warning text-dark btn-sm me-1" data-bs-toggle="modal" data-bs-target="#adjustStockModal" data-product="Cheese Burger" data-stock="32" title="Quick adjust stock" aria-label="Adjust stock for Cheese Burger">
-                          <i class="bi bi-plus-slash-minus"></i>
-                        </button>
-                        <button type="button" class="btn btn-outline-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#addProductModal" title="Edit product" aria-label="Edit Cheese Burger">
-                          <i class="bi bi-pencil-square"></i>
-                        </button>
-                        <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#cannotDeleteProductModal" title="Delete product" aria-label="Delete Cheese Burger">
-                          <i class="bi bi-trash3"></i>
-                        </button>
-                      </td>
-                    </tr>
-
-                    <!-- Row 3: Chicken Burger -->
-                    <tr data-id="3">
-                      <td>
-                        <img src="images/chicken-burger.svg" alt="Chicken Burger" class="rounded" style="width: 50px; height: 40px; object-fit: cover;">
-                      </td>
-                      <td>
-                        <div class="fw-semibold text-dark">Chicken Burger</div>
-                        <div class="small text-muted">SKU: GM-BUR-03</div>
-                      </td>
-                      <td><span class="badge bg-secondary-subtle text-dark">Burgers</span></td>
-                      <td class="fw-bold">Rs. 900</td>
-                      <td>
-                        <span class="badge bg-success px-2 py-1">
-                          <i class="bi bi-check-circle-fill me-1"></i> 28 in stock
-                        </span>
-                      </td>
-                      <td>
-                        <span class="badge bg-success-subtle text-success"><i class="bi bi-eye-fill me-1"></i>Active</span>
-                      </td>
-                      <td class="text-end">
-                        <button type="button" class="btn btn-outline-warning text-dark btn-sm me-1" data-bs-toggle="modal" data-bs-target="#adjustStockModal" data-product="Chicken Burger" data-stock="28" title="Quick adjust stock" aria-label="Adjust stock for Chicken Burger">
-                          <i class="bi bi-plus-slash-minus"></i>
-                        </button>
-                        <button type="button" class="btn btn-outline-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#addProductModal" title="Edit product" aria-label="Edit Chicken Burger">
-                          <i class="bi bi-pencil-square"></i>
-                        </button>
-                        <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#cannotDeleteProductModal" title="Delete product" aria-label="Delete Chicken Burger">
-                          <i class="bi bi-trash3"></i>
-                        </button>
-                      </td>
-                    </tr>
-
-                    <!-- Row 4: Veggie Burger (Low Stock) -->
-                    <tr data-id="4" class="table-warning bg-opacity-10">
-                      <td>
-                        <img src="images/veggie-burger.svg" alt="Veggie Burger" class="rounded" style="width: 50px; height: 40px; object-fit: cover;">
-                      </td>
-                      <td>
-                        <div class="fw-semibold text-dark">Veggie Burger</div>
-                        <div class="small text-muted">SKU: GM-BUR-04</div>
-                      </td>
-                      <td><span class="badge bg-secondary-subtle text-dark">Burgers</span></td>
-                      <td class="fw-bold">Rs. 780</td>
-                      <td>
-                        <span class="badge bg-warning text-dark px-2 py-1">
-                          <i class="bi bi-exclamation-triangle-fill me-1"></i> 8 in stock (Low)
-                        </span>
-                      </td>
-                      <td>
-                        <span class="badge bg-success-subtle text-success"><i class="bi bi-eye-fill me-1"></i>Active</span>
-                      </td>
-                      <td class="text-end">
-                        <button type="button" class="btn btn-outline-warning text-dark btn-sm me-1" data-bs-toggle="modal" data-bs-target="#adjustStockModal" data-product="Veggie Burger" data-stock="8" title="Quick adjust stock" aria-label="Adjust stock for Veggie Burger">
-                          <i class="bi bi-plus-slash-minus"></i>
-                        </button>
-                        <button type="button" class="btn btn-outline-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#addProductModal" title="Edit product" aria-label="Edit Veggie Burger">
-                          <i class="bi bi-pencil-square"></i>
-                        </button>
-                        <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#cannotDeleteProductModal" title="Delete product" aria-label="Delete Veggie Burger">
-                          <i class="bi bi-trash3"></i>
-                        </button>
-                      </td>
-                    </tr>
-
-                    <!-- Row 5: French Fries -->
-                    <tr data-id="5">
-                      <td>
-                        <img src="images/french-fries.svg" alt="French Fries" class="rounded" style="width: 50px; height: 40px; object-fit: cover;">
-                      </td>
-                      <td>
-                        <div class="fw-semibold text-dark">French Fries</div>
-                        <div class="small text-muted">SKU: GM-FRY-01</div>
-                      </td>
-                      <td><span class="badge bg-secondary-subtle text-dark">Fries</span></td>
-                      <td class="fw-bold">Rs. 450</td>
-                      <td>
-                        <span class="badge bg-success px-2 py-1">
-                          <i class="bi bi-check-circle-fill me-1"></i> 60 in stock
-                        </span>
-                      </td>
-                      <td>
-                        <span class="badge bg-success-subtle text-success"><i class="bi bi-eye-fill me-1"></i>Active</span>
-                      </td>
-                      <td class="text-end">
-                        <button type="button" class="btn btn-outline-warning text-dark btn-sm me-1" data-bs-toggle="modal" data-bs-target="#adjustStockModal" data-product="French Fries" data-stock="60" title="Quick adjust stock" aria-label="Adjust stock for French Fries">
-                          <i class="bi bi-plus-slash-minus"></i>
-                        </button>
-                        <button type="button" class="btn btn-outline-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#addProductModal" title="Edit product" aria-label="Edit French Fries">
-                          <i class="bi bi-pencil-square"></i>
-                        </button>
-                        <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteProductModal" title="Delete product" aria-label="Delete French Fries">
-                          <i class="bi bi-trash3"></i>
-                        </button>
-                      </td>
-                    </tr>
-
-                    <!-- Row 6: Cheesy Fries (Low Stock) -->
-                    <tr data-id="6" class="table-warning bg-opacity-10">
-                      <td>
-                        <img src="images/cheesy-fries.svg" alt="Cheesy Fries" class="rounded" style="width: 50px; height: 40px; object-fit: cover;">
-                      </td>
-                      <td>
-                        <div class="fw-semibold text-dark">Cheesy Fries</div>
-                        <div class="small text-muted">SKU: GM-FRY-02</div>
-                      </td>
-                      <td><span class="badge bg-secondary-subtle text-dark">Fries</span></td>
-                      <td class="fw-bold">Rs. 550</td>
-                      <td>
-                        <span class="badge bg-warning text-dark px-2 py-1">
-                          <i class="bi bi-exclamation-triangle-fill me-1"></i> 4 in stock (Low)
-                        </span>
-                      </td>
-                      <td>
-                        <span class="badge bg-success-subtle text-success"><i class="bi bi-eye-fill me-1"></i>Active</span>
-                      </td>
-                      <td class="text-end">
-                        <button type="button" class="btn btn-outline-warning text-dark btn-sm me-1" data-bs-toggle="modal" data-bs-target="#adjustStockModal" data-product="Cheesy Fries" data-stock="4" title="Quick adjust stock" aria-label="Adjust stock for Cheesy Fries">
-                          <i class="bi bi-plus-slash-minus"></i>
-                        </button>
-                        <button type="button" class="btn btn-outline-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#addProductModal" title="Edit product" aria-label="Edit Cheesy Fries">
-                          <i class="bi bi-pencil-square"></i>
-                        </button>
-                        <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#cannotDeleteProductModal" title="Delete product" aria-label="Delete Cheesy Fries">
-                          <i class="bi bi-trash3"></i>
-                        </button>
-                      </td>
-                    </tr>
-
-                    <!-- Row 7: Cola -->
-                    <tr data-id="7">
-                      <td>
-                        <img src="images/cola.svg" alt="Cola" class="rounded" style="width: 50px; height: 40px; object-fit: cover;">
-                      </td>
-                      <td>
-                        <div class="fw-semibold text-dark">Cola (Regular)</div>
-                        <div class="small text-muted">SKU: GM-DRK-01</div>
-                      </td>
-                      <td><span class="badge bg-secondary-subtle text-dark">Drinks</span></td>
-                      <td class="fw-bold">Rs. 250</td>
-                      <td>
-                        <span class="badge bg-success px-2 py-1">
-                          <i class="bi bi-check-circle-fill me-1"></i> 120 in stock
-                        </span>
-                      </td>
-                      <td>
-                        <span class="badge bg-success-subtle text-success"><i class="bi bi-eye-fill me-1"></i>Active</span>
-                      </td>
-                      <td class="text-end">
-                        <button type="button" class="btn btn-outline-warning text-dark btn-sm me-1" data-bs-toggle="modal" data-bs-target="#adjustStockModal" data-product="Cola (Regular)" data-stock="120" title="Quick adjust stock" aria-label="Adjust stock for Cola">
-                          <i class="bi bi-plus-slash-minus"></i>
-                        </button>
-                        <button type="button" class="btn btn-outline-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#addProductModal" title="Edit product" aria-label="Edit Cola">
-                          <i class="bi bi-pencil-square"></i>
-                        </button>
-                        <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#cannotDeleteProductModal" title="Delete product" aria-label="Delete Cola">
-                          <i class="bi bi-trash3"></i>
-                        </button>
-                      </td>
-                    </tr>
-
-                    <!-- Row 8: Mint Lemonade (Out of Stock / Disabled) -->
-                    <tr data-id="8" class="table-danger bg-opacity-10">
-                      <td>
-                        <img src="images/milkshake.svg" alt="Mint Lemonade" class="rounded opacity-50" style="width: 50px; height: 40px; object-fit: cover; filter: grayscale(100%);">
-                      </td>
-                      <td>
-                        <div class="fw-semibold text-muted">Mint Lemonade</div>
-                        <div class="small text-muted">SKU: GM-DRK-03</div>
-                      </td>
-                      <td><span class="badge bg-secondary-subtle text-dark">Drinks</span></td>
-                      <td class="fw-bold text-muted">Rs. 350</td>
-                      <td>
-                        <span class="badge bg-danger px-2 py-1">
-                          <i class="bi bi-x-circle-fill me-1"></i> 0 in stock (Out)
-                        </span>
-                      </td>
-                      <td>
-                        <span class="badge bg-secondary"><i class="bi bi-eye-slash-fill me-1"></i>Hidden</span>
-                      </td>
-                      <td class="text-end">
-                        <button type="button" class="btn btn-danger btn-sm text-white me-1" data-bs-toggle="modal" data-bs-target="#adjustStockModal" data-product="Mint Lemonade" data-stock="0" title="Restock now" aria-label="Restock Mint Lemonade">
-                          <i class="bi bi-plus-lg"></i> Restock
-                        </button>
-                        <button type="button" class="btn btn-outline-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#addProductModal" title="Edit product" aria-label="Edit Mint Lemonade">
-                          <i class="bi bi-pencil-square"></i>
-                        </button>
-                        <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteProductModal" title="Delete product" aria-label="Delete Mint Lemonade">
-                          <i class="bi bi-trash3"></i>
-                        </button>
-                      </td>
-                    </tr>
-
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            <!-- Mobile Catalog Cards (< md) -->
-            <!-- JS: render mobile catalog cards here -->
-            <div class="d-md-none" id="productMobileCardsList">
-              <div class="row g-3">
-                <div class="col-12" data-id="1">
-                  <div class="card p-3 shadow-sm">
-                    <div class="d-flex align-items-center mb-2">
-                      <img src="images/classic-burger.svg" alt="Classic Burger" class="rounded me-3" style="width: 70px; height: 60px; object-fit: cover;">
-                      <div class="flex-grow-1">
-                        <div class="d-flex justify-content-between align-items-start">
-                          <h2 class="h6 fw-bold mb-0 text-dark">Classic Burger</h2>
-                          <span class="fw-bold text-danger">Rs. 850</span>
-                        </div>
-                        <div class="small text-muted mb-1">Burgers • 45 units in stock</div>
-                        <span class="badge bg-success-subtle text-success">POS Active</span>
-                      </div>
-                    </div>
-                    <div class="d-flex gap-2 pt-2 border-top">
-                      <button type="button" class="btn btn-outline-warning text-dark btn-sm flex-fill fw-semibold" data-bs-toggle="modal" data-bs-target="#adjustStockModal" data-product="Classic Burger" data-stock="45">
-                        <i class="bi bi-plus-slash-minus me-1"></i> Stock
-                      </button>
-                      <button type="button" class="btn btn-outline-secondary btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#addProductModal">
-                        <i class="bi bi-pencil-square me-1"></i> Edit
-                      </button>
-                      <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#cannotDeleteProductModal">
-                        <i class="bi bi-trash3"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- =================================================================
-               TAB 2: STOCK & INVENTORY MANAGEMENT VIEW
-               ================================================================= -->
-          <div class="tab-pane fade" id="tab-stock-pane" role="tabpanel" aria-labelledby="tab-stock-btn" tabindex="0">
-            
-            <!-- Summary Metrics Cards -->
-            <section class="row g-3 mb-4" aria-label="Stock Audit Summary">
-              <div class="col-6 col-md-3">
-                <div class="card p-3 border-0 shadow-sm">
-                  <span class="small text-muted fw-semibold">Total Products</span>
-                  <div class="fs-4 fw-bold text-dark mt-1" id="statTotalProducts">10</div>
-                  <span class="small text-muted">Across 3 categories</span>
-                </div>
-              </div>
-              <div class="col-6 col-md-3">
-                <div class="card p-3 border-0 shadow-sm">
-                  <span class="small text-muted fw-semibold">Units in Stock</span>
-                  <div class="fs-4 fw-bold text-dark mt-1" id="statTotalUnits">384</div>
-                  <span class="small text-success"><i class="bi bi-check2 me-1"></i>Healthy reserves</span>
-                </div>
-              </div>
-              <div class="col-6 col-md-3">
-                <div class="card p-3 border-warning border-opacity-50 shadow-sm bg-warning-subtle bg-opacity-25">
-                  <span class="small text-dark fw-bold">Low Stock Items</span>
-                  <div class="fs-4 fw-bold text-warning-emphasis mt-1" id="statLowStockItems">2</div>
-                  <span class="small text-danger"><i class="bi bi-exclamation-circle me-1"></i>Action required</span>
-                </div>
-              </div>
-              <div class="col-6 col-md-3">
-                <div class="card p-3 border-danger border-opacity-50 shadow-sm bg-danger-subtle bg-opacity-25">
-                  <span class="small text-danger fw-bold">Out of Stock Items</span>
-                  <div class="fs-4 fw-bold text-danger mt-1" id="statOutOfStockItems">1</div>
-                  <span class="small text-danger fw-semibold"><i class="bi bi-x-circle me-1"></i>POS sales blocked</span>
-                </div>
-              </div>
-            </section>
-
-            <!-- Stock Status Pills Filter -->
-            <section class="mb-3" aria-label="Filter Stock by Status">
-              <div class="overflow-auto pb-2 flex-nowrap text-nowrap">
-                <ul class="nav nav-pills flex-nowrap" id="inventoryStatusPills" role="tablist">
-                  <li class="nav-item">
-                    <button class="nav-link active" id="pills-inv-all" data-bs-toggle="pill" type="button" role="tab">All Stock (10)</button>
-                  </li>
-                  <li class="nav-item">
-                    <button class="nav-link" id="pills-inv-instock" data-bs-toggle="pill" type="button" role="tab">
-                      <i class="bi bi-check-circle-fill text-success me-1"></i> In Stock (7)
-                    </button>
-                  </li>
-                  <li class="nav-item">
-                    <button class="nav-link" id="pills-inv-low" data-bs-toggle="pill" type="button" role="tab">
-                      <i class="bi bi-exclamation-triangle-fill text-warning me-1"></i> Low Stock (2)
-                    </button>
-                  </li>
-                  <li class="nav-item">
-                    <button class="nav-link" id="pills-inv-out" data-bs-toggle="pill" type="button" role="tab">
-                      <i class="bi bi-x-circle-fill text-danger me-1"></i> Out of Stock (1)
-                    </button>
-                  </li>
-                </ul>
-              </div>
-            </section>
-
-            <!-- Desktop Table: Stock Management (md and up) -->
-            <div class="card d-none d-md-block overflow-hidden shadow-sm mb-4">
-              <div class="table-responsive">
-                <table class="table table-hover align-middle mb-0">
-                  <thead>
-                    <tr>
-                      <th scope="col" style="width: 70px;">Image</th>
-                      <th scope="col">Product Name</th>
-                      <th scope="col">Category</th>
-                      <th scope="col" style="width: 190px;">Current Stock</th>
-                      <th scope="col">Reorder Level</th>
-                      <th scope="col">Status</th>
-                      <th scope="col">Last Audit</th>
-                      <th scope="col" class="text-end">Stock Actions</th>
-                    </tr>
-                  </thead>
-                  <!-- JS: render stock management rows here -->
-                  <tbody id="inventoryTableBody">
-
-                    <!-- 1. Classic Burger -->
-                    <tr data-id="1">
-                      <td>
-                        <img src="images/classic-burger.svg" alt="Classic Burger" class="rounded" style="width: 48px; height: 38px; object-fit: cover;">
-                      </td>
-                      <td>
-                        <div class="fw-semibold text-dark">Classic Burger</div>
-                        <div class="small text-muted">SKU: GM-BUR-01</div>
-                      </td>
-                      <td><span class="badge bg-secondary-subtle text-dark">Burgers</span></td>
-                      <td>
-                        <div class="d-flex justify-content-between small fw-bold mb-1">
-                          <span>45 units</span>
-                          <span class="text-muted">75%</span>
-                        </div>
-                        <div class="progress gm-stock-progress">
-                          <div class="progress-bar bg-success" style="width: 75%;"></div>
-                        </div>
-                      </td>
-                      <td><span class="small fw-semibold text-muted">15 units</span></td>
-                      <td><span class="badge bg-success">In Stock</span></td>
-                      <td class="small text-muted">Today, 10:30 AM</td>
-                      <td class="text-end">
-                        <button type="button" class="btn btn-outline-warning text-dark btn-sm me-1" data-bs-toggle="modal" data-bs-target="#adjustStockModal" data-product="Classic Burger" data-stock="45" title="Adjust stock" aria-label="Adjust stock for Classic Burger">
-                          <i class="bi bi-plus-slash-minus"></i> Adjust
-                        </button>
-                        <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#stockHistoryModal" data-product="Classic Burger" title="View stock audit history" aria-label="History for Classic Burger">
-                          <i class="bi bi-clock-history"></i> History
-                        </button>
-                      </td>
-                    </tr>
-
-                    <!-- 2. Cheesy Fries (Low Stock) -->
-                    <tr data-id="6" class="table-warning bg-opacity-10">
-                      <td>
-                        <img src="images/cheesy-fries.svg" alt="Cheesy Fries" class="rounded" style="width: 48px; height: 38px; object-fit: cover;">
-                      </td>
-                      <td>
-                        <div class="fw-semibold text-dark">Cheesy Fries</div>
-                        <div class="small text-muted">SKU: GM-FRY-02</div>
-                      </td>
-                      <td><span class="badge bg-secondary-subtle text-dark">Fries</span></td>
-                      <td>
-                        <div class="d-flex justify-content-between small fw-bold mb-1 text-warning-emphasis">
-                          <span>4 units</span>
-                          <span>Critical</span>
-                        </div>
-                        <div class="progress gm-stock-progress">
-                          <div class="progress-bar bg-warning" style="width: 16%;"></div>
-                        </div>
-                      </td>
-                      <td><span class="small fw-bold text-danger">10 units</span></td>
-                      <td><span class="badge bg-warning text-dark">Low Stock</span></td>
-                      <td class="small text-muted">Today, 11:20 AM</td>
-                      <td class="text-end">
-                        <button type="button" class="btn btn-warning text-dark btn-sm fw-semibold me-1" data-bs-toggle="modal" data-bs-target="#adjustStockModal" data-product="Cheesy Fries" data-stock="4" title="Adjust stock" aria-label="Adjust stock for Cheesy Fries">
-                          <i class="bi bi-plus-slash-minus"></i> Restock
-                        </button>
-                        <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#stockHistoryModal" title="View history" aria-label="History for Cheesy Fries">
-                          <i class="bi bi-clock-history"></i> History
-                        </button>
-                      </td>
-                    </tr>
-
-                    <!-- 3. Mint Lemonade (Out of Stock) -->
-                    <tr data-id="8" class="table-danger bg-opacity-10">
-                      <td>
-                        <img src="images/milkshake.svg" alt="Mint Lemonade" class="rounded opacity-50" style="width: 48px; height: 38px; object-fit: cover; filter: grayscale(100%);">
-                      </td>
-                      <td>
-                        <div class="fw-semibold text-dark">Mint Lemonade</div>
-                        <div class="small text-muted">SKU: GM-DRK-03</div>
-                      </td>
-                      <td><span class="badge bg-secondary-subtle text-dark">Drinks</span></td>
-                      <td>
-                        <div class="d-flex justify-content-between small fw-bold mb-1 text-danger">
-                          <span>0 units</span>
-                          <span>Empty</span>
-                        </div>
-                        <div class="progress gm-stock-progress">
-                          <div class="progress-bar bg-danger" style="width: 0%;"></div>
-                        </div>
-                      </td>
-                      <td><span class="small fw-bold text-danger">15 units</span></td>
-                      <td><span class="badge bg-danger">Out of Stock</span></td>
-                      <td class="small text-muted">04 Nov 2026</td>
-                      <td class="text-end">
-                        <button type="button" class="btn btn-danger btn-sm text-white me-1" data-bs-toggle="modal" data-bs-target="#adjustStockModal" data-product="Mint Lemonade" data-stock="0" title="Restock now" aria-label="Restock Mint Lemonade">
-                          <i class="bi bi-plus-lg"></i> Restock
-                        </button>
-                        <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#stockHistoryModal" title="View history" aria-label="History for Mint Lemonade">
-                          <i class="bi bi-clock-history"></i> History
-                        </button>
-                      </td>
-                    </tr>
-
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            <!-- Mobile Stacked Cards: Stock Management (< md) -->
-            <!-- JS: render mobile stock cards here -->
-            <div class="d-md-none" id="inventoryMobileList">
-              <div class="row g-3">
-                <div class="col-12" data-id="6">
-                  <div class="card p-3 shadow-sm border-warning border-opacity-50">
-                    <div class="d-flex justify-content-between align-items-start mb-2">
-                      <div class="d-flex align-items-center">
-                        <img src="images/cheesy-fries.svg" alt="Cheesy Fries" class="rounded me-2" style="width: 50px; height: 40px; object-fit: cover;">
-                        <div>
-                          <h2 class="h6 fw-bold mb-0 text-dark">Cheesy Fries</h2>
-                          <span class="small text-muted">Fries • Reorder at 10</span>
-                        </div>
-                      </div>
-                      <span class="badge bg-warning text-dark">Low (4)</span>
-                    </div>
-                    <div class="progress gm-stock-progress mb-2">
-                      <div class="progress-bar bg-warning" style="width: 16%;"></div>
-                    </div>
-                    <div class="d-flex gap-2 pt-2 border-top">
-                      <button type="button" class="btn btn-warning text-dark btn-sm flex-fill fw-semibold" data-bs-toggle="modal" data-bs-target="#adjustStockModal" data-product="Cheesy Fries" data-stock="4">
-                        <i class="bi bi-plus-slash-minus me-1"></i> Restock
-                      </button>
-                      <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#stockHistoryModal">
-                        <i class="bi bi-clock-history"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
         </div>
 
+        <!-- Filter Select -->
+        <div class="col-6 col-md-3 col-lg-3">
+          <select class="form-select" aria-label="Category filter">
+            <option selected>All Categories</option>
+            <option value="1">Burgers</option>
+            <option value="2">Fries &amp; Sides</option>
+            <option value="3">Drinks</option>
+          </select>
+        </div>
+
+        <!-- Stock Status Filter -->
+        <div class="col-6 col-md-3 col-lg-4 text-md-end">
+          <div class="btn-group" role="group" aria-label="Stock status pills">
+            <button type="button" class="btn btn-sm btn-outline-dark active">All (28)</button>
+            <button type="button" class="btn btn-sm btn-outline-dark">Low Stock (4)</button>
+            <button type="button" class="btn btn-sm btn-outline-dark">Out of Stock (1)</button>
+          </div>
+        </div>
       </div>
-    </main>
+    </div>
+
+    <!-- Products & Inventory Table (6+ dummy rows inside .table-responsive) -->
+    <section class="custom-card mb-4">
+      <div class="table-responsive">
+        <table class="table custom-table">
+          <thead>
+            <tr>
+              <th style="width: 70px;">Image</th>
+              <th>Product Name</th>
+              <th>Category</th>
+              <th>Price</th>
+              <th>Stock</th>
+              <th>Status</th>
+              <th class="text-end" style="width: 150px;">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Row 1: In Stock -->
+            <tr>
+              <td>
+                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&auto=format&fit=crop&q=80" alt="Classic Cheeseburger" class="table-img" onerror="this.src='https://placehold.co/100x100/1f1f1f/ff5722?text=Burger'">
+              </td>
+              <td>
+                <div class="fw-bold text-dark">Classic Cheeseburger</div>
+                <small class="text-muted">SKU: BRG-001</small>
+              </td>
+              <td><span class="badge bg-light text-dark border">Burgers</span></td>
+              <td class="fw-semibold text-dark">$8.99</td>
+              <td><span class="fw-semibold">45</span> pcs</td>
+              <td>
+                <span class="status-badge status-in-stock">
+                  <span class="status-dot"></span> In Stock
+                </span>
+              </td>
+              <td class="text-end">
+                <div class="d-inline-flex gap-1">
+                  <button type="button" class="btn-action btn-action-stock" data-bs-toggle="modal" data-bs-target="#addStockModal" title="Add Stock">
+                    <i class="bi bi-plus-circle"></i>
+                  </button>
+                  <button type="button" class="btn-action btn-action-edit" data-bs-toggle="modal" data-bs-target="#editProductModal" title="Edit Product">
+                    <i class="bi bi-pencil-square"></i>
+                  </button>
+                  <button type="button" class="btn-action btn-action-delete" data-bs-toggle="modal" data-bs-target="#deleteProductModal" title="Delete Product">
+                    <i class="bi bi-trash3"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+
+            <!-- Row 2: In Stock -->
+            <tr>
+              <td>
+                <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=400&auto=format&fit=crop&q=80" alt="Double Bacon Smash" class="table-img" onerror="this.src='https://placehold.co/100x100/1f1f1f/ff5722?text=Burger'">
+              </td>
+              <td>
+                <div class="fw-bold text-dark">Double Bacon Smash</div>
+                <small class="text-muted">SKU: BRG-002</small>
+              </td>
+              <td><span class="badge bg-light text-dark border">Burgers</span></td>
+              <td class="fw-semibold text-dark">$11.49</td>
+              <td><span class="fw-semibold">28</span> pcs</td>
+              <td>
+                <span class="status-badge status-in-stock">
+                  <span class="status-dot"></span> In Stock
+                </span>
+              </td>
+              <td class="text-end">
+                <div class="d-inline-flex gap-1">
+                  <button type="button" class="btn-action btn-action-stock" data-bs-toggle="modal" data-bs-target="#addStockModal" title="Add Stock">
+                    <i class="bi bi-plus-circle"></i>
+                  </button>
+                  <button type="button" class="btn-action btn-action-edit" data-bs-toggle="modal" data-bs-target="#editProductModal" title="Edit Product">
+                    <i class="bi bi-pencil-square"></i>
+                  </button>
+                  <button type="button" class="btn-action btn-action-delete" data-bs-toggle="modal" data-bs-target="#deleteProductModal" title="Delete Product">
+                    <i class="bi bi-trash3"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+
+            <!-- Row 3: Low Stock (Pulse Animation) -->
+            <tr>
+              <td>
+                <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=400&auto=format&fit=crop&q=80" alt="Spicy Jalapeño Burger" class="table-img" onerror="this.src='https://placehold.co/100x100/1f1f1f/ff5722?text=Burger'">
+              </td>
+              <td>
+                <div class="fw-bold text-dark">Spicy Jalapeño Burger</div>
+                <small class="text-muted">SKU: BRG-003</small>
+              </td>
+              <td><span class="badge bg-light text-dark border">Burgers</span></td>
+              <td class="fw-semibold text-dark">$9.99</td>
+              <td><span class="fw-semibold text-warning">8</span> pcs</td>
+              <td>
+                <span class="status-badge status-low-stock pulse-warning">
+                  <span class="status-dot"></span> Low Stock
+                </span>
+              </td>
+              <td class="text-end">
+                <div class="d-inline-flex gap-1">
+                  <button type="button" class="btn-action btn-action-stock" data-bs-toggle="modal" data-bs-target="#addStockModal" title="Add Stock">
+                    <i class="bi bi-plus-circle"></i>
+                  </button>
+                  <button type="button" class="btn-action btn-action-edit" data-bs-toggle="modal" data-bs-target="#editProductModal" title="Edit Product">
+                    <i class="bi bi-pencil-square"></i>
+                  </button>
+                  <button type="button" class="btn-action btn-action-delete" data-bs-toggle="modal" data-bs-target="#deleteProductModal" title="Delete Product">
+                    <i class="bi bi-trash3"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+
+            <!-- Row 4: Low Stock (Pulse Animation) -->
+            <tr>
+              <td>
+                <img src="https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?w=400&auto=format&fit=crop&q=80" alt="Mushroom Swiss Burger" class="table-img" onerror="this.src='https://placehold.co/100x100/1f1f1f/ff5722?text=Burger'">
+              </td>
+              <td>
+                <div class="fw-bold text-dark">Mushroom Swiss Burger</div>
+                <small class="text-muted">SKU: BRG-004</small>
+              </td>
+              <td><span class="badge bg-light text-dark border">Burgers</span></td>
+              <td class="fw-semibold text-dark">$10.99</td>
+              <td><span class="fw-semibold text-warning">4</span> pcs</td>
+              <td>
+                <span class="status-badge status-low-stock pulse-warning">
+                  <span class="status-dot"></span> Low Stock
+                </span>
+              </td>
+              <td class="text-end">
+                <div class="d-inline-flex gap-1">
+                  <button type="button" class="btn-action btn-action-stock" data-bs-toggle="modal" data-bs-target="#addStockModal" title="Add Stock">
+                    <i class="bi bi-plus-circle"></i>
+                  </button>
+                  <button type="button" class="btn-action btn-action-edit" data-bs-toggle="modal" data-bs-target="#editProductModal" title="Edit Product">
+                    <i class="bi bi-pencil-square"></i>
+                  </button>
+                  <button type="button" class="btn-action btn-action-delete" data-bs-toggle="modal" data-bs-target="#deleteProductModal" title="Delete Product">
+                    <i class="bi bi-trash3"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+
+            <!-- Row 5: In Stock -->
+            <tr>
+              <td>
+                <img src="https://images.unsplash.com/photo-1576107232684-1279f3908594?w=400&auto=format&fit=crop&q=80" alt="Loaded Truffle Fries" class="table-img" onerror="this.src='https://placehold.co/100x100/1f1f1f/ff5722?text=Fries'">
+              </td>
+              <td>
+                <div class="fw-bold text-dark">Loaded Truffle Fries</div>
+                <small class="text-muted">SKU: FRY-001</small>
+              </td>
+              <td><span class="badge bg-light text-dark border">Fries &amp; Sides</span></td>
+              <td class="fw-semibold text-dark">$5.49</td>
+              <td><span class="fw-semibold">40</span> pcs</td>
+              <td>
+                <span class="status-badge status-in-stock">
+                  <span class="status-dot"></span> In Stock
+                </span>
+              </td>
+              <td class="text-end">
+                <div class="d-inline-flex gap-1">
+                  <button type="button" class="btn-action btn-action-stock" data-bs-toggle="modal" data-bs-target="#addStockModal" title="Add Stock">
+                    <i class="bi bi-plus-circle"></i>
+                  </button>
+                  <button type="button" class="btn-action btn-action-edit" data-bs-toggle="modal" data-bs-target="#editProductModal" title="Edit Product">
+                    <i class="bi bi-pencil-square"></i>
+                  </button>
+                  <button type="button" class="btn-action btn-action-delete" data-bs-toggle="modal" data-bs-target="#deleteProductModal" title="Delete Product">
+                    <i class="bi bi-trash3"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+
+            <!-- Row 6: Out of Stock (Pulse Animation) -->
+            <tr>
+              <td>
+                <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=400&auto=format&fit=crop&q=80" alt="Chocolate Thickshake" class="table-img" onerror="this.src='https://placehold.co/100x100/1f1f1f/ff5722?text=Shake'">
+              </td>
+              <td>
+                <div class="fw-bold text-dark">Chocolate Thickshake</div>
+                <small class="text-muted">SKU: DRK-001</small>
+              </td>
+              <td><span class="badge bg-light text-dark border">Drinks</span></td>
+              <td class="fw-semibold text-dark">$4.49</td>
+              <td><span class="fw-semibold text-danger">0</span> pcs</td>
+              <td>
+                <span class="status-badge status-out-of-stock pulse-danger">
+                  <span class="status-dot"></span> Out of Stock
+                </span>
+              </td>
+              <td class="text-end">
+                <div class="d-inline-flex gap-1">
+                  <button type="button" class="btn-action btn-action-stock" data-bs-toggle="modal" data-bs-target="#addStockModal" title="Add Stock">
+                    <i class="bi bi-plus-circle"></i>
+                  </button>
+                  <button type="button" class="btn-action btn-action-edit" data-bs-toggle="modal" data-bs-target="#editProductModal" title="Edit Product">
+                    <i class="bi bi-pencil-square"></i>
+                  </button>
+                  <button type="button" class="btn-action btn-action-delete" data-bs-toggle="modal" data-bs-target="#deleteProductModal" title="Delete Product">
+                    <i class="bi bi-trash3"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+
+            <!-- Row 7: In Stock -->
+            <tr>
+              <td>
+                <img src="https://images.unsplash.com/photo-1639024471287-032f66ab75c6?w=400&auto=format&fit=crop&q=80" alt="Crispy Onion Rings" class="table-img" onerror="this.src='https://placehold.co/100x100/1f1f1f/ff5722?text=Onion+Rings'">
+              </td>
+              <td>
+                <div class="fw-bold text-dark">Crispy Onion Rings</div>
+                <small class="text-muted">SKU: FRY-002</small>
+              </td>
+              <td><span class="badge bg-light text-dark border">Fries &amp; Sides</span></td>
+              <td class="fw-semibold text-dark">$4.99</td>
+              <td><span class="fw-semibold">25</span> pcs</td>
+              <td>
+                <span class="status-badge status-in-stock">
+                  <span class="status-dot"></span> In Stock
+                </span>
+              </td>
+              <td class="text-end">
+                <div class="d-inline-flex gap-1">
+                  <button type="button" class="btn-action btn-action-stock" data-bs-toggle="modal" data-bs-target="#addStockModal" title="Add Stock">
+                    <i class="bi bi-plus-circle"></i>
+                  </button>
+                  <button type="button" class="btn-action btn-action-edit" data-bs-toggle="modal" data-bs-target="#editProductModal" title="Edit Product">
+                    <i class="bi bi-pencil-square"></i>
+                  </button>
+                  <button type="button" class="btn-action btn-action-delete" data-bs-toggle="modal" data-bs-target="#deleteProductModal" title="Delete Product">
+                    <i class="bi bi-trash3"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================================
+       Modal 1: Add Product Modal (Pure Bootstrap Trigger)
+       ========================================================================= -->
+  <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addProductModalLabel">
+            <i class="bi bi-plus-circle text-danger me-2"></i>Add New Product
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <!-- Product Name -->
+            <div class="mb-3">
+              <label class="form-label fw-semibold small">Product Name</label>
+              <input type="text" class="form-control" placeholder="e.g. Smoky BBQ Bacon Burger" required>
+            </div>
+
+            <!-- Category Select -->
+            <div class="mb-3">
+              <label class="form-label fw-semibold small">Category</label>
+              <select class="form-select" required>
+                <option value="" disabled selected>Select category...</option>
+                <option value="burgers">Burgers</option>
+                <option value="fries">Fries &amp; Sides</option>
+                <option value="drinks">Drinks</option>
+                <option value="desserts">Desserts</option>
+              </select>
+            </div>
+
+            <!-- Price and Stock Quantity -->
+            <div class="row g-2 mb-3">
+              <div class="col-6">
+                <label class="form-label fw-semibold small">Price ($)</label>
+                <input type="number" step="0.01" class="form-control" placeholder="9.99" required>
+              </div>
+              <div class="col-6">
+                <label class="form-label fw-semibold small">Stock Quantity</label>
+                <input type="number" class="form-control" placeholder="50" required>
+              </div>
+            </div>
+
+            <!-- Image URL -->
+            <div class="mb-3">
+              <label class="form-label fw-semibold small">Image URL</label>
+              <input type="url" class="form-control" placeholder="https://example.com/burger.jpg">
+              <div class="form-text small text-muted">Paste an image link or leave empty for default thumbnail.</div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary-custom" data-bs-dismiss="modal">Save Product</button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- =========================================================================
-       3. ADD / EDIT PRODUCT MODAL (#addProductModal)
+       Modal 2: Edit Product Modal
        ========================================================================= -->
-  <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
+  <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
-        <div class="modal-header bg-charcoal text-white">
-          <h2 class="modal-title h5 mb-0" id="addProductModalLabel">
-            <i class="bi bi-box-seam me-2"></i>Product Details
-          </h2>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-header">
+          <h5 class="modal-title" id="editProductModalLabel">
+            <i class="bi bi-pencil-square text-primary me-2"></i>Edit Product
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-
-        <div class="modal-body p-4">
-          <form class="row g-3" id="productEditForm" novalidate>
-            <div class="col-12 col-md-8">
-              <label for="productName" class="form-label fw-semibold">Product Name <span class="text-danger">*</span></label>
-              <input type="text" class="form-control" id="productName" value="Cheesy Fries" required>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label class="form-label fw-semibold small">Product Name</label>
+              <input type="text" class="form-control" value="Spicy Jalapeño Burger">
             </div>
 
-            <div class="col-12 col-md-4">
-              <label for="productCategory" class="form-label fw-semibold">Category <span class="text-danger">*</span></label>
-              <select class="form-select" id="productCategory" required>
-                <option value="burgers">Burgers</option>
-                <option value="fries" selected>Fries</option>
+            <div class="mb-3">
+              <label class="form-label fw-semibold small">Category</label>
+              <select class="form-select">
+                <option value="burgers" selected>Burgers</option>
+                <option value="fries">Fries &amp; Sides</option>
                 <option value="drinks">Drinks</option>
               </select>
             </div>
 
-            <div class="col-12 col-md-6">
-              <label for="productPrice" class="form-label fw-semibold">Price (Rs.) <span class="text-danger">*</span></label>
-              <div class="input-group has-validation">
-                <span class="input-group-text">Rs.</span>
-                <input type="number" class="form-control is-invalid" id="productPrice" value="0" aria-describedby="priceFeedback" required>
-                <div id="priceFeedback" class="invalid-feedback">
-                  Price must be greater than 0.
-                </div>
+            <div class="row g-2 mb-3">
+              <div class="col-6">
+                <label class="form-label fw-semibold small">Price ($)</label>
+                <input type="number" step="0.01" class="form-control" value="9.99">
+              </div>
+              <div class="col-6">
+                <label class="form-label fw-semibold small">Stock Quantity</label>
+                <input type="number" class="form-control" value="8">
               </div>
             </div>
 
-            <div class="col-12 col-md-6">
-              <label for="productStock" class="form-label fw-semibold">Stock Quantity <span class="text-danger">*</span></label>
-              <input type="number" class="form-control" id="productStock" value="4" required>
-            </div>
-
-            <div class="col-12">
-              <div class="p-3 bg-light rounded d-flex align-items-center justify-content-between">
-                <div>
-                  <label class="form-check-label fw-semibold text-dark mb-0 d-block" for="productAvailableSwitch">
-                    Available for POS Sale
-                  </label>
-                  <span class="small text-muted">When toggled off, this product is hidden from cashiers on the POS terminal.</span>
-                </div>
-                <div class="form-check form-switch fs-5 mb-0">
-                  <input class="form-check-input" type="checkbox" role="switch" id="productAvailableSwitch" checked>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-12">
-              <label class="form-label fw-semibold">Product Image</label>
-              <div class="gm-drop-zone text-center p-4">
-                <i class="bi bi-cloud-arrow-up text-danger fs-1 mb-2 d-block"></i>
-                <div class="fw-semibold text-dark">Click or drag image to upload</div>
-                <div class="small text-muted">Supports PNG, JPG, SVG up to 2MB (Recommended ratio 4:3)</div>
-                <input type="file" class="d-none" id="productImageUpload" aria-label="Upload product image">
-              </div>
+            <div class="mb-3">
+              <label class="form-label fw-semibold small">Image URL</label>
+              <input type="url" class="form-control" value="https://images.unsplash.com/photo-1550547660-d9450f859349">
             </div>
           </form>
         </div>
-
-        <div class="modal-footer bg-light">
-          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
-            <i class="bi bi-check2-circle me-1"></i> Save Product
-          </button>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary-custom" data-bs-dismiss="modal">Update Product</button>
         </div>
       </div>
     </div>
   </div>
 
   <!-- =========================================================================
-       4. ADJUST STOCK MODAL (#adjustStockModal)
+       Modal 3: Quick "+ Stock" Modal
        ========================================================================= -->
-  <div class="modal fade" id="adjustStockModal" tabindex="-1" aria-labelledby="adjustStockModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header bg-charcoal text-white">
-          <h2 class="modal-title h5 mb-0" id="adjustStockModalLabel">
-            <i class="bi bi-clipboard-pulse me-2"></i>Adjust Product Stock
-          </h2>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-
-        <div class="modal-body p-4">
-          <div class="p-3 bg-light rounded-3 mb-3 d-flex justify-content-between align-items-center">
-            <div>
-              <span class="small text-muted d-block">Selected Product</span>
-              <strong class="fs-6 text-dark" id="adjustModalProductName">Cheesy Fries</strong>
-            </div>
-            <div class="text-end">
-              <span class="small text-muted d-block">Current Stock</span>
-              <span class="badge bg-warning text-dark fs-6" id="adjustModalCurrentStock">4 units</span>
-            </div>
-          </div>
-
-          <form id="adjustStockForm" novalidate>
-            <div class="mb-3">
-              <label class="form-label small fw-semibold">Adjustment Type</label>
-              <div class="btn-group w-100 gm-segmented-group" role="group" aria-label="Stock adjustment type">
-                <input type="radio" class="btn-check" name="stockAdjustType" id="adjustTypeAdd" value="add" checked autocomplete="off">
-                <label class="btn btn-outline-success" for="adjustTypeAdd"><i class="bi bi-plus-circle me-1"></i>Add Stock</label>
-
-                <input type="radio" class="btn-check" name="stockAdjustType" id="adjustTypeRemove" value="remove" autocomplete="off">
-                <label class="btn btn-outline-danger" for="adjustTypeRemove"><i class="bi bi-dash-circle me-1"></i>Remove Stock</label>
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label for="adjustQuantityInput" class="form-label small fw-semibold">Quantity to Adjust <span class="text-danger">*</span></label>
-              <div class="input-group has-validation">
-                <button type="button" class="btn btn-outline-secondary px-3" aria-label="Decrease quantity">-</button>
-                <input type="number" class="form-control text-center fw-bold is-invalid" id="adjustQuantityInput" value="0" min="1" aria-describedby="adjustQtyFeedback" required>
-                <button type="button" class="btn btn-outline-secondary px-3" aria-label="Increase quantity">+</button>
-                <div id="adjustQtyFeedback" class="invalid-feedback text-center">
-                  Quantity must be at least 1.
-                </div>
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label for="adjustReasonSelect" class="form-label small fw-semibold">Reason for Adjustment <span class="text-danger">*</span></label>
-              <select class="form-select" id="adjustReasonSelect" required>
-                <option value="delivery" selected>New delivery from kitchen/supplier</option>
-                <option value="damaged">Damaged / Expired / Spoiled</option>
-                <option value="correction">Inventory audit correction</option>
-                <option value="other">Other reason</option>
-              </select>
-            </div>
-
-            <div class="mb-3">
-              <label for="adjustNotes" class="form-label small fw-semibold">Reference / Notes</label>
-              <textarea class="form-control" id="adjustNotes" rows="2" placeholder="e.g. Supplier Batch #GR-889"></textarea>
-            </div>
-
-            <div class="alert alert-info py-2 px-3 small mb-0 d-flex align-items-center justify-content-between" id="stockPreviewCalc">
-              <span><i class="bi bi-info-circle me-1"></i>Calculated Outcome:</span>
-              <strong class="text-dark">New stock: 4 + 10 = 14 units</strong>
-            </div>
-          </form>
-        </div>
-
-        <div class="modal-footer bg-light">
-          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
-            <i class="bi bi-check2-circle me-1"></i> Save Stock Change
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- =========================================================================
-       5. STOCK HISTORY MODAL (#stockHistoryModal)
-       ========================================================================= -->
-  <div class="modal fade" id="stockHistoryModal" tabindex="-1" aria-labelledby="stockHistoryModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-      <div class="modal-content">
-        <div class="modal-header bg-charcoal text-white">
-          <h2 class="modal-title h5 mb-0" id="stockHistoryModalLabel">
-            <i class="bi bi-clock-history me-2"></i>Stock History Audit Log
-          </h2>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-
-        <div class="modal-body p-0">
-          <div class="p-3 bg-light border-bottom d-flex justify-content-between align-items-center">
-            <div>
-              <span class="small text-muted">Audited Product:</span>
-              <strong class="fs-6 text-dark ms-1">Cheesy Fries (SKU: GM-FRY-02)</strong>
-            </div>
-            <span class="badge bg-secondary-subtle text-dark">Last 30 Days</span>
-          </div>
-
-          <div class="table-responsive">
-            <table class="table table-hover align-middle mb-0">
-              <thead class="table-light">
-                <tr>
-                  <th scope="col">Date & Time</th>
-                  <th scope="col">Delta</th>
-                  <th scope="col">Reason</th>
-                  <th scope="col">Reference</th>
-                  <th scope="col">Logged By</th>
-                </tr>
-              </thead>
-              <tbody id="stockHistoryTableBody">
-                <tr>
-                  <td class="small">07 Nov 2026, 12:45 PM</td>
-                  <td><span class="badge bg-danger-subtle text-danger fw-bold">-1</span></td>
-                  <td>POS Sale</td>
-                  <td><span class="font-monospace small">Order #1042</span></td>
-                  <td class="small text-muted">Cashier 01</td>
-                </tr>
-                <tr>
-                  <td class="small">07 Nov 2026, 08:30 AM</td>
-                  <td><span class="badge bg-success-subtle text-success fw-bold">+20</span></td>
-                  <td>Supplier Delivery</td>
-                  <td><span class="font-monospace small">PO-2026-991</span></td>
-                  <td class="small text-muted">Manager</td>
-                </tr>
-                <tr>
-                  <td class="small">06 Nov 2026, 07:15 PM</td>
-                  <td><span class="badge bg-danger-subtle text-danger fw-bold">-1</span></td>
-                  <td>Damaged / Dropped</td>
-                  <td><span class="font-monospace small">Waste Log #88</span></td>
-                  <td class="small text-muted">Kitchen Lead</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <div class="modal-footer bg-light">
-          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- =========================================================================
-       6. "CANNOT DELETE PRODUCT" MODAL VARIANT (#cannotDeleteProductModal)
-       ========================================================================= -->
-  <div class="modal fade" id="cannotDeleteProductModal" tabindex="-1" aria-labelledby="cannotDeleteProductModalLabel" aria-hidden="true">
+  <div class="modal fade" id="addStockModal" tabindex="-1" aria-labelledby="addStockModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-sm">
       <div class="modal-content">
-        <div class="modal-body text-center p-4">
-          <div class="rounded-circle bg-warning-subtle text-warning-emphasis d-inline-flex align-items-center justify-content-center mb-3" style="width: 56px; height: 56px;">
-            <i class="bi bi-slash-circle-fill fs-3 text-warning"></i>
-          </div>
-          <h2 class="h5 fw-bold mb-2" id="cannotDeleteProductModalLabel">Can't delete this product</h2>
-          <p class="text-muted small mb-0">
-            This product appears in past sales orders. To protect audit and revenue data, it cannot be deleted. You can mark it as unavailable on POS instead.
-          </p>
+        <div class="modal-header">
+          <h5 class="modal-title" id="addStockModalLabel">
+            <i class="bi bi-box-arrow-in-down text-success me-2"></i>Add Stock
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-footer flex-nowrap p-0 border-top">
-          <button type="button" class="btn btn-link fs-6 text-decoration-none col-6 m-0 rounded-0 border-end py-3 text-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-link fs-6 text-decoration-none col-6 m-0 rounded-0 py-3 text-warning-emphasis fw-bold" data-bs-dismiss="modal">Mark Unavailable</button>
+        <div class="modal-body">
+          <div class="mb-2">
+            <strong class="text-dark d-block">Spicy Jalapeño Burger</strong>
+            <span class="text-muted small">Current inventory: <strong>8 units</strong></span>
+          </div>
+
+          <div class="my-3">
+            <label class="form-label fw-semibold small">Quantity to Add (+)</label>
+            <input type="number" class="form-control form-control-lg text-center fw-bold" value="20" min="1">
+          </div>
+          <div class="text-muted small text-center">New Total Stock: <strong>28 units</strong></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-success btn-sm px-3" data-bs-dismiss="modal">Confirm Stock</button>
         </div>
       </div>
     </div>
   </div>
 
   <!-- =========================================================================
-       7. STANDARD DELETE CONFIRMATION MODAL (#deleteProductModal)
+       Modal 4: Delete Product Confirmation Modal
        ========================================================================= -->
   <div class="modal fade" id="deleteProductModal" tabindex="-1" aria-labelledby="deleteProductModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-sm">
-      <div class="modal-content">
-        <div class="modal-body text-center p-4">
-          <div class="rounded-circle bg-danger-subtle text-danger d-inline-flex align-items-center justify-content-center mb-3" style="width: 56px; height: 56px;">
-            <i class="bi bi-trash3-fill fs-3"></i>
+      <div class="modal-content text-center p-2">
+        <div class="modal-body">
+          <div class="text-danger mb-2">
+            <i class="bi bi-exclamation-triangle-fill fs-1"></i>
           </div>
-          <h2 class="h5 fw-bold mb-2" id="deleteProductModalLabel">Delete this product?</h2>
-          <p class="text-muted small mb-0">Are you sure you want to permanently remove this product from the master catalog?</p>
-        </div>
-        <div class="modal-footer flex-nowrap p-0 border-top">
-          <button type="button" class="btn btn-link fs-6 text-decoration-none col-6 m-0 rounded-0 border-end py-3 text-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-link fs-6 text-decoration-none col-6 m-0 rounded-0 py-3 text-danger fw-semibold" data-bs-dismiss="modal">Delete</button>
+          <h5 class="fw-bold mb-1">Delete Product?</h5>
+          <p class="text-muted small mb-3">Are you sure you want to remove this item from the active menu?</p>
+          <div class="d-flex justify-content-center gap-2">
+            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal">Yes, Delete</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- =========================================================================
-       8. TOAST CONTAINER (Shared Static Demo Toasts)
-       ========================================================================= -->
-  <div class="toast-container position-fixed bottom-0 end-0 p-3 mb-5 mb-md-3 me-md-3" style="z-index: 1060;">
-    <div id="productDemoToast" class="toast show align-items-center text-bg-dark border-0 shadow-lg" role="alert" aria-live="assertive" aria-atomic="true">
-      <div class="d-flex">
-        <div class="toast-body d-flex align-items-center">
-          <i class="bi bi-box-seam text-warning fs-5 me-2"></i>
-          <div>
-            <strong class="d-block text-white">Catalog & Stock Synced</strong>
-            <span class="small text-white-50">10 products loaded with live inventory levels</span>
-          </div>
-        </div>
-        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-      </div>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
-  <!-- Bootstrap 5.3 Bundle JS via CDN -->
+  <!-- Bootstrap 5 Bundle JS CDN (Only script allowed for Bootstrap modals) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
