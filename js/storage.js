@@ -53,7 +53,7 @@ function saveAll(collection, items) {
  * Uses current timestamp and a random string.
  * @returns {string} Unique ID
  */
-function generateId() {
+function generateId(type) {
   return 'id_' + Date.now().toString(36) + '_' + Math.random().toString(36).substring(2, 7);
 }
 
