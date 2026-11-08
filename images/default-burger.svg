@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgDef" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2c2724"/>
+      <stop offset="100%" stop-color="#181513"/>
+    </linearGradient>
+    <linearGradient id="bunDef" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ff9800"/>
+      <stop offset="100%" stop-color="#e65100"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" rx="16" fill="url(#bgDef)"/>
+  <circle cx="200" cy="150" r="110" fill="#ff5722" opacity="0.15"/>
+  <g transform="translate(0, -5)">
+    <!-- Burger silhouette icon -->
+    <path d="M 130 195 C 130 208, 270 208, 270 195 L 270 185 L 130 185 Z" fill="url(#bunDef)"/>
+    <rect x="120" y="165" width="160" height="18" rx="8" fill="#5d4037"/>
+    <path d="M 122 165 L 278 165 L 260 178 L 240 170 L 210 182 L 190 170 L 160 182 L 140 170 Z" fill="#ffc107"/>
+    <path d="M 115 145 Q 135 135 155 145 Q 175 155 195 145 Q 215 135 235 145 Q 255 155 275 145 Q 285 140 285 148 L 115 148 Z" fill="#4caf50"/>
+    <path d="M 125 140 C 125 75, 275 75, 275 140 Z" fill="url(#bunDef)"/>
+    <!-- GrillMaster flame mark -->
+    <path d="M 200 95 Q 215 110 205 125 Q 200 115 195 120 Q 185 110 200 95 Z" fill="#ffffff" opacity="0.8"/>
+  </g>
+  <text x="200" y="245" font-family="'Poppins', sans-serif" font-size="14" font-weight="600" fill="#ffffff" opacity="0.8" text-anchor="middle" letter-spacing="1">GRILLMASTER POS</text>
+</svg>

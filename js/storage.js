@@ -213,7 +213,7 @@ function addProduct(product) {
     category: (product.category || 'Burgers').trim(),
     price: Number(product.price) || 0,
     stock: Number(product.stock !== undefined ? product.stock : (product.qty !== undefined ? product.qty : 0)),
-    image: product.image || product.imgLink || 'https://placehold.co/400x300/1f1f1f/ff5722?text=Product',
+    image: product.image || product.imgLink || 'images/default-burger.svg',
     sku: product.sku || ('BRG-' + Math.floor(100 + Math.random() * 900))
   };
 
@@ -576,12 +576,37 @@ function formatDate(isoString) {
  * and 3 customers, using placehold.co images.
  */
 function seedData() {
-  if (localStorage.getItem(STORAGE_KEYS.PRODUCTS) !== null) {
-    // Data has already been initialized
+  const existingRaw = localStorage.getItem(STORAGE_KEYS.PRODUCTS);
+
+  // If products already exist in localStorage, upgrade old placeholder URLs to local SVGs
+  if (existingRaw !== null) {
+    const existing = getAll(STORAGE_KEYS.PRODUCTS);
+    const svgMap = {
+      'BRG-001': 'images/classic-cheeseburger.svg',
+      'BRG-002': 'images/double-bacon-smash.svg',
+      'BRG-003': 'images/spicy-jalapeno.svg',
+      'BRG-004': 'images/mushroom-swiss.svg',
+      'FRY-001': 'images/loaded-fries.svg',
+      'FRY-002': 'images/crispy-onion-rings.svg',
+      'DRK-001': 'images/chocolate-thickshake.svg'
+    };
+
+    let updated = false;
+    existing.forEach(p => {
+      if (svgMap[p.sku] && (!p.image || p.image.includes('placehold.co'))) {
+        p.image = svgMap[p.sku];
+        updated = true;
+      }
+    });
+
+    if (updated) {
+      saveAll(STORAGE_KEYS.PRODUCTS, existing);
+      console.log('GrillMaster POS: Upgraded existing product images to local SVGs.');
+    }
     return;
   }
 
-  // 1. Initial 7 Burger Shop Products
+  // 1. Initial 7 Burger Shop Products with custom vector SVGs
   const initialProducts = [
     {
       id: 'prod_1',
@@ -590,7 +615,7 @@ function seedData() {
       price: 8.99,
       stock: 45,
       sku: 'BRG-001',
-      image: 'https://placehold.co/400x300/1f1f1f/ff5722?text=Classic+Cheeseburger',
+      image: 'images/classic-cheeseburger.svg',
       createdAt: new Date().toISOString()
     },
     {
@@ -600,7 +625,7 @@ function seedData() {
       price: 11.49,
       stock: 28,
       sku: 'BRG-002',
-      image: 'https://placehold.co/400x300/1f1f1f/ff5722?text=Double+Bacon+Smash',
+      image: 'images/double-bacon-smash.svg',
       createdAt: new Date().toISOString()
     },
     {
@@ -610,7 +635,7 @@ function seedData() {
       price: 9.99,
       stock: 8, // Low Stock (<= 10)
       sku: 'BRG-003',
-      image: 'https://placehold.co/400x300/1f1f1f/ff5722?text=Spicy+Jalapeno+Burger',
+      image: 'images/spicy-jalapeno.svg',
       createdAt: new Date().toISOString()
     },
     {
@@ -620,7 +645,7 @@ function seedData() {
       price: 10.99,
       stock: 4, // Low Stock (<= 10)
       sku: 'BRG-004',
-      image: 'https://placehold.co/400x300/1f1f1f/ff5722?text=Mushroom+Swiss+Burger',
+      image: 'images/mushroom-swiss.svg',
       createdAt: new Date().toISOString()
     },
     {
@@ -630,7 +655,7 @@ function seedData() {
       price: 5.49,
       stock: 40,
       sku: 'FRY-001',
-      image: 'https://placehold.co/400x300/1f1f1f/ff5722?text=Loaded+Truffle+Fries',
+      image: 'images/loaded-fries.svg',
       createdAt: new Date().toISOString()
     },
     {
@@ -640,7 +665,7 @@ function seedData() {
       price: 4.99,
       stock: 25,
       sku: 'FRY-002',
-      image: 'https://placehold.co/400x300/1f1f1f/ff5722?text=Crispy+Onion+Rings',
+      image: 'images/crispy-onion-rings.svg',
       createdAt: new Date().toISOString()
     },
     {
@@ -650,7 +675,7 @@ function seedData() {
       price: 4.49,
       stock: 0, // Out of Stock (= 0)
       sku: 'DRK-001',
-      image: 'https://placehold.co/400x300/1f1f1f/ff5722?text=Chocolate+Thickshake',
+      image: 'images/chocolate-thickshake.svg',
       createdAt: new Date().toISOString()
     }
   ];

@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2d1c1a"/>
+      <stop offset="100%" stop-color="#190e0c"/>
+    </linearGradient>
+    <linearGradient id="bun3" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fba146"/>
+      <stop offset="100%" stop-color="#c45d13"/>
+    </linearGradient>
+    <linearGradient id="patty3" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#693019"/>
+      <stop offset="100%" stop-color="#3e170a"/>
+    </linearGradient>
+    <linearGradient id="spicySauce" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ff1744"/>
+      <stop offset="100%" stop-color="#b71c1c"/>
+    </linearGradient>
+    <filter id="shadow3" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="12" stdDeviation="10" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <rect width="400" height="300" rx="16" fill="url(#bg3)"/>
+  <circle cx="200" cy="150" r="115" fill="#f44336" opacity="0.14"/>
+
+  <g filter="url(#shadow3)">
+    <!-- Bottom Bun -->
+    <path d="M 120 205 C 120 220, 280 220, 280 205 L 280 195 L 120 195 Z" fill="url(#bun3)"/>
+
+    <!-- Patty -->
+    <rect x="110" y="172" width="180" height="24" rx="10" fill="url(#patty3)"/>
+
+    <!-- Pepper Jack Melted Cheese -->
+    <path d="M 112 173 L 288 173 L 275 186 L 250 178 L 225 195 L 205 178 L 175 194 L 155 178 L 135 190 Z" fill="#fff59d"/>
+    <!-- Red pepper flakes in cheese -->
+    <circle cx="150" cy="182" r="1.5" fill="#d50000"/>
+    <circle cx="180" cy="186" r="1.5" fill="#d50000"/>
+    <circle cx="215" cy="184" r="1.5" fill="#d50000"/>
+    <circle cx="245" cy="182" r="1.5" fill="#d50000"/>
+
+    <!-- Fiery Spicy Red Sauce Drips -->
+    <path d="M 116 168 Q 145 162 175 174 Q 200 162 230 172 Q 260 162 284 168 L 284 172 Q 255 180 235 174 Q 210 188 190 174 Q 165 188 140 174 Z" fill="url(#spicySauce)"/>
+
+    <!-- Jalapeño Pepper Slices -->
+    <!-- Jalapeno 1 -->
+    <g transform="translate(130, 150) rotate(-12)">
+      <circle cx="15" cy="10" r="14" fill="#2e7d32"/>
+      <circle cx="15" cy="10" r="10" fill="#a5d6a7"/>
+      <circle cx="15" cy="10" r="5" fill="#2e7d32"/>
+      <circle cx="13" cy="8" r="1.5" fill="#fff9c4"/>
+      <circle cx="17" cy="8" r="1.5" fill="#fff9c4"/>
+      <circle cx="15" cy="13" r="1.5" fill="#fff9c4"/>
+    </g>
+
+    <!-- Jalapeno 2 (Center) -->
+    <g transform="translate(185, 146)">
+      <circle cx="15" cy="10" r="14" fill="#2e7d32"/>
+      <circle cx="15" cy="10" r="10" fill="#a5d6a7"/>
+      <circle cx="15" cy="10" r="5" fill="#2e7d32"/>
+      <circle cx="13" cy="8" r="1.5" fill="#fff9c4"/>
+      <circle cx="17" cy="8" r="1.5" fill="#fff9c4"/>
+      <circle cx="15" cy="13" r="1.5" fill="#fff9c4"/>
+    </g>
+
+    <!-- Jalapeno 3 -->
+    <g transform="translate(240, 148) rotate(15)">
+      <circle cx="15" cy="10" r="14" fill="#2e7d32"/>
+      <circle cx="15" cy="10" r="10" fill="#a5d6a7"/>
+      <circle cx="15" cy="10" r="5" fill="#2e7d32"/>
+      <circle cx="13" cy="8" r="1.5" fill="#fff9c4"/>
+      <circle cx="17" cy="8" r="1.5" fill="#fff9c4"/>
+      <circle cx="15" cy="13" r="1.5" fill="#fff9c4"/>
+    </g>
+
+    <!-- Crispy Lettuce Layer -->
+    <path d="M 105 148 Q 120 138 135 148 Q 150 156 165 146 Q 180 138 195 148 Q 210 158 225 147 Q 240 138 255 148 Q 270 156 285 146 Q 295 141 300 150 L 105 150 Z" fill="#388e3c"/>
+
+    <!-- Top Bun -->
+    <path d="M 115 140 C 115 70, 285 70, 285 140 Z" fill="url(#bun3)"/>
+
+    <!-- Chili icon accent on top bun -->
+    <path d="M 195 85 Q 205 80 215 90 Q 210 105 198 100 Q 192 92 195 85 Z" fill="#d50000"/>
+    <path d="M 215 90 Q 220 86 224 87" stroke="#2e7d32" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+
+    <!-- Sesame Seeds -->
+    <ellipse cx="150" cy="105" rx="3.5" ry="2" fill="#fff9c4" transform="rotate(-15 150 105)"/>
+    <ellipse cx="175" cy="95" rx="3.5" ry="2" fill="#fff9c4" transform="rotate(10 175 95)"/>
+    <ellipse cx="235" cy="102" rx="3.5" ry="2" fill="#fff9c4" transform="rotate(25 235 102)"/>
+    <ellipse cx="140" cy="122" rx="3.5" ry="2" fill="#fff9c4" transform="rotate(-30 140 122)"/>
+    <ellipse cx="180" cy="118" rx="3.5" ry="2" fill="#fff9c4" transform="rotate(5 180 118)"/>
+    <ellipse cx="220" cy="118" rx="3.5" ry="2" fill="#fff9c4" transform="rotate(-10 220 118)"/>
+    <ellipse cx="260" cy="122" rx="3.5" ry="2" fill="#fff9c4" transform="rotate(30 260 122)"/>
+  </g>
+</svg>

@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg7" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2a2024"/>
+      <stop offset="100%" stop-color="#140f12"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.35"/>
+      <stop offset="30%" stop-color="#ffffff" stop-opacity="0.08"/>
+      <stop offset="70%" stop-color="#ffffff" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.35"/>
+    </linearGradient>
+    <linearGradient id="chocShake" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#4e2c1e"/>
+      <stop offset="40%" stop-color="#6d3d2a"/>
+      <stop offset="70%" stop-color="#8d5038"/>
+      <stop offset="100%" stop-color="#4e2c1e"/>
+    </linearGradient>
+    <linearGradient id="whippedCream" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#fff8e1"/>
+    </linearGradient>
+    <filter id="shadow7" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="12" stdDeviation="10" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <rect width="400" height="300" rx="16" fill="url(#bg7)"/>
+  <circle cx="200" cy="150" r="115" fill="#e91e63" opacity="0.12"/>
+
+  <!-- Table shadow -->
+  <ellipse cx="200" cy="265" rx="75" ry="14" fill="#000000" opacity="0.45"/>
+
+  <g filter="url(#shadow7)">
+    <!-- Red & White Striped Straw -->
+    <g transform="translate(195, 20) rotate(18)">
+      <!-- Straw Base -->
+      <rect x="0" y="0" width="14" height="150" rx="4" fill="#ffffff"/>
+      <!-- Red Stripes -->
+      <path d="M 0 15 L 14 25 L 14 35 L 0 25 Z" fill="#e53935"/>
+      <path d="M 0 45 L 14 55 L 14 65 L 0 55 Z" fill="#e53935"/>
+      <path d="M 0 75 L 14 85 L 14 95 L 0 85 Z" fill="#e53935"/>
+      <path d="M 0 105 L 14 115 L 14 125 L 0 115 Z" fill="#e53935"/>
+    </g>
+
+    <!-- Glass Foot / Stand -->
+    <ellipse cx="200" cy="254" rx="42" ry="10" fill="#90a4ae" opacity="0.5"/>
+    <ellipse cx="200" cy="252" rx="40" ry="9" fill="#cfd8dc" opacity="0.7"/>
+    <!-- Glass Stem -->
+    <path d="M 194 220 L 192 250 L 208 250 L 206 220 Z" fill="#eceff1" opacity="0.75"/>
+
+    <!-- Milkshake Liquid inside Glass -->
+    <path d="M 160 120 L 175 220 Q 200 230 225 220 L 240 120 Z" fill="url(#chocShake)"/>
+
+    <!-- Chocolate Swirl Ripple lines inside -->
+    <path d="M 166 140 Q 200 155 234 140" stroke="#3e1d11" stroke-width="6" stroke-linecap="round" fill="none" opacity="0.7"/>
+    <path d="M 170 170 Q 200 185 230 170" stroke="#3e1d11" stroke-width="6" stroke-linecap="round" fill="none" opacity="0.7"/>
+    <path d="M 176 198 Q 200 210 224 198" stroke="#3e1d11" stroke-width="5" stroke-linecap="round" fill="none" opacity="0.7"/>
+
+    <!-- Retro Fluted Soda Glass Container Outer -->
+    <path d="M 156 110 L 174 220 Q 200 232 226 220 L 244 110 Q 200 118 156 110 Z" fill="url(#glass)"/>
+    <path d="M 156 110 Q 200 118 244 110" stroke="#ffffff" stroke-width="3" fill="none" opacity="0.6"/>
+
+    <!-- Glass Highlights / Reflections -->
+    <path d="M 162 120 L 177 215" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" fill="none" opacity="0.6"/>
+    <path d="M 238 120 L 223 215" stroke="#ffffff" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.4"/>
+
+    <!-- Big Mound of Whipped Cream on Top -->
+    <path d="M 150 115 
+             C 142 95, 170 85, 175 95 
+             C 178 78, 215 75, 218 92 
+             C 228 85, 255 92, 248 115 
+             Z" fill="url(#whippedCream)"/>
+    <!-- Whipped Cream Swirl Pinnacle -->
+    <path d="M 172 95 C 180 65, 220 62, 212 90 C 205 60, 202 52, 196 55 C 190 62, 198 80, 185 92 Z" fill="#ffffff"/>
+
+    <!-- Chocolate Syrup Drizzle on Cream -->
+    <path d="M 165 105 Q 185 85 195 108 Q 212 90 225 110" stroke="#3e1d11" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+    <path d="M 180 88 Q 198 75 208 95" stroke="#3e1d11" stroke-width="3" stroke-linecap="round" fill="none"/>
+
+    <!-- Red Maraschino Cherry on Top -->
+    <circle cx="218" cy="62" r="13" fill="#d50000"/>
+    <circle cx="214" cy="58" r="4" fill="#ff8a80" opacity="0.8"/>
+    <!-- Cherry Stem -->
+    <path d="M 218 52 Q 228 35 242 38" stroke="#33691e" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+
+    <!-- Colored Sprinkles on Cream -->
+    <rect x="165" y="98" width="5" height="2.5" rx="1" fill="#ff4081" transform="rotate(30 165 98)"/>
+    <rect x="185" y="102" width="5" height="2.5" rx="1" fill="#00e676" transform="rotate(-20 185 102)"/>
+    <rect x="228" y="105" width="5" height="2.5" rx="1" fill="#ffeb3b" transform="rotate(45 228 105)"/>
+    <rect x="178" y="80" width="5" height="2.5" rx="1" fill="#00b0ff" transform="rotate(15 178 80)"/>
+  </g>
+</svg>

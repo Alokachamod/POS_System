@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2a2522"/>
+      <stop offset="100%" stop-color="#191614"/>
+    </linearGradient>
+    <linearGradient id="bunTop" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f8a74d"/>
+      <stop offset="100%" stop-color="#c96f1b"/>
+    </linearGradient>
+    <linearGradient id="patty" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#6e371f"/>
+      <stop offset="100%" stop-color="#421e0f"/>
+    </linearGradient>
+    <linearGradient id="cheese" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffd54f"/>
+      <stop offset="100%" stop-color="#ffb300"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="12" stdDeviation="10" flood-color="#000000" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="300" rx="16" fill="url(#bg)"/>
+  <circle cx="200" cy="150" r="115" fill="#ff5722" opacity="0.12"/>
+
+  <!-- Burger Group -->
+  <g filter="url(#shadow)">
+    <!-- Bottom Bun -->
+    <path d="M 120 205 C 120 220, 280 220, 280 205 L 280 195 L 120 195 Z" fill="url(#bunTop)"/>
+    
+    <!-- Patty -->
+    <rect x="110" y="172" width="180" height="24" rx="10" fill="url(#patty)"/>
+    
+    <!-- Melted Cheese -->
+    <path d="M 112 173 L 288 173 L 275 186 L 250 178 L 225 195 L 205 178 L 175 194 L 155 178 L 135 190 Z" fill="url(#cheese)"/>
+    
+    <!-- Tomato Slice -->
+    <rect x="118" y="158" width="164" height="14" rx="7" fill="#e53935"/>
+    <ellipse cx="160" cy="165" rx="8" ry="3" fill="#ff7961" opacity="0.6"/>
+    <ellipse cx="230" cy="165" rx="8" ry="3" fill="#ff7961" opacity="0.6"/>
+
+    <!-- Lettuce Wave -->
+    <path d="M 105 152 Q 120 142 135 152 Q 150 160 165 150 Q 180 142 195 152 Q 210 162 225 151 Q 240 142 255 152 Q 270 160 285 150 Q 295 145 300 154 L 105 154 Z" fill="#43a047"/>
+
+    <!-- Top Bun -->
+    <path d="M 115 145 C 115 75, 285 75, 285 145 Z" fill="url(#bunTop)"/>
+
+    <!-- Sesame Seeds -->
+    <ellipse cx="160" cy="100" rx="3.5" ry="2" fill="#fff9c4" transform="rotate(-15 160 100)"/>
+    <ellipse cx="195" cy="90" rx="3.5" ry="2" fill="#fff9c4" transform="rotate(10 195 90)"/>
+    <ellipse cx="230" cy="98" rx="3.5" ry="2" fill="#fff9c4" transform="rotate(25 230 98)"/>
+    <ellipse cx="140" cy="120" rx="3.5" ry="2" fill="#fff9c4" transform="rotate(-30 140 120)"/>
+    <ellipse cx="178" cy="115" rx="3.5" ry="2" fill="#fff9c4" transform="rotate(5 178 115)"/>
+    <ellipse cx="215" cy="116" rx="3.5" ry="2" fill="#fff9c4" transform="rotate(-10 215 116)"/>
+    <ellipse cx="255" cy="120" rx="3.5" ry="2" fill="#fff9c4" transform="rotate(30 255 120)"/>
+  </g>
+</svg>
