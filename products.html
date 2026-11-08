@@ -383,14 +383,14 @@
           <form>
             <!-- Product Name -->
             <div class="mb-3">
-              <label class="form-label fw-semibold small">Product Name</label>
-              <input type="text" class="form-control" placeholder="e.g. Smoky BBQ Bacon Burger" required>
+              <label class="form-label fw-semibold small" for="productName">Product Name</label>
+              <input type="text" class="form-control" id="productName" placeholder="e.g. Smoky BBQ Bacon Burger" required>
             </div>
 
             <!-- Category Select -->
             <div class="mb-3">
               <label class="form-label fw-semibold small">Category</label>
-              <select class="form-select" required>
+              <select class="form-select" required id="category">
                 <option value="" disabled selected>Select category...</option>
                 <option value="burgers">Burgers</option>
                 <option value="fries">Fries &amp; Sides</option>
@@ -402,26 +402,26 @@
             <!-- Price and Stock Quantity -->
             <div class="row g-2 mb-3">
               <div class="col-6">
-                <label class="form-label fw-semibold small">Price ($)</label>
+                <label class="form-label fw-semibold small" id="price">Price ($)</label>
                 <input type="number" step="0.01" class="form-control" placeholder="9.99" required>
               </div>
               <div class="col-6">
-                <label class="form-label fw-semibold small">Stock Quantity</label>
-                <input type="number" class="form-control" placeholder="50" required>
+                <label class="form-label fw-semibold small" >Stock Quantity</label>
+                <input type="number" class="form-control" placeholder="50" id="qty" required>
               </div>
             </div>
 
             <!-- Image URL -->
             <div class="mb-3">
               <label class="form-label fw-semibold small">Image URL</label>
-              <input type="url" class="form-control" placeholder="https://example.com/burger.jpg">
+              <input type="url" class="form-control" placeholder="https://example.com/burger.jpg" id="imgLink">
               <div class="form-text small text-muted">Paste an image link or leave empty for default thumbnail.</div>
             </div>
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-primary-custom" data-bs-dismiss="modal">Save Product</button>
+          <button type="button" class="btn btn-primary-custom" onclick="addProduct();">Save Product</button>
         </div>
       </div>
     </div>
