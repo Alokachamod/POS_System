@@ -335,12 +335,37 @@ function getCustomers() {
 }
 
 /**
+ * Generate next customer ID with format "cus_001", "cus_002", etc.
+ * Finds the highest numeric suffix in existing customers and increments by 1.
+ * @returns {string} Formatted customer ID (e.g. "cus_001")
+ */
+function generateCustomerId() {
+  const customers = getCustomers();
+  let maxNum = 0;
+  customers.forEach(c => {
+    if (c.id && typeof c.id === 'string') {
+      const match = c.id.match(/^cus_(\d+)$/i);
+      if (match) {
+        const num = parseInt(match[1], 10);
+        if (!isNaN(num) && num > maxNum) {
+          maxNum = num;
+        }
+      }
+    }
+  });
+  const nextNum = maxNum + 1;
+  return 'cus_' + String(nextNum).padStart(3, '0');
+}
+
+/**
  * Add a new customer.
- * @param {Object} customer - { name, phone, email }
+ * Automatically generates ID in "cus_001" format if not provided.
+ * @param {Object} customer - { id, name, phone, email }
  * @returns {Object} Added customer
  */
 function addCustomer(customer) {
   const newCust = {
+    id: customer.id || generateCustomerId(),
     name: (customer.name || '').trim(),
     phone: (customer.phone || '').trim(),
     email: (customer.email || '').trim()
@@ -566,202 +591,75 @@ function formatDate(isoString) {
 }
 
 // ==========================================================================
-// 7) DUMMY DATA SEEDING
+// 7) STORAGE INITIALIZATION & CLEANUP (NO DUMMY DATA)
 // ==========================================================================
 
 /**
- * Initialize default dummy data on first load.
- * Runs ONLY if 'pos_products' does not already exist in localStorage.
- * Seeds 7 burger shop products (including low-stock and out-of-stock items)
- * and 3 customers, using placehold.co images.
+ * Initialize storage collections without adding default dummy items.
+ * If collections do not exist, creates empty arrays [].
+ * Automatically cleans any previously seeded dummy items from localStorage.
  */
-function seedData() {
-  const existingRaw = localStorage.getItem(STORAGE_KEYS.PRODUCTS);
-
-  // LKR Pricing map for initial fast-food menu
-  const lkrPriceMap = {
-    'BRG-001': 1450.00,
-    'BRG-002': 1850.00,
-    'BRG-003': 1650.00,
-    'BRG-004': 1750.00,
-    'FRY-001': 950.00,
-    'FRY-002': 850.00,
-    'DRK-001': 750.00
-  };
-
-  const svgMap = {
-    'BRG-001': 'images/classic-cheeseburger.svg',
-    'BRG-002': 'images/double-bacon-smash.svg',
-    'BRG-003': 'images/spicy-jalapeno.svg',
-    'BRG-004': 'images/mushroom-swiss.svg',
-    'FRY-001': 'images/loaded-fries.svg',
-    'FRY-002': 'images/crispy-onion-rings.svg',
-    'DRK-001': 'images/chocolate-thickshake.svg'
-  };
-
-  // If products already exist in localStorage, upgrade old placeholder URLs and dollar prices to LKR
-  if (existingRaw !== null) {
-    const existing = getAll(STORAGE_KEYS.PRODUCTS);
-    let updated = false;
-
-    existing.forEach(p => {
-      // Upgrade image if old placeholder
-      if (svgMap[p.sku] && (!p.image || p.image.includes('placehold.co'))) {
-        p.image = svgMap[p.sku];
-        updated = true;
-      }
-      // Upgrade price to LKR if it was old dollar price (< 100)
-      if (lkrPriceMap[p.sku] && Number(p.price) < 100) {
-        p.price = lkrPriceMap[p.sku];
-        updated = true;
-      }
-    });
-
-    if (updated) {
-      saveAll(STORAGE_KEYS.PRODUCTS, existing);
-      console.log('GrillMaster POS: Upgraded existing products to LKR pricing & local SVGs.');
-    }
-    return;
+function initStorage() {
+  // 1. Initialize empty collections if they don't already exist
+  if (localStorage.getItem(STORAGE_KEYS.PRODUCTS) === null) {
+    saveAll(STORAGE_KEYS.PRODUCTS, []);
+  }
+  if (localStorage.getItem(STORAGE_KEYS.CUSTOMERS) === null) {
+    saveAll(STORAGE_KEYS.CUSTOMERS, []);
+  }
+  if (localStorage.getItem(STORAGE_KEYS.ORDERS) === null) {
+    saveAll(STORAGE_KEYS.ORDERS, []);
   }
 
-  // 1. Initial 7 Burger Shop Products with LKR pricing and custom vector SVGs
-  const initialProducts = [
-    {
-      id: 'prod_1',
-      name: 'Classic Cheeseburger',
-      category: 'Burgers',
-      price: 1450.00,
-      stock: 45,
-      sku: 'BRG-001',
-      image: 'images/classic-cheeseburger.svg',
-      createdAt: new Date().toISOString()
-    },
-    {
-      id: 'prod_2',
-      name: 'Double Bacon Smash',
-      category: 'Burgers',
-      price: 1850.00,
-      stock: 28,
-      sku: 'BRG-002',
-      image: 'images/double-bacon-smash.svg',
-      createdAt: new Date().toISOString()
-    },
-    {
-      id: 'prod_3',
-      name: 'Spicy Jalapeño Burger',
-      category: 'Burgers',
-      price: 1650.00,
-      stock: 8, // Low Stock (<= 10)
-      sku: 'BRG-003',
-      image: 'images/spicy-jalapeno.svg',
-      createdAt: new Date().toISOString()
-    },
-    {
-      id: 'prod_4',
-      name: 'Mushroom Swiss Burger',
-      category: 'Burgers',
-      price: 1750.00,
-      stock: 4, // Low Stock (<= 10)
-      sku: 'BRG-004',
-      image: 'images/mushroom-swiss.svg',
-      createdAt: new Date().toISOString()
-    },
-    {
-      id: 'prod_5',
-      name: 'Loaded Truffle Fries',
-      category: 'Fries & Sides',
-      price: 950.00,
-      stock: 40,
-      sku: 'FRY-001',
-      image: 'images/loaded-fries.svg',
-      createdAt: new Date().toISOString()
-    },
-    {
-      id: 'prod_6',
-      name: 'Crispy Onion Rings',
-      category: 'Fries & Sides',
-      price: 850.00,
-      stock: 25,
-      sku: 'FRY-002',
-      image: 'images/crispy-onion-rings.svg',
-      createdAt: new Date().toISOString()
-    },
-    {
-      id: 'prod_7',
-      name: 'Chocolate Thickshake',
-      category: 'Drinks',
-      price: 750.00,
-      stock: 0, // Out of Stock (= 0)
-      sku: 'DRK-001',
-      image: 'images/chocolate-thickshake.svg',
-      createdAt: new Date().toISOString()
+  // 2. Remove default dummy items if they were previously saved in localStorage
+  const defaultProdIds = ['prod_1', 'prod_2', 'prod_3', 'prod_4', 'prod_5', 'prod_6', 'prod_7'];
+  const defaultCustIds = ['cust_1', 'cust_2', 'cust_3'];
+  const defaultOrderIds = ['ord_1', 'ord_2'];
+
+  const products = getAll(STORAGE_KEYS.PRODUCTS);
+  if (products.length > 0) {
+    const cleanedProducts = products.filter(p => !defaultProdIds.includes(p.id));
+    if (cleanedProducts.length !== products.length) {
+      saveAll(STORAGE_KEYS.PRODUCTS, cleanedProducts);
+      console.log('GrillMaster POS: Removed default seeded products.');
     }
-  ];
+  }
 
-  // 2. Initial 3 Customers
-  const initialCustomers = [
-    {
-      id: 'cust_1',
-      name: 'Alex Morgan',
-      phone: '(555) 234-5678',
-      email: 'alex.morgan@example.com',
-      createdAt: new Date().toISOString()
-    },
-    {
-      id: 'cust_2',
-      name: 'Sarah Jenkins',
-      phone: '(555) 345-6789',
-      email: 'sarah.j@example.com',
-      createdAt: new Date().toISOString()
-    },
-    {
-      id: 'cust_3',
-      name: 'David Kim',
-      phone: '(555) 456-7890',
-      email: 'david.kim@example.com',
-      createdAt: new Date().toISOString()
+  const customers = getAll(STORAGE_KEYS.CUSTOMERS);
+  if (customers.length > 0) {
+    const cleanedCustomers = customers.filter(c => !defaultCustIds.includes(c.id));
+    if (cleanedCustomers.length !== customers.length) {
+      saveAll(STORAGE_KEYS.CUSTOMERS, cleanedCustomers);
+      console.log('GrillMaster POS: Removed default seeded customers.');
     }
-  ];
+  }
 
-  // 3. Initial Sample Orders with LKR pricing
-  const initialOrders = [
-    {
-      id: 'ord_1',
-      orderNumber: 'ORD-0001',
-      customerId: 'cust_1',
-      customerName: 'Alex Morgan',
-      items: [
-        { productId: 'prod_1', name: 'Classic Cheeseburger', price: 1450.00, qty: 2, total: 2900.00 },
-        { productId: 'prod_5', name: 'Loaded Truffle Fries', price: 950.00, qty: 1, total: 950.00 }
-      ],
-      subtotal: 3850.00,
-      discount: 350.00,
-      total: 3500.00,
-      status: 'Completed',
-      createdAt: new Date(Date.now() - 3600000 * 3).toISOString() // 3 hours ago
-    },
-    {
-      id: 'ord_2',
-      orderNumber: 'ORD-0002',
-      customerId: 'cust_2',
-      customerName: 'Sarah Jenkins',
-      items: [
-        { productId: 'prod_2', name: 'Double Bacon Smash', price: 1850.00, qty: 1, total: 1850.00 }
-      ],
-      subtotal: 1850.00,
-      discount: 0,
-      total: 1850.00,
-      status: 'Completed',
-      createdAt: new Date(Date.now() - 3600000 * 1.5).toISOString() // 1.5 hours ago
+  const orders = getAll(STORAGE_KEYS.ORDERS);
+  if (orders.length > 0) {
+    const cleanedOrders = orders.filter(o => !defaultOrderIds.includes(o.id));
+    if (cleanedOrders.length !== orders.length) {
+      saveAll(STORAGE_KEYS.ORDERS, cleanedOrders);
+      console.log('GrillMaster POS: Removed default seeded orders.');
     }
-  ];
-
-  saveAll(STORAGE_KEYS.PRODUCTS, initialProducts);
-  saveAll(STORAGE_KEYS.CUSTOMERS, initialCustomers);
-  saveAll(STORAGE_KEYS.ORDERS, initialOrders);
-
-  console.log('GrillMaster POS: Dummy data initialized successfully.');
+  }
 }
 
-// Automatically seed default data on first script load
-seedData();
+/**
+ * Backwards compatibility alias for seedData
+ */
+function seedData() {
+  initStorage();
+}
+
+/**
+ * Helper to clear all POS data completely if needed
+ */
+function clearAllPOSData() {
+  saveAll(STORAGE_KEYS.PRODUCTS, []);
+  saveAll(STORAGE_KEYS.CUSTOMERS, []);
+  saveAll(STORAGE_KEYS.ORDERS, []);
+  console.log('GrillMaster POS: All POS data cleared.');
+}
+
+// Initialize clean storage on script load
+initStorage();

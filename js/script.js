@@ -13,9 +13,16 @@
 // Active stock status filter ('all', 'low', 'out')
 let currentStockFilter = 'all';
 
-// Initialize table on DOM load
+// Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
-  loadProductsTable();
+  // If on products page, load products
+  if (document.getElementById('productTableBody')) {
+    loadProductsTable();
+  }
+  // If on customers page, load customers
+  if (document.getElementById('customerTableBody')) {
+    loadCustomerTable();
+  }
 });
 
 // ==========================================================================
@@ -216,26 +223,17 @@ function handleAddProduct() {
     image: imgInput && imgInput.value.trim() ? imgInput.value.trim() : 'images/default-burger.svg'
   };
 
-  // Save to storage
   addProduct(product);
 
-  // Reset form
   if (form) form.reset();
 
-  // Close modal
   closeModal('addProductModal');
 
-  // Refresh table
+
   loadProductsTable();
 }
 
-// ==========================================================================
-// 3) EDIT PRODUCT (UPDATE)
-// ==========================================================================
 
-/**
- * Open the Edit Product modal and pre-fill it with existing product data
- */
 function openEditModal(productId) {
   const product = getById(STORAGE_KEYS.PRODUCTS, productId);
   if (!product) return;
@@ -250,9 +248,7 @@ function openEditModal(productId) {
   openModal('editProductModal');
 }
 
-/**
- * Handle saving the updated product data
- */
+
 function handleUpdateProduct() {
   const form = document.getElementById('editProductForm');
   if (form && !form.reportValidity()) return;
@@ -268,23 +264,17 @@ function handleUpdateProduct() {
     image: document.getElementById('editImgLink').value.trim() || 'images/default-burger.svg'
   };
 
-  // Update in storage
   updateProduct(id, changes);
 
-  // Close modal
+
   closeModal('editProductModal');
 
-  // Refresh table
+
   loadProductsTable();
 }
 
-// ==========================================================================
-// 4) QUICK RESTOCK (+ STOCK)
-// ==========================================================================
 
-/**
- * Open the Quick "+ Stock" modal for a specific product
- */
+
 function openStockModal(productId) {
   const product = getById(STORAGE_KEYS.PRODUCTS, productId);
   if (!product) return;
@@ -302,9 +292,7 @@ function openStockModal(productId) {
   openModal('addStockModal');
 }
 
-/**
- * Calculate and display the preview of the new stock total in the restock modal
- */
+
 function updateStockPreview() {
   const id = document.getElementById('stockProductId').value;
   const product = getById(STORAGE_KEYS.PRODUCTS, id);
@@ -321,9 +309,7 @@ function updateStockPreview() {
   }
 }
 
-/**
- * Confirm and save the increased stock quantity
- */
+
 function handleConfirmStock() {
   const id = document.getElementById('stockProductId').value;
   const addQtyInput = document.getElementById('stockAddQty');
@@ -337,13 +323,7 @@ function handleConfirmStock() {
   loadProductsTable();
 }
 
-// ==========================================================================
-// 5) DELETE PRODUCT
-// ==========================================================================
 
-/**
- * Open the Delete Product confirmation modal
- */
 function openDeleteModal(productId) {
   const product = getById(STORAGE_KEYS.PRODUCTS, productId);
   if (!product) return;
@@ -354,9 +334,7 @@ function openDeleteModal(productId) {
   openModal('deleteProductModal');
 }
 
-/**
- * Confirm and delete the product from storage
- */
+
 function handleConfirmDelete() {
   const id = document.getElementById('deleteProductId').value;
   if (id) {
@@ -367,13 +345,7 @@ function handleConfirmDelete() {
   loadProductsTable();
 }
 
-// ==========================================================================
-// 6) MODAL HELPER FUNCTIONS
-// ==========================================================================
 
-/**
- * Show a Bootstrap modal by element ID safely
- */
 function openModal(modalId) {
   const modalEl = document.getElementById(modalId);
   if (!modalEl || !window.bootstrap) return;
@@ -393,4 +365,286 @@ function closeModal(modalId) {
   if (modalInstance) {
     modalInstance.hide();
   }
+}
+
+
+// ==========================================================================
+// 7) CUSTOMER MANAGEMENT (Student-Friendly Code)
+// ==========================================================================
+
+// 1. Function to load all customers into the table
+function loadCustomerTable() {
+  let tableBody = document.getElementById("customerTableBody");
+  if (!tableBody) return;
+
+  // Get all customers from storage.js
+  let customers = getCustomers();
+
+  // Update total registered count
+  let countElement = document.getElementById("totalCustomerCount");
+  if (countElement) {
+    countElement.textContent = customers.length + " Customers";
+  }
+
+  // Clear table first
+  tableBody.innerHTML = "";
+
+  // If no customers found
+  if (customers.length === 0) {
+    tableBody.innerHTML = `
+      <tr>
+        <td colspan="4" class="text-center py-4 text-muted">
+          No customers found! Click "+ Add Customer" to add one.
+        </td>
+      </tr>
+    `;
+    return;
+  }
+
+  // Loop through customers and add rows
+  customers.forEach(customer => {
+    // Make 2-letter avatar initials (e.g. "Alex Morgan" -> "AM")
+    let initials = customer.name ? customer.name.substring(0, 2).toUpperCase() : "CU";
+
+    let row = `
+      <tr>
+        <td>
+          <div class="d-flex align-items-center gap-3">
+            <span class="customer-avatar">${initials}</span>
+            <div>
+              <div class="fw-bold text-dark">${customer.name}</div>
+              <small class="text-muted">ID: ${customer.id}</small>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="text-dark">
+            <i class="bi bi-telephone text-muted me-1"></i>${customer.phone}
+          </div>
+        </td>
+        <td>
+          <div class="text-dark">
+            <i class="bi bi-envelope text-muted me-1"></i>${customer.email}
+          </div>
+        </td>
+        <td class="text-end">
+          <div class="d-inline-flex gap-1">
+            <!-- Edit Button -->
+            <button type="button" class="btn-action btn-action-edit" title="Edit Customer" onclick="editCustomerBtn('${customer.id}')">
+              <i class="bi bi-pencil-square"></i>
+            </button>
+            <!-- Delete Button -->
+            <button type="button" class="btn-action btn-action-delete" title="Delete Customer" onclick="deleteCustomerBtn('${customer.id}')">
+              <i class="bi bi-trash3"></i>
+            </button>
+          </div>
+        </td>
+      </tr>
+    `;
+
+    tableBody.innerHTML += row;
+  });
+}
+
+// 2. Function to save a new customer (Called from Add Customer Modal)
+function handlerSaveCus() {
+  // Get values from input fields
+  let name = document.getElementById("cus_name").value.trim();
+  let phone = document.getElementById("cus_phone").value.trim();
+  let email = document.getElementById("cus_email").value.trim();
+
+  // Simple validation
+  if (name === "" || phone === "") {
+    alert("Please enter Customer Name and Phone Number!");
+    return;
+  }
+
+  // Generate Customer ID (e.g. "cus_001") only when save is triggered
+  let cusId = generateCustomerId();
+
+  // Create customer object
+  let customer = {
+    id: cusId,
+    name: name,
+    phone: phone,
+    email: email
+  };
+
+  // Save to localStorage using storage.js helper
+  addCustomer(customer);
+
+  // Clear input fields
+  document.getElementById("cus_name").value = "";
+  document.getElementById("cus_phone").value = "";
+  document.getElementById("cus_email").value = "";
+
+  // Close the modal
+  let modalElement = document.getElementById("addCustomerModal");
+  let modalInstance = bootstrap.Modal.getInstance(modalElement);
+  if (modalInstance) {
+    modalInstance.hide();
+  }
+
+  // Reload the customer table
+  loadCustomerTable();
+
+  alert("Customer (" + cusId + ") added successfully!");
+}
+
+// 3. Function to open Edit Modal and fill existing data
+function editCustomerBtn(id) {
+  let customer = getById(STORAGE_KEYS.CUSTOMERS, id);
+  if (!customer) return;
+
+  // Fill values into inputs
+  document.getElementById("edit_cus_id").value = customer.id;
+  document.getElementById("edit_cus_name").value = customer.name;
+  document.getElementById("edit_cus_phone").value = customer.phone;
+  document.getElementById("edit_cus_email").value = customer.email;
+
+  // Open the edit modal
+  let modal = new bootstrap.Modal(document.getElementById("editCustomerModal"));
+  modal.show();
+}
+
+// 4. Function to save updated customer details
+function updateCustomerBtn() {
+  let id = document.getElementById("edit_cus_id").value;
+  let name = document.getElementById("edit_cus_name").value.trim();
+  let phone = document.getElementById("edit_cus_phone").value.trim();
+  let email = document.getElementById("edit_cus_email").value.trim();
+
+  if (name === "" || phone === "") {
+    alert("Please enter Name and Phone!");
+    return;
+  }
+
+  // Create changes object
+  let changes = {
+    name: name,
+    phone: phone,
+    email: email
+  };
+
+  // Update in localStorage
+  updateCustomer(id, changes);
+
+  // Close the edit modal
+  let modalElement = document.getElementById("editCustomerModal");
+  let modalInstance = bootstrap.Modal.getInstance(modalElement);
+  if (modalInstance) {
+    modalInstance.hide();
+  }
+
+  // Reload the table
+  loadCustomerTable();
+
+  alert("Customer updated successfully!");
+}
+
+// 5. Function to open Delete Modal with customer info
+function deleteCustomerBtn(id) {
+  let customer = getById(STORAGE_KEYS.CUSTOMERS, id);
+  if (!customer) return;
+
+  document.getElementById("delete_cus_id").value = customer.id;
+  document.getElementById("delete_cus_name").textContent = '"' + customer.name + '"';
+
+  // Open delete modal
+  let modal = new bootstrap.Modal(document.getElementById("deleteCustomerModal"));
+  modal.show();
+}
+
+// 6. Function to confirm delete customer
+function confirmDeleteCus() {
+  let id = document.getElementById("delete_cus_id").value;
+
+  if (id) {
+    deleteCustomer(id);
+  }
+
+  // Close modal
+  let modalElement = document.getElementById("deleteCustomerModal");
+  let modalInstance = bootstrap.Modal.getInstance(modalElement);
+  if (modalInstance) {
+    modalInstance.hide();
+  }
+
+  // Reload the table
+  loadCustomerTable();
+
+  alert("Customer deleted successfully!");
+}
+
+// 7. Function to search customer by name, phone or email
+function searchCustomer() {
+  let searchInput = document.getElementById("searchCustomerInput").value.toLowerCase().trim();
+  let tableBody = document.getElementById("customerTableBody");
+  if (!tableBody) return;
+
+  let customers = getCustomers();
+
+  // Filter customers array
+  let filtered = customers.filter(customer => {
+    let nameMatch = (customer.name || "").toLowerCase().includes(searchInput);
+    let phoneMatch = (customer.phone || "").toLowerCase().includes(searchInput);
+    let emailMatch = (customer.email || "").toLowerCase().includes(searchInput);
+    return nameMatch || phoneMatch || emailMatch;
+  });
+
+  // Clear table
+  tableBody.innerHTML = "";
+
+  // If no match found
+  if (filtered.length === 0) {
+    tableBody.innerHTML = `
+      <tr>
+        <td colspan="4" class="text-center py-4 text-muted">
+          No customer found matching "${searchInput}"!
+        </td>
+      </tr>
+    `;
+    return;
+  }
+
+  // Display filtered rows
+  filtered.forEach(customer => {
+    let initials = customer.name ? customer.name.substring(0, 2).toUpperCase() : "CU";
+
+    let row = `
+      <tr>
+        <td>
+          <div class="d-flex align-items-center gap-3">
+            <span class="customer-avatar">${initials}</span>
+            <div>
+              <div class="fw-bold text-dark">${customer.name}</div>
+              <small class="text-muted">ID: ${customer.id}</small>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="text-dark">
+            <i class="bi bi-telephone text-muted me-1"></i>${customer.phone}
+          </div>
+        </td>
+        <td>
+          <div class="text-dark">
+            <i class="bi bi-envelope text-muted me-1"></i>${customer.email}
+          </div>
+        </td>
+        <td class="text-end">
+          <div class="d-inline-flex gap-1">
+            <button type="button" class="btn-action btn-action-edit" title="Edit Customer" onclick="editCustomerBtn('${customer.id}')">
+              <i class="bi bi-pencil-square"></i>
+            </button>
+            <button type="button" class="btn-action btn-action-delete" title="Delete Customer" onclick="deleteCustomerBtn('${customer.id}')">
+              <i class="bi bi-trash3"></i>
+            </button>
+          </div>
+        </td>
+      </tr>
+    `;
+
+    tableBody.innerHTML += row;
+  });
 }
