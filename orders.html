@@ -5,34 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GrillMaster POS - Orders History</title>
 
-  <!-- Google Font: Poppins -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- Bootstrap 5 CSS CDN -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Bootstrap Icons CDN -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-  <!-- Custom Theme Stylesheet -->
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <!-- =========================================================================
-       Single Responsive Navbar (Desktop: Fixed Top / Mobile: Fixed Bottom)
-       ========================================================================= -->
   <nav class="custom-navbar">
     <div class="nav-container">
-      <!-- Brand Logo (Hidden on mobile via CSS) -->
       <a class="navbar-brand" href="index.html">
         <i class="bi bi-fire brand-icon"></i>
         <span>GrillMaster <span class="brand-highlight">POS</span></span>
       </a>
 
-      <!-- Navigation Links -->
       <ul class="nav-links-list">
         <li class="nav-item">
           <a class="nav-link" href="index.html">
@@ -68,15 +56,10 @@
     </div>
   </nav>
 
-  <!-- =========================================================================
-       Main Content Container
-       ========================================================================= -->
   <main class="container animate-page">
-
-    <!-- Page Header -->
     <header class="page-header d-flex flex-wrap justify-content-between align-items-center gap-3">
       <div>
-        <h1 class="page-title">Orders Management</h1>
+        <h1 class="page-title">Order History</h1>
         <p class="page-subtitle">Track transaction history, order tickets, and customer receipts</p>
       </div>
       <div>
@@ -87,40 +70,21 @@
       </div>
     </header>
 
-    <!-- Filter & Search Toolbar -->
     <div class="custom-card p-3 mb-4">
       <div class="row g-3 align-items-center">
-        <!-- Search Input -->
-        <div class="col-12 col-md-5">
+        <div class="col-12 col-md-8">
           <div class="search-input-group">
             <i class="bi bi-search"></i>
-            <input type="text" class="form-control" placeholder="Search by Order ID (#ORD-...) or customer name..." aria-label="Search orders">
+            <input type="text" class="form-control" id="orderSearchInput" onkeyup="searchOrders()" placeholder="Search by Order ID (#ORD-...) or customer name..." aria-label="Search orders">
           </div>
         </div>
 
-        <!-- Date Range Filter -->
-        <div class="col-6 col-md-3">
-          <select class="form-select" aria-label="Date filter">
-            <option selected>Today (Nov 08)</option>
-            <option value="1">Yesterday</option>
-            <option value="2">This Week</option>
-            <option value="3">This Month</option>
-          </select>
-        </div>
-
-        <!-- Status Filter Buttons -->
-        <div class="col-6 col-md-4 text-md-end">
-          <div class="btn-group" role="group" aria-label="Order status filter">
-            <button type="button" class="btn btn-sm btn-outline-dark active">All</button>
-            <button type="button" class="btn btn-sm btn-outline-dark">Completed</button>
-            <button type="button" class="btn btn-sm btn-outline-dark">Preparing</button>
-            <button type="button" class="btn btn-sm btn-outline-dark">Cancelled</button>
-          </div>
+        <div class="col-12 col-md-4 text-md-end">
+          <span class="text-muted small">Total Orders: <strong class="text-dark" id="totalOrdersCount">0 Orders</strong></span>
         </div>
       </div>
     </div>
 
-    <!-- Orders Table (6 dummy rows inside .table-responsive) -->
     <section class="custom-card mb-4">
       <div class="table-responsive">
         <table class="table custom-table">
@@ -134,211 +98,36 @@
               <th class="text-end" style="width: 120px;">Actions</th>
             </tr>
           </thead>
-          <tbody>
-            <!-- Row 1 -->
-            <tr>
-              <td><span class="fw-bold text-dark">#ORD-1048</span></td>
-              <td>
-                <div class="d-flex align-items-center gap-2">
-                  <span class="customer-avatar">AM</span>
-                  <span class="fw-medium text-dark">Alex Morgan</span>
-                </div>
-              </td>
-              <td>Nov 08, 12:45 PM</td>
-              <td><span class="fw-bold text-dark">LKR 3,850.00</span></td>
-              <td>
-                <span class="badge bg-success-subtle text-success px-2 py-1 rounded-pill">
-                  <i class="bi bi-check-circle-fill me-1"></i> Completed
-                </span>
-              </td>
-              <td class="text-end">
-                <div class="d-inline-flex gap-1">
-                  <!-- View Button opens Bootstrap Modal -->
-                  <button type="button" class="btn-action btn-action-view" data-bs-toggle="modal" data-bs-target="#viewOrderModal" title="View Order Details">
-                    <i class="bi bi-eye"></i>
-                  </button>
-                  <!-- Delete Button opens Bootstrap Modal -->
-                  <button type="button" class="btn-action btn-action-delete" data-bs-toggle="modal" data-bs-target="#deleteOrderModal" title="Delete Order">
-                    <i class="bi bi-trash3"></i>
-                  </button>
-                </div>
-              </td>
-            </tr>
-
-            <!-- Row 2 -->
-            <tr>
-              <td><span class="fw-bold text-dark">#ORD-1047</span></td>
-              <td>
-                <div class="d-flex align-items-center gap-2">
-                  <span class="customer-avatar" style="background: linear-gradient(135deg, #4caf50, #8bc34a);">SJ</span>
-                  <span class="fw-medium text-dark">Sarah Jenkins</span>
-                </div>
-              </td>
-              <td>Nov 08, 12:30 PM</td>
-              <td><span class="fw-bold text-dark">LKR 2,300.00</span></td>
-              <td>
-                <span class="badge bg-warning-subtle text-warning-emphasis px-2 py-1 rounded-pill">
-                  <i class="bi bi-hourglass-split me-1"></i> Preparing
-                </span>
-              </td>
-              <td class="text-end">
-                <div class="d-inline-flex gap-1">
-                  <button type="button" class="btn-action btn-action-view" data-bs-toggle="modal" data-bs-target="#viewOrderModal" title="View Order Details">
-                    <i class="bi bi-eye"></i>
-                  </button>
-                  <button type="button" class="btn-action btn-action-delete" data-bs-toggle="modal" data-bs-target="#deleteOrderModal" title="Delete Order">
-                    <i class="bi bi-trash3"></i>
-                  </button>
-                </div>
-              </td>
-            </tr>
-
-            <!-- Row 3 -->
-            <tr>
-              <td><span class="fw-bold text-dark">#ORD-1046</span></td>
-              <td>
-                <div class="d-flex align-items-center gap-2">
-                  <span class="customer-avatar" style="background: linear-gradient(135deg, #2196f3, #00bcd4);">DK</span>
-                  <span class="fw-medium text-dark">David Kim</span>
-                </div>
-              </td>
-              <td>Nov 08, 12:15 PM</td>
-              <td><span class="fw-bold text-dark">LKR 6,450.00</span></td>
-              <td>
-                <span class="badge bg-success-subtle text-success px-2 py-1 rounded-pill">
-                  <i class="bi bi-check-circle-fill me-1"></i> Completed
-                </span>
-              </td>
-              <td class="text-end">
-                <div class="d-inline-flex gap-1">
-                  <button type="button" class="btn-action btn-action-view" data-bs-toggle="modal" data-bs-target="#viewOrderModal" title="View Order Details">
-                    <i class="bi bi-eye"></i>
-                  </button>
-                  <button type="button" class="btn-action btn-action-delete" data-bs-toggle="modal" data-bs-target="#deleteOrderModal" title="Delete Order">
-                    <i class="bi bi-trash3"></i>
-                  </button>
-                </div>
-              </td>
-            </tr>
-
-            <!-- Row 4 -->
-            <tr>
-              <td><span class="fw-bold text-dark">#ORD-1045</span></td>
-              <td>
-                <div class="d-flex align-items-center gap-2">
-                  <span class="customer-avatar" style="background: linear-gradient(135deg, #9c27b0, #e91e63);">JT</span>
-                  <span class="fw-medium text-dark">Jessica Taylor</span>
-                </div>
-              </td>
-              <td>Nov 08, 11:50 AM</td>
-              <td><span class="fw-bold text-dark">LKR 2,550.00</span></td>
-              <td>
-                <span class="badge bg-success-subtle text-success px-2 py-1 rounded-pill">
-                  <i class="bi bi-check-circle-fill me-1"></i> Completed
-                </span>
-              </td>
-              <td class="text-end">
-                <div class="d-inline-flex gap-1">
-                  <button type="button" class="btn-action btn-action-view" data-bs-toggle="modal" data-bs-target="#viewOrderModal" title="View Order Details">
-                    <i class="bi bi-eye"></i>
-                  </button>
-                  <button type="button" class="btn-action btn-action-delete" data-bs-toggle="modal" data-bs-target="#deleteOrderModal" title="Delete Order">
-                    <i class="bi bi-trash3"></i>
-                  </button>
-                </div>
-              </td>
-            </tr>
-
-            <!-- Row 5 -->
-            <tr>
-              <td><span class="fw-bold text-dark">#ORD-1044</span></td>
-              <td>
-                <div class="d-flex align-items-center gap-2">
-                  <span class="customer-avatar" style="background: linear-gradient(135deg, #ff9800, #f44336);">MB</span>
-                  <span class="fw-medium text-dark">Michael Brown</span>
-                </div>
-              </td>
-              <td>Nov 08, 11:35 AM</td>
-              <td><span class="fw-bold text-dark">LKR 9,800.00</span></td>
-              <td>
-                <span class="badge bg-success-subtle text-success px-2 py-1 rounded-pill">
-                  <i class="bi bi-check-circle-fill me-1"></i> Completed
-                </span>
-              </td>
-              <td class="text-end">
-                <div class="d-inline-flex gap-1">
-                  <button type="button" class="btn-action btn-action-view" data-bs-toggle="modal" data-bs-target="#viewOrderModal" title="View Order Details">
-                    <i class="bi bi-eye"></i>
-                  </button>
-                  <button type="button" class="btn-action btn-action-delete" data-bs-toggle="modal" data-bs-target="#deleteOrderModal" title="Delete Order">
-                    <i class="bi bi-trash3"></i>
-                  </button>
-                </div>
-              </td>
-            </tr>
-
-            <!-- Row 6 -->
-            <tr>
-              <td><span class="fw-bold text-dark">#ORD-1043</span></td>
-              <td>
-                <div class="d-flex align-items-center gap-2">
-                  <span class="customer-avatar" style="background: #757575;">WK</span>
-                  <span class="fw-medium text-muted">Walk-in Guest</span>
-                </div>
-              </td>
-              <td>Nov 08, 11:10 AM</td>
-              <td><span class="fw-bold text-dark">LKR 1,650.00</span></td>
-              <td>
-                <span class="badge bg-danger-subtle text-danger px-2 py-1 rounded-pill">
-                  <i class="bi bi-x-circle-fill me-1"></i> Cancelled
-                </span>
-              </td>
-              <td class="text-end">
-                <div class="d-inline-flex gap-1">
-                  <button type="button" class="btn-action btn-action-view" data-bs-toggle="modal" data-bs-target="#viewOrderModal" title="View Order Details">
-                    <i class="bi bi-eye"></i>
-                  </button>
-                  <button type="button" class="btn-action btn-action-delete" data-bs-toggle="modal" data-bs-target="#deleteOrderModal" title="Delete Order">
-                    <i class="bi bi-trash3"></i>
-                  </button>
-                </div>
-              </td>
-            </tr>
+          <tbody id="ordersTableBody">
+            <!-- Dynamic Orders loaded via JavaScript -->
           </tbody>
         </table>
       </div>
     </section>
-
   </main>
 
-  <!-- =========================================================================
-       Modal 1: View Order Details Modal (Showing items list and total)
-       ========================================================================= -->
   <div class="modal fade" id="viewOrderModal" tabindex="-1" aria-labelledby="viewOrderModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
           <div>
-            <h5 class="modal-title" id="viewOrderModalLabel">Order Ticket #ORD-1048</h5>
-            <small class="text-muted">Placed on Nov 08, 12:45 PM &bull; Dine-In (Table 04)</small>
+            <h5 class="modal-title" id="modalOrderNumber">Order Ticket</h5>
+            <small class="text-muted" id="modalOrderDateTime"></small>
           </div>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <!-- Customer Info Card -->
           <div class="bg-light p-3 rounded mb-3">
             <div class="d-flex justify-content-between">
               <div>
-                <strong class="text-dark d-block">Alex Morgan</strong>
-                <span class="text-muted small">alex.morgan@example.com</span>
+                <strong class="text-dark d-block" id="modalOrderCustomerName">Customer</strong>
               </div>
               <div class="text-end">
-                <span class="badge bg-success-subtle text-success">Paid via Card</span>
+                <span class="badge bg-success-subtle text-success" id="modalOrderPayment">Completed</span>
               </div>
             </div>
           </div>
 
-          <!-- Dummy Ordered Items List -->
           <h6 class="fw-bold small text-muted text-uppercase mb-2">Items Breakdown</h6>
           <div class="table-responsive">
             <table class="table table-sm align-middle mb-3">
@@ -350,52 +139,22 @@
                   <th class="text-end">Amount</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td>Classic Cheeseburger</td>
-                  <td class="text-center">2</td>
-                  <td class="text-end">LKR 1,450.00</td>
-                  <td class="text-end fw-semibold">LKR 2,900.00</td>
-                </tr>
-                <tr>
-                  <td>Loaded Truffle Fries</td>
-                  <td class="text-center">1</td>
-                  <td class="text-end">LKR 950.00</td>
-                  <td class="text-end fw-semibold">LKR 950.00</td>
-                </tr>
-                <tr>
-                  <td>Craft Root Beer</td>
-                  <td class="text-center">1</td>
-                  <td class="text-end">LKR 450.00</td>
-                  <td class="text-end fw-semibold">LKR 450.00</td>
-                </tr>
+              <tbody id="modalOrderItemsTable">
+                <!-- Dynamic Breakdown Rows -->
               </tbody>
             </table>
           </div>
 
-          <!-- Totals Calculation -->
           <div class="border-top pt-2">
-            <div class="d-flex justify-content-between text-muted small mb-1">
-              <span>Subtotal:</span>
-              <span>LKR 4,300.00</span>
-            </div>
-            <div class="d-flex justify-content-between text-muted small mb-1">
-              <span>Tax (8%):</span>
-              <span>LKR 344.00</span>
-            </div>
-            <div class="d-flex justify-content-between text-success small mb-1">
-              <span>Discount (Code: BURGER10):</span>
-              <span>-LKR 794.00</span>
-            </div>
             <div class="d-flex justify-content-between fw-bold fs-5 text-dark mt-2 pt-2 border-top">
               <span>Grand Total:</span>
-              <span class="text-danger">LKR 3,850.00</span>
+              <span class="text-danger" id="modalOrderGrandTotal">LKR 0.00</span>
             </div>
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary-custom d-inline-flex align-items-center gap-1">
+          <button type="button" class="btn btn-primary-custom d-inline-flex align-items-center gap-1" onclick="window.print()">
             <i class="bi bi-printer"></i> Print Invoice
           </button>
         </div>
@@ -403,28 +162,27 @@
     </div>
   </div>
 
-  <!-- =========================================================================
-       Modal 2: Delete Order Confirmation Modal
-       ========================================================================= -->
   <div class="modal fade" id="deleteOrderModal" tabindex="-1" aria-labelledby="deleteOrderModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-sm">
       <div class="modal-content text-center p-2">
         <div class="modal-body">
+          <input type="hidden" id="delete_order_id">
           <div class="text-danger mb-2">
             <i class="bi bi-trash3-fill fs-1"></i>
           </div>
           <h5 class="fw-bold mb-1">Delete Order?</h5>
-          <p class="text-muted small mb-3">Are you sure you want to permanently delete this order record?</p>
+          <p class="text-muted small mb-3">Are you sure you want to delete <strong id="delete_order_num">this order</strong>?</p>
           <div class="d-flex justify-content-center gap-2">
             <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal">Yes, Delete</button>
+            <button type="button" class="btn btn-danger btn-sm" onclick="confirmDeleteOrder();">Yes, Delete</button>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Bootstrap 5 Bundle JS CDN (Only script allowed for Bootstrap modals) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/script.js"></script>
 </body>
 </html>

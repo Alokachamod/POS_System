@@ -100,281 +100,29 @@
           <!-- Search Input -->
           <div class="search-input-group mb-3">
             <i class="bi bi-search"></i>
-            <input type="text" class="form-control" placeholder="Search burger, sides, drinks by name or code..." aria-label="Search products">
+            <input type="text" class="form-control" id="posSearchInput" onkeyup="filterPosProducts()" placeholder="Search burger, sides, drinks by name or SKU..." aria-label="Search products">
           </div>
 
           <!-- Category Filter Buttons (All, Burgers, Fries, Drinks) -->
           <div class="d-flex flex-wrap gap-2">
-            <button type="button" class="filter-btn active">
+            <button type="button" class="filter-btn active" id="btnPosCatAll" onclick="filterPosCategory('All')">
               <i class="bi bi-grid-fill me-1"></i> All Items
             </button>
-            <button type="button" class="filter-btn">
+            <button type="button" class="filter-btn" id="btnPosCatBurgers" onclick="filterPosCategory('Burgers')">
               <i class="bi bi-egg-fried me-1"></i> Burgers
             </button>
-            <button type="button" class="filter-btn">
+            <button type="button" class="filter-btn" id="btnPosCatSides" onclick="filterPosCategory('Fries & Sides')">
               <i class="bi bi-box2-heart me-1"></i> Fries &amp; Sides
             </button>
-            <button type="button" class="filter-btn">
+            <button type="button" class="filter-btn" id="btnPosCatDrinks" onclick="filterPosCategory('Drinks')">
               <i class="bi bi-cup-straw me-1"></i> Drinks
             </button>
           </div>
         </div>
 
-        <!-- Product Card Grid: col-6 col-md-4 (12 Cards Total) -->
-        <div class="row g-3 mb-4">
-
-          <!-- Card 1 -->
-          <div class="col-6 col-md-4">
-            <div class="pos-product-card">
-              <div class="pos-product-img-wrapper">
-                <img src="images/classic-cheeseburger.svg" alt="Classic Cheeseburger" class="pos-product-img" onerror="this.src='images/default-burger.svg'">
-                <span class="pos-price-tag">LKR 1,450</span>
-              </div>
-              <div class="pos-product-body">
-                <div>
-                  <h3 class="pos-product-title">Classic Cheeseburger</h3>
-                  <div class="pos-product-stock text-success">
-                    <i class="bi bi-check-circle me-1"></i>In Stock: 45
-                  </div>
-                </div>
-                <button type="button" class="pos-add-btn">
-                  <i class="bi bi-plus-lg"></i> Add
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 2 -->
-          <div class="col-6 col-md-4">
-            <div class="pos-product-card">
-              <div class="pos-product-img-wrapper">
-                <img src="images/double-bacon-smash.svg" alt="Double Bacon Smash" class="pos-product-img" onerror="this.src='images/default-burger.svg'">
-                <span class="pos-price-tag">LKR 1,850</span>
-              </div>
-              <div class="pos-product-body">
-                <div>
-                  <h3 class="pos-product-title">Double Bacon Smash</h3>
-                  <div class="pos-product-stock text-success">
-                    <i class="bi bi-check-circle me-1"></i>In Stock: 28
-                  </div>
-                </div>
-                <button type="button" class="pos-add-btn">
-                  <i class="bi bi-plus-lg"></i> Add
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 3 -->
-          <div class="col-6 col-md-4">
-            <div class="pos-product-card">
-              <div class="pos-product-img-wrapper">
-                <img src="images/spicy-jalapeno.svg" alt="Spicy Jalapeño Burger" class="pos-product-img" onerror="this.src='images/default-burger.svg'">
-                <span class="pos-price-tag">LKR 1,650</span>
-              </div>
-              <div class="pos-product-body">
-                <div>
-                  <h3 class="pos-product-title">Spicy Jalapeño Burger</h3>
-                  <div class="pos-product-stock text-warning">
-                    <i class="bi bi-exclamation-circle me-1"></i>In Stock: 15
-                  </div>
-                </div>
-                <button type="button" class="pos-add-btn">
-                  <i class="bi bi-plus-lg"></i> Add
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 4 -->
-          <div class="col-6 col-md-4">
-            <div class="pos-product-card">
-              <div class="pos-product-img-wrapper">
-                <img src="images/classic-cheeseburger.svg" alt="BBQ Crispy Chicken" class="pos-product-img" onerror="this.src='images/default-burger.svg'">
-                <span class="pos-price-tag">LKR 1,700</span>
-              </div>
-              <div class="pos-product-body">
-                <div>
-                  <h3 class="pos-product-title">BBQ Crispy Chicken</h3>
-                  <div class="pos-product-stock text-success">
-                    <i class="bi bi-check-circle me-1"></i>In Stock: 32
-                  </div>
-                </div>
-                <button type="button" class="pos-add-btn">
-                  <i class="bi bi-plus-lg"></i> Add
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 5 -->
-          <div class="col-6 col-md-4">
-            <div class="pos-product-card">
-              <div class="pos-product-img-wrapper">
-                <img src="images/mushroom-swiss.svg" alt="Mushroom Swiss Burger" class="pos-product-img" onerror="this.src='images/default-burger.svg'">
-                <span class="pos-price-tag">LKR 1,750</span>
-              </div>
-              <div class="pos-product-body">
-                <div>
-                  <h3 class="pos-product-title">Mushroom Swiss Burger</h3>
-                  <div class="pos-product-stock text-success">
-                    <i class="bi bi-check-circle me-1"></i>In Stock: 18
-                  </div>
-                </div>
-                <button type="button" class="pos-add-btn">
-                  <i class="bi bi-plus-lg"></i> Add
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 6 -->
-          <div class="col-6 col-md-4">
-            <div class="pos-product-card">
-              <div class="pos-product-img-wrapper">
-                <img src="images/double-bacon-smash.svg" alt="Black Angus Supreme" class="pos-product-img" onerror="this.src='images/default-burger.svg'">
-                <span class="pos-price-tag">LKR 2,100</span>
-              </div>
-              <div class="pos-product-body">
-                <div>
-                  <h3 class="pos-product-title">Black Angus Supreme</h3>
-                  <div class="pos-product-stock text-success">
-                    <i class="bi bi-check-circle me-1"></i>In Stock: 22
-                  </div>
-                </div>
-                <button type="button" class="pos-add-btn">
-                  <i class="bi bi-plus-lg"></i> Add
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 7 -->
-          <div class="col-6 col-md-4">
-            <div class="pos-product-card">
-              <div class="pos-product-img-wrapper">
-                <img src="images/loaded-fries.svg" alt="Loaded Truffle Fries" class="pos-product-img" onerror="this.src='images/default-burger.svg'">
-                <span class="pos-price-tag">LKR 950</span>
-              </div>
-              <div class="pos-product-body">
-                <div>
-                  <h3 class="pos-product-title">Loaded Truffle Fries</h3>
-                  <div class="pos-product-stock text-success">
-                    <i class="bi bi-check-circle me-1"></i>In Stock: 40
-                  </div>
-                </div>
-                <button type="button" class="pos-add-btn">
-                  <i class="bi bi-plus-lg"></i> Add
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 8 -->
-          <div class="col-6 col-md-4">
-            <div class="pos-product-card">
-              <div class="pos-product-img-wrapper">
-                <img src="images/crispy-onion-rings.svg" alt="Crispy Onion Rings" class="pos-product-img" onerror="this.src='images/default-burger.svg'">
-                <span class="pos-price-tag">LKR 850</span>
-              </div>
-              <div class="pos-product-body">
-                <div>
-                  <h3 class="pos-product-title">Crispy Onion Rings</h3>
-                  <div class="pos-product-stock text-success">
-                    <i class="bi bi-check-circle me-1"></i>In Stock: 25
-                  </div>
-                </div>
-                <button type="button" class="pos-add-btn">
-                  <i class="bi bi-plus-lg"></i> Add
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 9 -->
-          <div class="col-6 col-md-4">
-            <div class="pos-product-card">
-              <div class="pos-product-img-wrapper">
-                <img src="images/chocolate-thickshake.svg" alt="Chocolate Thickshake" class="pos-product-img" onerror="this.src='images/default-burger.svg'">
-                <span class="pos-price-tag">LKR 750</span>
-              </div>
-              <div class="pos-product-body">
-                <div>
-                  <h3 class="pos-product-title">Chocolate Thickshake</h3>
-                  <div class="pos-product-stock text-success">
-                    <i class="bi bi-check-circle me-1"></i>In Stock: 50
-                  </div>
-                </div>
-                <button type="button" class="pos-add-btn">
-                  <i class="bi bi-plus-lg"></i> Add
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 10 -->
-          <div class="col-6 col-md-4">
-            <div class="pos-product-card">
-              <div class="pos-product-img-wrapper">
-                <img src="images/chocolate-thickshake.svg" alt="Strawberry Shake" class="pos-product-img" onerror="this.src='images/default-burger.svg'">
-                <span class="pos-price-tag">LKR 750</span>
-              </div>
-              <div class="pos-product-body">
-                <div>
-                  <h3 class="pos-product-title">Strawberry Shake</h3>
-                  <div class="pos-product-stock text-success">
-                    <i class="bi bi-check-circle me-1"></i>In Stock: 38
-                  </div>
-                </div>
-                <button type="button" class="pos-add-btn">
-                  <i class="bi bi-plus-lg"></i> Add
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 11 -->
-          <div class="col-6 col-md-4">
-            <div class="pos-product-card">
-              <div class="pos-product-img-wrapper">
-                <img src="images/chocolate-thickshake.svg" alt="Craft Root Beer" class="pos-product-img" onerror="this.src='images/default-burger.svg'">
-                <span class="pos-price-tag">LKR 450</span>
-              </div>
-              <div class="pos-product-body">
-                <div>
-                  <h3 class="pos-product-title">Craft Root Beer</h3>
-                  <div class="pos-product-stock text-success">
-                    <i class="bi bi-check-circle me-1"></i>In Stock: 60
-                  </div>
-                </div>
-                <button type="button" class="pos-add-btn">
-                  <i class="bi bi-plus-lg"></i> Add
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 12 -->
-          <div class="col-6 col-md-4">
-            <div class="pos-product-card">
-              <div class="pos-product-img-wrapper">
-                <img src="images/loaded-fries.svg" alt="Smoky BBQ Wings" class="pos-product-img" onerror="this.src='images/default-burger.svg'">
-                <span class="pos-price-tag">LKR 1,250</span>
-              </div>
-              <div class="pos-product-body">
-                <div>
-                  <h3 class="pos-product-title">Smoky BBQ Wings</h3>
-                  <div class="pos-product-stock text-warning">
-                    <i class="bi bi-exclamation-circle me-1"></i>In Stock: 12
-                  </div>
-                </div>
-                <button type="button" class="pos-add-btn">
-                  <i class="bi bi-plus-lg"></i> Add
-                </button>
-              </div>
-            </div>
-          </div>
-
+        <!-- Product Card Grid: Dynamic from LocalStorage -->
+        <div class="row g-3 mb-4" id="posProductGrid">
+          <!-- Dynamic Products loaded via JavaScript -->
         </div>
       </div>
 
@@ -388,9 +136,9 @@
               <h2 class="h5 fw-bold mb-0 text-dark">
                 <i class="bi bi-cart3 text-danger me-1"></i> Current Order
               </h2>
-              <small class="text-muted">Order #ORD-1049</small>
+              <small class="text-muted" id="posOrderTicketPreview">Counter Register</small>
             </div>
-            <button type="button" class="btn btn-sm btn-outline-danger" title="Clear all items">
+            <button type="button" class="btn btn-sm btn-outline-danger" title="Clear all items" onclick="clearCart()">
               <i class="bi bi-trash"></i>
             </button>
           </div>
@@ -400,95 +148,28 @@
             <label class="form-label small fw-semibold text-muted mb-1">Select Customer</label>
             <div class="input-group">
               <span class="input-group-text bg-light"><i class="bi bi-person"></i></span>
-              <select class="form-select form-select-sm" aria-label="Customer selection">
-                <option selected>Walk-in Customer (Guest)</option>
-                <option value="1">Alex Morgan (#CUST-101)</option>
-                <option value="2">Sarah Jenkins (#CUST-102)</option>
-                <option value="3">David Kim (#CUST-103)</option>
-                <option value="4">Jessica Taylor (#CUST-104)</option>
+              <select class="form-select form-select-sm" id="posCustomerSelect" aria-label="Customer selection">
+                <option value="" selected>Walk-in Customer (Guest)</option>
               </select>
             </div>
           </div>
 
           <!-- Order Type selector -->
           <div class="d-flex gap-2 mb-3">
-            <div class="order-type-chip active">
+            <div class="order-type-chip active" id="chipDineIn" onclick="setOrderType('Dine-in')">
               <i class="bi bi-shop me-1"></i> Dine-in
             </div>
-            <div class="order-type-chip">
+            <div class="order-type-chip" id="chipTakeaway" onclick="setOrderType('Takeaway')">
               <i class="bi bi-bag me-1"></i> Takeaway
             </div>
-            <div class="order-type-chip">
+            <div class="order-type-chip" id="chipDelivery" onclick="setOrderType('Delivery')">
               <i class="bi bi-bicycle me-1"></i> Delivery
             </div>
           </div>
 
-          <!-- 3 Dummy Cart Items List -->
-          <div class="cart-items-list mb-3">
-
-            <!-- Cart Item 1 -->
-            <div class="cart-item">
-              <div style="flex: 1; padding-right: 8px;">
-                <div class="cart-item-name">Classic Cheeseburger</div>
-                <div class="cart-item-price">LKR 1,450.00 each</div>
-              </div>
-              <div class="qty-control me-2">
-                <button type="button" class="qty-btn" aria-label="Decrease quantity">
-                  <i class="bi bi-dash"></i>
-                </button>
-                <span class="qty-val">2</span>
-                <button type="button" class="qty-btn" aria-label="Increase quantity">
-                  <i class="bi bi-plus"></i>
-                </button>
-              </div>
-              <div class="fw-bold text-dark me-2">LKR 2,900.00</div>
-              <button type="button" class="cart-remove-btn" aria-label="Remove item">
-                <i class="bi bi-x-circle"></i>
-              </button>
-            </div>
-
-            <!-- Cart Item 2 -->
-            <div class="cart-item">
-              <div style="flex: 1; padding-right: 8px;">
-                <div class="cart-item-name">Loaded Truffle Fries</div>
-                <div class="cart-item-price">LKR 950.00 each</div>
-              </div>
-              <div class="qty-control me-2">
-                <button type="button" class="qty-btn" aria-label="Decrease quantity">
-                  <i class="bi bi-dash"></i>
-                </button>
-                <span class="qty-val">1</span>
-                <button type="button" class="qty-btn" aria-label="Increase quantity">
-                  <i class="bi bi-plus"></i>
-                </button>
-              </div>
-              <div class="fw-bold text-dark me-2">LKR 950.00</div>
-              <button type="button" class="cart-remove-btn" aria-label="Remove item">
-                <i class="bi bi-x-circle"></i>
-              </button>
-            </div>
-
-            <!-- Cart Item 3 -->
-            <div class="cart-item">
-              <div style="flex: 1; padding-right: 8px;">
-                <div class="cart-item-name">Chocolate Thickshake</div>
-                <div class="cart-item-price">LKR 750.00 each</div>
-              </div>
-              <div class="qty-control me-2">
-                <button type="button" class="qty-btn" aria-label="Decrease quantity">
-                  <i class="bi bi-dash"></i>
-                </button>
-                <span class="qty-val">1</span>
-                <button type="button" class="qty-btn" aria-label="Increase quantity">
-                  <i class="bi bi-plus"></i>
-                </button>
-              </div>
-              <div class="fw-bold text-dark me-2">LKR 750.00</div>
-              <button type="button" class="cart-remove-btn" aria-label="Remove item">
-                <i class="bi bi-x-circle"></i>
-              </button>
-            </div>
-
+          <!-- Cart Items List (Dynamic) -->
+          <div class="cart-items-list mb-3" id="cartItemsList">
+            <!-- Dynamic Cart Items loaded via JavaScript -->
           </div>
 
           <!-- Payment Method Quick Options -->
@@ -496,17 +177,17 @@
             <label class="form-label small fw-semibold text-muted mb-1">Payment Method</label>
             <div class="row g-2">
               <div class="col-4">
-                <button type="button" class="btn btn-sm btn-outline-dark w-100 active">
+                <button type="button" class="btn btn-sm btn-outline-dark w-100 active" id="btnPayCash" onclick="setPaymentMethod('Cash')">
                   <i class="bi bi-cash me-1"></i> Cash
                 </button>
               </div>
               <div class="col-4">
-                <button type="button" class="btn btn-sm btn-outline-dark w-100">
+                <button type="button" class="btn btn-sm btn-outline-dark w-100" id="btnPayCard" onclick="setPaymentMethod('Card')">
                   <i class="bi bi-credit-card me-1"></i> Card
                 </button>
               </div>
               <div class="col-4">
-                <button type="button" class="btn btn-sm btn-outline-dark w-100">
+                <button type="button" class="btn btn-sm btn-outline-dark w-100" id="btnPayQR" onclick="setPaymentMethod('QR Pay')">
                   <i class="bi bi-qr-code me-1"></i> QR Pay
                 </button>
               </div>
@@ -517,26 +198,22 @@
           <div class="bg-light p-3 rounded mb-3">
             <div class="cart-total-row">
               <span>Subtotal:</span>
-              <span class="fw-semibold text-dark">LKR 4,600.00</span>
+              <span class="fw-semibold text-dark" id="cartSubtotal">LKR 0.00</span>
             </div>
             <div class="cart-total-row">
-              <span>Tax (8%):</span>
-              <span class="fw-semibold text-dark">LKR 368.00</span>
-            </div>
-            <div class="cart-total-row text-success">
-              <span>Discount (Combo Promo):</span>
-              <span class="fw-semibold">-LKR 300.00</span>
+              <span>Items Count:</span>
+              <span class="fw-semibold text-dark" id="cartItemsCount">0 items</span>
             </div>
             <div class="cart-total-row cart-grand-total">
               <span>Total Payable:</span>
-              <span>LKR 4,668.00</span>
+              <span id="cartGrandTotal">LKR 0.00</span>
             </div>
           </div>
 
-          <!-- Big Place Order Button (Triggers Bootstrap Modal) -->
-          <button type="button" class="btn btn-primary-custom w-100 py-3 fs-5 d-flex align-items-center justify-content-center gap-2 shadow" data-bs-toggle="modal" data-bs-target="#orderSuccessModal">
+          <!-- Big Place Order Button -->
+          <button type="button" class="btn btn-primary-custom w-100 py-3 fs-5 d-flex align-items-center justify-content-center gap-2 shadow" id="btnPlaceOrder" onclick="handlePlaceOrder();">
             <i class="bi bi-check2-circle fs-4"></i>
-            <span>Place Order (LKR 4,668.00)</span>
+            <span id="placeOrderBtnText">Place Order (LKR 0.00)</span>
           </button>
 
         </aside>
@@ -547,7 +224,7 @@
   </main>
 
   <!-- =========================================================================
-       Order Placed Confirmation Modal (Pure Bootstrap Trigger)
+       Order Placed Confirmation Modal
        ========================================================================= -->
   <div class="modal fade" id="orderSuccessModal" tabindex="-1" aria-labelledby="orderSuccessModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -559,26 +236,26 @@
             </span>
           </div>
           <h4 class="modal-title fw-bold mb-1" id="orderSuccessModalLabel">Order Placed Successfully!</h4>
-          <p class="text-muted small mb-3">Order Ticket <strong>#ORD-1049</strong> has been sent to kitchen printer.</p>
+          <p class="text-muted small mb-3">Order Ticket <strong id="modalOrderTicket">#ORD-0001</strong> has been confirmed.</p>
 
           <div class="bg-light p-3 rounded mb-3 text-start small">
             <div class="d-flex justify-content-between mb-1">
-              <span class="text-muted">Total Paid:</span>
-              <strong class="text-dark">LKR 5,000.00 (Cash)</strong>
+              <span class="text-muted">Customer:</span>
+              <strong class="text-dark" id="modalCustomerName">Walk-in Customer</strong>
             </div>
             <div class="d-flex justify-content-between mb-1">
-              <span class="text-muted">Order Total:</span>
-              <strong class="text-dark">LKR 4,668.00</strong>
+              <span class="text-muted">Payment:</span>
+              <strong class="text-dark" id="modalPaymentMethod">Cash</strong>
             </div>
-            <div class="d-flex justify-content-between text-success fw-bold border-top pt-1">
-              <span>Change Due:</span>
-              <span>LKR 332.00</span>
+            <div class="d-flex justify-content-between text-success fw-bold border-top pt-1 fs-6">
+              <span>Total Paid:</span>
+              <span id="modalOrderTotal">LKR 0.00</span>
             </div>
           </div>
 
           <div class="d-flex gap-2 justify-content-center">
             <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary-custom d-inline-flex align-items-center gap-1" data-bs-dismiss="modal">
+            <button type="button" class="btn btn-primary-custom d-inline-flex align-items-center gap-1" onclick="window.print();">
               <i class="bi bi-printer"></i> Print Receipt
             </button>
           </div>
@@ -587,7 +264,13 @@
     </div>
   </div>
 
-  <!-- Bootstrap 5 Bundle JS CDN (Only script allowed for Bootstrap modals) -->
+  <!-- Bootstrap 5 Bundle JS CDN -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- LocalStorage Database Helper -->
+  <script src="js/storage.js"></script>
+
+  <!-- Application Script -->
+  <script src="js/script.js"></script>
 </body>
 </html>
